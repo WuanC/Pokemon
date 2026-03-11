@@ -14,12 +14,11 @@ namespace Pokemon.Scripts.Map
         public Action OnNodeCompleted;
         public Vector3 startMarkPosition;
 
-        void Start()
+        public void InitializeNode()
         {
             startMarkPosition = markBattle.transform.position;
             SetDisable(true);
             SetHasPokemon(false);
-
         }
         public void SetHasPokemon(bool state)
         {

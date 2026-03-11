@@ -18,6 +18,7 @@ namespace Pokemon.Scripts.Map
             }
             for (int j = 0; j < this.nodes.Count; j++)
             {
+                this.nodes[j].InitializeNode();
                 this.nodes[j].OnNodeCompleted += RandomPokemonInArea;
             }
         }
