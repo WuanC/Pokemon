@@ -3,19 +3,19 @@ using UnityEngine;
 using Pokemon.Scripts;
 using Pokemon.Scripts.Pokemon;
 
-namespace Pokemon.Scripts
+namespace Pokemon.Scripts.Battle
 {
     public class BattleController : MonoBehaviour
     {
-        public List<PokemonBattle> playerTeam;
-        public List<PokemonBattle> opponentTeam;
+        public List<Pokemon.Pokemon> playerTeam;
+        public List<Pokemon.Pokemon> opponentTeam;
 
-        public void UseSkill(SkillData skill, PokemonBattle pokemonCaster, PokemonBattle pokemonTarget)
+        public void UseSkill(SkillData skill, Pokemon.Pokemon pokemonCaster, Pokemon.Pokemon pokemonTarget)
         {
 
         }
 
-        public void Attack(SkillData skill, PokemonBattle pokemonCaster, PokemonBattle pokemonTarget)
+        public void Attack(SkillData skill, Pokemon.Pokemon pokemonCaster, Pokemon.Pokemon pokemonTarget)
         {
             if (pokemonTarget == null)
             {

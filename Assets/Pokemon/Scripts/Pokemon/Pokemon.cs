@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Pokemon.Scripts.Battle;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Pokemon
 {
-    public class PokemonBattle : MonoBehaviour
+    public class Pokemon
     {
         private PokemonData data;
         [SerializeField] private int currentLevel;
@@ -19,7 +20,7 @@ namespace Pokemon.Scripts.Pokemon
             this.CurrentDamage = data.damage * level;
             this.currentHp = data.hp * level;
         }
-        public (SkillData, PokemonBattle) UseSkill(PokemonBattle pokemonCaster, PokemonBattle pokemonTarget, SkillData skill)
+        public (SkillData, Pokemon) UseSkill(Pokemon pokemonCaster, Pokemon pokemonTarget, SkillData skill)
         {
             return (skill, pokemonTarget);
         }
@@ -34,7 +35,6 @@ namespace Pokemon.Scripts.Pokemon
         }
         public void UseSkill()
         {
-            BattleController battleController = FindObjectOfType<BattleController>();
             battleController.Attack(currentSkills[0], this, null);
         }
         public void Update()
