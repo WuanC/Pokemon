@@ -7,13 +7,20 @@ namespace Pokemon.Scripts.Pokemon
     public class PokemonData : ScriptableObject
     {
         public string pokemonName;
-        public ElementType type;
-        public Sprite sprite;
-        public float evolutionMultiplier;
-        public List<PokemonSkill> skills;
-        [Header("Stats Level 1")]
-        public float hp;
-        public float damage;
+        public PokemonType type;
+        public Sprite frontSprite;
+        public Sprite backSprite;
+
+
+        //Stats
+        public int maxHP;
+        public int attack;
+        public int defense;
+        public int speed;
+
+        //Moves
+        public List<PokemonSkill> learnableSkills;
+
     }
 
     [System.Serializable]

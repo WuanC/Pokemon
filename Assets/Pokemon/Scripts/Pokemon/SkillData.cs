@@ -6,14 +6,12 @@ namespace Pokemon.Scripts.Pokemon
     public class SkillData : ScriptableObject
     {
         public string skillName;
-        public ElementType elementType;
+        public PokemonType elementType;
+        public Sprite icon;
 
-        public SkillType type;
 
         public int power;
+        public int accuracy;
 
-        public SkillEffect effect;
-
-        public float effectChance;
     }
 }
