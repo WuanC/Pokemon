@@ -5,6 +5,7 @@ using Pokemon.Scripts.Pokemon;
 using System.Collections;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -22,8 +23,13 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] BattlePokemon enemyPokemon;
         [SerializeField] BattlePokemonUI enemyPokemonUI;
         [SerializeField] TextMeshProUGUI skillText;
+        [SerializeField] Image typeEffectImage;
+        [SerializeField] Image criticalImage;
         private BattleState state = BattleState.Start;
         private int currentMoveIndex;
+        [SerializeField] private Sprite strongSprite;
+        [SerializeField] private Sprite weakSprite;
+        [SerializeField] private Sprite extraSprite;
 
         private void Start()
         {
@@ -34,6 +40,8 @@ namespace Pokemon.Scripts.Battle
             enemyPokemon.SetPokemon();
             enemyPokemonUI.SetPokemon(enemyPokemon.Pokemon);
             skillText.gameObject.SetActive(false);
+            typeEffectImage.gameObject.SetActive(false);
+            criticalImage.gameObject.SetActive(false);
             PlayerAction();
         }
 
@@ -104,20 +112,42 @@ namespace Pokemon.Scripts.Battle
             skillText.text = damageDetails.skillName;
 
             RectTransform rect = skillText.rectTransform;
+            Vector2 nameStartPos = rect.anchoredPosition;
 
-            Vector2 startPos = rect.anchoredPosition;
-
-            rect.anchoredPosition = new Vector2(startPos.x - 200, startPos.y);
-
+            rect.anchoredPosition = new Vector2(nameStartPos.x - 200, nameStartPos.y);
             skillText.gameObject.SetActive(true);
+            if (damageDetails.critical >= 2)
+            {
+                criticalImage.transform.localScale = Vector3.zero;
+                criticalImage.gameObject.SetActive(true);
+                criticalImage.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+                {
+                    criticalImage.DOFade(0, 0.5f).OnComplete(() =>
+                    {
+                        criticalImage.gameObject.SetActive(false);
+                        criticalImage.color = new Color(criticalImage.color.r, criticalImage.color.g, criticalImage.color.b, 1);
+                    });
+                });
+            }
+            if (damageDetails.typeEffectiveness != 1)
+            {
+                typeEffectImage.sprite = damageDetails.typeEffectiveness == 2 ? strongSprite : damageDetails.typeEffectiveness == 0.5f ? weakSprite : extraSprite;
+                typeEffectImage.transform.localScale = Vector3.zero;
+                typeEffectImage.gameObject.SetActive(true);
+                typeEffectImage.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+                {
 
-            rect.DOAnchorPosX(startPos.x, 0.5f)
+                    typeEffectImage.gameObject.SetActive(false);
+                    typeEffectImage.color = new Color(typeEffectImage.color.r, typeEffectImage.color.g, typeEffectImage.color.b, 1);
+                });
+            }
+            rect.DOAnchorPosX(nameStartPos.x, 0.5f)
                 .OnComplete(() =>
                 {
                     skillText.DOFade(0, 0.5f).OnComplete(() =>
                     {
                         skillText.gameObject.SetActive(false);
-                        skillText.rectTransform.anchoredPosition = startPos;
+                        skillText.rectTransform.anchoredPosition = nameStartPos;
                         skillText.color = new Color(skillText.color.r, skillText.color.g, skillText.color.b, 1);
                     });
                 });

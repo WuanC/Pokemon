@@ -36,7 +36,7 @@ namespace Pokemon.Scripts.Pokemon
 
         public DamageDetails TakeDamage(Skill skill, PokemonUnit attacker)
         {
-            float critical = Random.value < 0.0625f ? 2f : 1f;
+            float critical = Random.value < 0.625f ? 2f : 1f;
             float type = TypeChart.GetEffectiveness(skill.Data.elementType, Data.type);
             float modifier = Random.Range(0.85f, 1f) * type * critical;
             float a = (2 * attacker.Level + 10) / 250f;
