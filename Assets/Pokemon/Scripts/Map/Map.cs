@@ -5,54 +5,7 @@ using UnityEngine;
 
 namespace Pokemon.Scripts.Map
 {
-    [System.Serializable]
-    public class Area
-    {
-        public Node keyNode;
-        public List<Node> nodes;
-        public void InitializeArena(bool isUnlock = true)
-        {
-            if (keyNode != null && !isUnlock)
-            {
-                keyNode.OnNodeCompleted += OnKeyNodeCompleted;
-            }
-            for (int j = 0; j < this.nodes.Count; j++)
-            {
-                this.nodes[j].InitializeNode();
-                this.nodes[j].OnNodeCompleted += RandomPokemonInArea;
-            }
-        }
-        private void OnKeyNodeCompleted()
-        {
-            UnlockArea();
-            RandomPokemonInArea();
 
-            keyNode.OnNodeCompleted -= OnKeyNodeCompleted;
-        }
-        public void RandomPokemonInArea()
-        {
-            int random = UnityEngine.Random.Range(1, 3);
-            List<Node> nodes = ListUtils.ShuffleList(this.nodes);
-            for (int j = 0; j < nodes.Count; j++)
-            {
-                if (j < random)
-                {
-                    nodes[j].SetHasPokemon(true);
-                }
-                else
-                {
-                    nodes[j].SetHasPokemon(false);
-                }
-            }
-        }
-        public void UnlockArea()
-        {
-            for (int j = 0; j < this.nodes.Count; j++)
-            {
-                this.nodes[j].Unlock();
-            }
-        }
-    }
     public class Map : MonoBehaviour
     {
         [SerializeField] private int backgroundCount;
@@ -86,12 +39,8 @@ namespace Pokemon.Scripts.Map
             // Đặt vị trí ban đầu của player tại node đầu tiên
         }
 
-        void Update()
-        {
-            HandleInput();
-        }
 
-        private void HandleInput()
+        public void HandleInput()
         {
             // Mouse Down
             if (Input.GetMouseButtonDown(0))

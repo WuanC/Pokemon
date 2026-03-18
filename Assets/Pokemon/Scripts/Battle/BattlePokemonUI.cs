@@ -22,7 +22,7 @@ namespace Pokemon.Scripts.Battle
             this.pokemon = pokemon;
             nameText.text = pokemon.Data.name;
             levelText.text = "Lv. " + pokemon.Level.ToString();
-            hpBar.fillAmount = 1f;
+            hpBar.fillAmount = (float)pokemon.HP / pokemon.MaxHP;
             SetSkillButtons(onSkillSelected);
 
         }

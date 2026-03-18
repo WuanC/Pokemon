@@ -1,4 +1,5 @@
 
+using System;
 using DG.Tweening;
 using Pokemon.Scripts.Pokemon;
 using UnityEngine;
@@ -8,23 +9,25 @@ namespace Pokemon.Scripts.Battle
 {
     public class BattlePokemon : MonoBehaviour
     {
-        [SerializeField] PokemonData data;
-        [SerializeField] int level;
         [SerializeField] bool isPlayerPokemon;
         [SerializeField] Image pokemonImage;
         [SerializeField] Vector3 originalPosition;
         public PokemonUnit Pokemon { get; private set; }
-        public void SetPokemon()
+        void Start()
         {
             originalPosition = pokemonImage.transform.localPosition;
-            Pokemon = new PokemonUnit(data, level);
+        }
+        public void SetPokemon(PokemonUnit pokemon)
+        {
+
+            Pokemon = pokemon;
             if (isPlayerPokemon)
             {
-                pokemonImage.sprite = data.backSprite;
+                pokemonImage.sprite = pokemon.Data.backSprite;
             }
             else
             {
-                pokemonImage.sprite = data.frontSprite;
+                pokemonImage.sprite = pokemon.Data.frontSprite;
             }
             EnterAniamtion();
         }
@@ -61,11 +64,17 @@ namespace Pokemon.Scripts.Battle
             sequence.Append(pokemonImage.DOColor(Color.red, 0.1f));
             sequence.Append(pokemonImage.DOColor(Color.white, 0.1f));
         }
-        public void FaintAnimation()
+        public void FaintAnimation(Action onComplete)
         {
             Sequence sequence = DOTween.Sequence();
             sequence.Append(pokemonImage.transform.DOLocalMoveY(originalPosition.y - 150, 0.5f));
             sequence.Join(pokemonImage.DOFade(0, 0.5f));
+            sequence.OnComplete(() =>
+            {
+                onComplete?.Invoke();
+                Debug.Log("Faint");
+                pokemonImage.color = new Color(pokemonImage.color.r, pokemonImage.color.g, pokemonImage.color.b, 1);
+            });
         }
     }
 }

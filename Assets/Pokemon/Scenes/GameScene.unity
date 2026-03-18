@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &72226089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +165,10 @@ MonoBehaviour:
     - {fileID: 1073482443}
     - {fileID: 1304835935}
     - {fileID: 308716087}
+    pokemonsInArea:
+    - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
+    - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
+    rangeLevel: {x: 1, y: 5}
   - keyNode: {fileID: 1304835935}
     nodes:
     - {fileID: 1522411262}
@@ -172,6 +176,10 @@ MonoBehaviour:
     - {fileID: 524006162}
     - {fileID: 623155870}
     - {fileID: 451494443}
+    pokemonsInArea:
+    - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
+    - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
+    rangeLevel: {x: 1, y: 5}
   - keyNode: {fileID: 451494443}
     nodes:
     - {fileID: 172813061}
@@ -179,6 +187,10 @@ MonoBehaviour:
     - {fileID: 323270267}
     - {fileID: 1106546166}
     - {fileID: 123081650}
+    pokemonsInArea:
+    - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
+    - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
+    rangeLevel: {x: 1, y: 5}
 --- !u!4 &72226090
 Transform:
   m_ObjectHideFlags: 0
@@ -192,6 +204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 330585546}
   - {fileID: 1350003189}
   - {fileID: 902717626}
   - {fileID: 780969581}
@@ -1252,7 +1265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &330585544
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1320,12 +1333,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 72226090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -1813,6 +1826,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9abc57e7d0f6b0f478279ab80e4a8f93, type: 3}
+--- !u!1 &449460724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 449460726}
+  - component: {fileID: 449460725}
+  m_Layer: 0
+  m_Name: Obsever
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &449460725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449460724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f9db194c2d9b541a0f2543835232c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canDontDestroyOnLoad: 1
+--- !u!4 &449460726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449460724}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &451494441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2223371399437190289, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
@@ -2548,6 +2606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 780969581}
   - component: {fileID: 780969582}
+  - component: {fileID: 780969583}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2585,6 +2644,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   animator: {fileID: 911251998}
+--- !u!114 &780969583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780969580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7acd92c50286e47889844f01880381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pokemons:
+  - pokemonData: {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
+    level: 5
+  - pokemonData: {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
+    level: 5
 --- !u!1 &796903905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,8 +2800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6aeb42c799b56f418e6e1220fddfbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
-  level: 5
   isPlayerPokemon: 1
   pokemonImage: {fileID: 1237467587}
   originalPosition: {x: 0, y: 0, z: 0}
@@ -2781,8 +2855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6aeb42c799b56f418e6e1220fddfbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
-  level: 5
   isPlayerPokemon: 0
   pokemonImage: {fileID: 1412637218}
   originalPosition: {x: 0, y: 0, z: 0}
@@ -2941,7 +3013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &824783874
 Camera:
   m_ObjectHideFlags: 0
@@ -4601,6 +4673,54 @@ Transform:
   - {fileID: 451494441}
   m_Father: {fileID: 902717626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1684819014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684819016}
+  - component: {fileID: 1684819015}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1684819015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684819014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d71e970e010f0b4a8324cffb93994cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loungeCamera: {fileID: 330585545}
+  battleCamera: {fileID: 824783874}
+  map: {fileID: 72226089}
+  battleController: {fileID: 722712272}
+--- !u!4 &1684819016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684819014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697323402
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,9 +5728,10 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 796903908}
   - {fileID: 72226090}
   - {fileID: 1455170166}
+  - {fileID: 1684819016}
+  - {fileID: 449460726}

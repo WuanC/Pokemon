@@ -1,4 +1,7 @@
+using System;
 using DG.Tweening;
+using Pokemon.Scripts.MyUtils;
+using Pokemon.Scripts.Pokemon;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Map
@@ -7,7 +10,12 @@ namespace Pokemon.Scripts.Map
     {
         [SerializeField] private float moveSpeed;
         [SerializeField] private Animator animator;
+        private Party party;
         private const string MOVING_ANIMATION_KEY = "isMoving";
+        void Awake()
+        {
+            party = GetComponent<Party>();
+        }
         public void MoveToTarget(Node target)
         {
 
@@ -22,7 +30,10 @@ namespace Pokemon.Scripts.Map
             float moveDuration = Vector3.Distance(transform.position, target.transform.position) / moveSpeed;
             transform.DOMove(target.transform.position, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
-                target.NodeCompleted();
+                if (target.HasPokemon)
+                {
+                    Observer.Instance.Broadcast(EventId.OnEncounterPokemon, Tuple.Create(party, target));
+                }
                 animator.SetBool(MOVING_ANIMATION_KEY, false);
             });
         }

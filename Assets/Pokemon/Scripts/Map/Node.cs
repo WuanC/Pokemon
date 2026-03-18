@@ -13,12 +13,17 @@ namespace Pokemon.Scripts.Map
         public bool IsLock = true;
         public Action OnNodeCompleted;
         public Vector3 startMarkPosition;
+        public Area OwnerArea { get; private set; }
 
-        public void InitializeNode()
+        public void InitializeNode(Area area)
         {
-            startMarkPosition = markBattle.transform.position;
-            SetDisable(true);
-            SetHasPokemon(false);
+
+            {
+                OwnerArea = area;
+                startMarkPosition = markBattle.transform.position;
+                SetDisable(true);
+                SetHasPokemon(false);
+            }
         }
         public void SetHasPokemon(bool state)
         {

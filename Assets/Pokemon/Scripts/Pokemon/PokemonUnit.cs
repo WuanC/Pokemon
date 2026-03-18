@@ -36,14 +36,14 @@ namespace Pokemon.Scripts.Pokemon
 
         public DamageDetails TakeDamage(Skill skill, PokemonUnit attacker)
         {
-            float critical = Random.value < 0.625f ? 2f : 1f;
+            float critical = Random.value < 0.0625f ? 2f : 1f;
             float type = TypeChart.GetEffectiveness(skill.Data.elementType, Data.type);
             float modifier = Random.Range(0.85f, 1f) * type * critical;
             float a = (2 * attacker.Level + 10) / 250f;
             float d = a * skill.Data.power * ((float)attacker.Attack / Defense) + 2;
             int damage = Mathf.FloorToInt(d * modifier);
             HP -= damage;
-            if (HP < 0)
+            if (HP <= 0)
             {
                 HP = 0;
                 return new DamageDetails(critical, type, true, skill.Data.name);

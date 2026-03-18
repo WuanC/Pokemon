@@ -6,6 +6,7 @@ using System.Collections;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
+using Pokemon.Scripts.MyUtils;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -30,21 +31,28 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] private Sprite strongSprite;
         [SerializeField] private Sprite weakSprite;
         [SerializeField] private Sprite extraSprite;
-
-        private void Start()
+        private Party playerParty;
+        public void StartBattle(Party party, PokemonUnit wildPokemon)
         {
 
-            playerPokemon.SetPokemon();
-            playerPokemonUI.SetPokemon(playerPokemon.Pokemon, SetCurrentMove);
+            this.playerParty = party;
+            PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
+            if (playerPkmUnit == null)
+            {
+                BroadCast(false);
+                Debug.LogError("No healthy Pokemon in the party!");
+                return;
+            }
+            playerPokemon.SetPokemon(playerPkmUnit);
+            playerPokemonUI.SetPokemon(playerPkmUnit, SetCurrentMove);
 
-            enemyPokemon.SetPokemon();
-            enemyPokemonUI.SetPokemon(enemyPokemon.Pokemon);
+            enemyPokemon.SetPokemon(wildPokemon);
+            enemyPokemonUI.SetPokemon(wildPokemon);
             skillText.gameObject.SetActive(false);
             typeEffectImage.gameObject.SetActive(false);
             criticalImage.gameObject.SetActive(false);
             PlayerAction();
         }
-
         public void PlayerAction()
         {
             state = BattleState.PlayerAction;
@@ -72,7 +80,7 @@ namespace Pokemon.Scripts.Battle
             {
                 if (damageDetails.isFainted)
                 {
-                    enemyPokemon.FaintAnimation();
+                    enemyPokemon.FaintAnimation(() => BroadCast(true));
                     Debug.Log("Enemy Pokemon fainted!");
                 }
                 else
@@ -97,8 +105,23 @@ namespace Pokemon.Scripts.Battle
             {
                 if (damageDetails.isFainted)
                 {
-                    playerPokemon.FaintAnimation();
-                    Debug.Log("Player Pokemon fainted!");
+                    PokemonUnit nextPokemon = playerParty.GetHealthyPokemon();
+                    if (nextPokemon != null)
+                    {
+                        playerPokemon.FaintAnimation(() =>
+                        {
+                            playerPokemon.SetPokemon(nextPokemon);
+                            playerPokemonUI.SetPokemon(nextPokemon, SetCurrentMove);
+                            PlayerAction();
+                        });
+                        return;
+                    }
+                    else
+                    {
+                        playerPokemon.FaintAnimation(() => BroadCast(false));
+                        Debug.Log("Player Pokemon fainted!");
+                    }
+
                 }
                 else
                 {
@@ -151,6 +174,10 @@ namespace Pokemon.Scripts.Battle
                         skillText.color = new Color(skillText.color.r, skillText.color.g, skillText.color.b, 1);
                     });
                 });
+        }
+        public void BroadCast(bool isWin)
+        {
+            Observer.Instance.Broadcast(EventId.OnEndBattle, isWin);
         }
 
     }
