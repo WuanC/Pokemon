@@ -24,6 +24,7 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] TextMeshProUGUI skillText;
         private BattleState state = BattleState.Start;
         private int currentMoveIndex;
+
         private void Start()
         {
 
@@ -51,14 +52,19 @@ namespace Pokemon.Scripts.Battle
         {
             state = BattleState.PlayerMove;
             Skill selectedSkill = playerPokemon.Pokemon.Skills[currentMoveIndex];
-            yield return null;
+
             DamageDetails damageDetails = enemyPokemon.Pokemon.TakeDamage(selectedSkill, playerPokemon.Pokemon);
-            float hpFraction = (float)enemyPokemon.Pokemon.HP / enemyPokemon.Pokemon.MaxHP;
+            playerPokemon.AttackAnimation();
             ShowSkillUI(damageDetails);
+
+            yield return new WaitForSeconds(1f);
+            enemyPokemon.HitAnimation();
+            float hpFraction = (float)enemyPokemon.Pokemon.HP / enemyPokemon.Pokemon.MaxHP;
             enemyPokemonUI.UpdateHP(hpFraction, () =>
             {
                 if (damageDetails.isFainted)
                 {
+                    enemyPokemon.FaintAnimation();
                     Debug.Log("Enemy Pokemon fainted!");
                 }
                 else
@@ -72,14 +78,18 @@ namespace Pokemon.Scripts.Battle
         {
             state = BattleState.EnemyMove;
             Skill selectedSkill = enemyPokemon.Pokemon.RandomSkill();
-            yield return new WaitForSeconds(1f);
+            enemyPokemon.AttackAnimation();
             DamageDetails damageDetails = playerPokemon.Pokemon.TakeDamage(selectedSkill, enemyPokemon.Pokemon);
-            float hpFraction = (float)playerPokemon.Pokemon.HP / playerPokemon.Pokemon.MaxHP;
             ShowSkillUI(damageDetails);
+            yield return new WaitForSeconds(1f);
+            playerPokemon.HitAnimation();
+            float hpFraction = (float)playerPokemon.Pokemon.HP / playerPokemon.Pokemon.MaxHP;
+
             playerPokemonUI.UpdateHP(hpFraction, () =>
             {
                 if (damageDetails.isFainted)
                 {
+                    playerPokemon.FaintAnimation();
                     Debug.Log("Player Pokemon fainted!");
                 }
                 else
