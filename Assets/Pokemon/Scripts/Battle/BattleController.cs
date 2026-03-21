@@ -35,6 +35,16 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] private Sprite extraSprite;
         private Pokemon.Party playerParty;
         [SerializeField] private PartyContainer partyContainer;
+        [SerializeField] private MainPanel mainPanel;
+        [SerializeField] private MorePanel morePanel;
+        void Start()
+        {
+            Observer.Instance.Register(EventId.OnSwitchPokemon, OnSwitchPokemon);
+        }
+        void Oestroy()
+        {
+            Observer.Instance.Unregister(EventId.OnSwitchPokemon, OnSwitchPokemon);
+        }
         public void StartBattle(Pokemon.Party party, PokemonUnit wildPokemon)
         {
 
@@ -183,6 +193,25 @@ namespace Pokemon.Scripts.Battle
         {
             Observer.Instance.Broadcast(EventId.OnEndBattle, isWin);
         }
+        #region Switch Pokemon
+        public void OnSwitchPokemon(object data)
+        {
+            if (state != BattleState.PlayerAction) return;
+            if (data is Party.PokemonParty pokemonParty)
+            {
+                PokemonUnit playerPkmUnit = playerPokemon.Pokemon;
+                PokemonUnit partyPokemon = pokemonParty.Pokemon;
+                float duration = 0.25f;
+                morePanel.DisablePanel(duration);
+                playerPokemon.ExitAnimation(() =>
+                {
+                    playerPokemon.SetPokemon(partyPokemon, duration);
+                    playerPokemonUI.SetPokemon(partyPokemon, SetCurrentMove);
+                }, duration);
+                pokemonParty.SetPokemon(playerPkmUnit);
+            }
+        }
+        #endregion
 
     }
 }

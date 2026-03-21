@@ -14,17 +14,17 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] Vector3 btnStartPos;
         [SerializeField] PartyContainer partyContainer;
         public UnityEvent onDisableCompleted;
-        public void EnablePanel()
+        public void EnablePanel(float duration = 0.25f)
         {
             gameObject.SetActive(true);
             btnContainer.anchoredPosition = new Vector3(btnContainer.anchoredPosition.x, btnContainer.anchoredPosition.y - 265);
-            btnContainer.DOAnchorPosY(btnStartPos.y, 0.25f);
-            partyContainer.OpenParty(0.25f);
+            btnContainer.DOAnchorPosY(btnStartPos.y, duration);
+            partyContainer.OpenParty(duration);
         }
-        public void DisablePanel()
+        public void DisablePanel(float duration = 0.25f)
         {
-            partyContainer.CloseParty(0.25f);
-            btnContainer.DOAnchorPosY(btnContainer.anchoredPosition.y - 265, 0.25f).OnComplete(() =>
+            partyContainer.CloseParty(duration);
+            btnContainer.DOAnchorPosY(btnContainer.anchoredPosition.y - 265, duration).OnComplete(() =>
             {
                 gameObject.SetActive(false);
                 onDisableCompleted?.Invoke();

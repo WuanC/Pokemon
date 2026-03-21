@@ -17,7 +17,7 @@ namespace Pokemon.Scripts.Battle
         {
             originalPosition = pokemonImage.transform.localPosition;
         }
-        public void SetPokemon(PokemonUnit pokemon)
+        public void SetPokemon(PokemonUnit pokemon, float duration = 0.5f)
         {
 
             Pokemon = pokemon;
@@ -29,11 +29,11 @@ namespace Pokemon.Scripts.Battle
             {
                 pokemonImage.sprite = pokemon.Data.frontSprite;
             }
-            EnterAniamtion();
+            EnterAnimation(duration);
         }
 
 
-        public void EnterAniamtion()
+        public void EnterAnimation(float duration)
         {
             if (isPlayerPokemon)
             {
@@ -43,7 +43,23 @@ namespace Pokemon.Scripts.Battle
             {
                 pokemonImage.transform.localPosition = new Vector3(1000, originalPosition.y);
             }
-            pokemonImage.transform.DOLocalMoveX(originalPosition.x, 0.75f);
+            pokemonImage.transform.DOLocalMoveX(originalPosition.x, duration);
+        }
+        public void ExitAnimation(Action onComplete, float duration)
+        {
+            Vector3 targetPos;
+            if (isPlayerPokemon)
+            {
+                targetPos = new Vector3(-1000, originalPosition.y);
+            }
+            else
+            {
+                targetPos = new Vector3(1000, originalPosition.y);
+            }
+            pokemonImage.transform.DOLocalMove(targetPos, duration).OnComplete(() =>
+            {
+                onComplete?.Invoke();
+            });
         }
         public void AttackAnimation()
         {
