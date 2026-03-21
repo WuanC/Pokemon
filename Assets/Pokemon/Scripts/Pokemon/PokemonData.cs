@@ -10,7 +10,7 @@ namespace Pokemon.Scripts.Pokemon
         public PokemonType type;
         public Sprite frontSprite;
         public Sprite backSprite;
-
+        public Sprite icon;
 
         //Stats
         public int maxHP;

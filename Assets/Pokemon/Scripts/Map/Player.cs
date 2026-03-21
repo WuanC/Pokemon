@@ -10,11 +10,11 @@ namespace Pokemon.Scripts.Map
     {
         [SerializeField] private float moveSpeed;
         [SerializeField] private Animator animator;
-        private Party party;
+        private Pokemon.Party party;
         private const string MOVING_ANIMATION_KEY = "isMoving";
         void Awake()
         {
-            party = GetComponent<Party>();
+            party = GetComponent<Pokemon.Party>();
         }
         public void MoveToTarget(Node target)
         {

@@ -7,6 +7,8 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
 using Pokemon.Scripts.MyUtils;
+using Pokemon.Scripts.Party;
+using System.Linq;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -31,8 +33,9 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] private Sprite strongSprite;
         [SerializeField] private Sprite weakSprite;
         [SerializeField] private Sprite extraSprite;
-        private Party playerParty;
-        public void StartBattle(Party party, PokemonUnit wildPokemon)
+        private Pokemon.Party playerParty;
+        [SerializeField] private PartyContainer partyContainer;
+        public void StartBattle(Pokemon.Party party, PokemonUnit wildPokemon)
         {
 
             this.playerParty = party;
@@ -43,6 +46,7 @@ namespace Pokemon.Scripts.Battle
                 Debug.LogError("No healthy Pokemon in the party!");
                 return;
             }
+            partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());
             playerPokemon.SetPokemon(playerPkmUnit);
             playerPokemonUI.SetPokemon(playerPkmUnit, SetCurrentMove);
 

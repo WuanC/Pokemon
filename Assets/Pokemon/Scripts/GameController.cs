@@ -28,9 +28,9 @@ namespace Pokemon.Scripts
         }
         public void OnEncounterPokemon(object data)
         {
-            if (data is Tuple<Party, Node> tuple)
+            if (data is Tuple<Pokemon.Party, Node> tuple)
             {
-                Party party = tuple.Item1;
+                Pokemon.Party party = tuple.Item1;
                 Node node = tuple.Item2;
 
                 PokemonUnit wildPokemon = node.OwnerArea.GetRandomPokemon();
