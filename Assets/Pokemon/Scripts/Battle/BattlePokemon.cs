@@ -12,12 +12,14 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] bool isPlayerPokemon;
         [SerializeField] Image pokemonImage;
         [SerializeField] Vector3 originalPosition;
+        [SerializeField] BattlePokemonUI pokemonUI;
         public PokemonUnit Pokemon { get; private set; }
+        public bool IsPlayerPokemon => isPlayerPokemon;
         void Start()
         {
             originalPosition = pokemonImage.transform.localPosition;
         }
-        public void SetPokemon(PokemonUnit pokemon, float duration = 0.5f)
+        public void SetPokemon(PokemonUnit pokemon, Action<int> onSkillSelected = null, float duration = 0.5f)
         {
 
             Pokemon = pokemon;
@@ -29,9 +31,13 @@ namespace Pokemon.Scripts.Battle
             {
                 pokemonImage.sprite = pokemon.Data.frontSprite;
             }
+            pokemonUI.SetPokemon(pokemon, onSkillSelected);
             EnterAnimation(duration);
         }
-
+        public Tween UpdateHp(float hpFraction, float duration)
+        {
+            return pokemonUI.UpdateHP(hpFraction, duration);
+        }
 
         public void EnterAnimation(float duration)
         {
@@ -61,7 +67,7 @@ namespace Pokemon.Scripts.Battle
                 onComplete?.Invoke();
             });
         }
-        public void AttackAnimation()
+        public Sequence AttackAnimation()
         {
             Sequence sequence = DOTween.Sequence();
             if (isPlayerPokemon)
@@ -73,24 +79,13 @@ namespace Pokemon.Scripts.Battle
                 sequence.Append(pokemonImage.transform.DOLocalMoveX(originalPosition.x - 50, 0.25f));
             }
             sequence.Append(pokemonImage.transform.DOLocalMoveX(originalPosition.x, 0.25f));
+            return sequence;
         }
         public void HitAnimation()
         {
             Sequence sequence = DOTween.Sequence();
             sequence.Append(pokemonImage.DOColor(Color.red, 0.1f));
             sequence.Append(pokemonImage.DOColor(Color.white, 0.1f));
-        }
-        public void FaintAnimation(Action onComplete)
-        {
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(pokemonImage.transform.DOLocalMoveY(originalPosition.y - 150, 0.5f));
-            sequence.Join(pokemonImage.DOFade(0, 0.5f));
-            sequence.OnComplete(() =>
-            {
-                onComplete?.Invoke();
-                Debug.Log("Faint");
-                pokemonImage.color = new Color(pokemonImage.color.r, pokemonImage.color.g, pokemonImage.color.b, 1);
-            });
         }
     }
 }

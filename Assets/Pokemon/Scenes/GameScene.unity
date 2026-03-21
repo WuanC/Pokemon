@@ -168,7 +168,7 @@ MonoBehaviour:
     pokemonsInArea:
     - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
     - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
-    rangeLevel: {x: 1, y: 5}
+    rangeLevel: {x: 1, y: 100}
   - keyNode: {fileID: 1304835935}
     nodes:
     - {fileID: 1522411262}
@@ -733,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 120.627, y: 111}
+  m_AnchoredPosition: {x: 157.90308, y: 111}
   m_SizeDelta: {x: 169, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &284412230
@@ -1005,7 +1005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 325.754, y: 111}
+  m_AnchoredPosition: {x: 326.90308, y: 111}
   m_SizeDelta: {x: 169, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &317069741
@@ -2082,17 +2082,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1253040161}
-        m_TargetAssemblyTypeName: Pokemon.Scripts.Battle.MainPanel, Assembly-CSharp
-        m_MethodName: DisablePanel
-        m_Mode: 4
+      - m_Target: {fileID: 722712272}
+        m_TargetAssemblyTypeName: Pokemon.Scripts.Battle.BattleController, Assembly-CSharp
+        m_MethodName: OpenMorePanel
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0.25
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &547497390
 MonoBehaviour:
@@ -2650,9 +2650,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 722712269}
+  - component: {fileID: 722712272}
   - component: {fileID: 722712270}
   - component: {fileID: 722712271}
-  - component: {fileID: 722712272}
   m_Layer: 5
   m_Name: General
   m_TagString: Untagged
@@ -2735,9 +2735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPokemon: {fileID: 801992587}
-  playerPokemonUI: {fileID: 801992586}
   enemyPokemon: {fileID: 810801652}
-  enemyPokemonUI: {fileID: 810801653}
   skillText: {fileID: 895583798}
   typeEffectImage: {fileID: 1279460719}
   criticalImage: {fileID: 893399445}
@@ -2954,6 +2952,7 @@ MonoBehaviour:
   isPlayerPokemon: 1
   pokemonImage: {fileID: 1237467587}
   originalPosition: {x: 0, y: 0, z: 0}
+  pokemonUI: {fileID: 801992586}
 --- !u!1 &810801650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,8 +2962,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 810801651}
-  - component: {fileID: 810801653}
   - component: {fileID: 810801652}
+  - component: {fileID: 810801653}
   m_Layer: 5
   m_Name: EnemyStatus
   m_TagString: Untagged
@@ -3009,6 +3008,7 @@ MonoBehaviour:
   isPlayerPokemon: 0
   pokemonImage: {fileID: 1412637218}
   originalPosition: {x: 0, y: 0, z: 0}
+  pokemonUI: {fileID: 810801653}
 --- !u!114 &810801653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3108,10 +3108,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2062177321}
-        m_TargetAssemblyTypeName: Pokemon.Scripts.Battle.MorePanel, Assembly-CSharp
-        m_MethodName: DisablePanel
-        m_Mode: 4
+      - m_Target: {fileID: 722712272}
+        m_TargetAssemblyTypeName: Pokemon.Scripts.Battle.BattleController, Assembly-CSharp
+        m_MethodName: OpenMainPanel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4658,21 +4658,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnContainer: {fileID: 136986768}
   btnStartPos: {x: 0, y: 0, z: 0}
-  onDisableCompleted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2062177321}
-        m_TargetAssemblyTypeName: Pokemon.Scripts.Battle.MorePanel, Assembly-CSharp
-        m_MethodName: EnablePanel
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.25
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1279460717
 GameObject:
   m_ObjectHideFlags: 0
@@ -5445,7 +5430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 530.881, y: 111}
+  m_AnchoredPosition: {x: 495.90308, y: 111}
   m_SizeDelta: {x: 169, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697323404
@@ -5832,7 +5817,7 @@ RectTransform:
   - {fileID: 284412229}
   m_Father: {fileID: 2062177318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4115926, y: 0}
+  m_AnchorMin: {x: 0.4445529, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -5856,7 +5841,7 @@ MonoBehaviour:
     m_Bottom: 21
   m_ChildAlignment: 8
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -6155,26 +6140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6723d46f3c012e4480b908c554ce96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backBtn: {fileID: 811785261}
   catchBtn: {fileID: 1697323404}
   runBtn: {fileID: 284412232}
   btnContainer: {fileID: 1747359730}
   btnStartPos: {x: 0, y: 0, z: 0}
   partyContainer: {fileID: 1547778026}
-  onDisableCompleted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1253040161}
-        m_TargetAssemblyTypeName: Pokemon.Scripts.Battle.MainPanel, Assembly-CSharp
-        m_MethodName: EnablePanel
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.25
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2069233666
 GameObject:
   m_ObjectHideFlags: 0

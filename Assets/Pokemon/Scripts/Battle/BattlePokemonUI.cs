@@ -40,9 +40,9 @@ namespace Pokemon.Scripts.Battle
                 btn.onClick.AddListener(() => onSkillSelected?.Invoke(pokemon.Skills.IndexOf(skill)));
             }
         }
-        public void UpdateHP(float hpFraction, Action onComplete = null)
+        public Tween UpdateHP(float hpFraction, float duration)
         {
-            hpBar.DOFillAmount(hpFraction, 0.5f).OnComplete(() => onComplete?.Invoke());
+            return hpBar.DOFillAmount(hpFraction, duration);
         }
     }
 }

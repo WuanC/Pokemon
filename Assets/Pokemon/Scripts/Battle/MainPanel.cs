@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,17 +9,16 @@ namespace Pokemon.Scripts.Battle
     {
         [SerializeField] RectTransform btnContainer;
         [SerializeField] Vector3 btnStartPos;
-        public UnityEvent onDisableCompleted;
-        public void EnablePanel(float duration = 0.25f)
+        public void EnablePanel(float duration)
         {
             btnContainer.anchoredPosition = new Vector3(btnContainer.anchoredPosition.x, btnContainer.anchoredPosition.y - 265);
             btnContainer.DOAnchorPosY(btnStartPos.y, duration);
         }
-        public void DisablePanel(float duration = 0.25f)
+        public void DisablePanel(float duration, Action onComplete)
         {
             btnContainer.DOAnchorPosY(btnContainer.anchoredPosition.y - 265, duration).OnComplete(() =>
             {
-                onDisableCompleted?.Invoke();
+                onComplete?.Invoke();
             });
         }
     }

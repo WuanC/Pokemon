@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Party;
 using System.Linq;
+using System;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -22,9 +23,9 @@ namespace Pokemon.Scripts.Battle
     public class BattleController : MonoBehaviour
     {
         [SerializeField] BattlePokemon playerPokemon;
-        [SerializeField] BattlePokemonUI playerPokemonUI;
+        //[SerializeField] BattlePokemonUI playerPokemonUI;
         [SerializeField] BattlePokemon enemyPokemon;
-        [SerializeField] BattlePokemonUI enemyPokemonUI;
+        //[SerializeField] BattlePokemonUI enemyPokemonUI;
         [SerializeField] TextMeshProUGUI skillText;
         [SerializeField] Image typeEffectImage;
         [SerializeField] Image criticalImage;
@@ -41,10 +42,11 @@ namespace Pokemon.Scripts.Battle
         {
             Observer.Instance.Register(EventId.OnSwitchPokemon, OnSwitchPokemon);
         }
-        void Oestroy()
+        private void OnDestroy()
         {
             Observer.Instance.Unregister(EventId.OnSwitchPokemon, OnSwitchPokemon);
         }
+
         public void StartBattle(Pokemon.Party party, PokemonUnit wildPokemon)
         {
 
@@ -57,11 +59,9 @@ namespace Pokemon.Scripts.Battle
                 return;
             }
             partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());
-            playerPokemon.SetPokemon(playerPkmUnit);
-            playerPokemonUI.SetPokemon(playerPkmUnit, SetCurrentMove);
+            playerPokemon.SetPokemon(playerPkmUnit, SetCurrentMove);
 
             enemyPokemon.SetPokemon(wildPokemon);
-            enemyPokemonUI.SetPokemon(wildPokemon);
             skillText.gameObject.SetActive(false);
             typeEffectImage.gameObject.SetActive(false);
             criticalImage.gameObject.SetActive(false);
@@ -75,74 +75,56 @@ namespace Pokemon.Scripts.Battle
         {
             if (state != BattleState.PlayerAction) return;
             currentMoveIndex = moveIndex;
-            StartCoroutine(PlayerMove());
-
+            PlayerMove();
         }
-        public IEnumerator PlayerMove()
+        public void PlayerMove()
         {
             state = BattleState.PlayerMove;
             Skill selectedSkill = playerPokemon.Pokemon.Skills[currentMoveIndex];
-
-            DamageDetails damageDetails = enemyPokemon.Pokemon.TakeDamage(selectedSkill, playerPokemon.Pokemon);
-            playerPokemon.AttackAnimation();
-            ShowSkillUI(damageDetails);
-
-            yield return new WaitForSeconds(1f);
-            enemyPokemon.HitAnimation();
-            float hpFraction = (float)enemyPokemon.Pokemon.HP / enemyPokemon.Pokemon.MaxHP;
-            enemyPokemonUI.UpdateHP(hpFraction, () =>
+            StartCoroutine(ActionMove(playerPokemon, enemyPokemon, selectedSkill, () =>
             {
-                if (damageDetails.isFainted)
-                {
-                    enemyPokemon.FaintAnimation(() => BroadCast(true));
-                    Debug.Log("Enemy Pokemon fainted!");
-                }
-                else
-                {
-                    StartCoroutine(EnemyMove());
-                }
-            });
-
+                EnemyMove();
+            }));
         }
-        public IEnumerator EnemyMove()
+        public void EnemyMove()
         {
             state = BattleState.EnemyMove;
             Skill selectedSkill = enemyPokemon.Pokemon.RandomSkill();
-            enemyPokemon.AttackAnimation();
-            DamageDetails damageDetails = playerPokemon.Pokemon.TakeDamage(selectedSkill, enemyPokemon.Pokemon);
-            ShowSkillUI(damageDetails);
-            yield return new WaitForSeconds(1f);
-            playerPokemon.HitAnimation();
-            float hpFraction = (float)playerPokemon.Pokemon.HP / playerPokemon.Pokemon.MaxHP;
-
-            playerPokemonUI.UpdateHP(hpFraction, () =>
+            StartCoroutine(ActionMove(enemyPokemon, playerPokemon, selectedSkill, () =>
             {
-                if (damageDetails.isFainted)
-                {
-                    PokemonUnit nextPokemon = playerParty.GetHealthyPokemon();
-                    if (nextPokemon != null)
-                    {
-                        playerPokemon.FaintAnimation(() =>
-                        {
-                            playerPokemon.SetPokemon(nextPokemon);
-                            playerPokemonUI.SetPokemon(nextPokemon, SetCurrentMove);
-                            PlayerAction();
-                        });
-                        return;
-                    }
-                    else
-                    {
-                        playerPokemon.FaintAnimation(() => BroadCast(false));
-                        Debug.Log("Player Pokemon fainted!");
-                    }
+                PlayerAction();
+            }));
 
-                }
-                else
-                {
-                    PlayerAction();
-                }
-            });
+        }
 
+        public IEnumerator ActionMove(BattlePokemon attacker, BattlePokemon defender, Skill skill, Action nextAction)
+        {
+            DamageDetails damageDetails = defender.Pokemon.TakeDamage(skill, attacker.Pokemon);
+            ShowSkillUI(damageDetails);
+            yield return attacker.AttackAnimation().WaitForCompletion();
+            defender.HitAnimation();
+            float hpFraction = (float)defender.Pokemon.HP / defender.Pokemon.MaxHP;
+            yield return defender.UpdateHp(hpFraction, 0.5f).WaitForCompletion();
+            if (damageDetails.isFainted)
+            {
+                defender.ExitAnimation(() => CheckBattleOver(defender), 0.25f);
+            }
+            else
+            {
+                nextAction?.Invoke();
+            }
+
+        }
+        public void CheckBattleOver(BattlePokemon defender)
+        {
+            if (defender.IsPlayerPokemon)
+            {
+                BroadCast(false);
+            }
+            else
+            {
+                BroadCast(true);
+            }
         }
         public void ShowSkillUI(DamageDetails damageDetails)
         {
@@ -202,16 +184,28 @@ namespace Pokemon.Scripts.Battle
                 PokemonUnit playerPkmUnit = playerPokemon.Pokemon;
                 PokemonUnit partyPokemon = pokemonParty.Pokemon;
                 float duration = 0.25f;
-                morePanel.DisablePanel(duration);
+                OpenMainPanel();
                 playerPokemon.ExitAnimation(() =>
                 {
-                    playerPokemon.SetPokemon(partyPokemon, duration);
-                    playerPokemonUI.SetPokemon(partyPokemon, SetCurrentMove);
+                    playerPokemon.SetPokemon(partyPokemon, SetCurrentMove, duration);
                 }, duration);
                 pokemonParty.SetPokemon(playerPkmUnit);
             }
         }
         #endregion
-
+        public void OpenMainPanel()
+        {
+            morePanel.DisablePanel(0.25f, () =>
+            {
+                mainPanel.EnablePanel(0.25f);
+            });
+        }
+        public void OpenMorePanel(bool forceSelect = false)
+        {
+            mainPanel.DisablePanel(0.25f, () =>
+            {
+                morePanel.EnablePanel(0.25f, forceSelect);
+            });
+        }
     }
 }
