@@ -10,6 +10,7 @@ using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Party;
 using System.Linq;
 using System;
+using Pokemon.Scripts.Map;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -97,15 +98,43 @@ namespace Pokemon.Scripts.Battle
 
         }
 
+
         public IEnumerator ActionMove(BattlePokemon attacker, BattlePokemon defender, Skill skill, Action nextAction)
         {
-            DamageDetails damageDetails = defender.Pokemon.TakeDamage(skill, attacker.Pokemon);
-            ShowSkillUI(damageDetails);
+
             yield return attacker.AttackAnimation().WaitForCompletion();
             defender.HitAnimation();
-            float hpFraction = (float)defender.Pokemon.HP / defender.Pokemon.MaxHP;
-            yield return defender.UpdateHp(hpFraction, 0.5f).WaitForCompletion();
-            if (damageDetails.isFainted)
+            if (skill.Data.category == CategorySkill.Status)
+            {
+                foreach (var statBoost in skill.Data.statBoosts)
+                {
+                    if (skill.Data.targetType == TargetType.Self)
+                    {
+                        float lastValue = attacker.Pokemon.GetStat(statBoost.stat);
+                        attacker.Pokemon.ApplyBoost(statBoost);
+                        float newValue = attacker.Pokemon.GetStat(statBoost.stat);
+                        attacker.UpdateStatUI(statBoost, lastValue, newValue, 1f);
+                    }
+                    else
+                    {
+                        float lastValue = defender.Pokemon.GetStat(statBoost.stat);
+                        defender.Pokemon.ApplyBoost(statBoost);
+                        float newValue = defender.Pokemon.GetStat(statBoost.stat);
+                        defender.UpdateStatUI(statBoost, lastValue, newValue, 1f);
+                    }
+                }
+
+                yield return new WaitForSeconds(1f);
+            }
+            else if (skill.Data.category == CategorySkill.Attack)
+            {
+                DamageDetails damageDetails = defender.Pokemon.TakeDamage(skill, attacker.Pokemon);
+                ShowSkillUI(damageDetails);
+                float hpFraction = (float)defender.Pokemon.HP / defender.Pokemon.MaxHP;
+                yield return defender.UpdateHp(hpFraction, 0.5f).WaitForCompletion();
+            }
+
+            if (defender.Pokemon.HP <= 0)
             {
                 defender.ExitAnimation(() => CheckBattleOver(defender), 0.25f);
             }
@@ -119,7 +148,16 @@ namespace Pokemon.Scripts.Battle
         {
             if (defender.IsPlayerPokemon)
             {
-                BroadCast(false);
+                PokemonUnit playerPkmUnit = playerParty.GetHealthyPokemon();
+                if (playerPkmUnit == null)
+                {
+                    BroadCast(false);
+                }
+                else
+                {
+                    PlayerAction();
+                    OpenMorePanel(true);
+                }
             }
             else
             {

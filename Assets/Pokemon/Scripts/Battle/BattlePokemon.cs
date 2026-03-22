@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Pokemon.Scripts.Pokemon;
 using UnityEngine;
@@ -13,6 +14,11 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] Image pokemonImage;
         [SerializeField] Vector3 originalPosition;
         [SerializeField] BattlePokemonUI pokemonUI;
+        [SerializeField] private RectTransform statContainer;
+        [SerializeField] private Image attackProgress;
+        [SerializeField] private Image defenseProgress;
+        [SerializeField] private Image speedProgress;
+        [SerializeField] private Image accuracyProgress;
         public PokemonUnit Pokemon { get; private set; }
         public bool IsPlayerPokemon => isPlayerPokemon;
         void Start()
@@ -67,6 +73,57 @@ namespace Pokemon.Scripts.Battle
                 onComplete?.Invoke();
             });
         }
+        public void UpdateStatUI(StatBoost statBoosts, float previousValue, float currentValue, float duration)
+        {
+            float maxValue = Pokemon.GetStat(statBoosts.stat) * 4f;
+            if (statBoosts.stat == Stat.Attack)
+            {
+                Transform parent = attackProgress.transform.parent.parent;
+
+                attackProgress.fillAmount = previousValue / maxValue;
+                parent.gameObject.SetActive(true);
+                attackProgress.DOFillAmount(currentValue / maxValue, duration).OnComplete(() =>
+                {
+                    parent.gameObject.SetActive(false);
+                });
+            }
+            else if (statBoosts.stat == Stat.Defense)
+            {
+                Transform parent = defenseProgress.transform.parent.parent;
+
+                defenseProgress.fillAmount = previousValue / maxValue;
+                parent.gameObject.SetActive(true);
+                defenseProgress.DOFillAmount(currentValue / maxValue, duration).OnComplete(() =>
+                {
+                    parent.gameObject.SetActive(false);
+                });
+            }
+            else if (statBoosts.stat == Stat.Speed)
+            {
+                Transform parent = speedProgress.transform.parent.parent;
+
+                speedProgress.fillAmount = previousValue / maxValue;
+                parent.gameObject.SetActive(true);
+                speedProgress.DOFillAmount(currentValue / maxValue, duration).OnComplete(() =>
+                {
+                    parent.gameObject.SetActive(false);
+                });
+            }
+            else if (statBoosts.stat == Stat.Accuracy)
+            {
+                Transform parent = accuracyProgress.transform.parent.parent;
+                accuracyProgress.fillAmount = previousValue / maxValue;
+                parent.gameObject.SetActive(true);
+                accuracyProgress.DOFillAmount(currentValue / maxValue, duration).OnComplete(() =>
+                {
+                    parent.gameObject.SetActive(false);
+                });
+            }
+        }
+
+
+
+
         public Sequence AttackAnimation()
         {
             Sequence sequence = DOTween.Sequence();

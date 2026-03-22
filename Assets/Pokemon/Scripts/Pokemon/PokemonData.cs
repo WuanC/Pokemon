@@ -26,7 +26,9 @@ namespace Pokemon.Scripts.Pokemon
     [System.Serializable]
     public class PokemonSkill
     {
+
         public SkillData skillData;
         public int levelRequirement;
     }
+
 }

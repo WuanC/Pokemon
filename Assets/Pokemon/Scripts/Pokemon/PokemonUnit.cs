@@ -10,6 +10,8 @@ namespace Pokemon.Scripts.Pokemon
         public int Level { get; private set; }
         public List<Skill> Skills { get; private set; }
         public int HP { get; set; }
+        private Dictionary<Stat, int> statBases;
+        private Dictionary<Stat, int> statBoosts;
         public PokemonUnit(PokemonData data, int level)
         {
             this.Data = data;
@@ -27,11 +29,47 @@ namespace Pokemon.Scripts.Pokemon
                     break;
                 }
             }
+            SetupStat();
         }
-        public int Attack => Mathf.FloorToInt((Data.attack * Level) / 100f) + 5;
+        public void SetupStat()
+        {
+            statBases = new Dictionary<Stat, int>()
+            {
+                { Stat.Attack, Mathf.FloorToInt((Data.attack * Level) / 100f) + 5 },
+                { Stat.Defense, Mathf.FloorToInt((Data.defense * Level) / 100f) + 5 },
+                { Stat.Speed, Mathf.FloorToInt((Data.speed * Level) / 100f) + 5 },
+            };
+            statBoosts = new Dictionary<Stat, int>()
+            {
+                { Stat.Attack, 0 },
+                { Stat.Defense, 0 },
+                { Stat.Speed, 0 },
+            };
+        }
+        public void ApplyBoost(StatBoost statBoost)
+        {
+            this.statBoosts[statBoost.stat] = Mathf.Clamp(this.statBoosts[statBoost.stat] + statBoost.boostAmount, -6, 6);
+        }
+        public int GetStat(Stat stat)
+        {
+            int statValue = statBases[stat];
 
-        public int Defense => Mathf.FloorToInt((Data.defense * Level) / 100f) + 5;
-        public int Speed => Mathf.FloorToInt((Data.speed * Level) / 100f) + 5;
+            float[] boostValues = new float[] { 1, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f };
+            int statBoostIndex = statBoosts[stat];
+            if (statBoostIndex >= 0)
+            {
+                statValue = Mathf.FloorToInt(statValue * boostValues[statBoostIndex]);
+            }
+            else
+            {
+                statValue = Mathf.FloorToInt(statValue / boostValues[-statBoostIndex]);
+            }
+            return statValue;
+        }
+        public int Attack => GetStat(Stat.Attack);
+
+        public int Defense => GetStat(Stat.Defense);
+        public int Speed => GetStat(Stat.Speed);
         public int MaxHP => Mathf.FloorToInt((Data.maxHP * Level) / 100f) + 10;
 
         public DamageDetails TakeDamage(Skill skill, PokemonUnit attacker)
