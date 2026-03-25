@@ -13,13 +13,13 @@ namespace Pokemon.Scripts
         Map,
         Battle,
     }
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
 
         public Camera loungeCamera;
         public Camera battleCamera;
         private GameState currentState = GameState.Map;
-        [SerializeField] private Map.Map map;
+        public DragMap dragMap;
         [SerializeField] private BattleController battleController;
         Node currentNode;
         void Start()
@@ -66,7 +66,7 @@ namespace Pokemon.Scripts
         {
             if (currentState == GameState.Map)
             {
-                map.HandleInput();
+                dragMap.HandleInput();
             }
             else if (currentState == GameState.Battle)
             {
