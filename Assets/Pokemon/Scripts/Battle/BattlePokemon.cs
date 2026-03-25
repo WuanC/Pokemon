@@ -11,7 +11,7 @@ namespace Pokemon.Scripts.Battle
     public class BattlePokemon : MonoBehaviour
     {
         [SerializeField] bool isPlayerPokemon;
-        [SerializeField] Image pokemonImage;
+        public Image pokemonImage;
         [SerializeField] Vector3 originalPosition;
         [SerializeField] BattlePokemonUI pokemonUI;
         [SerializeField] private RectTransform statContainer;
@@ -21,6 +21,7 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] private Image accuracyProgress;
         public PokemonUnit Pokemon { get; private set; }
         public bool IsPlayerPokemon => isPlayerPokemon;
+        public Skill CurrentSkill { get; set; }
         void Start()
         {
             originalPosition = pokemonImage.transform.localPosition;
@@ -57,7 +58,7 @@ namespace Pokemon.Scripts.Battle
             }
             pokemonImage.transform.DOLocalMoveX(originalPosition.x, duration);
         }
-        public void ExitAnimation(Action onComplete, float duration)
+        public void ExitAnimation(float duration, Action onComplete = null)
         {
             Vector3 targetPos;
             if (isPlayerPokemon)

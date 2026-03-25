@@ -15,6 +15,16 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] RectTransform btnContainer;
         [SerializeField] Vector3 btnStartPos;
         [SerializeField] PartyContainer partyContainer;
+        [SerializeField] BattleController battleController;
+        public void Start()
+        {
+            runBtn.onClick.AddListener(OnRun);
+        }
+
+        void OnDestroy()
+        {
+            runBtn.onClick.RemoveListener(OnRun);
+        }
         public void EnablePanel(float duration, bool forceSelect)
         {
             if (forceSelect)
@@ -40,6 +50,10 @@ namespace Pokemon.Scripts.Battle
                 gameObject.SetActive(false);
                 onComplete?.Invoke();
             });
+        }
+        public void OnRun()
+        {
+            battleController.RunBattle();
         }
 
     }

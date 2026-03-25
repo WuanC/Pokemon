@@ -14,6 +14,8 @@ namespace Pokemon.Scripts.Pokemon
         public CategorySkill category;
         public List<StatBoost> statBoosts;
         public TargetType targetType;
+        public int skillPriority;
+        public GameObject vfxPrefab;
     }
     public enum CategorySkill
     {

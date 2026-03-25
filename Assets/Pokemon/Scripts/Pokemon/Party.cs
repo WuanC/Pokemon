@@ -12,9 +12,13 @@ namespace Pokemon.Scripts.Pokemon
     }
     public class Party : MonoBehaviour
     {
-        [SerializeField] PokemonParty[] pokemons;
+        [SerializeField] PokemonParty[] pokemonParties;
         public List<PokemonUnit> PokemonParties { get; private set; }
 
+        public Party(List<PokemonUnit> pokemonParties)
+        {
+            this.PokemonParties = pokemonParties;
+        }
         void Start()
         {
             InitParty();
@@ -22,9 +26,9 @@ namespace Pokemon.Scripts.Pokemon
         public void InitParty()
         {
             PokemonParties = new List<PokemonUnit>();
-            for (int i = 0; i < pokemons.Length; i++)
+            for (int i = 0; i < pokemonParties.Length; i++)
             {
-                PokemonUnit pokemonUnit = new PokemonUnit(pokemons[i].pokemonData, pokemons[i].level);
+                PokemonUnit pokemonUnit = new PokemonUnit(pokemonParties[i].pokemonData, pokemonParties[i].level);
                 PokemonParties.Add(pokemonUnit);
             }
         }

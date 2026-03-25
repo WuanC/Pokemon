@@ -7,7 +7,7 @@ namespace Pokemon.Scripts.Party
 {
     public class PartyContainer : MonoBehaviour
     {
-        [SerializeField] private PokemonParty[] pokemonParties;
+        [SerializeField] private PartySlot[] pokemonParties;
         [SerializeField] private Vector3 startPos;
         [SerializeField] private RectTransform partyContainer;
         public void OpenParty(float duration)

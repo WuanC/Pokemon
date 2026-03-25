@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Pokemon.Scripts.Party
 {
-    public class PokemonParty : MonoBehaviour, IPointerClickHandler
+    public class PartySlot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] TextMeshProUGUI pokemonNameText;
         [SerializeField] TextMeshProUGUI pokemonLevelText;

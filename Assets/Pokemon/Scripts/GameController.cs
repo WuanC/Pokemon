@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Pokemon.Scripts.Battle;
 using Pokemon.Scripts.Map;
 using Pokemon.Scripts.MyUtils;
@@ -38,7 +39,7 @@ namespace Pokemon.Scripts
                 loungeCamera.gameObject.SetActive(false);
                 battleCamera.gameObject.SetActive(true);
                 currentState = GameState.Battle;
-                battleController.StartBattle(party, wildPokemon);
+                battleController.StartBattleWithWildPokemon(party, wildPokemon);
 
             }
 
