@@ -1,3 +1,4 @@
+using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Map
@@ -5,7 +6,6 @@ namespace Pokemon.Scripts.Map
     public class WorldMap : MonoBehaviour
     {
         private DragMap dragMap;
-
         void Awake()
         {
             dragMap = GetComponent<DragMap>();
@@ -28,11 +28,9 @@ namespace Pokemon.Scripts.Map
 
             if (hit.collider != null)
             {
-                Debug.Log("abc");
                 if (hit.collider.TryGetComponent<Hub>(out Hub hub))
                 {
-                    hub.SpawnMap();
-                    gameObject.SetActive(false);
+                    hub.HubClick();
                 }
             }
         }

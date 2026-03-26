@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Pokemon.Scripts.Map
 {
@@ -24,12 +25,13 @@ namespace Pokemon.Scripts.Map
         public Action<Vector3> OnClick;
         void Start()
         {
-            GameController.Instance.dragMap = this;
+
             mainCamera = Camera.main;
             SetCameraBounds();
         }
         public void HandleInput()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             // Mouse Down
             if (Input.GetMouseButtonDown(0))
             {

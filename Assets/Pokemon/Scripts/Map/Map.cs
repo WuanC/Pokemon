@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Pokemon.Scripts.MyUtils;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Map
@@ -21,11 +19,12 @@ namespace Pokemon.Scripts.Map
         void Start()
         {
             mainCamera = Camera.main;
+            GameController.Instance.MapRegister(dragMap);
             dragMap.OnClick += OnClick;
             InitializeNode();
             player.transform.position = areas[0].nodes[0].transform.position;
         }
-        void Oestroy()
+        void OnDestroy()
         {
             dragMap.OnClick -= OnClick;
         }

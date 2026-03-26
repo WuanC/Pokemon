@@ -60,7 +60,10 @@ namespace Pokemon.Scripts.Map
         {
             OnNodeCompleted?.Invoke();
         }
-
+        void OnDestroy()
+        {
+            markBattle.transform.DOKill();
+        }
 
 
     }

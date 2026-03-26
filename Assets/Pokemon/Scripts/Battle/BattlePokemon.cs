@@ -22,10 +22,6 @@ namespace Pokemon.Scripts.Battle
         public PokemonUnit Pokemon { get; private set; }
         public bool IsPlayerPokemon => isPlayerPokemon;
         public Skill CurrentSkill { get; set; }
-        void Start()
-        {
-            originalPosition = pokemonImage.transform.localPosition;
-        }
         public void SetPokemon(PokemonUnit pokemon, Action<int> onSkillSelected = null, float duration = 0.5f)
         {
 

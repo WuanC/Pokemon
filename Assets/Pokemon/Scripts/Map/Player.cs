@@ -37,5 +37,9 @@ namespace Pokemon.Scripts.Map
                 animator.SetBool(MOVING_ANIMATION_KEY, false);
             });
         }
+        void OnDestroy()
+        {
+            transform.DOKill();
+        }
     }
 }

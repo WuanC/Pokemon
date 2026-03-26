@@ -1,3 +1,4 @@
+using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Map
@@ -66,9 +67,12 @@ namespace Pokemon.Scripts.Map
         }
 
 
+        public void HubClick()
+        {
+            GameController.Instance.EnterHubClick(SpawnMap);
+        }
         public void SpawnMap()
         {
-            Debug.Log("Spawn Map");
             Map map = Instantiate(this.map, Vector2.zero, Quaternion.identity);
         }
     }

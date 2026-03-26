@@ -4,6 +4,7 @@ using Pokemon.Scripts.Battle;
 using Pokemon.Scripts.Map;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
+using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 
 namespace Pokemon.Scripts
@@ -16,12 +17,16 @@ namespace Pokemon.Scripts
     public class GameController : Singleton<GameController>
     {
 
-        public Camera loungeCamera;
-        public Camera battleCamera;
+        public GameObject loungeCamera;
+        public GameObject battleCamera;
         private GameState currentState = GameState.Map;
-        public DragMap dragMap;
+        public DragMap dragWorld;
+        private DragMap dragMap;
         [SerializeField] private BattleController battleController;
         Node currentNode;
+        [SerializeField] private SplashScreen splashScreen;
+        [SerializeField] private EnterHubScreen enterHubScreen;
+        [SerializeField] private PlayScreen playSceen;
         void Start()
         {
             Observer.Instance.Register(EventId.OnEncounterPokemon, OnEncounterPokemon);
@@ -66,11 +71,40 @@ namespace Pokemon.Scripts
         {
             if (currentState == GameState.Map)
             {
-                dragMap.HandleInput();
+                if (dragMap == null)
+                {
+                    dragWorld.HandleInput();
+                }
+                else
+                {
+                    dragMap.HandleInput();
+                }
             }
             else if (currentState == GameState.Battle)
             {
 
+            }
+        }
+        public void EnterHubClick(Action goBtnAction)
+        {
+            enterHubScreen.Initialize(goBtnAction);
+        }
+        public void ActiveSplashScreen(Action onComplete)
+        {
+            splashScreen.onFadeComplete = onComplete;
+            splashScreen.Fade();
+        }
+        public void MapRegister(DragMap map)
+        {
+            this.dragMap = map;
+            playSceen.EnterDetailMap();
+        }
+        public void BackToWorldMap()
+        {
+            if (dragMap != null)
+            {
+                Destroy(dragMap.gameObject);
+                dragMap = null;
             }
         }
         void OnDestroy()
