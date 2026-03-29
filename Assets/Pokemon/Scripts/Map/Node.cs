@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Pokemon.Scripts.Character;
+using Pokemon.Scripts.Saving;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Map
@@ -18,7 +19,7 @@ namespace Pokemon.Scripts.Map
         [SerializeField] private SpriteRenderer spriteRenderer;
         [Header("NPC Data")]
         [SerializeField] private NPC npc;
-        public bool IsLoseBattle { get; private set; }
+
 
         public NodeState nodeState;
         public GameObject markBattle;
@@ -28,9 +29,13 @@ namespace Pokemon.Scripts.Map
         public Vector3 startMarkPosition;
         public Area OwnerArea { get; private set; }
         public NPC Npc => npc;
-        public void InitializeNode(Area area)
+        private string hubName;
+        public string NodeName { get; private set; }
+        public void InitializeNode(Area area, string hubName, int nodeIndex)
         {
             OwnerArea = area;
+            this.hubName = hubName;
+            this.NodeName = $"{hubName}_Area{area.arenaIndex}_Node{nodeIndex}";
             startMarkPosition = markBattle.transform.position;
             SetDisable(true);
             SetNodeState(NodeState.None);
@@ -40,6 +45,7 @@ namespace Pokemon.Scripts.Map
         {
             if (npc != null)
             {
+                if (TrainerSaveLoad.LoadTrainerData(NodeName) != 0) return;
                 npc.gameObject.SetActive(true);
                 npc.SetupNPCData();
                 SetNodeState(NodeState.HasTrainer);
@@ -80,9 +86,11 @@ namespace Pokemon.Scripts.Map
         {
             if (nodeState == NodeState.HasTrainer)
             {
-                IsLoseBattle = true;
                 npc.gameObject.SetActive(false);
                 SetNodeState(NodeState.None);
+                int currentBossAndQuestCount = HubSaveLoad.LoadBossAndQuest(hubName);
+                HubSaveLoad.SaveBossAndQuest(hubName, currentBossAndQuestCount + 1);
+                TrainerSaveLoad.SaveTrainerData(NodeName);
             }
             OnNodeCompleted?.Invoke();
         }
@@ -90,7 +98,5 @@ namespace Pokemon.Scripts.Map
         {
             markBattle.transform.DOKill();
         }
-
-
     }
 }

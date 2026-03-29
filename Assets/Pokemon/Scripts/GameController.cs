@@ -105,9 +105,9 @@ namespace Pokemon.Scripts
 
             }
         }
-        public void EnterHubClick(Action goBtnAction)
+        public void EnterHubClick(Action goBtnAction, Hub hub)
         {
-            enterHubScreen.Initialize(goBtnAction);
+            enterHubScreen.Initialize(goBtnAction, hub);
         }
         public void EnterBattleClick(Action onFightBtnClick, NPC npc)
         {

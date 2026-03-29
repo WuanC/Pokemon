@@ -508,6 +508,7 @@ MonoBehaviour:
   <pokemonInMaps>k__BackingField:
   - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
   - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
+  bossAndQuestCount: 1
 --- !u!114 &8263277517822515801
 MonoBehaviour:
   m_ObjectHideFlags: 0

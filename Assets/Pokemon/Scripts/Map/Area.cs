@@ -12,16 +12,18 @@ namespace Pokemon.Scripts.Map
         public List<Node> nodes;
         public Vector2Int rangeLevel;
         private Map map;
-        public void InitializeArena(Map map, bool isUnlock = true)
+        public int arenaIndex;
+        public void InitializeArena(Map map, int index, bool isUnlock = true)
         {
             this.map = map;
+            this.arenaIndex = index;
             if (keyNode != null && !isUnlock)
             {
                 keyNode.OnNodeCompleted += OnKeyNodeCompleted;
             }
             for (int j = 0; j < this.nodes.Count; j++)
             {
-                this.nodes[j].InitializeNode(this);
+                this.nodes[j].InitializeNode(this, map.hubName, j);
                 this.nodes[j].OnNodeCompleted += RandomPokemonInArea;
             }
         }
