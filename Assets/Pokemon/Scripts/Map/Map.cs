@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Pokemon.Scripts.Pokemon;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Map
@@ -6,11 +7,12 @@ namespace Pokemon.Scripts.Map
 
     public class Map : MonoBehaviour
     {
-
         [SerializeField] private List<Area> areas;
         private DragMap dragMap;
         private Player player;
         private Camera mainCamera;
+        [field: SerializeField] public List<PokemonData> pokemonInMaps { get; private set; }
+
         void Awake()
         {
             player = GetComponentInChildren<Player>();
@@ -53,13 +55,13 @@ namespace Pokemon.Scripts.Map
                 Area area = areas[i];
                 if (area.keyNode == null)
                 {
-                    area.InitializeArena();
+                    area.InitializeArena(this);
                     area.UnlockArea();
                     area.RandomPokemonInArea();
                 }
                 else
                 {
-                    area.InitializeArena(false);
+                    area.InitializeArena(this, false);
                 }
 
             }

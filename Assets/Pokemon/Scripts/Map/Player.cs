@@ -30,9 +30,13 @@ namespace Pokemon.Scripts.Map
             float moveDuration = Vector3.Distance(transform.position, target.transform.position) / moveSpeed;
             transform.DOMove(target.transform.position, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
-                if (target.HasPokemon)
+                if (target.nodeState == NodeState.HasPokemon)
                 {
                     Observer.Instance.Broadcast(EventId.OnEncounterPokemon, Tuple.Create(party, target));
+                }
+                else if (target.nodeState == NodeState.HasTrainer)
+                {
+                    Observer.Instance.Broadcast(EventId.OnEncounterTrainer, Tuple.Create(party, target));
                 }
                 animator.SetBool(MOVING_ANIMATION_KEY, false);
             });

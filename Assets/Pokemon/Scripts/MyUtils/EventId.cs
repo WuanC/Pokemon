@@ -6,6 +6,7 @@ namespace Pokemon.Scripts.MyUtils
     {
         //On Start Battle
         OnEncounterPokemon,
+        OnEncounterTrainer,
         OnEndBattle,
 
         //Switch Pokemon

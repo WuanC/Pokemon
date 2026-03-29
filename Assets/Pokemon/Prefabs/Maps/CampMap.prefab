@@ -488,9 +488,6 @@ MonoBehaviour:
     - {fileID: 776997993103506854}
     - {fileID: 1886222263811074224}
     - {fileID: 529112902433323790}
-    pokemonsInArea:
-    - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
-    - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
     rangeLevel: {x: 1, y: 5}
   - keyNode: {fileID: 1886222263811074224}
     nodes:
@@ -499,9 +496,6 @@ MonoBehaviour:
     - {fileID: 3735087472570067033}
     - {fileID: 3215366144665241022}
     - {fileID: 1937110215635968113}
-    pokemonsInArea:
-    - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
-    - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
     rangeLevel: {x: 1, y: 5}
   - keyNode: {fileID: 1937110215635968113}
     nodes:
@@ -510,10 +504,10 @@ MonoBehaviour:
     - {fileID: 6594563017590617108}
     - {fileID: 4563355736099925191}
     - {fileID: 3561809784106511651}
-    pokemonsInArea:
-    - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
-    - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
     rangeLevel: {x: 1, y: 5}
+  <pokemonInMaps>k__BackingField:
+  - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
+  - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
 --- !u!114 &8263277517822515801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,6 +1183,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2982861526852366569, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: pokemonParties.Array.data[0].level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301971284162021177, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: npc
+      value: 
+      objectReference: {fileID: 6931703974173463651}
+    - target: {fileID: 4301971284162021177, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: npcData.npcName
+      value: Kolin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301971284162021177, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: npcData.npcAvatar
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c365b9788a31f0479888c15f59b7af7,
+        type: 3}
+    - target: {fileID: 4301971284162021177, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: npcData.npcSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 821a69b11a16f124a888b27cdcfb08d5,
+        type: 3}
+    - target: {fileID: 4301971284162021177, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: npcData.npcMessage
+      value: This is fun!
+      objectReference: {fileID: 0}
     - target: {fileID: 7321644582482148886, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
         type: 3}
       propertyPath: m_Name
@@ -1217,6 +1243,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2422542084558614409}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6931703974173463651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4732374158125120490, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+    type: 3}
+  m_PrefabInstance: {fileID: 2422542084558614409}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838b6536d61041f4591ca82788cb59fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3565689381577079455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1751,6 +1789,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9187367947923698508}
     m_Modifications:
+    - target: {fileID: 1452091871704106669, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2223371399437190289, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
         type: 3}
       propertyPath: m_LocalPosition.x

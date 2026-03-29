@@ -10,10 +10,11 @@ namespace Pokemon.Scripts.Map
     {
         public Node keyNode;
         public List<Node> nodes;
-        public List<PokemonData> pokemonsInArea;
         public Vector2Int rangeLevel;
-        public void InitializeArena(bool isUnlock = true)
+        private Map map;
+        public void InitializeArena(Map map, bool isUnlock = true)
         {
+            this.map = map;
             if (keyNode != null && !isUnlock)
             {
                 keyNode.OnNodeCompleted += OnKeyNodeCompleted;
@@ -39,11 +40,20 @@ namespace Pokemon.Scripts.Map
             {
                 if (j < random)
                 {
-                    nodes[j].SetHasPokemon(true);
+                    if (nodes[j].nodeState == NodeState.HasTrainer)
+                    {
+                        random++;
+                        continue;
+                    }
+                    nodes[j].SetNodeState(NodeState.HasPokemon);
                 }
                 else
                 {
-                    nodes[j].SetHasPokemon(false);
+                    if (nodes[j].nodeState == NodeState.HasTrainer)
+                    {
+                        continue;
+                    }
+                    nodes[j].SetNodeState(NodeState.None);
                 }
             }
         }
@@ -57,7 +67,7 @@ namespace Pokemon.Scripts.Map
         public PokemonUnit GetRandomPokemon()
         {
             int level = UnityEngine.Random.Range(rangeLevel.x, rangeLevel.y + 1);
-            PokemonData data = pokemonsInArea[Random.Range(0, pokemonsInArea.Count)];
+            PokemonData data = map.pokemonInMaps[Random.Range(0, map.pokemonInMaps.Count)];
             return new PokemonUnit(data, level);
         }
     }

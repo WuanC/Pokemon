@@ -9,10 +9,8 @@ using UnityEngine.UI;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Party;
 using System.Linq;
-using System;
-using Pokemon.Scripts.Map;
-using Unity.VisualScripting;
 using Pokemon.Scripts.MyUtils.ObjectPooling;
+using Pokemon.Scripts.Character;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -52,6 +50,9 @@ namespace Pokemon.Scripts.Battle
         private Pokemon.Party playerParty;
         private Pokemon.Party enemyParty;
         private bool isNPCBattle;
+        [Header("Trainer")]
+        [SerializeField] private Image npcImage;
+        [SerializeField] private TextMeshProUGUI npcNameText;
         void Start()
         {
             Observer.Instance.Register(EventId.OnSwitchPokemon, OnPlayerSwitchPokemon);
@@ -59,10 +60,15 @@ namespace Pokemon.Scripts.Battle
         private void OnDestroy()
         {
             Observer.Instance.Unregister(EventId.OnSwitchPokemon, OnPlayerSwitchPokemon);
+            skillText.DOKill();
+            typeEffectImage.DOKill();
+            criticalImage.DOKill();
         }
         #region Setup Battle
         public void StartBattleWithWildPokemon(Pokemon.Party party, PokemonUnit enemyPokemon)
         {
+            npcImage.gameObject.SetActive(false);
+            npcNameText.gameObject.SetActive(false);
             isNPCBattle = false;
             this.playerParty = party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
@@ -73,11 +79,15 @@ namespace Pokemon.Scripts.Battle
             SetPlayerAction();
             battleAction = BattleAction.None;
         }
-        public void StartBattleWithNPC(Pokemon.Party party, Pokemon.Party enemyParty)
+        public void StartBattleWithNPC(Pokemon.Party party, NPC npc)
         {
+            npcImage.gameObject.SetActive(true);
+            npcNameText.gameObject.SetActive(true);
+            npcImage.sprite = npc.npcData.npcSprite;
+            npcNameText.text = npc.npcData.npcName;
             isNPCBattle = true;
             this.playerParty = party;
-            this.enemyParty = enemyParty;
+            this.enemyParty = npc.party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
             partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());
             playerPokemon.SetPokemon(playerPkmUnit, SetCurrentMove);
@@ -361,5 +371,6 @@ namespace Pokemon.Scripts.Battle
                 morePanel.EnablePanel(0.25f, forceSelect);
             });
         }
+
     }
 }

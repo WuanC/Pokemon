@@ -141,5 +141,16 @@ namespace Pokemon.Scripts.Battle
             sequence.Append(pokemonImage.DOColor(Color.red, 0.1f));
             sequence.Append(pokemonImage.DOColor(Color.white, 0.1f));
         }
+        private void OnDisable()
+
+        {
+            pokemonImage.transform.DOKill();
+            attackProgress.DOKill();
+            defenseProgress.DOKill();
+            speedProgress.DOKill();
+            accuracyProgress.DOKill();
+
+        }
+
     }
 }

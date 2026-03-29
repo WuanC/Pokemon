@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Pokemon.Scripts.Battle;
+using Pokemon.Scripts.Character;
 using Pokemon.Scripts.Map;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
@@ -26,10 +27,12 @@ namespace Pokemon.Scripts
         Node currentNode;
         [SerializeField] private SplashScreen splashScreen;
         [SerializeField] private EnterHubScreen enterHubScreen;
+        [SerializeField] private EnterBattleScreen enterBattleScreen;
         [SerializeField] private PlayScreen playSceen;
         void Start()
         {
             Observer.Instance.Register(EventId.OnEncounterPokemon, OnEncounterPokemon);
+            Observer.Instance.Register(EventId.OnEncounterTrainer, OnEncounterTrainer);
             Observer.Instance.Register(EventId.OnEndBattle, OnEndBattle);
         }
         public void OnEncounterPokemon(object data)
@@ -47,7 +50,24 @@ namespace Pokemon.Scripts
                 battleController.StartBattleWithWildPokemon(party, wildPokemon);
 
             }
+        }
+        public void OnEncounterTrainer(object data)
+        {
+            if (data is Tuple<Pokemon.Party, Node> tuple)
+            {
+                Pokemon.Party party = tuple.Item1;
+                Node node = tuple.Item2;
+                EnterBattleClick(() =>
+                {
+                    currentNode = node;
+                    loungeCamera.gameObject.SetActive(false);
+                    battleCamera.gameObject.SetActive(true);
+                    currentState = GameState.Battle;
+                    battleController.StartBattleWithNPC(party, node.Npc);
+                }, node.Npc);
 
+
+            }
         }
         public void OnEndBattle(object data)
         {
@@ -89,6 +109,10 @@ namespace Pokemon.Scripts
         {
             enterHubScreen.Initialize(goBtnAction);
         }
+        public void EnterBattleClick(Action onFightBtnClick, NPC npc)
+        {
+            enterBattleScreen.Initialize(onFightBtnClick, npc);
+        }
         public void ActiveSplashScreen(Action onComplete)
         {
             splashScreen.onFadeComplete = onComplete;
@@ -98,11 +122,13 @@ namespace Pokemon.Scripts
         {
             this.dragMap = map;
             playSceen.EnterDetailMap();
+            dragWorld.gameObject.SetActive(false);
         }
         public void BackToWorldMap()
         {
             if (dragMap != null)
             {
+                dragWorld.gameObject.SetActive(true);
                 Destroy(dragMap.gameObject);
                 dragMap = null;
             }
@@ -110,6 +136,7 @@ namespace Pokemon.Scripts
         void OnDestroy()
         {
             Observer.Instance.Unregister(EventId.OnEncounterPokemon, OnEncounterPokemon);
+            Observer.Instance.Unregister(EventId.OnEncounterTrainer, OnEncounterTrainer);
             Observer.Instance.Unregister(EventId.OnEndBattle, OnEndBattle);
         }
 
