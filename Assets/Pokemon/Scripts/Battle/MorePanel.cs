@@ -19,11 +19,18 @@ namespace Pokemon.Scripts.Battle
         public void Start()
         {
             runBtn.onClick.AddListener(OnRun);
+            catchBtn.onClick.AddListener(OnCatch);
+            backBtn.onClick.AddListener(() =>
+            {
+                battleController.OpenMainPanel(null);
+            });
         }
 
         void OnDestroy()
         {
             runBtn.onClick.RemoveListener(OnRun);
+            catchBtn.onClick.RemoveListener(OnCatch);
+            backBtn.onClick.RemoveAllListeners();
         }
         public void EnablePanel(float duration, bool forceSelect)
         {
@@ -54,6 +61,14 @@ namespace Pokemon.Scripts.Battle
         public void OnRun()
         {
             battleController.RunBattle();
+        }
+        public void OnCatch()
+        {
+            battleController.OpenMainPanel(() =>
+            {
+                battleController.CatchPokemon();
+            });
+
         }
 
     }

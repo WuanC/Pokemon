@@ -11,6 +11,8 @@ using Pokemon.Scripts.Party;
 using System.Linq;
 using Pokemon.Scripts.MyUtils.ObjectPooling;
 using Pokemon.Scripts.Character;
+using Unity.VisualScripting;
+using System;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -28,6 +30,7 @@ namespace Pokemon.Scripts.Battle
         Fight,
         Switch,
         UseItem,
+        Catch,
         Run,
     }
     public class BattleController : MonoBehaviour
@@ -53,6 +56,10 @@ namespace Pokemon.Scripts.Battle
         [Header("Trainer")]
         [SerializeField] private Image npcImage;
         [SerializeField] private TextMeshProUGUI npcNameText;
+
+        [Header("Catch")]
+        [SerializeField] private Ball ball;
+
         void Start()
         {
             Observer.Instance.Register(EventId.OnSwitchPokemon, OnPlayerSwitchPokemon);
@@ -120,6 +127,13 @@ namespace Pokemon.Scripts.Battle
             battleAction = BattleAction.Run;
             StartCoroutine(RunTurn());
         }
+        public void CatchPokemon()
+        {
+            if (state != BattleState.PlayerAction) return;
+            if (isNPCBattle) return;
+            battleAction = BattleAction.Catch;
+            StartCoroutine(RunTurn());
+        }
         public IEnumerator PlayerSwitchPokemon(PartySlot partySlot)
         {
             PokemonUnit playerPkmUnit = playerPokemon.Pokemon;
@@ -155,6 +169,13 @@ namespace Pokemon.Scripts.Battle
             {
                 StartCoroutine(PlayerSwitchPokemon(partySlot));
             }
+        }
+        public bool TryToCatchPokemon()
+        {
+            float a = (3 * enemyPokemon.Pokemon.MaxHP - 2 * enemyPokemon.Pokemon.HP) * enemyPokemon.Pokemon.Data.catchRate / (3 * enemyPokemon.Pokemon.MaxHP);
+            if (a >= 1)
+                return true;
+            else return false;
         }
         #endregion
         public IEnumerator RunTurn()
@@ -203,6 +224,29 @@ namespace Pokemon.Scripts.Battle
                 OpenMainPanel();
                 BroadCast(false);
                 yield break;
+            }
+            else if (battleAction == BattleAction.Catch)
+            {
+                yield return ball.Throw();
+                yield return enemyPokemon.CatchAnimation(ball);
+                if (TryToCatchPokemon())
+                {
+                    yield return ball.CatchSuccess();
+                    playerParty.AddPokemon(enemyPokemon.Pokemon);
+                    BroadCast(true);
+                    yield break;
+                }
+                else
+                {
+                    yield return ball.CatchFail();
+                    yield return enemyPokemon.CatchFailAnimation();
+                    enemyPokemon.CurrentSkill = enemyPokemon.Pokemon.RandomSkill();
+                    yield return ActionMove(enemyPokemon, playerPokemon, enemyPokemon.CurrentSkill);
+                    yield return CheckPokemonFainted(playerPokemon);
+                    if (state == BattleState.Over) yield break;
+                    yield return new WaitUntil(() => state == BattleState.Running);
+                }
+
             }
             battleAction = BattleAction.None;
             SetPlayerAction();
@@ -357,11 +401,11 @@ namespace Pokemon.Scripts.Battle
             Observer.Instance.Broadcast(EventId.OnEndBattle, isWin);
         }
 
-        public void OpenMainPanel()
+        public void OpenMainPanel(Action onComplete = null)
         {
             morePanel.DisablePanel(0.25f, () =>
             {
-                mainPanel.EnablePanel(0.25f);
+                mainPanel.EnablePanel(0.25f, onComplete);
             });
         }
         public void OpenMorePanel(bool forceSelect = false)

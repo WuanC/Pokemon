@@ -489,6 +489,7 @@ MonoBehaviour:
     - {fileID: 1886222263811074224}
     - {fileID: 529112902433323790}
     rangeLevel: {x: 1, y: 5}
+    arenaIndex: 0
   - keyNode: {fileID: 1886222263811074224}
     nodes:
     - {fileID: 6900719933359601849}
@@ -497,6 +498,7 @@ MonoBehaviour:
     - {fileID: 3215366144665241022}
     - {fileID: 1937110215635968113}
     rangeLevel: {x: 1, y: 5}
+    arenaIndex: 0
   - keyNode: {fileID: 1937110215635968113}
     nodes:
     - {fileID: 907447142653447017}
@@ -505,6 +507,8 @@ MonoBehaviour:
     - {fileID: 4563355736099925191}
     - {fileID: 3561809784106511651}
     rangeLevel: {x: 1, y: 5}
+    arenaIndex: 0
+  hubName: 
   <pokemonInMaps>k__BackingField:
   - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
   - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
@@ -1186,9 +1190,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2982861526852366569, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
         type: 3}
+      propertyPath: pokemonParties.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982861526852366569, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
       propertyPath: pokemonParties.Array.data[0].level
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2982861526852366569, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: pokemonParties.Array.data[1].level
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982861526852366569, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: pokemonParties.Array.data[2].level
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982861526852366569, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: pokemonParties.Array.data[1].pokemonData
+      value: 
+      objectReference: {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0,
+        type: 2}
+    - target: {fileID: 2982861526852366569, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
+        type: 3}
+      propertyPath: pokemonParties.Array.data[2].pokemonData
+      value: 
+      objectReference: {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82,
+        type: 2}
     - target: {fileID: 4301971284162021177, guid: 9abc57e7d0f6b0f478279ab80e4a8f93,
         type: 3}
       propertyPath: npc

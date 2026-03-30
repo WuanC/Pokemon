@@ -12,6 +12,7 @@ namespace Pokemon.Scripts.Pokemon
         public Sprite backSprite;
         public Sprite icon;
 
+        public int catchRate = 0;
         //Stats
         public int maxHP;
         public int attack;
@@ -20,6 +21,7 @@ namespace Pokemon.Scripts.Pokemon
 
         //Moves
         public List<PokemonSkill> learnableSkills;
+
 
     }
 

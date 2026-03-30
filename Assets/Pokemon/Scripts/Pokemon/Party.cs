@@ -36,5 +36,16 @@ namespace Pokemon.Scripts.Pokemon
         {
             return PokemonParties.FirstOrDefault(p => p.HP > 0);
         }
+        public void AddPokemon(PokemonUnit pokemon)
+        {
+            if (PokemonParties.Count < 6)
+            {
+                PokemonParties.Add(pokemon);
+            }
+            else
+            {
+                //Invenytory System
+            }
+        }
     }
 }

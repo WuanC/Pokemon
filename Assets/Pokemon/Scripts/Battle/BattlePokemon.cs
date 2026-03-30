@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Pokemon.Scripts.Pokemon;
@@ -22,6 +23,18 @@ namespace Pokemon.Scripts.Battle
         public PokemonUnit Pokemon { get; private set; }
         public bool IsPlayerPokemon => isPlayerPokemon;
         public Skill CurrentSkill { get; set; }
+        private void OnDisable()
+        {
+            pokemonImage.transform.DOKill();
+            attackProgress.DOKill();
+            defenseProgress.DOKill();
+            speedProgress.DOKill();
+            accuracyProgress.DOKill();
+            pokemonImage.transform.localPosition = originalPosition;
+            pokemonImage.transform.localScale = Vector3.one;
+            pokemonImage.color = Color.white;
+
+        }
         public void SetPokemon(PokemonUnit pokemon, Action<int> onSkillSelected = null, float duration = 0.5f)
         {
 
@@ -141,16 +154,21 @@ namespace Pokemon.Scripts.Battle
             sequence.Append(pokemonImage.DOColor(Color.red, 0.1f));
             sequence.Append(pokemonImage.DOColor(Color.white, 0.1f));
         }
-        private void OnDisable()
-
+        public IEnumerator CatchAnimation(Ball ball)
         {
-            pokemonImage.transform.DOKill();
-            attackProgress.DOKill();
-            defenseProgress.DOKill();
-            speedProgress.DOKill();
-            accuracyProgress.DOKill();
-
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(pokemonImage.transform.DOScale(0f, 0.5f));
+            sequence.Join(pokemonImage.transform.DOMove(ball.transform.position, 0.5f));
+            sequence.Join(pokemonImage.DOFade(0.1f, 0.5f));
+            yield return sequence.WaitForCompletion();
         }
-
+        public IEnumerator CatchFailAnimation()
+        {
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(pokemonImage.transform.DOScale(1f, 0.5f));
+            sequence.Join(pokemonImage.transform.DOLocalMove(originalPosition, 0.5f));
+            sequence.Join(pokemonImage.DOFade(1f, 0.5f));
+            yield return sequence.WaitForCompletion();
+        }
     }
 }
