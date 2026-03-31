@@ -12,6 +12,8 @@ namespace Pokemon.Scripts.Pokemon
         public Sprite backSprite;
         public Sprite icon;
 
+        public int baseExp;
+        public GrowthRate growthRate;
         public int catchRate = 0;
         //Stats
         public int maxHP;
@@ -31,6 +33,11 @@ namespace Pokemon.Scripts.Pokemon
 
         public SkillData skillData;
         public int levelRequirement;
+    }
+    public enum GrowthRate
+    {
+        Fast,
+        MediumFast,
     }
 
 }

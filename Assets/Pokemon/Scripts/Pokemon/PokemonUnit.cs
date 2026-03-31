@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Pokemon.Scripts.Battle;
 using UnityEngine;
 
@@ -12,12 +13,14 @@ namespace Pokemon.Scripts.Pokemon
         public int HP { get; set; }
         private Dictionary<Stat, int> statBases;
         private Dictionary<Stat, int> statBoosts;
+        public int CurrentExp { get; set; }
         public PokemonUnit(PokemonData data, int level)
         {
             this.Data = data;
             this.Level = level;
             Skills = new List<Skill>();
             HP = MaxHP;
+            CurrentExp = CalculateExpYield(level);
             for (int i = 0; i < data.learnableSkills.Count; i++)
             {
                 if (data.learnableSkills[i].levelRequirement <= level)
@@ -45,6 +48,29 @@ namespace Pokemon.Scripts.Pokemon
                 { Stat.Defense, 0 },
                 { Stat.Speed, 0 },
             };
+        }
+        public int CalculateExpYield(int level)
+        {
+            float exp = -1;
+            switch (Data.growthRate)
+            {
+                case GrowthRate.Fast:
+                    exp = Mathf.FloorToInt(4 * Mathf.Pow(level, 3) / 5f);
+                    break;
+                case GrowthRate.MediumFast:
+                    exp = Mathf.FloorToInt(Mathf.Pow(level, 3));
+                    break;
+            }
+            return Mathf.FloorToInt(exp);
+        }
+        public bool CheckLevelUp()
+        {
+            if (CurrentExp >= CalculateExpYield(Level + 1))
+            {
+                Level++;
+                return true;
+            }
+            return false;
         }
         public void ApplyBoost(StatBoost statBoost)
         {
@@ -92,6 +118,19 @@ namespace Pokemon.Scripts.Pokemon
         {
             if (Skills.Count == 0) return null;
             return Skills[Random.Range(0, Skills.Count)];
+        }
+        public PokemonSkill GetSkillByLevel()
+        {
+            return Data.learnableSkills.FirstOrDefault(s => s.levelRequirement == Level);
+        }
+        public void AddSkill(Skill newSkill)
+        {
+            if (Skills.Count >= 4) return;
+            Skills.Add(newSkill);
+        }
+        public bool HasMaxSkills()
+        {
+            return Skills.Count == 4;
         }
     }
     public class DamageDetails

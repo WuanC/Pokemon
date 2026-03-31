@@ -66,7 +66,6 @@ namespace Pokemon.Scripts.Map
 
                     if (TrainerSaveLoad.LoadTrainerData(area.keyNode.NodeName) != 0)
                     {
-                        Debug.Log(area.keyNode.NodeName);
                         area.InitializeArena(this, i);
                         area.UnlockArea();
                         area.RandomPokemonInArea();

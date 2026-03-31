@@ -21,6 +21,7 @@ namespace Pokemon.Scripts.Battle
         Start,
         PlayerAction,
         Busy,
+        ForgetMove,
         Running,
         Over,
     }
@@ -304,7 +305,32 @@ namespace Pokemon.Scripts.Battle
             {
                 defender.ExitAnimation(0.25f);
                 yield return new WaitForSeconds(0.25f);
-                CheckBattleOver(defender);
+                if (!defender.IsPlayerPokemon)
+                {
+                    int expYield = GetExpYield(defender.Pokemon);
+                    playerPokemon.Pokemon.CurrentExp += expYield;
+                    yield return playerPokemon.UpdateExpBar(playerPokemon.Pokemon);
+                    while (playerPokemon.Pokemon.CheckLevelUp())
+                    {
+                        yield return playerPokemon.UpdateExpBar(playerPokemon.Pokemon, true);
+                        yield return new WaitForSeconds(0.25f);
+                        PokemonSkill newSkill = playerPokemon.Pokemon.GetSkillByLevel();
+                        if (newSkill != null)
+                        {
+                            if (!playerPokemon.Pokemon.HasMaxSkills())
+                            {
+                                playerPokemon.Pokemon.AddSkill(new Skill(newSkill.skillData));
+                                playerPokemon.UpdateSkillUI();
+                                yield return new WaitForSeconds(0.25f);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
+                    CheckBattleOver(defender);
+                }
             }
         }
         public void CheckBattleOver(BattlePokemon defender)
@@ -348,6 +374,11 @@ namespace Pokemon.Scripts.Battle
                     }
                 }
             }
+        }
+        public int GetExpYield(PokemonUnit defeatedPokemon)
+        {
+            float battleRate = (isNPCBattle) ? 1.5f : 1f;
+            return Mathf.FloorToInt(playerPokemon.Pokemon.Data.baseExp * defeatedPokemon.Level / 7f * battleRate);
         }
         #region Show UI
         public IEnumerator ShowSkillName(string skillName)

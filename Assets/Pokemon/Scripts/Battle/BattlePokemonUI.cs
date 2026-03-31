@@ -17,16 +17,40 @@ namespace Pokemon.Scripts.Battle
         [Header("Skills")]
         public Transform skillsParent;
         public Button skillBtnPrefab;
+        private Action<int> onSkillSelected;
+        void OnDisable()
+        {
+            onSkillSelected = null;
+        }
         public void SetPokemon(PokemonUnit pokemon, Action<int> onSkillSelected = null)
         {
             this.pokemon = pokemon;
             nameText.text = pokemon.Data.name;
-            levelText.text = "Lv. " + pokemon.Level.ToString();
+            SetLevelText();
             hpBar.fillAmount = (float)pokemon.HP / pokemon.MaxHP;
             SetSkillButtons(onSkillSelected);
+            this.onSkillSelected = onSkillSelected;
 
         }
+        public void SetLevelText()
+        {
+            levelText.text = "Lv. " + pokemon.Level.ToString();
+        }
         public void SetSkillButtons(Action<int> onSkillSelected = null)
+        {
+            if (skillsParent == null) return;
+            foreach (Transform child in skillsParent)
+            {
+                Destroy(child.gameObject);
+            }
+            foreach (var skill in pokemon.Skills)
+            {
+                Button btn = Instantiate(skillBtnPrefab, skillsParent);
+                btn.GetComponent<Image>().sprite = skill.Data.icon;
+                btn.onClick.AddListener(() => onSkillSelected?.Invoke(pokemon.Skills.IndexOf(skill)));
+            }
+        }
+        public void SetSkillButtons()
         {
             if (skillsParent == null) return;
             foreach (Transform child in skillsParent)
@@ -44,5 +68,6 @@ namespace Pokemon.Scripts.Battle
         {
             return hpBar.DOFillAmount(hpFraction, duration);
         }
+
     }
 }

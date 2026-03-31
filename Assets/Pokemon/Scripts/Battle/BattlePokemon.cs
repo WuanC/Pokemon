@@ -23,6 +23,7 @@ namespace Pokemon.Scripts.Battle
         public PokemonUnit Pokemon { get; private set; }
         public bool IsPlayerPokemon => isPlayerPokemon;
         public Skill CurrentSkill { get; set; }
+        [SerializeField] public Image expBar;
         private void OnDisable()
         {
             pokemonImage.transform.DOKill();
@@ -33,6 +34,7 @@ namespace Pokemon.Scripts.Battle
             pokemonImage.transform.localPosition = originalPosition;
             pokemonImage.transform.localScale = Vector3.one;
             pokemonImage.color = Color.white;
+            expBar.DOKill();
 
         }
         public void SetPokemon(PokemonUnit pokemon, Action<int> onSkillSelected = null, float duration = 0.5f)
@@ -41,6 +43,7 @@ namespace Pokemon.Scripts.Battle
             Pokemon = pokemon;
             if (isPlayerPokemon)
             {
+                SetupExp(pokemon);
                 pokemonImage.sprite = pokemon.Data.backSprite;
             }
             else
@@ -49,6 +52,7 @@ namespace Pokemon.Scripts.Battle
             }
             pokemonUI.SetPokemon(pokemon, onSkillSelected);
             EnterAnimation(duration);
+
         }
         public Tween UpdateHp(float hpFraction, float duration)
         {
@@ -169,6 +173,28 @@ namespace Pokemon.Scripts.Battle
             sequence.Join(pokemonImage.transform.DOLocalMove(originalPosition, 0.5f));
             sequence.Join(pokemonImage.DOFade(1f, 0.5f));
             yield return sequence.WaitForCompletion();
+        }
+        public void SetupExp(PokemonUnit pokemon)
+        {
+
+            int expNextLevelNormalized = pokemon.CalculateExpYield(pokemon.Level + 1) - pokemon.CalculateExpYield(pokemon.Level);
+            int currentExpNormalized = pokemon.CurrentExp - pokemon.CalculateExpYield(pokemon.Level);
+            expBar.fillAmount = (float)currentExpNormalized / expNextLevelNormalized;
+        }
+        public IEnumerator UpdateExpBar(PokemonUnit pokemon, bool isReset = false)
+        {
+            if (isReset)
+            {
+                pokemonUI.SetLevelText();
+                expBar.fillAmount = 0;
+            }
+            int expNextLevelNormalized = pokemon.CalculateExpYield(pokemon.Level + 1) - pokemon.CalculateExpYield(pokemon.Level);
+            int currentExpNormalized = pokemon.CurrentExp - pokemon.CalculateExpYield(pokemon.Level);
+            yield return expBar.DOFillAmount((float)currentExpNormalized / expNextLevelNormalized, 0.5f).WaitForCompletion();
+        }
+        public void UpdateSkillUI()
+        {
+            pokemonUI.SetSkillButtons();
         }
     }
 }

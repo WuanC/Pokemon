@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tackle 1
   m_EditorClassIdentifier: 
   skillName: Pillar of fire
-  elementType: 1
+  elementType: 2
   icon: {fileID: 21300000, guid: 97ef19c5e3fcf764e8027ec9408d7116, type: 3}
   power: 80
   accuracy: 100
