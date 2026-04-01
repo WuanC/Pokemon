@@ -128,6 +128,11 @@ namespace Pokemon.Scripts.Pokemon
             if (Skills.Count >= 4) return;
             Skills.Add(newSkill);
         }
+        public void ReplaceSkill(int index, Skill newSkill)
+        {
+            if (index < 0 || index >= Skills.Count) return;
+            Skills[index] = newSkill;
+        }
         public bool HasMaxSkills()
         {
             return Skills.Count == 4;

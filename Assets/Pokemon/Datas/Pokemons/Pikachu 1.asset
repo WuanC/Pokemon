@@ -28,4 +28,10 @@ MonoBehaviour:
   - skillData: {fileID: 11400000, guid: 3f8dbe01c735d9942a0b38c107cdd2f9, type: 2}
     levelRequirement: 1
   - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
+    levelRequirement: 2
+  - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
+    levelRequirement: 3
+  - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
+    levelRequirement: 4
+  - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
     levelRequirement: 6

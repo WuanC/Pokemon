@@ -13,6 +13,7 @@ using Pokemon.Scripts.MyUtils.ObjectPooling;
 using Pokemon.Scripts.Character;
 using Unity.VisualScripting;
 using System;
+using Pokemon.Scripts.UI.Screens;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -60,6 +61,8 @@ namespace Pokemon.Scripts.Battle
 
         [Header("Catch")]
         [SerializeField] private Ball ball;
+        [Header("Unlock Skill")]
+        [SerializeField] private UnlockSkillScreen unlockSkillScreen;
 
         void Start()
         {
@@ -320,17 +323,20 @@ namespace Pokemon.Scripts.Battle
                             if (!playerPokemon.Pokemon.HasMaxSkills())
                             {
                                 playerPokemon.Pokemon.AddSkill(new Skill(newSkill.skillData));
+                                yield return unlockSkillScreen.UnlockNewSkill(false, newSkill.skillData);
                                 playerPokemon.UpdateSkillUI();
-                                yield return new WaitForSeconds(0.25f);
                             }
                             else
                             {
-
+                                yield return unlockSkillScreen.UnlockNewSkill(true, newSkill.skillData, playerPokemon.Pokemon);
+                                playerPokemon.UpdateSkillUI();
                             }
+                            yield return new WaitForSeconds(0.1f);
                         }
                     }
-                    CheckBattleOver(defender);
+
                 }
+                CheckBattleOver(defender);
             }
         }
         public void CheckBattleOver(BattlePokemon defender)
