@@ -63,6 +63,8 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] private Ball ball;
         [Header("Unlock Skill")]
         [SerializeField] private UnlockSkillScreen unlockSkillScreen;
+        [Header("Win Screen")]
+        [SerializeField] private WinScreen winScreen;
 
         void Start()
         {
@@ -435,7 +437,15 @@ namespace Pokemon.Scripts.Battle
         #endregion
         public void BroadCast(bool isWin)
         {
-            Observer.Instance.Broadcast(EventId.OnEndBattle, isWin);
+            if (!isWin)
+            {
+                Observer.Instance.Broadcast(EventId.OnEndBattle, isWin);
+            }
+            else
+            {
+                StartCoroutine(winScreen.ShowWinScreen());
+            }
+
         }
 
         public void OpenMainPanel(Action onComplete = null)

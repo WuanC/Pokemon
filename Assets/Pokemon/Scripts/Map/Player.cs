@@ -10,12 +10,7 @@ namespace Pokemon.Scripts.Map
     {
         [SerializeField] private float moveSpeed;
         [SerializeField] private Animator animator;
-        private Pokemon.Party party;
         private const string MOVING_ANIMATION_KEY = "isMoving";
-        void Awake()
-        {
-            party = GetComponent<Pokemon.Party>();
-        }
         public void MoveToTarget(Node target)
         {
 
@@ -32,11 +27,11 @@ namespace Pokemon.Scripts.Map
             {
                 if (target.nodeState == NodeState.HasPokemon)
                 {
-                    Observer.Instance.Broadcast(EventId.OnEncounterPokemon, Tuple.Create(party, target));
+                    Observer.Instance.Broadcast(EventId.OnEncounterPokemon, target);
                 }
                 else if (target.nodeState == NodeState.HasTrainer)
                 {
-                    Observer.Instance.Broadcast(EventId.OnEncounterTrainer, Tuple.Create(party, target));
+                    Observer.Instance.Broadcast(EventId.OnEncounterTrainer, target);
                 }
                 animator.SetBool(MOVING_ANIMATION_KEY, false);
             });

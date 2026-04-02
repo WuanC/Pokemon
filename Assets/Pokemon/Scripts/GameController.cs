@@ -23,12 +23,14 @@ namespace Pokemon.Scripts
         private GameState currentState = GameState.Map;
         public DragMap dragWorld;
         private DragMap dragMap;
+        [SerializeField] private Pokemon.Party playerParty;
         [SerializeField] private BattleController battleController;
         Node currentNode;
         [SerializeField] private SplashScreen splashScreen;
         [SerializeField] private EnterHubScreen enterHubScreen;
         [SerializeField] private EnterBattleScreen enterBattleScreen;
-        [SerializeField] private PlayScreen playSceen;
+        [SerializeField] private PlayScreen playScreen;
+        [SerializeField] private EvolutionScreen evolutionScreen;
         void Start()
         {
             Observer.Instance.Register(EventId.OnEncounterPokemon, OnEncounterPokemon);
@@ -37,10 +39,9 @@ namespace Pokemon.Scripts
         }
         public void OnEncounterPokemon(object data)
         {
-            if (data is Tuple<Pokemon.Party, Node> tuple)
+            if (data is Node node)
             {
-                Pokemon.Party party = tuple.Item1;
-                Node node = tuple.Item2;
+                Pokemon.Party party = playerParty;
 
                 PokemonUnit wildPokemon = node.OwnerArea.GetRandomPokemon();
                 currentNode = node;
@@ -53,10 +54,10 @@ namespace Pokemon.Scripts
         }
         public void OnEncounterTrainer(object data)
         {
-            if (data is Tuple<Pokemon.Party, Node> tuple)
+            if (data is Node node)
             {
-                Pokemon.Party party = tuple.Item1;
-                Node node = tuple.Item2;
+                Pokemon.Party party = playerParty;
+                NPC npc = node.Npc;
                 EnterBattleClick(() =>
                 {
                     currentNode = node;
@@ -77,6 +78,20 @@ namespace Pokemon.Scripts
                 {
                     currentNode.NodeCompleted();
                     Debug.Log("You win the battle!");
+                    List<PairPokemonEvolution> pairEvolutions = new List<PairPokemonEvolution>();
+                    foreach (var pokemon in playerParty.PokemonParties)
+                    {
+                        if (pokemon.HP <= 0) continue;
+                        var pokemonEvolData = pokemon.GetPokemonEvoluttion();
+                        if (pokemonEvolData != null)
+                        {
+                            pairEvolutions.Add(new PairPokemonEvolution(pokemon.Data, pokemonEvolData));
+                        }
+                    }
+                    if (pairEvolutions.Count > 0)
+                    {
+                        StartCoroutine(evolutionScreen.Evolution(pairEvolutions));
+                    }
                 }
                 else
                 {
@@ -121,7 +136,7 @@ namespace Pokemon.Scripts
         public void MapRegister(DragMap map)
         {
             this.dragMap = map;
-            playSceen.EnterDetailMap();
+            playScreen.EnterDetailMap();
             dragWorld.gameObject.SetActive(false);
         }
         public void BackToWorldMap()

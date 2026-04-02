@@ -23,15 +23,21 @@ namespace Pokemon.Scripts.Pokemon
 
         //Moves
         public List<PokemonSkill> learnableSkills;
-
+        //Evolutions
+        public List<PokemonEvolution> evolutions;
 
     }
 
     [System.Serializable]
     public class PokemonSkill
     {
-
         public SkillData skillData;
+        public int levelRequirement;
+    }
+    [System.Serializable]
+    public class PokemonEvolution
+    {
+        public PokemonData pokemonData;
         public int levelRequirement;
     }
     public enum GrowthRate

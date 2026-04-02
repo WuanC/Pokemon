@@ -32,9 +32,9 @@ namespace Pokemon.Scripts.Pokemon
                     break;
                 }
             }
-            SetupStat();
+            CalculateStat();
         }
-        public void SetupStat()
+        public void CalculateStat()
         {
             statBases = new Dictionary<Stat, int>()
             {
@@ -137,6 +137,22 @@ namespace Pokemon.Scripts.Pokemon
         {
             return Skills.Count == 4;
         }
+        public PokemonData GetPokemonEvoluttion()
+        {
+            PokemonEvolution pkmEvol = Data.evolutions.FirstOrDefault(e => e.levelRequirement <= Level);
+            if (pkmEvol != null)
+            {
+                return pkmEvol.pokemonData;
+            }
+            return null;
+        }
+        public void Evolve(PokemonData newPokemonData)
+        {
+            this.Data = newPokemonData;
+            HP = MaxHP;
+            CalculateStat();
+        }
+
     }
     public class DamageDetails
     {

@@ -256,7 +256,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3246296533707064273}
   - component: {fileID: 2739397710231003406}
-  - component: {fileID: 6653212729745885802}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -294,23 +293,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   animator: {fileID: 7760882809516508354}
---- !u!114 &6653212729745885802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112706885790011944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7acd92c50286e47889844f01880381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pokemonParties:
-  - pokemonData: {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
-    level: 5
-  - pokemonData: {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
-    level: 5
 --- !u!1 &7159234244087841960
 GameObject:
   m_ObjectHideFlags: 0

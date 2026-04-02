@@ -58,6 +58,7 @@ namespace Pokemon.Scripts.UI.Screens
                     {
                         pokemonUnit.ReplaceSkill(index, new Skill(newSKillData));
                         skillButtons[index].GetComponent<Image>().sprite = newSKillData.icon;
+                        selectSkillToForget = true;
                         RemoveForgetSkillListeners();
                     });
                 }
