@@ -25,7 +25,7 @@ namespace Pokemon.Scripts.UI.Screens
         Vector3 pokemonContainerOriginalPos;
         void Start()
         {
-            pokemonContainerOriginalPos = pokemonContainer.transform.position;
+            pokemonContainerOriginalPos = Vector3.zero;
         }
         void OnDisable()
         {

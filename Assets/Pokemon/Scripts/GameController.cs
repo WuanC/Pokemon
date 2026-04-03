@@ -86,6 +86,7 @@ namespace Pokemon.Scripts
                         if (pokemonEvolData != null)
                         {
                             pairEvolutions.Add(new PairPokemonEvolution(pokemon.Data, pokemonEvolData));
+                            pokemon.Evolve(pokemonEvolData);
                         }
                     }
                     if (pairEvolutions.Count > 0)
