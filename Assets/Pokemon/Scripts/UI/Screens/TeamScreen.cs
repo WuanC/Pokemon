@@ -6,11 +6,13 @@ namespace Pokemon.Scripts.UI.Screens
     public class TeamScreen : MonoBehaviour
     {
         [SerializeField] private Pokemon.Party party;
-        [SerializeField] PokemonModal[] pokemonModals;
-        [SerializeField] PokemonModal[] inventoryModals;
+        [SerializeField] DragablePokemonModal[] pokemonModals;
+        [SerializeField] DragablePokemonModal[] inventoryModals;
         [SerializeField] private Button rightBtn;
         [SerializeField] private Button leftBtn;
+        [field: SerializeField] public PokemonModal dummyModal { get; private set; }
         private int currentPage = 1;
+        private DragablePokemonModal draggingSource;
 
         void OnEnable()
         {
@@ -42,6 +44,7 @@ namespace Pokemon.Scripts.UI.Screens
                 {
                     pokemonModals[i].gameObject.SetActive(true);
                     pokemonModals[i].SetModal(party.PokemonParties[i]);
+                    pokemonModals[i].SetupContext(this, true, i);
                 }
                 else
                 {
@@ -62,8 +65,10 @@ namespace Pokemon.Scripts.UI.Screens
                 }
                 if (i + (page - 1) * inventoryModals.Length < party.inventory.Count)
                 {
+                    int inventoryIndex = i + (page - 1) * inventoryModals.Length;
                     inventoryModals[i].gameObject.SetActive(true);
-                    inventoryModals[i].SetModal(party.inventory[i + (page - 1) * inventoryModals.Length]);
+                    inventoryModals[i].SetModal(party.inventory[inventoryIndex]);
+                    inventoryModals[i].SetupContext(this, false, inventoryIndex);
                 }
                 else
                 {
@@ -82,6 +87,100 @@ namespace Pokemon.Scripts.UI.Screens
                 return false;
             }
             return true;
+        }
+
+        public void BeginDrag(DragablePokemonModal source)
+        {
+            draggingSource = source;
+        }
+
+        public void EndDrag(DragablePokemonModal source)
+        {
+            if (draggingSource == source)
+            {
+                draggingSource = null;
+            }
+        }
+
+        public void DropOnTarget(DragablePokemonModal target)
+        {
+            if (draggingSource == null || target == null || target == draggingSource)
+            {
+                return;
+            }
+
+            SwapByLocation(draggingSource, target);
+            SetupParty();
+            SetupInventory(currentPage);
+        }
+
+        private void SwapByLocation(DragablePokemonModal source, DragablePokemonModal target)
+        {
+            if (source.IsPartySlot)
+            {
+                if (target.IsPartySlot)
+                {
+                    SwapPartyParty(source.DataIndex, target.DataIndex);
+                    return;
+                }
+
+                SwapPartyInventory(source.DataIndex, target.DataIndex);
+                return;
+            }
+
+            if (target.IsPartySlot)
+            {
+                SwapPartyInventory(target.DataIndex, source.DataIndex);
+                return;
+            }
+
+            SwapInventoryInventory(source.DataIndex, target.DataIndex);
+        }
+
+        private void SwapPartyParty(int indexA, int indexB)
+        {
+            if (!IsValidPartyIndex(indexA) || !IsValidPartyIndex(indexB))
+            {
+                return;
+            }
+
+            var temp = party.PokemonParties[indexA];
+            party.PokemonParties[indexA] = party.PokemonParties[indexB];
+            party.PokemonParties[indexB] = temp;
+        }
+
+        private void SwapInventoryInventory(int indexA, int indexB)
+        {
+            if (!IsValidInventoryIndex(indexA) || !IsValidInventoryIndex(indexB))
+            {
+                return;
+            }
+
+            var temp = party.inventory[indexA];
+            party.inventory[indexA] = party.inventory[indexB];
+            party.inventory[indexB] = temp;
+        }
+
+        private void SwapPartyInventory(int partyIndex, int inventoryIndex)
+        {
+            if (!IsValidPartyIndex(partyIndex) || !IsValidInventoryIndex(inventoryIndex))
+            {
+                return;
+            }
+
+            var temp = party.PokemonParties[partyIndex];
+            party.PokemonParties[partyIndex] = party.inventory[inventoryIndex];
+            party.inventory[inventoryIndex] = temp;
+        }
+
+        private bool IsValidPartyIndex(int index)
+        {
+            return index >= 0 && party.PokemonParties != null && index < party.PokemonParties.Count;
+        }
+
+        private bool IsValidInventoryIndex(int index)
+        {
+            return index >= 0 && party.inventory != null && index < party.inventory.Count;
         }
     }
 }
