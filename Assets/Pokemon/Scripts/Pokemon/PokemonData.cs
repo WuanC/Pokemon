@@ -7,6 +7,7 @@ namespace Pokemon.Scripts.Pokemon
     public class PokemonData : ScriptableObject
     {
         public string pokemonName;
+        public string pokemonDescription;
         public PokemonType type;
         public Sprite frontSprite;
         public Sprite backSprite;
