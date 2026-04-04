@@ -14,7 +14,7 @@ namespace Pokemon.Scripts.Pokemon
     {
         [SerializeField] PokemonParty[] pokemonParties;
         public List<PokemonUnit> PokemonParties { get; private set; }
-
+        public List<PokemonUnit> inventory { get; private set; }
         public Party(List<PokemonUnit> pokemonParties)
         {
             this.PokemonParties = pokemonParties;
@@ -38,13 +38,26 @@ namespace Pokemon.Scripts.Pokemon
         }
         public void AddPokemon(PokemonUnit pokemon)
         {
-            if (PokemonParties.Count < 6)
+            if (PokemonParties.Count < 3)
             {
                 PokemonParties.Add(pokemon);
             }
             else
             {
-                //Invenytory System
+                if (inventory == null)
+                {
+                    inventory = new List<PokemonUnit>();
+                }
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
+                inventory.Add(pokemon);
             }
         }
     }
