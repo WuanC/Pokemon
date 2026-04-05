@@ -8,7 +8,7 @@ namespace Pokemon.Scripts.Pokemon
     {
         public string skillName;
         public string description;
-        public PokemonType elementType;
+        public PkmType elementType;
         public Sprite icon;
         public int power;
         public int accuracy;

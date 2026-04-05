@@ -8,7 +8,7 @@ namespace Pokemon.Scripts.Pokemon
     {
         public string pokemonName;
         public string pokemonDescription;
-        public PokemonType type;
+        public PkmType type;
         public Sprite frontSprite;
         public Sprite backSprite;
         public Sprite icon;

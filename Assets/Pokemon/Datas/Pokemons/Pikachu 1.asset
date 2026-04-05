@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Pikachu 1
   m_EditorClassIdentifier: 
   pokemonName: Charizard
+  pokemonDescription: Torchips are usually friendly, but their flame may grow very
+    hot
   type: 0
   frontSprite: {fileID: 21300000, guid: 9be595905b376354183fc038ab1eb98d, type: 3}
   backSprite: {fileID: 21300000, guid: 12e8160fceeee974da840ca520757171, type: 3}

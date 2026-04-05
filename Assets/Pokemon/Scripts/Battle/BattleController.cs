@@ -86,7 +86,8 @@ namespace Pokemon.Scripts.Battle
             this.playerParty = party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
             partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());
-            playerPokemon.SetPokemon(playerPkmUnit, SetCurrentMove);
+            playerPokemon.SetPokemon(playerPkmUnit);
+            mainPanel.SetSkillButton(playerPkmUnit.Skills);
             this.enemyPokemon.SetPokemon(enemyPokemon);
             DisableTextAndEffects();
             SetPlayerAction();
@@ -103,7 +104,8 @@ namespace Pokemon.Scripts.Battle
             this.enemyParty = npc.party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
             partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());
-            playerPokemon.SetPokemon(playerPkmUnit, SetCurrentMove);
+            playerPokemon.SetPokemon(playerPkmUnit);
+            mainPanel.SetSkillButton(playerPkmUnit.Skills);
             enemyPokemon.SetPokemon(enemyParty.GetHealthyPokemon());
             DisableTextAndEffects();
             SetPlayerAction();
@@ -148,7 +150,8 @@ namespace Pokemon.Scripts.Battle
             playerPokemon.ExitAnimation(0.25f);
             partySlot.SetPokemon(playerPkmUnit);
             yield return new WaitForSeconds(0.25f);
-            playerPokemon.SetPokemon(partyPokemon, SetCurrentMove, 0.25f);
+            playerPokemon.SetPokemon(partyPokemon, 0.25f);
+            mainPanel.SetSkillButton(partyPokemon.Skills);
             yield return new WaitForSeconds(0.25f);
             state = BattleState.Running;
             if (battleAction == BattleAction.None)
@@ -164,7 +167,7 @@ namespace Pokemon.Scripts.Battle
             PokemonUnit partyPokemon = nextPokemon;
             enemyPokemon.ExitAnimation(0.25f);
             yield return new WaitForSeconds(0.25f);
-            enemyPokemon.SetPokemon(partyPokemon, null, 0.25f);
+            enemyPokemon.SetPokemon(partyPokemon, 0.25f);
             yield return new WaitForSeconds(0.25f);
             state = BattleState.Running;
         }
@@ -296,7 +299,7 @@ namespace Pokemon.Scripts.Battle
                 DamageDetails damageDetails = defender.Pokemon.TakeDamage(skill, attacker.Pokemon);
                 ShowSkillUI(damageDetails);
                 float hpFraction = (float)defender.Pokemon.HP / defender.Pokemon.MaxHP;
-                yield return defender.UpdateHp(hpFraction, 0.5f).WaitForCompletion();
+                yield return defender.UpdateHp(hpFraction, 0.5f);
 
             }
             if (skillFx != null)
@@ -314,10 +317,10 @@ namespace Pokemon.Scripts.Battle
                 {
                     int expYield = GetExpYield(defender.Pokemon);
                     playerPokemon.Pokemon.CurrentExp += expYield;
-                    yield return playerPokemon.UpdateExpBar(playerPokemon.Pokemon);
+                    yield return playerPokemon.UpdateExpBar();
                     while (playerPokemon.Pokemon.CheckLevelUp())
                     {
-                        yield return playerPokemon.UpdateExpBar(playerPokemon.Pokemon, true);
+                        yield return playerPokemon.UpdateExpBar(true);
                         yield return new WaitForSeconds(0.25f);
                         PokemonSkill newSkill = playerPokemon.Pokemon.GetSkillByLevel();
                         if (newSkill != null)
@@ -326,12 +329,12 @@ namespace Pokemon.Scripts.Battle
                             {
                                 playerPokemon.Pokemon.AddSkill(new Skill(newSkill.skillData));
                                 yield return unlockSkillScreen.UnlockNewSkill(false, newSkill.skillData);
-                                playerPokemon.UpdateSkillUI();
+                                mainPanel.SetSkillButton(playerPokemon.Pokemon.Skills);
                             }
                             else
                             {
                                 yield return unlockSkillScreen.UnlockNewSkill(true, newSkill.skillData, playerPokemon.Pokemon);
-                                playerPokemon.UpdateSkillUI();
+                                mainPanel.SetSkillButton(playerPokemon.Pokemon.Skills);
                             }
                             yield return new WaitForSeconds(0.1f);
                         }

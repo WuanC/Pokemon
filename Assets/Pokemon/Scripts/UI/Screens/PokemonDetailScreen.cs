@@ -1,15 +1,30 @@
+
+using Pokemon.Scripts.Pokemon;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Pokemon.Scripts.UI.Screens
 {
     public class PokemonDetailScreen : MonoBehaviour
     {
-        private void Start()
+        [SerializeField] private Image pkmImage;
+        [SerializeField] private PokemonModal pkmModal;
+        [SerializeField] private TextMeshProUGUI pkmDescriptionText;
+        [SerializeField] private CompatibleType compatibleType;
+        [SerializeField] private Transform skillParent;
+        [SerializeField] private SkillLocker skillIcon;
+        public void Initialize(PokemonUnit pokemonUnit)
         {
-        }
-
-        private void Update()
-        {
+            pkmImage.sprite = pokemonUnit.Data.frontSprite;
+            pkmModal.InitModal(pokemonUnit, true);
+            pkmDescriptionText.text = pokemonUnit.Data.pokemonDescription;
+            compatibleType.SetupCompatibleType(pokemonUnit.Data.type);
+            for (int i = 0; i < pokemonUnit.Data.learnableSkills.Count; i++)
+            {
+                SkillLocker skillLocker = Instantiate(skillIcon, Vector3.zero, Quaternion.identity, skillParent);
+                skillLocker.Initialize(pokemonUnit, pokemonUnit.Data.learnableSkills[i]);
+            }
         }
     }
 }

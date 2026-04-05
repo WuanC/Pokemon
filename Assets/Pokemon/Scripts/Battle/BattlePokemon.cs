@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Pokemon.Scripts.Pokemon;
+using Pokemon.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +15,7 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] bool isPlayerPokemon;
         public Image pokemonImage;
         [SerializeField] Vector3 originalPosition;
-        [SerializeField] BattlePokemonUI pokemonUI;
-        [SerializeField] private RectTransform statContainer;
+        [SerializeField] PokemonModal pokemonHub;
         [SerializeField] private Image attackProgress;
         [SerializeField] private Image defenseProgress;
         [SerializeField] private Image speedProgress;
@@ -23,7 +23,7 @@ namespace Pokemon.Scripts.Battle
         public PokemonUnit Pokemon { get; private set; }
         public bool IsPlayerPokemon => isPlayerPokemon;
         public Skill CurrentSkill { get; set; }
-        [SerializeField] public Image expBar;
+        // [SerializeField] public Image expBar;
         private void OnDisable()
         {
             pokemonImage.transform.DOKill();
@@ -34,30 +34,25 @@ namespace Pokemon.Scripts.Battle
             pokemonImage.transform.localPosition = originalPosition;
             pokemonImage.transform.localScale = Vector3.one;
             pokemonImage.color = Color.white;
-            expBar.DOKill();
 
         }
-        public void SetPokemon(PokemonUnit pokemon, Action<int> onSkillSelected = null, float duration = 0.5f)
+        public void SetPokemon(PokemonUnit pokemon, float duration = 0.5f)
         {
 
             Pokemon = pokemon;
             if (isPlayerPokemon)
             {
-                SetupExp(pokemon);
                 pokemonImage.sprite = pokemon.Data.backSprite;
             }
             else
             {
                 pokemonImage.sprite = pokemon.Data.frontSprite;
             }
-            pokemonUI.SetPokemon(pokemon, onSkillSelected);
+            pokemonHub.InitModal(pokemon, isPlayerPokemon);
             EnterAnimation(duration);
 
         }
-        public Tween UpdateHp(float hpFraction, float duration)
-        {
-            return pokemonUI.UpdateHP(hpFraction, duration);
-        }
+
 
         public void EnterAnimation(float duration)
         {
@@ -134,10 +129,6 @@ namespace Pokemon.Scripts.Battle
                 });
             }
         }
-
-
-
-
         public Sequence AttackAnimation()
         {
             Sequence sequence = DOTween.Sequence();
@@ -174,27 +165,37 @@ namespace Pokemon.Scripts.Battle
             sequence.Join(pokemonImage.DOFade(1f, 0.5f));
             yield return sequence.WaitForCompletion();
         }
-        public void SetupExp(PokemonUnit pokemon)
-        {
+        // public void SetupExp(PokemonUnit pokemon)
+        // {
 
-            int expNextLevelNormalized = pokemon.CalculateExpYield(pokemon.Level + 1) - pokemon.CalculateExpYield(pokemon.Level);
-            int currentExpNormalized = pokemon.CurrentExp - pokemon.CalculateExpYield(pokemon.Level);
-            expBar.fillAmount = (float)currentExpNormalized / expNextLevelNormalized;
-        }
-        public IEnumerator UpdateExpBar(PokemonUnit pokemon, bool isReset = false)
+        //     int expNextLevelNormalized = pokemon.CalculateExpYield(pokemon.Level + 1) - pokemon.CalculateExpYield(pokemon.Level);
+        //     int currentExpNormalized = pokemon.CurrentExp - pokemon.CalculateExpYield(pokemon.Level);
+        //     expBar.fillAmount = (float)currentExpNormalized / expNextLevelNormalized;
+        // }
+        // public IEnumerator UpdateExpBar(PokemonUnit pokemon, bool isReset = false)
+        // {
+        //     if (isReset)
+        //     {
+        //         pokemonUI.SetLevelText();
+        //         expBar.fillAmount = 0;
+        //     }
+        //     int expNextLevelNormalized = pokemon.CalculateExpYield(pokemon.Level + 1) - pokemon.CalculateExpYield(pokemon.Level);
+        //     int currentExpNormalized = pokemon.CurrentExp - pokemon.CalculateExpYield(pokemon.Level);
+        //     yield return expBar.DOFillAmount((float)currentExpNormalized / expNextLevelNormalized, 0.5f).WaitForCompletion();
+        // }
+        // public void UpdateSkillUI()
+        // {
+        //     pokemonUI.SetSkillButtons();
+        // }
+        #region Update Hub
+        public IEnumerator UpdateExpBar(bool isReset = false)
         {
-            if (isReset)
-            {
-                pokemonUI.SetLevelText();
-                expBar.fillAmount = 0;
-            }
-            int expNextLevelNormalized = pokemon.CalculateExpYield(pokemon.Level + 1) - pokemon.CalculateExpYield(pokemon.Level);
-            int currentExpNormalized = pokemon.CurrentExp - pokemon.CalculateExpYield(pokemon.Level);
-            yield return expBar.DOFillAmount((float)currentExpNormalized / expNextLevelNormalized, 0.5f).WaitForCompletion();
+            yield return pokemonHub.UpdateExpBar(isReset);
         }
-        public void UpdateSkillUI()
+        public IEnumerator UpdateHp(float hpFraction, float duration)
         {
-            pokemonUI.SetSkillButtons();
+            yield return pokemonHub.UpdateHP(hpFraction, duration);
         }
+        #endregion
     }
 }

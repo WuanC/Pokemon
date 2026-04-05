@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7514277488252476548}
   - component: {fileID: 2875613826749249463}
   m_Layer: 5
-  m_Name: PokemonHub
+  m_Name: PokemonHubDragable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 436.2, y: 205.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6647932080638479824
 CanvasRenderer:
@@ -68,6 +68,7 @@ MonoBehaviour:
   pkmLevelText: {fileID: 1399508691295351237}
   pkmImage: {fileID: 3401277267616380359}
   hpBar: {fileID: 2313973549825508122}
+  expBar: {fileID: 0}
 --- !u!114 &7514277488252476548
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,13 +1,15 @@
+using System;
 using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Pokemon.Scripts.UI
 {
-    public class DragablePokemonModal : PokemonModal, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+    public class DragablePokemonModal : PokemonModal, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
     {
         private TeamScreen teamScreen;
         private CanvasGroup canvasGroup;
+        private bool isDragging;
         public bool IsPartySlot { get; private set; }
         public int DataIndex { get; private set; } = -1;
 
@@ -29,8 +31,10 @@ namespace Pokemon.Scripts.UI
             {
                 return;
             }
+
+            isDragging = true;
             teamScreen.BeginDrag(this);
-            teamScreen.dummyModal.SetModal(pokemonUnit);
+            teamScreen.dummyModal.InitModal(pokemonUnit);
             teamScreen.dummyModal.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             teamScreen.dummyModal.gameObject.SetActive(true);
 
@@ -75,6 +79,17 @@ namespace Pokemon.Scripts.UI
 
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
+            isDragging = false;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (isDragging || eventData.button != PointerEventData.InputButton.Left)
+            {
+                return;
+            }
+            teamScreen.EnterDetailScreen(pokemonUnit);
+
         }
     }
 }

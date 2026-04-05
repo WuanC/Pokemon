@@ -1,3 +1,4 @@
+using Pokemon.Scripts.Pokemon;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ namespace Pokemon.Scripts.UI.Screens
         [field: SerializeField] public PokemonModal dummyModal { get; private set; }
         private int currentPage = 1;
         private DragablePokemonModal draggingSource;
+        [SerializeField] private PokemonDetailScreen detailScreen;
 
         void OnEnable()
         {
@@ -43,7 +45,7 @@ namespace Pokemon.Scripts.UI.Screens
                 if (i < party.PokemonParties.Count)
                 {
                     pokemonModals[i].gameObject.SetActive(true);
-                    pokemonModals[i].SetModal(party.PokemonParties[i]);
+                    pokemonModals[i].InitModal(party.PokemonParties[i]);
                     pokemonModals[i].SetupContext(this, true, i);
                 }
                 else
@@ -67,7 +69,7 @@ namespace Pokemon.Scripts.UI.Screens
                 {
                     int inventoryIndex = i + (page - 1) * inventoryModals.Length;
                     inventoryModals[i].gameObject.SetActive(true);
-                    inventoryModals[i].SetModal(party.inventory[inventoryIndex]);
+                    inventoryModals[i].InitModal(party.inventory[inventoryIndex]);
                     inventoryModals[i].SetupContext(this, false, inventoryIndex);
                 }
                 else
@@ -181,6 +183,11 @@ namespace Pokemon.Scripts.UI.Screens
         private bool IsValidInventoryIndex(int index)
         {
             return index >= 0 && party.inventory != null && index < party.inventory.Count;
+        }
+        public void EnterDetailScreen(PokemonUnit pokemonUnit)
+        {
+            detailScreen.gameObject.SetActive(true);
+            detailScreen.Initialize(pokemonUnit);
         }
     }
 }
