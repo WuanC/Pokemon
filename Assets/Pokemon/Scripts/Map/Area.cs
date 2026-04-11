@@ -37,7 +37,7 @@ namespace Pokemon.Scripts.Map
         public void RandomPokemonInArea()
         {
             int random = UnityEngine.Random.Range(1, 3);
-            List<Node> nodes = ListUtils.ShuffleList(this.nodes);
+            List<Node> nodes = GeneralUtils.ShuffleList(this.nodes);
             for (int j = 0; j < nodes.Count; j++)
             {
                 if (j < random)

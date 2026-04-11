@@ -5,6 +5,7 @@ using Pokemon.Scripts.Character;
 using Pokemon.Scripts.Map;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
+using Pokemon.Scripts.Quest;
 using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 
@@ -33,6 +34,7 @@ namespace Pokemon.Scripts
         [SerializeField] private EvolutionScreen evolutionScreen;
         void Start()
         {
+            StartCoroutine(QuestDB.Init());
             Observer.Instance.Register(EventId.OnEncounterPokemon, OnEncounterPokemon);
             Observer.Instance.Register(EventId.OnEncounterTrainer, OnEncounterTrainer);
             Observer.Instance.Register(EventId.OnEndBattle, OnEndBattle);
