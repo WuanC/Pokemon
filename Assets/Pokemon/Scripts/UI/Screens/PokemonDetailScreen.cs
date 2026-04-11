@@ -26,6 +26,7 @@ namespace Pokemon.Scripts.UI.Screens
             for (int i = 0; i < pokemonUnit.Data.learnableSkills.Count; i++)
             {
                 GameObject skillLockerGO = MyPoolManager.Instance.GetFromPool(skillIcon.gameObject, skillParent);
+                skillLockerGO.transform.SetSiblingIndex(i);
                 SkillLocker skillLocker = skillLockerGO.GetComponent<SkillLocker>();
                 skillLocker.Initialize(pokemonUnit, pokemonUnit.Data.learnableSkills[i]);
                 skillLockers.Add(skillLocker);
