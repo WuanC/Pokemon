@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Pokemon.Scripts.Battle;
 using Pokemon.Scripts.Character;
@@ -34,10 +35,15 @@ namespace Pokemon.Scripts
         [SerializeField] private EvolutionScreen evolutionScreen;
         void Start()
         {
-            StartCoroutine(QuestDB.Init());
+            StartCoroutine(InitGame());
             Observer.Instance.Register(EventId.OnEncounterPokemon, OnEncounterPokemon);
             Observer.Instance.Register(EventId.OnEncounterTrainer, OnEncounterTrainer);
             Observer.Instance.Register(EventId.OnEndBattle, OnEndBattle);
+        }
+        public IEnumerator InitGame()
+        {
+            yield return QuestDB.Init();
+            QuestManager.Instance.Initialize();
         }
         public void OnEncounterPokemon(object data)
         {

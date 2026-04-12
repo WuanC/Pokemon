@@ -14,6 +14,7 @@ using Pokemon.Scripts.Character;
 using Unity.VisualScripting;
 using System;
 using Pokemon.Scripts.UI.Screens;
+using Pokemon.Scripts.Quest;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -37,8 +38,8 @@ namespace Pokemon.Scripts.Battle
     }
     public class BattleController : MonoBehaviour
     {
-        [SerializeField] BattlePokemon playerPokemon;
-        [SerializeField] BattlePokemon enemyPokemon;
+        [SerializeField] BattlePokemon playerBattlePkm;
+        [SerializeField] BattlePokemon enemyBattlePkm;
         [SerializeField] TextMeshProUGUI skillText;
         [SerializeField] Image typeEffectImage;
         [SerializeField] Image criticalImage;
@@ -86,9 +87,9 @@ namespace Pokemon.Scripts.Battle
             this.playerParty = party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
             partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());
-            playerPokemon.SetPokemon(playerPkmUnit);
+            playerBattlePkm.SetPokemon(playerPkmUnit);
             mainPanel.SetSkillButton(playerPkmUnit.Skills);
-            this.enemyPokemon.SetPokemon(enemyPokemon);
+            this.enemyBattlePkm.SetPokemon(enemyPokemon);
             DisableTextAndEffects();
             SetPlayerAction();
             battleAction = BattleAction.None;
@@ -104,9 +105,9 @@ namespace Pokemon.Scripts.Battle
             this.enemyParty = npc.party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
             partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());
-            playerPokemon.SetPokemon(playerPkmUnit);
+            playerBattlePkm.SetPokemon(playerPkmUnit);
             mainPanel.SetSkillButton(playerPkmUnit.Skills);
-            enemyPokemon.SetPokemon(enemyParty.GetHealthyPokemon());
+            enemyBattlePkm.SetPokemon(enemyParty.GetHealthyPokemon());
             DisableTextAndEffects();
             SetPlayerAction();
         }
@@ -144,13 +145,13 @@ namespace Pokemon.Scripts.Battle
         }
         public IEnumerator PlayerSwitchPokemon(PartySlot partySlot)
         {
-            PokemonUnit playerPkmUnit = playerPokemon.Pokemon;
+            PokemonUnit playerPkmUnit = playerBattlePkm.Pokemon;
             PokemonUnit partyPokemon = partySlot.Pokemon;
             OpenMainPanel();
-            playerPokemon.ExitAnimation(0.25f);
+            playerBattlePkm.ExitAnimation(0.25f);
             partySlot.SetPokemon(playerPkmUnit);
             yield return new WaitForSeconds(0.25f);
-            playerPokemon.SetPokemon(partyPokemon, 0.25f);
+            playerBattlePkm.SetPokemon(partyPokemon, 0.25f);
             mainPanel.SetSkillButton(partyPokemon.Skills);
             yield return new WaitForSeconds(0.25f);
             state = BattleState.Running;
@@ -163,11 +164,9 @@ namespace Pokemon.Scripts.Battle
         public IEnumerator NPCSwitchPokemon(PokemonUnit nextPokemon)
         {
             state = BattleState.Busy;
-            PokemonUnit enemyPkmUnit = enemyPokemon.Pokemon;
-            PokemonUnit partyPokemon = nextPokemon;
-            enemyPokemon.ExitAnimation(0.25f);
+            enemyBattlePkm.ExitAnimation(0.25f);
             yield return new WaitForSeconds(0.25f);
-            enemyPokemon.SetPokemon(partyPokemon, 0.25f);
+            enemyBattlePkm.SetPokemon(nextPokemon, 0.25f);
             yield return new WaitForSeconds(0.25f);
             state = BattleState.Running;
         }
@@ -181,7 +180,7 @@ namespace Pokemon.Scripts.Battle
         }
         public bool TryToCatchPokemon()
         {
-            float a = (3 * enemyPokemon.Pokemon.MaxHP - 2 * enemyPokemon.Pokemon.HP) * enemyPokemon.Pokemon.Data.catchRate / (3 * enemyPokemon.Pokemon.MaxHP);
+            float a = (3 * enemyBattlePkm.Pokemon.MaxHP - 2 * enemyBattlePkm.Pokemon.HP) * enemyBattlePkm.Pokemon.Data.catchRate / (3 * enemyBattlePkm.Pokemon.MaxHP);
             if (a >= 1)
                 return true;
             else return false;
@@ -192,20 +191,20 @@ namespace Pokemon.Scripts.Battle
             state = BattleState.Running;
             if (battleAction == BattleAction.Fight)
             {
-                playerPokemon.CurrentSkill = playerPokemon.Pokemon.Skills[currentMoveIndex];
-                enemyPokemon.CurrentSkill = enemyPokemon.Pokemon.RandomSkill();
+                playerBattlePkm.CurrentSkill = playerBattlePkm.Pokemon.Skills[currentMoveIndex];
+                enemyBattlePkm.CurrentSkill = enemyBattlePkm.Pokemon.RandomSkill();
                 bool playerGoesFirst = true;
-                if (playerPokemon.CurrentSkill.Data.skillPriority < enemyPokemon.CurrentSkill.Data.skillPriority)
+                if (playerBattlePkm.CurrentSkill.Data.skillPriority < enemyBattlePkm.CurrentSkill.Data.skillPriority)
                 {
                     playerGoesFirst = false;
                 }
-                else if (playerPokemon.CurrentSkill.Data.skillPriority == enemyPokemon.CurrentSkill.Data.skillPriority)
+                else if (playerBattlePkm.CurrentSkill.Data.skillPriority == enemyBattlePkm.CurrentSkill.Data.skillPriority)
                 {
-                    playerGoesFirst = playerPokemon.Pokemon.Speed >= enemyPokemon.Pokemon.Speed;
+                    playerGoesFirst = playerBattlePkm.Pokemon.Speed >= enemyBattlePkm.Pokemon.Speed;
                 }
 
-                var firstUnit = playerGoesFirst ? playerPokemon : enemyPokemon;
-                var secondUnit = playerGoesFirst ? enemyPokemon : playerPokemon;
+                var firstUnit = playerGoesFirst ? playerBattlePkm : enemyBattlePkm;
+                var secondUnit = playerGoesFirst ? enemyBattlePkm : playerBattlePkm;
 
                 yield return ActionMove(firstUnit, secondUnit, firstUnit.CurrentSkill);
                 yield return CheckPokemonFainted(secondUnit);
@@ -222,9 +221,9 @@ namespace Pokemon.Scripts.Battle
             }
             else if (battleAction == BattleAction.Switch)
             {
-                enemyPokemon.CurrentSkill = enemyPokemon.Pokemon.RandomSkill();
-                yield return ActionMove(enemyPokemon, playerPokemon, enemyPokemon.CurrentSkill);
-                yield return CheckPokemonFainted(playerPokemon);
+                enemyBattlePkm.CurrentSkill = enemyBattlePkm.Pokemon.RandomSkill();
+                yield return ActionMove(enemyBattlePkm, playerBattlePkm, enemyBattlePkm.CurrentSkill);
+                yield return CheckPokemonFainted(playerBattlePkm);
                 if (state == BattleState.Over) yield break;
                 yield return new WaitUntil(() => state == BattleState.Running);
             }
@@ -237,21 +236,22 @@ namespace Pokemon.Scripts.Battle
             else if (battleAction == BattleAction.Catch)
             {
                 yield return ball.Throw();
-                yield return enemyPokemon.CatchAnimation(ball);
+                yield return enemyBattlePkm.CatchAnimation(ball);
                 if (TryToCatchPokemon())
                 {
+                    QuestManager.Instance.UpdateBattleQuestProgress(EQuest.CatchPokemon, enemyBattlePkm.Pokemon.Data.type);
                     yield return ball.CatchSuccess();
-                    playerParty.AddPokemon(enemyPokemon.Pokemon);
+                    playerParty.AddPokemon(enemyBattlePkm.Pokemon);
                     BroadCast(true);
                     yield break;
                 }
                 else
                 {
                     yield return ball.CatchFail();
-                    yield return enemyPokemon.CatchFailAnimation();
-                    enemyPokemon.CurrentSkill = enemyPokemon.Pokemon.RandomSkill();
-                    yield return ActionMove(enemyPokemon, playerPokemon, enemyPokemon.CurrentSkill);
-                    yield return CheckPokemonFainted(playerPokemon);
+                    yield return enemyBattlePkm.CatchFailAnimation();
+                    enemyBattlePkm.CurrentSkill = enemyBattlePkm.Pokemon.RandomSkill();
+                    yield return ActionMove(enemyBattlePkm, playerBattlePkm, enemyBattlePkm.CurrentSkill);
+                    yield return CheckPokemonFainted(playerBattlePkm);
                     if (state == BattleState.Over) yield break;
                     yield return new WaitUntil(() => state == BattleState.Running);
                 }
@@ -316,25 +316,25 @@ namespace Pokemon.Scripts.Battle
                 if (!defender.IsPlayerPokemon)
                 {
                     int expYield = GetExpYield(defender.Pokemon);
-                    playerPokemon.Pokemon.CurrentExp += expYield;
-                    yield return playerPokemon.UpdateExpBar();
-                    while (playerPokemon.Pokemon.CheckLevelUp())
+                    playerBattlePkm.Pokemon.CurrentExp += expYield;
+                    yield return playerBattlePkm.UpdateExpBar();
+                    while (playerBattlePkm.Pokemon.CheckLevelUp())
                     {
-                        yield return playerPokemon.UpdateExpBar(true);
+                        yield return playerBattlePkm.UpdateExpBar(true);
                         yield return new WaitForSeconds(0.25f);
-                        PokemonSkill newSkill = playerPokemon.Pokemon.GetSkillByLevel();
+                        PokemonSkill newSkill = playerBattlePkm.Pokemon.GetSkillByLevel();
                         if (newSkill != null)
                         {
-                            if (!playerPokemon.Pokemon.HasMaxSkills())
+                            if (!playerBattlePkm.Pokemon.HasMaxSkills())
                             {
-                                playerPokemon.Pokemon.AddSkill(new Skill(newSkill.skillData));
+                                playerBattlePkm.Pokemon.AddSkill(new Skill(newSkill.skillData));
                                 yield return unlockSkillScreen.UnlockNewSkill(false, newSkill.skillData);
-                                mainPanel.SetSkillButton(playerPokemon.Pokemon.Skills);
+                                mainPanel.SetSkillButton(playerBattlePkm.Pokemon.Skills);
                             }
                             else
                             {
-                                yield return unlockSkillScreen.UnlockNewSkill(true, newSkill.skillData, playerPokemon.Pokemon);
-                                mainPanel.SetSkillButton(playerPokemon.Pokemon.Skills);
+                                yield return unlockSkillScreen.UnlockNewSkill(true, newSkill.skillData, playerBattlePkm.Pokemon);
+                                mainPanel.SetSkillButton(playerBattlePkm.Pokemon.Skills);
                             }
                             yield return new WaitForSeconds(0.1f);
                         }
@@ -371,8 +371,9 @@ namespace Pokemon.Scripts.Battle
                 }
                 else
                 {
-                    PokemonUnit playerPkmUnit = enemyParty.GetHealthyPokemon();
-                    if (playerPkmUnit == null)
+                    QuestManager.Instance.UpdateBattleQuestProgress(EQuest.DefeatPokemon, defender.Pokemon.Data.type);
+                    PokemonUnit enemyNextPkm = enemyParty.GetHealthyPokemon();
+                    if (enemyNextPkm == null)
                     {
                         state = BattleState.Over;
                         BroadCast(true);
@@ -381,7 +382,7 @@ namespace Pokemon.Scripts.Battle
                     else
                     {
                         state = BattleState.Busy;
-                        StartCoroutine(NPCSwitchPokemon(playerPkmUnit));
+                        StartCoroutine(NPCSwitchPokemon(enemyNextPkm));
                     }
                 }
             }
@@ -389,7 +390,7 @@ namespace Pokemon.Scripts.Battle
         public int GetExpYield(PokemonUnit defeatedPokemon)
         {
             float battleRate = (isNPCBattle) ? 1.5f : 1f;
-            return Mathf.FloorToInt(playerPokemon.Pokemon.Data.baseExp * defeatedPokemon.Level / 7f * battleRate);
+            return Mathf.FloorToInt(playerBattlePkm.Pokemon.Data.baseExp * defeatedPokemon.Level / 7f * battleRate);
         }
         #region Show UI
         public IEnumerator ShowSkillName(string skillName)

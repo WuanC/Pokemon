@@ -11,6 +11,9 @@ namespace Pokemon.Scripts.Quest
         public DailyQuestData QuestData => questData;
         public int CurrentCount => currentCount;
         public bool IsClaimed => isClaimed;
+
+
+
         public Quest(DailyQuestData questData, int currentCount, bool isClaimed)
         {
             this.questData = questData;
@@ -32,5 +35,16 @@ namespace Pokemon.Scripts.Quest
                 isClaimed = isClaimed,
             };
         }
+        public void UpdateQuest()
+        {
+            if (isClaimed) return;
+            if (currentCount >= questData.countToComplete)
+            {
+                return;
+            }
+            currentCount++;
+
+        }
+
     }
 }

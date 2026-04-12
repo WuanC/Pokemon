@@ -9,5 +9,7 @@ namespace Pokemon.Scripts.Quest
         public string description;
         public int rewardMoney;
         public int countToComplete;
+        public EQuest questType;
+        public Objective.ObjectiveBase objective;
     }
 }
