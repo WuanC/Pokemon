@@ -16,3 +16,5 @@ MonoBehaviour:
   description: Catch Pokemon with Water Type
   rewardMoney: 1000
   countToComplete: 2
+  questType: 0
+  objective: {fileID: 11400000, guid: 8cd6694402c390f44b1c0e94e0026adb, type: 2}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
@@ -16,12 +17,18 @@ namespace Pokemon.Scripts.Quest
         public List<Quest> DailyQuests => quests;
         public void Initialize()
         {
-            if (!RestoreState())
+            MissionScreenSaveData saveData = RestoreState() as MissionScreenSaveData;
+            if (saveData == null || saveData.saveTime.Date < DateTime.UtcNow.Date)
             {
                 GetNewDailyQuests();
+                CaptureState();
+            }
+            else
+            {
+                CreateDailyQuests(saveData);
             }
         }
-        void OnDisable()
+        void OnDestroy()
         {
             CaptureState();
         }
@@ -58,33 +65,34 @@ namespace Pokemon.Scripts.Quest
             string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
             PlayerPrefs.SetString(saveKey, json);
         }
-        public bool RestoreState()
+        public object RestoreState()
         {
             string saveDataJson = PlayerPrefs.GetString(saveKey);
-            if (string.IsNullOrEmpty(saveDataJson)) return false;
+            if (string.IsNullOrEmpty(saveDataJson)) return null;
 
             MissionScreenSaveData saveData = JsonConvert.DeserializeObject<MissionScreenSaveData>(saveDataJson);
-            if (saveData == null)
-            {
-                return false;
-            }
-
-            if (saveData.saveTime.Date < System.DateTime.UtcNow.Date)
-            {
-                return false;
-            }
+            return saveData;
+        }
+        public void CreateDailyQuests(MissionScreenSaveData saveData)
+        {
             quests.Clear();
             foreach (var questSaveData in saveData.quests)
             {
                 Quest quest = new Quest(questSaveData);
                 quests.Add(quest);
             }
-            return true;
         }
+
 
         #region Process Quest Progress
         public void UpdateBattleQuestProgress(EQuest questType, PkmType pokemonType)
         {
+            MissionScreenSaveData saveData = RestoreState() as MissionScreenSaveData;
+            if (saveData == null || saveData.saveTime.Date < DateTime.UtcNow.Date)
+            {
+                GetNewDailyQuests();
+                CaptureState();
+            }
             foreach (var quest in quests)
             {
                 if (quest.QuestData.questType == questType)

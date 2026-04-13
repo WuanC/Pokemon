@@ -16,3 +16,5 @@ MonoBehaviour:
   description: Catch Pokemon with Fire Type
   rewardMoney: 1000
   countToComplete: 2
+  questType: 0
+  objective: {fileID: 11400000, guid: e430510777aeb0d48a3d5ee1db98f3a6, type: 2}
