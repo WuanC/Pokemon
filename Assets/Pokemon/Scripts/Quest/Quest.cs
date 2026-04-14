@@ -45,6 +45,17 @@ namespace Pokemon.Scripts.Quest
             currentCount++;
 
         }
+        public bool CanClaim()
+        {
+            return currentCount >= questData.countToComplete && !isClaimed;
+        }
+        public void Claim()
+        {
+            if (CanClaim())
+            {
+                isClaimed = true;
+            }
+        }
 
     }
 }

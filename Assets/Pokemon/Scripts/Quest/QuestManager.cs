@@ -20,12 +20,16 @@ namespace Pokemon.Scripts.Quest
             MissionScreenSaveData saveData = RestoreState() as MissionScreenSaveData;
             if (saveData == null || saveData.saveTime.Date < DateTime.UtcNow.Date)
             {
-                GetNewDailyQuests();
+                //Create New
+                Debug.Log("Create new quests");
+                CreateNewDailyQuests();
                 CaptureState();
             }
             else
             {
-                CreateDailyQuests(saveData);
+                //Load Quests from save
+                Debug.Log("Load quests from save");
+                LoadDailyQuests(saveData);
             }
         }
         void OnDestroy()
@@ -38,7 +42,7 @@ namespace Pokemon.Scripts.Quest
             DateTime nextUtcDay = utcNow.Date.AddDays(1);
             return Mathf.Max(0, Mathf.CeilToInt((float)(nextUtcDay - utcNow).TotalSeconds));
         }
-        public void GetNewDailyQuests(int count = 3)
+        public void CreateNewDailyQuests(int count = 3)
         {
             List<DailyQuestData> allQuests = QuestDB.GetAllQuests();
             allQuests = GeneralUtils.ShuffleList(allQuests);
@@ -47,6 +51,15 @@ namespace Pokemon.Scripts.Quest
             for (int i = 0; i < minQuest; i++)
             {
                 quests.Add(new Quest(allQuests[i], 0, false));
+            }
+        }
+        public void LoadDailyQuests(MissionScreenSaveData saveData)
+        {
+            quests.Clear();
+            foreach (var questSaveData in saveData.quests)
+            {
+                Quest quest = new Quest(questSaveData);
+                quests.Add(quest);
             }
         }
         public void CaptureState()
@@ -73,15 +86,7 @@ namespace Pokemon.Scripts.Quest
             MissionScreenSaveData saveData = JsonConvert.DeserializeObject<MissionScreenSaveData>(saveDataJson);
             return saveData;
         }
-        public void CreateDailyQuests(MissionScreenSaveData saveData)
-        {
-            quests.Clear();
-            foreach (var questSaveData in saveData.quests)
-            {
-                Quest quest = new Quest(questSaveData);
-                quests.Add(quest);
-            }
-        }
+
 
 
         #region Process Quest Progress
@@ -90,7 +95,7 @@ namespace Pokemon.Scripts.Quest
             MissionScreenSaveData saveData = RestoreState() as MissionScreenSaveData;
             if (saveData == null || saveData.saveTime.Date < DateTime.UtcNow.Date)
             {
-                GetNewDailyQuests();
+                CreateNewDailyQuests();
                 CaptureState();
             }
             foreach (var quest in quests)

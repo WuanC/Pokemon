@@ -26,7 +26,7 @@ namespace Pokemon.Scripts.Map
         public Color disableColor;
         public bool IsLock = true;
         public Action OnNodeCompleted;
-        public Vector3 startMarkPosition;
+        public Vector3 startMarkLocalPosition;
         public Area OwnerArea { get; private set; }
         public NPC Npc => npc;
         private string hubName;
@@ -36,7 +36,7 @@ namespace Pokemon.Scripts.Map
             OwnerArea = area;
             this.hubName = hubName;
             this.NodeName = $"{hubName}_Area{area.arenaIndex}_Node{nodeIndex}";
-            startMarkPosition = markBattle.transform.position;
+            startMarkLocalPosition = markBattle.transform.localPosition;
             SetDisable(true);
             SetNodeState(NodeState.None);
             SetupNPCData();
@@ -57,11 +57,11 @@ namespace Pokemon.Scripts.Map
             if (state != NodeState.None)
             {
                 markBattle.SetActive(true);
-                markBattle.transform.DOMoveY(startMarkPosition.y + 0.2f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+                markBattle.transform.DOLocalMoveY(startMarkLocalPosition.y + 0.2f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
             }
             else
             {
-                markBattle.transform.position = startMarkPosition;
+                markBattle.transform.localPosition = startMarkLocalPosition;
                 markBattle.SetActive(false);
                 markBattle.transform.DOKill();
             }

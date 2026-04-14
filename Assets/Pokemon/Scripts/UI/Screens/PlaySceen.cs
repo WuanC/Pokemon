@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,8 @@ namespace Pokemon.Scripts.UI.Screens
     public class PlayScreen : MonoBehaviour
     {
         [SerializeField] private Button worldBtn;
+        [SerializeField] private TextMeshProUGUI coinText;
+        public Transform coinTransform;
         void Start()
         {
             Initialize();
@@ -25,6 +28,10 @@ namespace Pokemon.Scripts.UI.Screens
         public void EnterDetailMap()
         {
             worldBtn.gameObject.SetActive(true);
+        }
+        public void UpdateCoinText(int coins)
+        {
+            coinText.text = coins.ToString();
         }
     }
 }

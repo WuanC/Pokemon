@@ -50,7 +50,7 @@ namespace Pokemon.Scripts.UI.Screens
                 if (remainingSeconds <= 0)
                 {
                     remainingSeconds = QuestManager.Instance.GetSecondsUntilNextUtcDay();
-                    QuestManager.Instance.GetNewDailyQuests();
+                    QuestManager.Instance.CreateNewDailyQuests();
                 }
             }
         }
