@@ -23,7 +23,7 @@ namespace Pokemon.Scripts.Map
             }
             for (int j = 0; j < this.nodes.Count; j++)
             {
-                this.nodes[j].InitializeNode(this, map.hubName, j);
+                this.nodes[j].InitializeNode(this, map.HubName, j);
                 this.nodes[j].OnNodeCompleted += RandomPokemonInArea;
             }
         }

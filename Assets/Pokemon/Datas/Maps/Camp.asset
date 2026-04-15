@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5b1d9f6356dca41bfff1853ca8d16d, type: 3}
+  m_Name: Camp
+  m_EditorClassIdentifier: 
+  hubName: Camp
+  pokemonInMaps:
+  - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
+  - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
+  hubIcon: {fileID: 21300000, guid: 714db5a4e4419414cbe5b24b65cec4f9, type: 3}
+  headerMap: {fileID: 21300000, guid: df6d05ce5cbf7284999294ae6aed4a19, type: 3}
+  bossAndQuestCount: 1
+  mapPrefab: {fileID: 452948459219568770, guid: 3df0aa9f419f3d54e9004322bca14625,
+    type: 3}

@@ -32,10 +32,6 @@ namespace Pokemon.Scripts.UI.Screens
             pokemonContainer.transform.DOKill();
             pokemonImage.DOKill();
         }
-        public void Init()
-        {
-            pokemonContainer.SetActive(false);
-        }
         public IEnumerator Evolution(List<PairPokemonEvolution> pairEvolutions)
         {
             gameObject.SetActive(true);

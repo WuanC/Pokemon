@@ -36,7 +36,7 @@ namespace Pokemon.Scripts.UI.Screens
             fightBtn.onClick.AddListener(() =>
             {
                 gameObject.SetActive(false);
-                GameController.Instance.ActiveSplashScreen(onFightBtnClick);
+                ScreenManager.Instance.ActiveSplashScreen(onFightBtnClick);
             });
         }
         void OnDisable()

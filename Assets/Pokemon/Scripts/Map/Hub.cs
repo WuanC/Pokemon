@@ -1,3 +1,4 @@
+using Pokemon.Scripts.Data;
 using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 
@@ -5,8 +6,7 @@ namespace Pokemon.Scripts.Map
 {
     public class Hub : MonoBehaviour
     {
-        public string hubName;
-        [SerializeField] private Map map;
+        [SerializeField] private MapData mapData;
         [SerializeField] private float pressedScaleMultiplier = 0.95f;
         [SerializeField] private float pressedDarkenMultiplier = 0.75f;
 
@@ -14,7 +14,7 @@ namespace Pokemon.Scripts.Map
         private SpriteRenderer spriteRenderer;
         private Color originalColor = Color.white;
         private bool hasColorTarget;
-        public int BossAndQuestCount => map.bossAndQuestCount;
+        public int BossAndQuestCount => mapData.bossAndQuestCount;
         public Sprite hubSprite;
 
         private void Awake()
@@ -72,12 +72,12 @@ namespace Pokemon.Scripts.Map
 
         public void HubClick()
         {
-            GameController.Instance.EnterHubClick(SpawnMap, this);
+            ScreenManager.Instance.EnterHubClick(SpawnMap, mapData);
         }
         public void SpawnMap()
         {
-            Map map = Instantiate(this.map, Vector2.zero, Quaternion.identity);
-            map.hubName = hubName;
+            Map map = Instantiate(mapData.mapPrefab, Vector2.zero, Quaternion.identity);
+            map.InitializeMap(mapData);
         }
     }
 }

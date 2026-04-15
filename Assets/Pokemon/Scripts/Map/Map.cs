@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Pokemon.Scripts.Data;
 using Pokemon.Scripts.Pokemon;
 using Pokemon.Scripts.Saving;
 using UnityEngine;
@@ -9,19 +10,22 @@ namespace Pokemon.Scripts.Map
     public class Map : MonoBehaviour
     {
         [SerializeField] private List<Area> areas;
-        public string hubName;
+        public string HubName { get; private set; }
         private DragMap dragMap;
         private Player player;
         private Camera mainCamera;
-        [field: SerializeField] public List<PokemonData> pokemonInMaps { get; private set; }
+        public List<PokemonData> pokemonInMaps { get; private set; }
         public int bossAndQuestCount;
         void Awake()
         {
             player = GetComponentInChildren<Player>();
             dragMap = GetComponent<DragMap>();
         }
-        void Start()
+        public void InitializeMap(MapData mapData)
         {
+            HubName = mapData.hubName;
+            pokemonInMaps = mapData.pokemonInMaps;
+            bossAndQuestCount = mapData.bossAndQuestCount;
             mainCamera = Camera.main;
             GameController.Instance.MapRegister(dragMap);
             dragMap.OnClick += OnClick;

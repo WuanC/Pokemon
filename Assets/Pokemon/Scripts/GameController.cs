@@ -28,11 +28,7 @@ namespace Pokemon.Scripts
         [SerializeField] private Pokemon.Party playerParty;
         [SerializeField] private BattleController battleController;
         Node currentNode;
-        [SerializeField] private SplashScreen splashScreen;
-        [SerializeField] private EnterHubScreen enterHubScreen;
-        [SerializeField] private EnterBattleScreen enterBattleScreen;
-        [SerializeField] private PlayScreen playScreen;
-        [SerializeField] private EvolutionScreen evolutionScreen;
+
         void Start()
         {
             StartCoroutine(InitGame());
@@ -66,7 +62,7 @@ namespace Pokemon.Scripts
             {
                 Pokemon.Party party = playerParty;
                 NPC npc = node.Npc;
-                EnterBattleClick(() =>
+                ScreenManager.Instance.EnterBattleClick(() =>
                 {
                     currentNode = node;
                     loungeCamera.gameObject.SetActive(false);
@@ -99,7 +95,7 @@ namespace Pokemon.Scripts
                     }
                     if (pairEvolutions.Count > 0)
                     {
-                        StartCoroutine(evolutionScreen.Evolution(pairEvolutions));
+                        StartCoroutine(ScreenManager.Instance.Evolution(pairEvolutions));
                     }
                 }
                 else
@@ -129,23 +125,10 @@ namespace Pokemon.Scripts
 
             }
         }
-        public void EnterHubClick(Action goBtnAction, Hub hub)
-        {
-            enterHubScreen.Initialize(goBtnAction, hub);
-        }
-        public void EnterBattleClick(Action onFightBtnClick, NPC npc)
-        {
-            enterBattleScreen.Initialize(onFightBtnClick, npc);
-        }
-        public void ActiveSplashScreen(Action onComplete)
-        {
-            splashScreen.onFadeComplete = onComplete;
-            splashScreen.Fade();
-        }
         public void MapRegister(DragMap map)
         {
             this.dragMap = map;
-            playScreen.EnterDetailMap();
+            ScreenManager.Instance.EnterDetailMap();
             dragWorld.gameObject.SetActive(false);
         }
         public void BackToWorldMap()

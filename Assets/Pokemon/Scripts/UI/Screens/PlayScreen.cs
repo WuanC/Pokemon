@@ -18,7 +18,7 @@ namespace Pokemon.Scripts.UI.Screens
         {
             worldBtn.onClick.AddListener(() =>
             {
-                GameController.Instance.ActiveSplashScreen(() =>
+                ScreenManager.Instance.ActiveSplashScreen(() =>
                 {
                     GameController.Instance.BackToWorldMap();
                     worldBtn.gameObject.SetActive(false);
