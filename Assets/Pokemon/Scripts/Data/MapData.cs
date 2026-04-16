@@ -12,7 +12,10 @@ namespace Pokemon.Scripts.Data
         public List<PokemonData> pokemonInMaps;
         public Sprite hubIcon;
         public Sprite headerMap;
+        public Sprite mapBackground;
         public int bossAndQuestCount;
+        public int goldReward;
         public Map.Map mapPrefab;
+
     }
 }

@@ -14,18 +14,24 @@ namespace Pokemon.Scripts.UI.Screens
 {
     public class EnterHubScreen : ScreenBase
     {
+        private MapData mapData;
         [SerializeField] private Button goBtn;
         [SerializeField] private Image hubImage;
         [SerializeField] private TextMeshProUGUI bossCountText;
         [SerializeField] private TextMeshProUGUI pokemonCountText;
         [SerializeField] private PokemonLocker pokemonLockerPrefab;
         [SerializeField] private Transform pokemonLockerContainer;
+
+        [SerializeField] private TextMeshProUGUI goldRewardText;
+        [SerializeField] private TextMeshProUGUI progressText;
+        [SerializeField] private Image progressFillImage;
         List<PokemonLocker> pokemonLockers = new();
         public void Initialize(Action onGoBtnClick, MapData mapData)
         {
+            this.mapData = mapData;
             hubImage.sprite = mapData.headerMap;
-            bossCountText.text = $"{0}/{mapData.bossAndQuestCount}";
-            pokemonCountText.text = $"{0}/{mapData.pokemonInMaps.Count}";
+            UpdateProgress(0, 0);
+            goldRewardText.text = $"{mapData.goldReward}";
             InitPokemonLocker(mapData.pokemonInMaps);
             base.Active();
             goBtn.onClick.AddListener(() =>
@@ -54,6 +60,13 @@ namespace Pokemon.Scripts.UI.Screens
                 locker.gameObject.SetActive(false);
             }
             pokemonLockers.Clear();
+        }
+        public void UpdateProgress(int bossCount, int pokemonCount)
+        {
+            bossCountText.text = $"{bossCount}/{mapData.bossAndQuestCount}";
+            pokemonCountText.text = $"{pokemonCount}/{mapData.pokemonInMaps.Count}";
+            progressText.text = $"{(bossCount + pokemonCount) * 100 / (mapData.bossAndQuestCount + mapData.pokemonInMaps.Count)}% COMPLETED";
+            progressFillImage.fillAmount = (float)(bossCount + pokemonCount) / (mapData.bossAndQuestCount + mapData.pokemonInMaps.Count);
         }
 
     }
