@@ -39,7 +39,12 @@ namespace Pokemon.Scripts
         public IEnumerator InitGame()
         {
             yield return QuestDB.Init();
+            yield return PokemonDB.Init();
             QuestManager.Instance.Initialize();
+            HubController.Instance.Initialize();
+            CurrencyManager.Instance.Initialize();
+            playerParty.Initialize();
+
         }
         public void OnEncounterPokemon(object data)
         {

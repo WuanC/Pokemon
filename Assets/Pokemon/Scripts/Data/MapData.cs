@@ -9,6 +9,7 @@ namespace Pokemon.Scripts.Data
     public class MapData : ScriptableObject
     {
         public string hubName;
+        public MapConditionData mapCondition;
         public List<PokemonData> pokemonInMaps;
         public Sprite hubIcon;
         public Sprite headerMap;

@@ -10,31 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
-  m_Name: Pikachu Evo
+  m_Name: Pikachu
   m_EditorClassIdentifier: 
-  pokemonName: Charizard
+  pokemonName: Charizard 3
   pokemonDescription: Torchips are usually friendly, but their flame may grow very
     hot
-  type: 0
-  frontSprite: {fileID: 21300000, guid: fc0d70523dd446b45b14ecfd2ed60484, type: 3}
-  backSprite: {fileID: 21300000, guid: cde2b4cbc9fe9a94f8e8f1d2c4d8f50e, type: 3}
-  icon: {fileID: 21300000, guid: 1efab585bf4646e4bb3f669d6c0ec180, type: 3}
-  baseExp: 1000
-  growthRate: 0
+  type: 1
+  frontSprite: {fileID: 21300000, guid: 9085fed3e660be542ba88db187b67795, type: 3}
+  backSprite: {fileID: 21300000, guid: 83aed7efd5217d64ab63bd1497d293d5, type: 3}
+  icon: {fileID: 21300000, guid: 40415f74dde352a40bb6e738de5ac726, type: 3}
+  baseExp: 64
+  growthRate: 1
   catchRate: 255
   maxHP: 35
   attack: 55
   defense: 40
   speed: 90
   learnableSkills:
-  - skillData: {fileID: 11400000, guid: 3f8dbe01c735d9942a0b38c107cdd2f9, type: 2}
+  - skillData: {fileID: 11400000, guid: 167070437cd66f749a4660f1d9451a25, type: 2}
     levelRequirement: 1
   - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
     levelRequirement: 2
   - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
-    levelRequirement: 3
-  - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
-    levelRequirement: 4
-  - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
-    levelRequirement: 6
+    levelRequirement: 10
   evolutions: []

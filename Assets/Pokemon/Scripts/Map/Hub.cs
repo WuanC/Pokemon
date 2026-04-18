@@ -72,7 +72,14 @@ namespace Pokemon.Scripts.Map
 
         public void HubClick()
         {
-            ScreenManager.Instance.EnterHubClick(SpawnMap, mapData);
+            if (mapData.mapCondition != null && HubController.Instance.ContainsHub(mapData.hubName))
+            {
+                ScreenManager.Instance.EnterHubClick(SpawnMap, mapData);
+            }
+            else
+            {
+                ScreenManager.Instance.EnterHubClick(SpawnMap, mapData, mapData.mapCondition);
+            }
         }
         public void SpawnMap()
         {

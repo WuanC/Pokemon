@@ -9,10 +9,14 @@ namespace Pokemon.Scripts
 {
     public class CurrencyManager : Singleton<CurrencyManager>
     {
-        private int coins;
+        private int coins = 5000;
         [SerializeField] private int coinToSpawnCount;
         [SerializeField] private PlayScreen playScreen;
         [SerializeField] private GameObject coinGO;
+        public void Initialize()
+        {
+            playScreen.UpdateCoinText(coins);
+        }
         public void AddCoinAnim(Vector3 startPos, int coinsAmount)
         {
             coins += coinsAmount;
@@ -42,6 +46,16 @@ namespace Pokemon.Scripts
                     coin.gameObject.SetActive(false);
                 });
             }
+        }
+        public bool CanPay(int coinsAmount)
+        {
+            return coins >= coinsAmount;
+        }
+        public void Pay(int coinsAmount)
+        {
+            if (coins < coinsAmount) return;
+            coins -= coinsAmount;
+            playScreen.UpdateCoinText(coins);
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
   m_Name: Pikachu 1
   m_EditorClassIdentifier: 
-  pokemonName: Charizard
+  pokemonName: Charizard 1
   pokemonDescription: Torchips are usually friendly, but their flame may grow very
     hot
   type: 0

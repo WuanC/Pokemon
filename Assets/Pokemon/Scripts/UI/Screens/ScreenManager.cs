@@ -16,9 +16,9 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private PlayScreen playScreen;
         [SerializeField] private EvolutionScreen evolutionScreen;
 
-        public void EnterHubClick(Action goBtnAction, MapData mapData)
+        public void EnterHubClick(Action goBtnAction, MapData mapData, MapConditionData mapCondition = null)
         {
-            enterHubScreen.Initialize(goBtnAction, mapData);
+            enterHubScreen.Initialize(goBtnAction, mapData, mapCondition);
         }
         public void EnterBattleClick(Action onFightBtnClick, NPC npc)
         {

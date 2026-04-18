@@ -18,5 +18,7 @@ namespace Pokemon.Scripts.Data
 
         //For Pay
         public int goldRequired;
+
+        public string description;
     }
 }

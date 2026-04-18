@@ -21,11 +21,31 @@ namespace Pokemon.Scripts.Pokemon
             Skills = new List<Skill>();
             HP = MaxHP;
             CurrentExp = CalculateExpYield(level);
-            for (int i = 0; i < data.learnableSkills.Count; i++)
+            for (int i = 0; i < Data.learnableSkills.Count; i++)
             {
-                if (data.learnableSkills[i].levelRequirement <= level)
+                if (Data.learnableSkills[i].levelRequirement <= Level)
                 {
-                    Skills.Add(new Skill(data.learnableSkills[i].skillData));
+                    Skills.Add(new Skill(Data.learnableSkills[i].skillData));
+                }
+                if (i >= 4)
+                {
+                    break;
+                }
+            }
+            CalculateStat();
+        }
+        public PokemonUnit(PokemonSaveData saveData)
+        {
+            this.Data = PokemonDB.GetPokemonByName(saveData.pokemonName);
+            this.Level = saveData.level;
+            this.CurrentExp = saveData.currentExp;
+            this.HP = saveData.hp;
+            Skills = new List<Skill>();
+            for (int i = 0; i < Data.learnableSkills.Count; i++)
+            {
+                if (Data.learnableSkills[i].levelRequirement <= Level)
+                {
+                    Skills.Add(new Skill(Data.learnableSkills[i].skillData));
                 }
                 if (i >= 4)
                 {
@@ -152,6 +172,16 @@ namespace Pokemon.Scripts.Pokemon
             HP = MaxHP;
             CalculateStat();
         }
+        public PokemonSaveData GetSaveData()
+        {
+            return new PokemonSaveData
+            {
+                pokemonName = Data.pokemonName,
+                level = Level,
+                currentExp = CurrentExp,
+                hp = HP
+            };
+        }
 
     }
     public class DamageDetails
@@ -167,5 +197,12 @@ namespace Pokemon.Scripts.Pokemon
             this.isFainted = isFainted;
             this.skillName = skillName;
         }
+    }
+    public class PokemonSaveData
+    {
+        public string pokemonName;
+        public int level;
+        public int currentExp;
+        public int hp;
     }
 }
