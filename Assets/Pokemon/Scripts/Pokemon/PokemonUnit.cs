@@ -40,18 +40,7 @@ namespace Pokemon.Scripts.Pokemon
             this.Level = saveData.level;
             this.CurrentExp = saveData.currentExp;
             this.HP = saveData.hp;
-            Skills = new List<Skill>();
-            for (int i = 0; i < Data.learnableSkills.Count; i++)
-            {
-                if (Data.learnableSkills[i].levelRequirement <= Level)
-                {
-                    Skills.Add(new Skill(Data.learnableSkills[i].skillData));
-                }
-                if (i >= 4)
-                {
-                    break;
-                }
-            }
+            Skills = saveData.skills.Select(s => new Skill(s)).ToList();
             CalculateStat();
         }
         public void CalculateStat()
@@ -179,7 +168,8 @@ namespace Pokemon.Scripts.Pokemon
                 pokemonName = Data.pokemonName,
                 level = Level,
                 currentExp = CurrentExp,
-                hp = HP
+                hp = HP,
+                skills = Skills.Select(s => s.GetSaveData()).ToList()
             };
         }
 
@@ -204,5 +194,6 @@ namespace Pokemon.Scripts.Pokemon
         public int level;
         public int currentExp;
         public int hp;
+        public List<SkillSaveData> skills;
     }
 }

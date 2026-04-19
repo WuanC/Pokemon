@@ -10,7 +10,7 @@ namespace Pokemon.Scripts.Pokemon
         public static IEnumerator Init()
         {
             pkmDictionary = new Dictionary<string, PokemonData>();
-            var request = Resources.LoadAll<PokemonData>("Pokemon");
+            var request = Resources.LoadAll<PokemonData>("Pokemons");
             yield return request;
             foreach (var pkm in request)
             {

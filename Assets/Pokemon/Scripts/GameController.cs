@@ -40,6 +40,7 @@ namespace Pokemon.Scripts
         {
             yield return QuestDB.Init();
             yield return PokemonDB.Init();
+            yield return SkillDB.Init();
             QuestManager.Instance.Initialize();
             HubController.Instance.Initialize();
             CurrencyManager.Instance.Initialize();

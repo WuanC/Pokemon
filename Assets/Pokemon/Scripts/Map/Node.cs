@@ -56,6 +56,7 @@ namespace Pokemon.Scripts.Map
             nodeState = state;
             if (state != NodeState.None)
             {
+                markBattle.transform.DOKill();
                 markBattle.SetActive(true);
                 markBattle.transform.DOLocalMoveY(startMarkLocalPosition.y + 0.2f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
             }

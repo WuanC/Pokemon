@@ -8741,7 +8741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6689301ab3fb632428897fd5784872d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  party: {fileID: 987996820}
+  party: {fileID: 987996822}
   pokemonModals:
   - {fileID: 1390304949876581877}
   - {fileID: 1806565493}
@@ -12205,7 +12205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 987996821}
-  - component: {fileID: 987996820}
+  - component: {fileID: 987996822}
   m_Layer: 0
   m_Name: PlayerParty
   m_TagString: Untagged
@@ -12213,21 +12213,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &987996820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987996819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7acd92c50286e47889844f01880381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initPokemonParties:
-  - pokemonData: {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
-    level: 5
 --- !u!4 &987996821
 Transform:
   m_ObjectHideFlags: 0
@@ -12243,6 +12228,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &987996822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987996819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe87c8b55cfcf54d83a00aa7dee5f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initPokemonParties:
+  - pokemonData: {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
+    level: 5
 --- !u!1001 &1005339010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20305,7 +20305,7 @@ MonoBehaviour:
   loungeCamera: {fileID: 1710453898}
   battleCamera: {fileID: 1455170165}
   dragWorld: {fileID: 1957828974}
-  playerParty: {fileID: 987996820}
+  playerParty: {fileID: 987996822}
   battleController: {fileID: 722712272}
 --- !u!4 &1684819016
 Transform:

@@ -9,5 +9,20 @@ namespace Pokemon.Scripts.Pokemon
         {
             this.Data = data;
         }
+        public Skill(SkillSaveData saveData)
+        {
+            this.Data = SkillDB.GetSkillByName(saveData.skillName);
+        }
+        public SkillSaveData GetSaveData()
+        {
+            return new SkillSaveData()
+            {
+                skillName = Data.skillName
+            };
+        }
+    }
+    public class SkillSaveData
+    {
+        public string skillName;
     }
 }

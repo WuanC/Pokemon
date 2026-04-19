@@ -32,5 +32,5 @@ MonoBehaviour:
   - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
     levelRequirement: 2
   - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
-    levelRequirement: 10
+    levelRequirement: 6
   evolutions: []

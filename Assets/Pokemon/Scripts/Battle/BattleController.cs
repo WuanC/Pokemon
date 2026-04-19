@@ -241,7 +241,7 @@ namespace Pokemon.Scripts.Battle
                 {
                     QuestManager.Instance.UpdateBattleQuestProgress(EQuest.CatchPokemon, enemyBattlePkm.Pokemon.Data.type);
                     yield return ball.CatchSuccess();
-                    playerParty.AddPokemon(enemyBattlePkm.Pokemon);
+                    ((PlayerParty)playerParty).AddPokemon(enemyBattlePkm.Pokemon);
                     BroadCast(true);
                     yield break;
                 }

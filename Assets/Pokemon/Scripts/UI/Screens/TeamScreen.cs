@@ -6,7 +6,7 @@ namespace Pokemon.Scripts.UI.Screens
 {
     public class TeamScreen : MonoBehaviour
     {
-        [SerializeField] private Pokemon.Party party;
+        [SerializeField] private PlayerParty party;
         [SerializeField] DragablePokemonModal[] pokemonModals;
         [SerializeField] DragablePokemonModal[] inventoryModals;
         [SerializeField] private Button rightBtn;
