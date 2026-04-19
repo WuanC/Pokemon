@@ -15,7 +15,6 @@ namespace Pokemon.Scripts.Map
         private Player player;
         private Camera mainCamera;
         public List<PokemonData> pokemonInMaps { get; private set; }
-        public int bossAndQuestCount;
         void Awake()
         {
             player = GetComponentInChildren<Player>();
@@ -25,7 +24,6 @@ namespace Pokemon.Scripts.Map
         {
             HubName = mapData.hubName;
             pokemonInMaps = mapData.pokemonInMaps;
-            bossAndQuestCount = mapData.bossAndQuestCount;
             mainCamera = Camera.main;
             GameController.Instance.MapRegister(dragMap);
             dragMap.OnClick += OnClick;

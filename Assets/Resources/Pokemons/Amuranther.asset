@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
-  m_Name: Pikachu 1
+  m_Name: Amuranther
   m_EditorClassIdentifier: 
-  pokemonName: Charizard 1
-  pokemonDescription: Torchips are usually friendly, but their flame may grow very
-    hot
-  type: 0
-  frontSprite: {fileID: 21300000, guid: 9be595905b376354183fc038ab1eb98d, type: 3}
-  backSprite: {fileID: 21300000, guid: 12e8160fceeee974da840ca520757171, type: 3}
+  pokemonName: Amuranther
+  pokemonDescription: Amuranther is inspired by the panther. His body is charcoal
+    gray with various lilac patterns, such as some empty diamonds on his body and
+    streaks on his back, face and his double tail. He is surrounded by some lilac
+    fireflies and two lilac fumaroles emerge from his eyes.
+  type: 4
+  frontSprite: {fileID: 21300000, guid: 9085fed3e660be542ba88db187b67795, type: 3}
+  backSprite: {fileID: 21300000, guid: 83aed7efd5217d64ab63bd1497d293d5, type: 3}
   icon: {fileID: 21300000, guid: 7d14c38c64676e34a95b47447fcef68e, type: 3}
   baseExp: 1000
   growthRate: 0

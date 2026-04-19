@@ -194,6 +194,7 @@ namespace Pokemon.Scripts.Battle
                 playerBattlePkm.CurrentSkill = playerBattlePkm.Pokemon.Skills[currentMoveIndex];
                 enemyBattlePkm.CurrentSkill = enemyBattlePkm.Pokemon.RandomSkill();
                 bool playerGoesFirst = true;
+                Debug.Log(enemyBattlePkm.CurrentSkill == null);
                 if (playerBattlePkm.CurrentSkill.Data.skillPriority < enemyBattlePkm.CurrentSkill.Data.skillPriority)
                 {
                     playerGoesFirst = false;

@@ -5,16 +5,20 @@ using UnityEngine;
 
 namespace Pokemon.Scripts.Map
 {
-    [System.Serializable]
-    public class Area
+    public class Area : MonoBehaviour
     {
         public Node keyNode;
         public List<Node> nodes;
         public Vector2Int rangeLevel;
         private Map map;
         public int arenaIndex;
+        void Awake()
+        {
+            nodes = new List<Node>(GetComponentsInChildren<Node>());
+        }
         public void InitializeArena(Map map, int index, bool isUnlock = true)
         {
+
             this.map = map;
             this.arenaIndex = index;
             if (keyNode != null && !isUnlock)

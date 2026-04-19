@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 452948459219568770}
   - component: {fileID: 8263277517822515801}
   m_Layer: 0
-  m_Name: CampMap
+  m_Name: MT.Krembo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
