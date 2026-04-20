@@ -1,6 +1,6 @@
 using System;
 using DG.Tweening;
-using Pokemon.Scripts.Party;
+using Pokemon.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
