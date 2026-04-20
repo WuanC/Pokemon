@@ -7,7 +7,6 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
 using Pokemon.Scripts.MyUtils;
-using Pokemon.Scripts.Party;
 using System.Linq;
 using Pokemon.Scripts.MyUtils.ObjectPooling;
 using Pokemon.Scripts.Character;
@@ -15,6 +14,7 @@ using Unity.VisualScripting;
 using System;
 using Pokemon.Scripts.UI.Screens;
 using Pokemon.Scripts.Quest;
+using Pokemon.Scripts.UI;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -143,13 +143,13 @@ namespace Pokemon.Scripts.Battle
             battleAction = BattleAction.Catch;
             StartCoroutine(RunTurn());
         }
-        public IEnumerator PlayerSwitchPokemon(PartySlot partySlot)
+        public IEnumerator PlayerSwitchPokemon(PokemonPartySlot partySlot)
         {
             PokemonUnit playerPkmUnit = playerBattlePkm.Pokemon;
-            PokemonUnit partyPokemon = partySlot.Pokemon;
+            PokemonUnit partyPokemon = partySlot.PokemonUnit;
             OpenMainPanel();
             playerBattlePkm.ExitAnimation(0.25f);
-            partySlot.SetPokemon(playerPkmUnit);
+            partySlot.InitModal(playerPkmUnit, true);
             yield return new WaitForSeconds(0.25f);
             playerBattlePkm.SetPokemon(partyPokemon, 0.25f);
             mainPanel.SetSkillButton(partyPokemon.Skills);
@@ -173,7 +173,7 @@ namespace Pokemon.Scripts.Battle
         public void OnPlayerSwitchPokemon(object data)
         {
             if (state != BattleState.PlayerAction) return;
-            if (data is PartySlot partySlot)
+            if (data is PokemonPartySlot partySlot)
             {
                 StartCoroutine(PlayerSwitchPokemon(partySlot));
             }

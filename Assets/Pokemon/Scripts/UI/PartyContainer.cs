@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Pokemon.Scripts.Pokemon;
+using Pokemon.Scripts.UI;
 using UnityEngine;
 
-namespace Pokemon.Scripts.Party
+namespace Pokemon.Scripts.UI
 {
     public class PartyContainer : MonoBehaviour
     {
-        [SerializeField] private PartySlot[] pokemonParties;
+        [SerializeField] private PokemonPartySlot[] pokemonParties;
         [SerializeField] private Vector3 startPos;
         [SerializeField] private RectTransform partyContainer;
         public void OpenParty(float duration)
@@ -26,7 +27,7 @@ namespace Pokemon.Scripts.Party
                 if (i < pokemons.Count)
                 {
                     pokemonParties[i].gameObject.SetActive(true);
-                    pokemonParties[i].SetPokemon(pokemons[i]);
+                    pokemonParties[i].InitModal(pokemons[i], true);
                 }
                 else
                 {

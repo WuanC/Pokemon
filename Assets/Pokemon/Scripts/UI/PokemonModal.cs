@@ -17,6 +17,7 @@ namespace Pokemon.Scripts.UI
         [SerializeField] protected Image hpBar;
         [SerializeField] protected Image expBar;
         protected PokemonUnit pokemonUnit;
+        public PokemonUnit PokemonUnit => pokemonUnit;
         void OnDisable()
         {
             hpBar.DOKill();
