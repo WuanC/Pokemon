@@ -12,6 +12,9 @@ namespace Pokemon.Scripts.MyUtils
         //Switch Pokemon
         OnSwitchPokemon,
 
+        //Item
+        OnItemUsed,
+
 
     }
 }

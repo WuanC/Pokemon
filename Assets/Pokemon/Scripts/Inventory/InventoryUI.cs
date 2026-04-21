@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Pokemon.Scripts.MyUtils;
+using Pokemon.Scripts.Pokemon;
 using Pokemon.Scripts.UI.Screens;
 using TMPro;
 using UnityEngine;
@@ -17,6 +19,7 @@ namespace Pokemon.Scripts.Inventory
         [SerializeField] private Button useBtn;
         [SerializeField] private Image useBtnIcon;
         int currentPageIndex;
+        Item selectedItem;
 
         void Start()
         {
@@ -28,6 +31,23 @@ namespace Pokemon.Scripts.Inventory
             {
                 LoadPage(currentPageIndex + 1);
             });
+        }
+        void OnEnable()
+        {
+            Observer.Instance.Register(EventId.OnItemUsed, InventoryUI_OnItemUsed);
+        }
+        void OnDisable()
+        {
+            useBtn.gameObject.SetActive(false);
+            descriptionText.text = "";
+            selectedItem = null;
+            Observer.Instance.Unregister(EventId.OnItemUsed, InventoryUI_OnItemUsed);
+        }
+        void OnDestroy()
+        {
+            arrowLeft.onClick.RemoveAllListeners();
+            arrowRight.onClick.RemoveAllListeners();
+            useBtn.onClick.RemoveAllListeners();
         }
         public void LoadPage(int pageIndex = 0)
         {
@@ -56,8 +76,10 @@ namespace Pokemon.Scripts.Inventory
         }
         public void SelectItem(Item item)
         {
+            selectedItem = item;
             if (item == null)
             {
+
                 useBtn.gameObject.SetActive(false);
                 descriptionText.text = "";
 
@@ -75,16 +97,18 @@ namespace Pokemon.Scripts.Inventory
                 useBtnIcon.SetNativeSize();
             }
         }
-        void OnDisable()
+        public void InventoryUI_OnItemUsed(object obj)
         {
-            useBtn.gameObject.SetActive(false);
-            descriptionText.text = "";
+            if (selectedItem != null)
+            {
+                if (obj is PokemonUnit target)
+                {
+                    Debug.Log($"Using {selectedItem.ItemBase.itemName} on {target.Data.pokemonName}");
+                    inventory.UseItem(selectedItem, target);
+                }
+            }
+            GetComponentInParent<InventoryScreen>().ClosePartyScreen();
         }
-        void OnDestroy()
-        {
-            arrowLeft.onClick.RemoveAllListeners();
-            arrowRight.onClick.RemoveAllListeners();
-            useBtn.onClick.RemoveAllListeners();
-        }
+
     }
 }
