@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Pokemon.Scripts.UI.Screens;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -67,7 +68,7 @@ namespace Pokemon.Scripts.Inventory
                 useBtn.onClick.RemoveAllListeners();
                 useBtn.onClick.AddListener(() =>
                 {
-                    Debug.Log($"Used {item.ItemBase.itemName}");
+                    GetComponentInParent<InventoryScreen>().OpenPartyScreen();
                 });
                 descriptionText.text = item.ItemBase.description;
                 useBtnIcon.sprite = item.ItemBase.icon;
