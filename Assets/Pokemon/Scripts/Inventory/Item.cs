@@ -8,7 +8,14 @@ namespace Pokemon.Scripts.Inventory
         [SerializeField] private ItemBase itemBase;
         [SerializeField] private int quantity;
         public ItemBase ItemBase => itemBase;
-        public int Quantity => quantity;
+        public int Quantity
+        {
+            get => quantity;
+            set
+            {
+                quantity = value;
+            }
+        }
         public Item(ItemBase itemBase, int quantity)
         {
             this.itemBase = itemBase;

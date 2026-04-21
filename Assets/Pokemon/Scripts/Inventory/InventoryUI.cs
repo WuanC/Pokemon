@@ -18,6 +18,7 @@ namespace Pokemon.Scripts.Inventory
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private Button useBtn;
         [SerializeField] private Image useBtnIcon;
+        [SerializeField] private bool isBattle;
         int currentPageIndex;
         Item selectedItem;
 
@@ -38,9 +39,7 @@ namespace Pokemon.Scripts.Inventory
         }
         void OnDisable()
         {
-            useBtn.gameObject.SetActive(false);
-            descriptionText.text = "";
-            selectedItem = null;
+            ClearSelectedItem();
             Observer.Instance.Unregister(EventId.OnItemUsed, InventoryUI_OnItemUsed);
         }
         void OnDestroy()
@@ -52,6 +51,7 @@ namespace Pokemon.Scripts.Inventory
         public void LoadPage(int pageIndex = 0)
         {
             if (!CanLoadPage(pageIndex)) return;
+            ClearSelectedItem();
             currentPageIndex = pageIndex;
             for (int i = 0; i < itemSlots.Count; i++)
             {
@@ -79,9 +79,7 @@ namespace Pokemon.Scripts.Inventory
             selectedItem = item;
             if (item == null)
             {
-
-                useBtn.gameObject.SetActive(false);
-                descriptionText.text = "";
+                ClearSelectedItem();
 
             }
             else
@@ -103,11 +101,17 @@ namespace Pokemon.Scripts.Inventory
             {
                 if (obj is PokemonUnit target)
                 {
-                    Debug.Log($"Using {selectedItem.ItemBase.itemName} on {target.Data.pokemonName}");
                     inventory.UseItem(selectedItem, target);
+                    LoadPage(currentPageIndex);
                 }
             }
-            GetComponentInParent<InventoryScreen>().ClosePartyScreen();
+            GetComponentInParent<InventoryScreen>().ClosePartyScreen(isBattle);
+        }
+        public void ClearSelectedItem()
+        {
+            selectedItem = null;
+            useBtn.gameObject.SetActive(false);
+            descriptionText.text = "";
         }
 
     }

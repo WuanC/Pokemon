@@ -105,7 +105,7 @@ namespace Pokemon.Scripts.Pokemon
 
         public int Defense => GetStat(Stat.Defense);
         public int Speed => GetStat(Stat.Speed);
-        public int MaxHP => Mathf.FloorToInt((Data.maxHP * Level) / 100f) + 10;
+        public int MaxHP => Mathf.FloorToInt(Data.maxHP * Level / 100f) + 10;
 
         public DamageDetails TakeDamage(Skill skill, PokemonUnit attacker)
         {
@@ -115,13 +115,17 @@ namespace Pokemon.Scripts.Pokemon
             float a = (2 * attacker.Level + 10) / 250f;
             float d = a * skill.Data.power * ((float)attacker.Attack / Defense) + 2;
             int damage = Mathf.FloorToInt(d * modifier);
-            HP -= damage;
+            UpdateHp(-damage);
             if (HP <= 0)
             {
                 HP = 0;
                 return new DamageDetails(critical, type, true, skill.Data.name);
             }
             return new DamageDetails(critical, type, false, skill.Data.name);
+        }
+        public void UpdateHp(int amount)
+        {
+            HP = Mathf.Clamp(HP + amount, 0, MaxHP);
         }
         public Skill RandomSkill()
         {

@@ -15,6 +15,9 @@ namespace Pokemon.Scripts.MyUtils
         //Item
         OnItemUsed,
 
+        //Noti
+        OnShowMessage,
+
 
     }
 }

@@ -55,6 +55,7 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] private BattleAction battleAction;
         private Pokemon.Party playerParty;
         private Pokemon.Party enemyParty;
+        [SerializeField] private Button moreBtn;
         private bool isNPCBattle;
         [Header("Trainer")]
         [SerializeField] private Image npcImage;
@@ -70,6 +71,19 @@ namespace Pokemon.Scripts.Battle
         void Start()
         {
             Observer.Instance.Register(EventId.OnSwitchPokemon, OnPlayerSwitchPokemon);
+            moreBtn.onClick.AddListener(() =>
+            {
+                if (state != BattleState.PlayerAction) return;
+                OpenMorePanel();
+            });
+        }
+        private void OnEnable()
+        {
+            Observer.Instance.Register(EventId.OnItemUsed, null);
+        }
+        private void OnDisable()
+        {
+            Observer.Instance.Unregister(EventId.OnItemUsed, null);
         }
         private void OnDestroy()
         {
@@ -77,6 +91,7 @@ namespace Pokemon.Scripts.Battle
             skillText.DOKill();
             typeEffectImage.DOKill();
             criticalImage.DOKill();
+            moreBtn.onClick.RemoveAllListeners();
         }
         #region Setup Battle
         public void StartBattleWithWildPokemon(Pokemon.Party party, PokemonUnit enemyPokemon)
@@ -121,6 +136,7 @@ namespace Pokemon.Scripts.Battle
         #region Command
         public void SetPlayerAction()
         {
+            moreBtn.interactable = true;
             state = BattleState.PlayerAction;
         }
         public void SetCurrentMove(int moveIndex)
@@ -141,6 +157,12 @@ namespace Pokemon.Scripts.Battle
             if (state != BattleState.PlayerAction) return;
             if (isNPCBattle) return;
             battleAction = BattleAction.Catch;
+            StartCoroutine(RunTurn());
+        }
+        public void UseItemSuccess()
+        {
+            if (state != BattleState.PlayerAction) return;
+            battleAction = BattleAction.UseItem;
             StartCoroutine(RunTurn());
         }
         public IEnumerator PlayerSwitchPokemon(PokemonPartySlot partySlot)
@@ -189,6 +211,7 @@ namespace Pokemon.Scripts.Battle
         public IEnumerator RunTurn()
         {
             state = BattleState.Running;
+            moreBtn.interactable = false;
             if (battleAction == BattleAction.Fight)
             {
                 playerBattlePkm.CurrentSkill = playerBattlePkm.Pokemon.Skills[currentMoveIndex];

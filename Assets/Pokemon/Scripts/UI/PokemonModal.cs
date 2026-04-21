@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using Pokemon.Scripts.Pokemon;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,12 @@ namespace Pokemon.Scripts.UI
         [SerializeField] protected Image expBar;
         protected PokemonUnit pokemonUnit;
         public PokemonUnit PokemonUnit => pokemonUnit;
+        protected bool hasExpBar;
+        void OnEnable()
+        {
+            if (pokemonUnit == null) return;
+            UpdateModal();
+        }
         void OnDisable()
         {
             hpBar.DOKill();
@@ -26,6 +33,7 @@ namespace Pokemon.Scripts.UI
         public void InitModal(PokemonUnit pkmUnit, bool hasExpBar = false)
         {
             pokemonUnit = pkmUnit;
+            this.hasExpBar = hasExpBar;
             pkmNameText.text = pkmUnit.Data.pokemonName;
             pkmLevelText.text = "Lv." + pkmUnit.Level;
             if (pkmImage != null) pkmImage.sprite = pkmUnit.Data.icon;
@@ -34,6 +42,20 @@ namespace Pokemon.Scripts.UI
             {
                 expBar.transform.parent.gameObject.SetActive(true);
                 SetupExp(pkmUnit);
+            }
+            else
+            {
+                expBar?.transform.parent.gameObject.SetActive(false);
+            }
+        }
+        public void UpdateModal()
+        {
+            pkmLevelText.text = "Lv." + pokemonUnit.Level;
+            hpBar.fillAmount = (float)pokemonUnit.HP / pokemonUnit.MaxHP;
+            if (hasExpBar)
+            {
+                expBar.transform.parent.gameObject.SetActive(true);
+                SetupExp(pokemonUnit);
             }
             else
             {

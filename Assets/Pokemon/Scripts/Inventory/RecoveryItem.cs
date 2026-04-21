@@ -24,7 +24,13 @@ namespace Pokemon.Scripts.Inventory
             if (hpAmount > 0)
             {
                 if (pokemon.HP == pokemon.MaxHP) return false;
+                pokemon.UpdateHp(hpAmount);
 
+            }
+            else if (restoreFullHp)
+            {
+                if (pokemon.HP == pokemon.MaxHP) return false;
+                pokemon.UpdateHp(pokemon.MaxHP);
             }
             return true;
         }

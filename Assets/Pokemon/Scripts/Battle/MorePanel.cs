@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using Pokemon.Scripts.UI;
+using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -11,11 +12,13 @@ namespace Pokemon.Scripts.Battle
     {
         [SerializeField] Button backBtn;
         [SerializeField] Button catchBtn;
+        [SerializeField] Button itemBtn;
         [SerializeField] Button runBtn;
         [SerializeField] RectTransform btnContainer;
         [SerializeField] Vector3 btnStartPos;
         [SerializeField] PartyContainer partyContainer;
         [SerializeField] BattleController battleController;
+        [SerializeField] InventoryScreen inventoryScreen;
         public void Start()
         {
             runBtn.onClick.AddListener(OnRun);
@@ -24,6 +27,14 @@ namespace Pokemon.Scripts.Battle
             {
                 battleController.OpenMainPanel(null);
             });
+            itemBtn.onClick.AddListener(() =>
+            {
+                battleController.OpenMainPanel(() =>
+                {
+                    inventoryScreen.Initialize();
+                });
+
+            });
         }
 
         void OnDestroy()
@@ -31,6 +42,7 @@ namespace Pokemon.Scripts.Battle
             runBtn.onClick.RemoveListener(OnRun);
             catchBtn.onClick.RemoveListener(OnCatch);
             backBtn.onClick.RemoveAllListeners();
+            itemBtn.onClick.RemoveAllListeners();
         }
         public void EnablePanel(float duration, bool forceSelect)
         {

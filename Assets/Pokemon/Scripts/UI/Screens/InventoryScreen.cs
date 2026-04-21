@@ -17,7 +17,12 @@ namespace Pokemon.Scripts.UI.Screens
         protected override void Start()
         {
             base.Start();
-            closePartyBtn.onClick.AddListener(ClosePartyScreen);
+            closePartyBtn.onClick.AddListener(() => ClosePartyScreen());
+        }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            closePartyBtn.onClick.RemoveAllListeners();
         }
         public void Initialize()
         {
@@ -30,10 +35,14 @@ namespace Pokemon.Scripts.UI.Screens
             partyGameObject.SetActive(true);
             partyContainer.OpenParty(0.2f);
         }
-        public void ClosePartyScreen()
+        public void ClosePartyScreen(bool isBattle = false)
         {
             partyContainer.CloseParty(0f);
             partyGameObject.SetActive(false);
+            if (isBattle)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
     }
