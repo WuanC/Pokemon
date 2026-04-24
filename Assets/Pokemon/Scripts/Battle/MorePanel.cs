@@ -32,7 +32,7 @@ namespace Pokemon.Scripts.Battle
                 battleController.OpenMainPanel(() =>
                 {
                     inventoryScreen.Initialize();
-                });
+                }, 0);
 
             });
         }

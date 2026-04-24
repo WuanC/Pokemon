@@ -8171,19 +8171,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 547497390}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 722712272}
-        m_TargetAssemblyTypeName: Pokemon.Scripts.Battle.BattleController, Assembly-CSharp
-        m_MethodName: OpenMorePanel
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.25
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &547497390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10880,6 +10868,7 @@ MonoBehaviour:
   mainPanel: {fileID: 1253040161}
   morePanel: {fileID: 2062177321}
   battleAction: 0
+  moreBtn: {fileID: 547497389}
   npcImage: {fileID: 413185364}
   npcNameText: {fileID: 297923912}
   ball: {fileID: 750355489}

@@ -165,29 +165,11 @@ namespace Pokemon.Scripts.Battle
             sequence.Join(pokemonImage.DOFade(1f, 0.5f));
             yield return sequence.WaitForCompletion();
         }
-        // public void SetupExp(PokemonUnit pokemon)
-        // {
-
-        //     int expNextLevelNormalized = pokemon.CalculateExpYield(pokemon.Level + 1) - pokemon.CalculateExpYield(pokemon.Level);
-        //     int currentExpNormalized = pokemon.CurrentExp - pokemon.CalculateExpYield(pokemon.Level);
-        //     expBar.fillAmount = (float)currentExpNormalized / expNextLevelNormalized;
-        // }
-        // public IEnumerator UpdateExpBar(PokemonUnit pokemon, bool isReset = false)
-        // {
-        //     if (isReset)
-        //     {
-        //         pokemonUI.SetLevelText();
-        //         expBar.fillAmount = 0;
-        //     }
-        //     int expNextLevelNormalized = pokemon.CalculateExpYield(pokemon.Level + 1) - pokemon.CalculateExpYield(pokemon.Level);
-        //     int currentExpNormalized = pokemon.CurrentExp - pokemon.CalculateExpYield(pokemon.Level);
-        //     yield return expBar.DOFillAmount((float)currentExpNormalized / expNextLevelNormalized, 0.5f).WaitForCompletion();
-        // }
-        // public void UpdateSkillUI()
-        // {
-        //     pokemonUI.SetSkillButtons();
-        // }
         #region Update Hub
+        public void UpdateHub()
+        {
+            pokemonHub.UpdateModal();
+        }
         public IEnumerator UpdateExpBar(bool isReset = false)
         {
             yield return pokemonHub.UpdateExpBar(isReset);

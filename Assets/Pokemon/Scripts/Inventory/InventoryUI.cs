@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
+using Pokemon.Scripts.UI;
 using Pokemon.Scripts.UI.Screens;
 using TMPro;
 using UnityEngine;
@@ -19,8 +21,13 @@ namespace Pokemon.Scripts.Inventory
         [SerializeField] private Button useBtn;
         [SerializeField] private Image useBtnIcon;
         [SerializeField] private bool isBattle;
+        private InventoryScreen inventoryScreen;
         int currentPageIndex;
         Item selectedItem;
+        void Awake()
+        {
+            inventoryScreen = GetComponentInParent<InventoryScreen>();
+        }
 
         void Start()
         {
@@ -88,7 +95,7 @@ namespace Pokemon.Scripts.Inventory
                 useBtn.onClick.RemoveAllListeners();
                 useBtn.onClick.AddListener(() =>
                 {
-                    GetComponentInParent<InventoryScreen>().OpenPartyScreen();
+                    inventoryScreen.OpenPartyScreen();
                 });
                 descriptionText.text = item.ItemBase.description;
                 useBtnIcon.sprite = item.ItemBase.icon;
@@ -99,13 +106,28 @@ namespace Pokemon.Scripts.Inventory
         {
             if (selectedItem != null)
             {
-                if (obj is PokemonUnit target)
+                if (obj is PokemonPartyItemSlot target)
                 {
-                    inventory.UseItem(selectedItem, target);
+                    bool canUse = inventory.UseItem(selectedItem, target.PokemonUnit);
                     LoadPage(currentPageIndex);
+                    if (canUse)
+                    {
+                        float hpFraction = (float)target.PokemonUnit.HP / target.PokemonUnit.MaxHP;
+                        StartCoroutine(UpdateHpBar(target, hpFraction));
+                    }
+                    else
+                    {
+                        inventoryScreen.ClosePartyScreen();
+                    }
                 }
             }
-            GetComponentInParent<InventoryScreen>().ClosePartyScreen(isBattle);
+
+        }
+        public IEnumerator UpdateHpBar(PokemonModal modal, float hpFraction)
+        {
+            yield return modal.UpdateHP(hpFraction, 0.5f);
+            inventoryScreen.ClosePartyScreen(isBattle);
+            Observer.Instance.Broadcast(EventId.OnItemUsedInBattle, true);
         }
         public void ClearSelectedItem()
         {

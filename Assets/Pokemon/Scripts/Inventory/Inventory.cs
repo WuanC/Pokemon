@@ -9,7 +9,7 @@ namespace Pokemon.Scripts.Inventory
     public class Inventory : MonoBehaviour
     {
         public List<Item> items;
-        public void UseItem(Item item, PokemonUnit target)
+        public bool UseItem(Item item, PokemonUnit target)
         {
             ItemBase baseItem = item.ItemBase;
             bool canUse = baseItem.Use(target);
@@ -22,6 +22,7 @@ namespace Pokemon.Scripts.Inventory
             {
                 Observer.Instance.Broadcast(EventId.OnShowMessage, $"Can't use {baseItem.itemName} on {target.Data.pokemonName}");
             }
+            return canUse;
         }
         public void RemoveItem(Item item)
         {

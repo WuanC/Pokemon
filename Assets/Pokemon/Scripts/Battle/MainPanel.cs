@@ -14,6 +14,7 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] Vector3 btnStartPos;
         [SerializeField] Button[] skillButtons;
         [SerializeField] BattleController battleController;
+        Tween btnContainerTween;
         void OnDisable()
         {
             ClearButtonsEventListeners();
@@ -21,15 +22,18 @@ namespace Pokemon.Scripts.Battle
         }
         public void EnablePanel(float duration, Action onComplete)
         {
+            btnContainerTween?.Kill();
             btnContainer.anchoredPosition = new Vector3(btnContainer.anchoredPosition.x, btnContainer.anchoredPosition.y - 265);
-            btnContainer.DOAnchorPosY(btnStartPos.y, duration).OnComplete(() =>
+            btnContainerTween = btnContainer.DOAnchorPosY(btnStartPos.y, duration).OnComplete(() =>
             {
                 onComplete?.Invoke();
             });
         }
         public void DisablePanel(float duration, Action onComplete)
         {
-            btnContainer.DOAnchorPosY(btnContainer.anchoredPosition.y - 265, duration).OnComplete(() =>
+            btnContainerTween?.Kill();
+            btnContainer.anchoredPosition = new Vector3(btnContainer.anchoredPosition.x, btnStartPos.y);
+            btnContainerTween = btnContainer.DOAnchorPosY(btnContainer.anchoredPosition.y - 265, duration).OnComplete(() =>
             {
                 onComplete?.Invoke();
             });

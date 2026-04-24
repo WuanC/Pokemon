@@ -79,11 +79,11 @@ namespace Pokemon.Scripts.Battle
         }
         private void OnEnable()
         {
-            Observer.Instance.Register(EventId.OnItemUsed, null);
+            Observer.Instance.Register(EventId.OnItemUsedInBattle, OnUsedItem);
         }
         private void OnDisable()
         {
-            Observer.Instance.Unregister(EventId.OnItemUsed, null);
+            Observer.Instance.Unregister(EventId.OnItemUsedInBattle, OnUsedItem);
         }
         private void OnDestroy()
         {
@@ -159,12 +159,6 @@ namespace Pokemon.Scripts.Battle
             battleAction = BattleAction.Catch;
             StartCoroutine(RunTurn());
         }
-        public void UseItemSuccess()
-        {
-            if (state != BattleState.PlayerAction) return;
-            battleAction = BattleAction.UseItem;
-            StartCoroutine(RunTurn());
-        }
         public IEnumerator PlayerSwitchPokemon(PokemonPartySlot partySlot)
         {
             PokemonUnit playerPkmUnit = playerBattlePkm.Pokemon;
@@ -200,6 +194,17 @@ namespace Pokemon.Scripts.Battle
                 StartCoroutine(PlayerSwitchPokemon(partySlot));
             }
         }
+        public void OnUsedItem(object data)
+        {
+            if (state != BattleState.PlayerAction) return;
+            if (data is bool useSuccess)
+            {
+                playerBattlePkm.UpdateHub();
+                battleAction = BattleAction.UseItem;
+                StartCoroutine(RunTurn());
+            }
+
+        }
         public bool TryToCatchPokemon()
         {
             float a = (3 * enemyBattlePkm.Pokemon.MaxHP - 2 * enemyBattlePkm.Pokemon.HP) * enemyBattlePkm.Pokemon.Data.catchRate / (3 * enemyBattlePkm.Pokemon.MaxHP);
@@ -217,7 +222,6 @@ namespace Pokemon.Scripts.Battle
                 playerBattlePkm.CurrentSkill = playerBattlePkm.Pokemon.Skills[currentMoveIndex];
                 enemyBattlePkm.CurrentSkill = enemyBattlePkm.Pokemon.RandomSkill();
                 bool playerGoesFirst = true;
-                Debug.Log(enemyBattlePkm.CurrentSkill == null);
                 if (playerBattlePkm.CurrentSkill.Data.skillPriority < enemyBattlePkm.CurrentSkill.Data.skillPriority)
                 {
                     playerGoesFirst = false;
@@ -245,11 +249,7 @@ namespace Pokemon.Scripts.Battle
             }
             else if (battleAction == BattleAction.Switch)
             {
-                enemyBattlePkm.CurrentSkill = enemyBattlePkm.Pokemon.RandomSkill();
-                yield return ActionMove(enemyBattlePkm, playerBattlePkm, enemyBattlePkm.CurrentSkill);
-                yield return CheckPokemonFainted(playerBattlePkm);
-                if (state == BattleState.Over) yield break;
-                yield return new WaitUntil(() => state == BattleState.Running);
+                yield return EnemyMove();
             }
             else if (battleAction == BattleAction.Run)
             {
@@ -273,17 +273,25 @@ namespace Pokemon.Scripts.Battle
                 {
                     yield return ball.CatchFail();
                     yield return enemyBattlePkm.CatchFailAnimation();
-                    enemyBattlePkm.CurrentSkill = enemyBattlePkm.Pokemon.RandomSkill();
-                    yield return ActionMove(enemyBattlePkm, playerBattlePkm, enemyBattlePkm.CurrentSkill);
-                    yield return CheckPokemonFainted(playerBattlePkm);
-                    if (state == BattleState.Over) yield break;
-                    yield return new WaitUntil(() => state == BattleState.Running);
+                    yield return EnemyMove();
                 }
-
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.5f);
+                yield return EnemyMove();
             }
             battleAction = BattleAction.None;
             SetPlayerAction();
             yield return null;
+        }
+        public IEnumerator EnemyMove()
+        {
+            enemyBattlePkm.CurrentSkill = enemyBattlePkm.Pokemon.RandomSkill();
+            yield return ActionMove(enemyBattlePkm, playerBattlePkm, enemyBattlePkm.CurrentSkill);
+            yield return CheckPokemonFainted(playerBattlePkm);
+            if (state == BattleState.Over) yield break;
+            yield return new WaitUntil(() => state == BattleState.Running);
         }
         public IEnumerator ActionMove(BattlePokemon attacker, BattlePokemon defender, Skill skill)
         {
@@ -476,18 +484,18 @@ namespace Pokemon.Scripts.Battle
 
         }
 
-        public void OpenMainPanel(Action onComplete = null)
+        public void OpenMainPanel(Action onComplete = null, float duration = 0.25f)
         {
-            morePanel.DisablePanel(0.25f, () =>
+            morePanel.DisablePanel(duration, () =>
             {
-                mainPanel.EnablePanel(0.25f, onComplete);
+                mainPanel.EnablePanel(duration, onComplete);
             });
         }
-        public void OpenMorePanel(bool forceSelect = false)
+        public void OpenMorePanel(bool forceSelect = false, float duration = 0.25f)
         {
-            mainPanel.DisablePanel(0.25f, () =>
+            mainPanel.DisablePanel(duration, () =>
             {
-                morePanel.EnablePanel(0.25f, forceSelect);
+                morePanel.EnablePanel(duration, forceSelect);
             });
         }
 

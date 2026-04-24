@@ -35,11 +35,11 @@ namespace Pokemon.Scripts.UI.Screens
             partyGameObject.SetActive(true);
             partyContainer.OpenParty(0.2f);
         }
-        public void ClosePartyScreen(bool isBattle = false)
+        public void ClosePartyScreen(bool isCloseScreen = false)
         {
             partyContainer.CloseParty(0f);
             partyGameObject.SetActive(false);
-            if (isBattle)
+            if (isCloseScreen)
             {
                 gameObject.SetActive(false);
             }

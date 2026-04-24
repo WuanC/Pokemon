@@ -13,7 +13,7 @@ namespace Pokemon.Scripts.UI
     {
         public void OnPointerClick(PointerEventData eventData)
         {
-            Observer.Instance.Broadcast(EventId.OnItemUsed, this.PokemonUnit);
+            Observer.Instance.Broadcast(EventId.OnItemUsed, this);
         }
     }
 }
