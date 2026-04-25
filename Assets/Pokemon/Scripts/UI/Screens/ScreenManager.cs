@@ -20,7 +20,7 @@ namespace Pokemon.Scripts.UI.Screens
         {
             enterHubScreen.Initialize(goBtnAction, mapData, mapCondition);
         }
-        public void EnterBattleClick(Action onFightBtnClick, NPC npc)
+        public void EnterBattleClick(Action onFightBtnClick, NPCBattle npc)
         {
             enterBattleScreen.Initialize(onFightBtnClick, npc);
         }

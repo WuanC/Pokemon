@@ -11,14 +11,15 @@ namespace Pokemon.Scripts.Map
     {
         None,
         HasPokemon,
-        HasTrainer,
+        HasBattleTrainer,
+        HasOtherTrainer,
         HasCoins,
     }
     public class Node : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
         [Header("NPC Data")]
-        [SerializeField] private NPC npc;
+        [SerializeField] private NPCBase npc;
 
 
         public NodeState nodeState;
@@ -28,9 +29,13 @@ namespace Pokemon.Scripts.Map
         public Action OnNodeCompleted;
         public Vector3 startMarkLocalPosition;
         public Area OwnerArea { get; private set; }
-        public NPC Npc => npc;
+        public NPCBase Npc => npc;
         private string hubName;
         public string NodeName { get; private set; }
+        void Awake()
+        {
+            npc = GetComponentInChildren<NPCBase>();
+        }
         public void InitializeNode(Area area, string hubName, int nodeIndex)
         {
             OwnerArea = area;
@@ -45,16 +50,26 @@ namespace Pokemon.Scripts.Map
         {
             if (npc != null)
             {
-                if (TrainerSaveLoad.LoadTrainerData(NodeName) != 0) return;
-                npc.gameObject.SetActive(true);
-                npc.SetupNPCData();
-                SetNodeState(NodeState.HasTrainer);
+                if (npc is NPCBattle)
+                {
+                    if (TrainerSaveLoad.LoadTrainerData(NodeName) != 0) return;
+                    npc.gameObject.SetActive(true);
+                    npc.SetupNPCData();
+                    SetNodeState(NodeState.HasBattleTrainer);
+                }
+                else
+                {
+                    npc.gameObject.SetActive(true);
+                    npc.SetupNPCData();
+                    SetNodeState(NodeState.HasOtherTrainer);
+                }
+
             }
         }
         public void SetNodeState(NodeState state)
         {
             nodeState = state;
-            if (state != NodeState.None)
+            if (state != NodeState.None && state != NodeState.HasOtherTrainer)
             {
                 markBattle.transform.DOKill();
                 markBattle.SetActive(true);
@@ -85,7 +100,7 @@ namespace Pokemon.Scripts.Map
         }
         public void NodeCompleted()
         {
-            if (nodeState == NodeState.HasTrainer)
+            if (nodeState == NodeState.HasBattleTrainer)
             {
                 npc.gameObject.SetActive(false);
                 SetNodeState(NodeState.None);

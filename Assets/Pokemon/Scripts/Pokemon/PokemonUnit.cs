@@ -176,6 +176,10 @@ namespace Pokemon.Scripts.Pokemon
                 skills = Skills.Select(s => s.GetSaveData()).ToList()
             };
         }
+        public void Heal()
+        {
+            HP = MaxHP;
+        }
 
     }
     public class DamageDetails

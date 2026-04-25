@@ -66,16 +66,23 @@ namespace Pokemon.Scripts
         {
             if (data is Node node)
             {
-                Pokemon.Party party = playerParty;
-                NPC npc = node.Npc;
-                ScreenManager.Instance.EnterBattleClick(() =>
+                if (node.Npc is NPCBattle npcBattle)
                 {
-                    currentNode = node;
-                    loungeCamera.gameObject.SetActive(false);
-                    battleCamera.gameObject.SetActive(true);
-                    currentState = GameState.Battle;
-                    battleController.StartBattleWithNPC(party, node.Npc);
-                }, node.Npc);
+                    Party party = playerParty;
+                    ScreenManager.Instance.EnterBattleClick(() =>
+                    {
+                        currentNode = node;
+                        loungeCamera.gameObject.SetActive(false);
+                        battleCamera.gameObject.SetActive(true);
+                        currentState = GameState.Battle;
+                        battleController.StartBattleWithNPC(party, npcBattle);
+                    }, npcBattle);
+                }
+                else if (node.Npc is NPCHeal npcHeal)
+                {
+                    npcHeal.Heal(playerParty.PokemonParties);
+                }
+
 
 
             }

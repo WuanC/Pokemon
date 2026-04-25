@@ -109,7 +109,7 @@ namespace Pokemon.Scripts.Battle
             SetPlayerAction();
             battleAction = BattleAction.None;
         }
-        public void StartBattleWithNPC(Pokemon.Party party, NPC npc)
+        public void StartBattleWithNPC(Pokemon.Party party, NPCBattle npc)
         {
             npcImage.gameObject.SetActive(true);
             npcNameText.gameObject.SetActive(true);

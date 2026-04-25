@@ -29,7 +29,7 @@ namespace Pokemon.Scripts.Map
                 {
                     Observer.Instance.Broadcast(EventId.OnEncounterPokemon, target);
                 }
-                else if (target.nodeState == NodeState.HasTrainer)
+                else if (target.nodeState == NodeState.HasBattleTrainer || target.nodeState == NodeState.HasOtherTrainer)
                 {
                     Observer.Instance.Broadcast(EventId.OnEncounterTrainer, target);
                 }

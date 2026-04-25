@@ -13,7 +13,7 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private TextMeshProUGUI npcNameText;
         [SerializeField] private TextMeshProUGUI npcMessageText;
         [SerializeField] private GameObject[] npcPokemon;
-        public void Initialize(Action onFightBtnClick, NPC npc)
+        public void Initialize(Action onFightBtnClick, NPCBattle npc)
         {
             npcImage.sprite = npc.npcData.npcSprite;
             npcNameText.text = npc.npcData.npcName;

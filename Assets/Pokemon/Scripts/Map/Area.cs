@@ -46,7 +46,7 @@ namespace Pokemon.Scripts.Map
             {
                 if (j < random)
                 {
-                    if (nodes[j].nodeState == NodeState.HasTrainer)
+                    if (nodes[j].nodeState == NodeState.HasBattleTrainer || nodes[j].nodeState == NodeState.HasOtherTrainer)
                     {
                         random++;
                         continue;
@@ -55,7 +55,7 @@ namespace Pokemon.Scripts.Map
                 }
                 else
                 {
-                    if (nodes[j].nodeState == NodeState.HasTrainer)
+                    if (nodes[j].nodeState == NodeState.HasBattleTrainer || nodes[j].nodeState == NodeState.HasOtherTrainer)
                     {
                         continue;
                     }

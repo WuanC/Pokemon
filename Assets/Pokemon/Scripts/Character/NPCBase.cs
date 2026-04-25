@@ -2,11 +2,16 @@ using UnityEngine;
 
 namespace Pokemon.Scripts.Character
 {
-    public class NPC : MonoBehaviour
+    public class NPCBase : MonoBehaviour
     {
         public NPCData npcData;
-        public Pokemon.Party party;
-        [SerializeField] private SpriteRenderer npcAvatar;
+
+        protected SpriteRenderer npcAvatar;
+        public virtual void Awake()
+        {
+            npcAvatar = GetComponent<SpriteRenderer>();
+
+        }
         public void SetupNPCData()
         {
             npcAvatar.sprite = npcData.npcAvatar;
