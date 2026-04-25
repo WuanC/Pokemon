@@ -80,7 +80,7 @@ namespace Pokemon.Scripts
                 }
                 else if (node.Npc is NPCHeal npcHeal)
                 {
-                    npcHeal.Heal(playerParty.PokemonParties);
+                    npcHeal.EnterNpc(playerParty.PokemonParties);
                 }
 
 

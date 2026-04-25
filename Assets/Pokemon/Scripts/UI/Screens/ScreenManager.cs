@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Pokemon.Scripts.Character;
 using Pokemon.Scripts.Data;
 using Pokemon.Scripts.MyUtils;
+using Pokemon.Scripts.Pokemon;
 using UnityEngine;
 
 namespace Pokemon.Scripts.UI.Screens
@@ -15,6 +16,7 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private EnterBattleScreen enterBattleScreen;
         [SerializeField] private PlayScreen playScreen;
         [SerializeField] private EvolutionScreen evolutionScreen;
+        [SerializeField] private EnterHealScreen enterHealScreen;
 
         public void EnterHubClick(Action goBtnAction, MapData mapData, MapConditionData mapCondition = null)
         {
@@ -37,6 +39,10 @@ namespace Pokemon.Scripts.UI.Screens
         public void EnterDetailMap()
         {
             playScreen.EnterDetailMap();
+        }
+        public void EnterHealScreen(List<PokemonUnit> pokemons, NPCHeal npc)
+        {
+            enterHealScreen.Initialize(pokemons, npc);
         }
     }
 }
