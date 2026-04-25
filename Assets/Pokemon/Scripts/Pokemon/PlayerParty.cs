@@ -37,7 +37,7 @@ namespace Pokemon.Scripts.Pokemon
         }
         public void AddPokemon(PokemonUnit pokemon)
         {
-            if (PokemonParties.Count < 3)
+            if (PokemonParties.Count < 4)
             {
                 PokemonParties.Add(pokemon);
             }
