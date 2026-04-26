@@ -33,9 +33,9 @@ MonoBehaviour:
     levelRequirement: 1
   - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
     levelRequirement: 2
-  - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
+  - skillData: {fileID: 11400000, guid: fdcbd7ba590b7a84884d8ad965055376, type: 2}
     levelRequirement: 3
-  - skillData: {fileID: 11400000, guid: 587713bd443b19945a72769cfbe9c132, type: 2}
+  - skillData: {fileID: 11400000, guid: b027053fe64a4584bada8dbfb6ba8b26, type: 2}
     levelRequirement: 4
   evolutions:
   - pokemonData: {fileID: 11400000, guid: 32c10f98ad7f3bf49b90bf2bc3bcd5bb, type: 2}

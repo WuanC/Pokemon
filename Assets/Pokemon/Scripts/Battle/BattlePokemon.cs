@@ -178,6 +178,15 @@ namespace Pokemon.Scripts.Battle
         {
             yield return pokemonHub.UpdateHP(hpFraction, duration);
         }
+        public IEnumerator UpdateHp(float duration)
+        {
+            float hpFraction = (float)Pokemon.HP / Pokemon.MaxHP;
+            yield return pokemonHub.UpdateHP(hpFraction, duration);
+        }
+        public void UpdateStatus(ConditionId conditionId)
+        {
+            pokemonHub.UpdateStatus(conditionId);
+        }
         #endregion
     }
 }

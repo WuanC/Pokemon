@@ -219,3 +219,16 @@ MonoBehaviour:
   pkmImage: {fileID: 2906970809769138266}
   hpBar: {fileID: 2449877710189842006}
   expBar: {fileID: 2840579036921064610}
+  status: {fileID: 8165432339058776531}
+--- !u!114 &8165432339058776531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5421200798847748939, guid: bfdcbe12dee430747bbb66d0dc5246ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 4209326422964540056}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

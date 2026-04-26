@@ -1,6 +1,7 @@
 
 using System.Collections;
 using DG.Tweening;
+using Pokemon.Scripts.Condition;
 using Pokemon.Scripts.Pokemon;
 using TMPro;
 using Unity.VisualScripting;
@@ -17,6 +18,7 @@ namespace Pokemon.Scripts.UI
         [SerializeField] protected Image pkmImage;
         [SerializeField] protected Image hpBar;
         [SerializeField] protected Image expBar;
+        [SerializeField] protected Image status;
         protected PokemonUnit pokemonUnit;
         public PokemonUnit PokemonUnit => pokemonUnit;
         protected bool hasExpBar;
@@ -37,6 +39,7 @@ namespace Pokemon.Scripts.UI
             pkmNameText.text = pkmUnit.Data.pokemonName;
             pkmLevelText.text = "Lv." + pkmUnit.Level;
             if (pkmImage != null) pkmImage.sprite = pkmUnit.Data.icon;
+
             hpBar.fillAmount = (float)pkmUnit.HP / pkmUnit.MaxHP;
             if (hasExpBar)
             {
@@ -46,6 +49,18 @@ namespace Pokemon.Scripts.UI
             else
             {
                 expBar?.transform.parent.gameObject.SetActive(false);
+            }
+            if (status != null)
+            {
+                if (pkmUnit.StatusCondition != null)
+                {
+                    status.sprite = pkmUnit.StatusCondition.reportIcon;
+                    status.gameObject.SetActive(true);
+                }
+                else
+                {
+                    status.gameObject.SetActive(false);
+                }
             }
         }
         public void UpdateModal()
@@ -86,6 +101,20 @@ namespace Pokemon.Scripts.UI
             int expNextLevelNormalized = pokemonUnit.CalculateExpYield(pokemonUnit.Level + 1) - pokemonUnit.CalculateExpYield(pokemonUnit.Level);
             int currentExpNormalized = pokemonUnit.CurrentExp - pokemonUnit.CalculateExpYield(pokemonUnit.Level);
             yield return expBar.DOFillAmount((float)currentExpNormalized / expNextLevelNormalized, 0.5f).WaitForCompletion();
+        }
+        public void UpdateStatus(ConditionId conditionId)
+        {
+            if (status == null) return;
+            if (conditionId == ConditionId.None)
+            {
+                status.gameObject.SetActive(false);
+            }
+            else
+            {
+                status.sprite = ConditionDB.GetConditionById(conditionId).reportIcon;
+                status.gameObject.SetActive(true);
+            }
+
         }
     }
 }

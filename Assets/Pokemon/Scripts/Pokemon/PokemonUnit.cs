@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pokemon.Scripts.Battle;
+using Pokemon.Scripts.Condition;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Pokemon
@@ -14,6 +15,7 @@ namespace Pokemon.Scripts.Pokemon
         private Dictionary<Stat, int> statBases;
         private Dictionary<Stat, int> statBoosts;
         public int CurrentExp { get; set; }
+        public ConditionData StatusCondition { get; private set; }
         public PokemonUnit(PokemonData data, int level)
         {
             this.Data = data;
@@ -180,7 +182,18 @@ namespace Pokemon.Scripts.Pokemon
         {
             HP = MaxHP;
         }
+        public void SetStatusCondition(ConditionId id)
+        {
+            if (id == ConditionId.None)
+            {
+                this.StatusCondition = null;
+            }
+            else
+            {
+                this.StatusCondition = ConditionDB.GetConditionById(id);
+            }
 
+        }
     }
     public class DamageDetails
     {

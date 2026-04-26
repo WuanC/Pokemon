@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pokemon.Scripts.Battle;
 using Pokemon.Scripts.Character;
+using Pokemon.Scripts.Condition;
 using Pokemon.Scripts.Map;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
@@ -41,6 +42,7 @@ namespace Pokemon.Scripts
             yield return QuestDB.Init();
             yield return PokemonDB.Init();
             yield return SkillDB.Init();
+            yield return ConditionDB.Init();
             QuestManager.Instance.Initialize();
             HubController.Instance.Initialize();
             CurrencyManager.Instance.Initialize();
@@ -51,8 +53,12 @@ namespace Pokemon.Scripts
         {
             if (data is Node node)
             {
-                Pokemon.Party party = playerParty;
-
+                Party party = playerParty;
+                if (party.GetHealthyPokemon() == null)
+                {
+                    Observer.Instance.Broadcast(EventId.OnShowMessage, "You have no healthy Pokemon to fight!");
+                    return;
+                }
                 PokemonUnit wildPokemon = node.OwnerArea.GetRandomPokemon();
                 currentNode = node;
                 loungeCamera.gameObject.SetActive(false);
@@ -69,6 +75,11 @@ namespace Pokemon.Scripts
                 if (node.Npc is NPCBattle npcBattle)
                 {
                     Party party = playerParty;
+                    if (party.GetHealthyPokemon() == null)
+                    {
+                        Observer.Instance.Broadcast(EventId.OnShowMessage, "You have no healthy Pokemon to fight!");
+                        return;
+                    }
                     ScreenManager.Instance.EnterBattleClick(() =>
                     {
                         currentNode = node;

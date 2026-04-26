@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 6254141519148545047, guid: bfdcbe12dee430747bbb66d0dc5246ee,
         type: 3}
       propertyPath: m_Name
-      value: PokemonPartySlot
+      value: PokemonPartySlotItem
       objectReference: {fileID: 0}
     - target: {fileID: 8797565799997708077, guid: bfdcbe12dee430747bbb66d0dc5246ee,
         type: 3}
@@ -123,6 +123,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2920159930813576427}
   m_SourcePrefab: {fileID: 100100000, guid: bfdcbe12dee430747bbb66d0dc5246ee, type: 3}
+--- !u!114 &2901731976149283013 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5421200798847748939, guid: bfdcbe12dee430747bbb66d0dc5246ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 7169445545107749774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3593233683700373811 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5954680388965802685, guid: bfdcbe12dee430747bbb66d0dc5246ee,
@@ -159,6 +171,7 @@ MonoBehaviour:
   pkmImage: {fileID: 8161602400779039052}
   hpBar: {fileID: 8713271641579431744}
   expBar: {fileID: 9115205643522344372}
+  status: {fileID: 2901731976149283013}
 --- !u!114 &5746547207149972774 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3224905545731839656, guid: bfdcbe12dee430747bbb66d0dc5246ee,

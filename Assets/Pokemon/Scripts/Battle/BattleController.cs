@@ -53,8 +53,8 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] private MainPanel mainPanel;
         [SerializeField] private MorePanel morePanel;
         [SerializeField] private BattleAction battleAction;
-        private Pokemon.Party playerParty;
-        private Pokemon.Party enemyParty;
+        private Party playerParty;
+        private Party enemyParty;
         [SerializeField] private Button moreBtn;
         private bool isNPCBattle;
         [Header("Trainer")]
@@ -239,7 +239,7 @@ namespace Pokemon.Scripts.Battle
                 if (state == BattleState.Over) yield break;
                 if (secondUnit.Pokemon.HP > 0)
                 {
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(1f);
                     yield return ActionMove(secondUnit, firstUnit, secondUnit.CurrentSkill);
                     yield return CheckPokemonFainted(firstUnit);
                     if (state == BattleState.Over) yield break;
@@ -281,6 +281,7 @@ namespace Pokemon.Scripts.Battle
                 yield return new WaitForSeconds(0.5f);
                 yield return EnemyMove();
             }
+            yield return CheckAfterTurn();
             battleAction = BattleAction.None;
             SetPlayerAction();
             yield return null;
@@ -295,6 +296,15 @@ namespace Pokemon.Scripts.Battle
         }
         public IEnumerator ActionMove(BattlePokemon attacker, BattlePokemon defender, Skill skill)
         {
+            if (attacker.Pokemon.StatusCondition != null)
+            {
+                bool cantMove = attacker.Pokemon.StatusCondition.CanApplyStatusBefore();
+                if (cantMove)
+                {
+                    attacker.pokemonImage.StartCoroutine(attacker.Pokemon.StatusCondition.StatusAnimation(attacker.pokemonImage.gameObject, 0.5f));
+                    yield break;
+                }
+            }
             StartCoroutine(ShowSkillName(skill.Data.name));
             yield return new WaitForSeconds(0.5f);
             yield return attacker.AttackAnimation().WaitForCompletion();
@@ -307,7 +317,7 @@ namespace Pokemon.Scripts.Battle
             }
             if (skill.Data.category == CategorySkill.Status)
             {
-                foreach (var statBoost in skill.Data.statBoosts)
+                foreach (var statBoost in skill.Data.moveEffect.statBoosts)
                 {
                     if (skill.Data.targetType == TargetType.Self)
                     {
@@ -325,6 +335,11 @@ namespace Pokemon.Scripts.Battle
                     }
                 }
                 yield return new WaitForSeconds(1f);
+                if (skill.Data.moveEffect.conditionId != ConditionId.None)
+                {
+                    defender.Pokemon.SetStatusCondition(skill.Data.moveEffect.conditionId);
+                    defender.UpdateStatus(skill.Data.moveEffect.conditionId);
+                }
             }
             else if (skill.Data.category == CategorySkill.Attack)
             {
@@ -339,6 +354,36 @@ namespace Pokemon.Scripts.Battle
                 skillFx.gameObject.SetActive(false);
             }
         }
+        public IEnumerator CheckAfterTurn()
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (playerBattlePkm.Pokemon.StatusCondition != null)
+            {
+                if (playerBattlePkm.Pokemon.StatusCondition.CanApplyStatusAfter(playerBattlePkm.Pokemon))
+                {
+                    playerBattlePkm.UpdateStatus(playerBattlePkm.Pokemon.StatusCondition.conditionId);
+                    playerBattlePkm.pokemonImage.StartCoroutine(playerBattlePkm.Pokemon.StatusCondition.StatusAnimation(playerBattlePkm.pokemonImage.gameObject, 0.5f));
+                    yield return playerBattlePkm.UpdateHp(0.5f);
+
+                    yield return CheckPokemonFainted(playerBattlePkm);
+                }
+
+            }
+            if (enemyBattlePkm.Pokemon.StatusCondition != null)
+            {
+                if (enemyBattlePkm.Pokemon.StatusCondition.CanApplyStatusAfter(enemyBattlePkm.Pokemon))
+                {
+                    enemyBattlePkm.UpdateStatus(enemyBattlePkm.Pokemon.StatusCondition.conditionId);
+                    enemyBattlePkm.pokemonImage.StartCoroutine(enemyBattlePkm.Pokemon.StatusCondition.StatusAnimation(enemyBattlePkm.pokemonImage.gameObject, 0.5f));
+                    yield return enemyBattlePkm.UpdateHp(0.5f);
+                }
+
+                yield return CheckPokemonFainted(enemyBattlePkm);
+            }
+            if (state == BattleState.Over) yield break;
+            yield return new WaitUntil(() => state == BattleState.Running);
+        }
+
         public IEnumerator CheckPokemonFainted(BattlePokemon defender)
         {
             if (defender.Pokemon.HP <= 0)
