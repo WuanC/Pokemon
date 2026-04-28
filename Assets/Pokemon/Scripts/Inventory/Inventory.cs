@@ -34,6 +34,7 @@ namespace Pokemon.Scripts.Inventory
             {
                 items.Remove(item);
             }
+            Observer.Instance.Broadcast(EventId.OnUpdateItem, item);
         }
         public void AddItem(Item item)
         {
@@ -46,6 +47,23 @@ namespace Pokemon.Scripts.Inventory
             {
                 items.Add(item);
             }
+            Observer.Instance.Broadcast(EventId.OnUpdateItem, item);
+        }
+        public Item GetCoins()
+        {
+            return items.FirstOrDefault(i => i.ItemBase.itemName == "Coins");
+        }
+        public Item GetDusts()
+        {
+            return items.FirstOrDefault(i => i.ItemBase.itemName == "Dusts");
+        }
+        public static Item InitCoins(int quantity)
+        {
+            return new Item(ItemDB.GetItemByName("Coins"), quantity);
+        }
+        public static Item InitDusts(int quantity)
+        {
+            return new Item(ItemDB.GetItemByName("Dusts"), quantity);
         }
     }
 

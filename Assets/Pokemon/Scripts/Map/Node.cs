@@ -77,9 +77,9 @@ namespace Pokemon.Scripts.Map
             }
             else
             {
+                markBattle.transform.DOKill();
                 markBattle.transform.localPosition = startMarkLocalPosition;
                 markBattle.SetActive(false);
-                markBattle.transform.DOKill();
             }
         }
         public void SetDisable(bool state)

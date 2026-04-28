@@ -1,3 +1,4 @@
+using Pokemon.Scripts.UI.Screens;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace Pokemon.Scripts.UI
                 if (quest.CanClaim())
                 {
                     quest.Claim();
-                    CurrencyManager.Instance.AddCoinAnim(claimBtn.transform.position, quest.QuestData.rewardMoney);
+                    ScreenManager.Instance.AddCoinAnim(claimBtn.transform.position, quest.QuestData.rewardMoney);
                     claimBtn.interactable = quest.CanClaim();
 
                 }

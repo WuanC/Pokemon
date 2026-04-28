@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Pokemon.Scripts.Battle;
 using Pokemon.Scripts.Character;
 using Pokemon.Scripts.Condition;
+using Pokemon.Scripts.FReward;
+using Pokemon.Scripts.Inventory;
 using Pokemon.Scripts.Map;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
@@ -26,7 +28,7 @@ namespace Pokemon.Scripts
         private GameState currentState = GameState.Map;
         public DragMap dragWorld;
         private DragMap dragMap;
-        [SerializeField] private Pokemon.Party playerParty;
+        [SerializeField] private Party playerParty;
         [SerializeField] private BattleController battleController;
         Node currentNode;
 
@@ -43,9 +45,10 @@ namespace Pokemon.Scripts
             yield return PokemonDB.Init();
             yield return SkillDB.Init();
             yield return ConditionDB.Init();
+            yield return ItemDB.Init();
             QuestManager.Instance.Initialize();
             HubController.Instance.Initialize();
-            CurrencyManager.Instance.Initialize();
+            ScreenManager.Instance.Initialize();
             playerParty.Initialize();
 
         }
@@ -64,7 +67,9 @@ namespace Pokemon.Scripts
                 loungeCamera.gameObject.SetActive(false);
                 battleCamera.gameObject.SetActive(true);
                 currentState = GameState.Battle;
-                battleController.StartBattleWithWildPokemon(party, wildPokemon);
+                int coinQuantity = UnityEngine.Random.Range(1, 5) * wildPokemon.Level;
+                int dustQuantity = UnityEngine.Random.Range(1, 5) * wildPokemon.Level;
+                battleController.StartBattleWithWildPokemon(party, wildPokemon, Reward.DefaultReward(coinQuantity, dustQuantity));
 
             }
         }
@@ -86,7 +91,7 @@ namespace Pokemon.Scripts
                         loungeCamera.gameObject.SetActive(false);
                         battleCamera.gameObject.SetActive(true);
                         currentState = GameState.Battle;
-                        battleController.StartBattleWithNPC(party, npcBattle);
+                        battleController.StartBattleWithNPC(party, npcBattle, npcBattle.reward);
                     }, npcBattle);
                 }
                 else if (node.Npc is NPCHeal npcHeal)

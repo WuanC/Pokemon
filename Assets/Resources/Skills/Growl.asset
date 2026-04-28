@@ -20,10 +20,12 @@ MonoBehaviour:
   power: 0
   accuracy: 0
   category: 1
-  statBoosts:
-  - stat: 0
-    boostAmount: 1
   targetType: 0
   skillPriority: 0
   vfxPrefab: {fileID: 6266345863746318625, guid: 5dcbdfbcc9635e0458c8b28016aab7c6,
     type: 3}
+  moveEffect:
+    statBoosts:
+    - stat: 0
+      boostAmount: 1
+    conditionId: 0

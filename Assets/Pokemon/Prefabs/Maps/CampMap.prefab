@@ -1307,6 +1307,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4559219191067667224}
     m_Modifications:
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: reward.items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: reward.items.Array.data[0].itemBase
+      value: 
+      objectReference: {fileID: 11400000, guid: 095fcc02401e963498820ebff554e2f9,
+        type: 2}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: reward.items.Array.data[0].quantity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: reward.items.Array.data[1].itemBase
+      value: 
+      objectReference: {fileID: 11400000, guid: dfba9d5b2a655664b8899e990bd194c6,
+        type: 2}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: reward.items.Array.data[1].quantity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4404929437467048147, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: m_Name

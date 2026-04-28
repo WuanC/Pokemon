@@ -18,6 +18,10 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private EvolutionScreen evolutionScreen;
         [SerializeField] private EnterHealScreen enterHealScreen;
 
+        public void Initialize()
+        {
+            playScreen.Initialize();
+        }
         public void EnterHubClick(Action goBtnAction, MapData mapData, MapConditionData mapCondition = null)
         {
             enterHubScreen.Initialize(goBtnAction, mapData, mapCondition);
@@ -43,6 +47,10 @@ namespace Pokemon.Scripts.UI.Screens
         public void EnterHealScreen(List<PokemonUnit> pokemons, NPCHeal npc)
         {
             enterHealScreen.Initialize(pokemons, npc);
+        }
+        public void AddCoinAnim(Vector3 startPos, int coinsAmount)
+        {
+            playScreen.AddCoinAnim(startPos, coinsAmount);
         }
     }
 }

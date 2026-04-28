@@ -1,9 +1,11 @@
+using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Inventory
 {
 
+    [CreateAssetMenu(fileName = "Item", menuName = "Pokemon/Items/Normal")]
     public class ItemBase : ScriptableObject
     {
         public string itemName;
@@ -11,6 +13,7 @@ namespace Pokemon.Scripts.Inventory
         public Sprite icon;
         public virtual bool Use(PokemonUnit pokemon)
         {
+            Observer.Instance.Broadcast(EventId.OnShowMessage, $"Can't use {itemName} on {pokemon.Data.pokemonName}");
             return false;
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Camp
   m_EditorClassIdentifier: 
   hubName: Camp
-  mapCondition: {fileID: 11400000, guid: 126932965ba3544429b4bc64a273b3cc, type: 2}
+  mapCondition: {fileID: 0}
   pokemonInMaps:
   - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
   - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}

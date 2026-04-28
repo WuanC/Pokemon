@@ -15,6 +15,7 @@ using System;
 using Pokemon.Scripts.UI.Screens;
 using Pokemon.Scripts.Quest;
 using Pokemon.Scripts.UI;
+using Pokemon.Scripts.FReward;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -67,6 +68,7 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] private UnlockSkillScreen unlockSkillScreen;
         [Header("Win Screen")]
         [SerializeField] private WinScreen winScreen;
+        private Reward battleReward;
 
         void Start()
         {
@@ -94,7 +96,7 @@ namespace Pokemon.Scripts.Battle
             moreBtn.onClick.RemoveAllListeners();
         }
         #region Setup Battle
-        public void StartBattleWithWildPokemon(Pokemon.Party party, PokemonUnit enemyPokemon)
+        public void StartBattleWithWildPokemon(Party party, PokemonUnit enemyPokemon, Reward reward)
         {
             npcImage.gameObject.SetActive(false);
             npcNameText.gameObject.SetActive(false);
@@ -108,8 +110,9 @@ namespace Pokemon.Scripts.Battle
             DisableTextAndEffects();
             SetPlayerAction();
             battleAction = BattleAction.None;
+            this.battleReward = reward;
         }
-        public void StartBattleWithNPC(Pokemon.Party party, NPCBattle npc)
+        public void StartBattleWithNPC(Party party, NPCBattle npc, Reward reward)
         {
             npcImage.gameObject.SetActive(true);
             npcNameText.gameObject.SetActive(true);
@@ -125,6 +128,7 @@ namespace Pokemon.Scripts.Battle
             enemyBattlePkm.SetPokemon(enemyParty.GetHealthyPokemon());
             DisableTextAndEffects();
             SetPlayerAction();
+            this.battleReward = reward;
         }
         public void DisableTextAndEffects()
         {
@@ -524,7 +528,7 @@ namespace Pokemon.Scripts.Battle
             }
             else
             {
-                StartCoroutine(winScreen.ShowWinScreen());
+                StartCoroutine(winScreen.ShowWinScreen(this.battleReward));
             }
 
         }

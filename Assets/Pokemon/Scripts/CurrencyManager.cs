@@ -9,53 +9,6 @@ namespace Pokemon.Scripts
 {
     public class CurrencyManager : Singleton<CurrencyManager>
     {
-        private int coins = 5000;
-        [SerializeField] private int coinToSpawnCount;
-        [SerializeField] private PlayScreen playScreen;
-        [SerializeField] private GameObject coinGO;
-        public void Initialize()
-        {
-            playScreen.UpdateCoinText(coins);
-        }
-        public void AddCoinAnim(Vector3 startPos, int coinsAmount)
-        {
-            coins += coinsAmount;
-            int prevCoinsAdd = 0;
-            for (int i = 0; i < coinToSpawnCount; i++)
-            {
-                GameObject coin = MyPoolManager.Instance.GetFromPool(coinGO, transform);
-                coin.transform.position = startPos;
-                int coinsToAdd = 0;
-                if (i != coinToSpawnCount - 1)
-                {
-                    coinsToAdd = coinsAmount / coinToSpawnCount;
-                    coinsAmount -= coinsToAdd;
 
-                }
-                else
-                {
-                    coinsToAdd = coinsAmount;
-                }
-                prevCoinsAdd += coinsToAdd;
-                coin.transform.DOMove(playScreen.coinTransform.position, 0.5f).SetEase(Ease.InBack)
-                .SetLink(coin)
-                .SetDelay(i * 0.1f)
-                .OnComplete(() =>
-                {
-                    playScreen.UpdateCoinText(prevCoinsAdd);
-                    coin.gameObject.SetActive(false);
-                });
-            }
-        }
-        public bool CanPay(int coinsAmount)
-        {
-            return coins >= coinsAmount;
-        }
-        public void Pay(int coinsAmount)
-        {
-            if (coins < coinsAmount) return;
-            coins -= coinsAmount;
-            playScreen.UpdateCoinText(coins);
-        }
     }
 }
