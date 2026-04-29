@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Used to CATCH wild Dynamons
   icon: {fileID: 21300000, guid: 66a304cbbb638384b92e920686b41f91, type: 3}
   catchRate: 1
-  isMasterBall: 0
+  isMasterBall: 1
