@@ -15,7 +15,8 @@ namespace Pokemon.Scripts.Character
         {
             foreach (var pokemon in party)
             {
-                pokemon.Heal();
+                pokemon.HealMax();
+                pokemon.CureCondition();
             }
         }
     }

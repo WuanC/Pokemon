@@ -12,6 +12,9 @@ namespace Pokemon.Scripts.Inventory
     public class Inventory : Singleton<Inventory>, ISavable
     {
         [SerializeField] private string saveKey = "Inventory";
+        public const string COINS_NAME = "Coins";
+        public const string DUSTS_NAME = "Dusts";
+        public const string DISCATCH_NAME = "Discatch";
         public List<Item> items { get; private set; }
         void OnDestroy()
         {
@@ -40,11 +43,11 @@ namespace Pokemon.Scripts.Inventory
             if (canUse)
             {
                 RemoveItem(item);
-                Observer.Instance.Broadcast(EventId.OnShowMessage, $"Used {baseItem.itemName} on {target.Data.pokemonName}");
+                Observer.Instance.Broadcast(EventId.OnShowMessage, $"Used {baseItem.itemName}");
             }
             else
             {
-                Observer.Instance.Broadcast(EventId.OnShowMessage, $"Can't use {baseItem.itemName} on {target.Data.pokemonName}");
+                Observer.Instance.Broadcast(EventId.OnShowMessage, $"Can't use {baseItem.itemName}");
             }
             return canUse;
         }
@@ -75,19 +78,23 @@ namespace Pokemon.Scripts.Inventory
         }
         public Item GetCoins()
         {
-            return items.FirstOrDefault(i => i.ItemBase.itemName == "Coins");
+            return items.FirstOrDefault(i => i.ItemBase.itemName == COINS_NAME);
         }
         public Item GetDusts()
         {
-            return items.FirstOrDefault(i => i.ItemBase.itemName == "Dusts");
+            return items.FirstOrDefault(i => i.ItemBase.itemName == DUSTS_NAME);
+        }
+        public Item GetDiscatch()
+        {
+            return items.FirstOrDefault(i => i.ItemBase.itemName == DISCATCH_NAME);
         }
         public static Item InitCoins(int quantity)
         {
-            return new Item(ItemDB.GetItemByName("Coins"), quantity);
+            return new Item(ItemDB.GetItemByName(COINS_NAME), quantity);
         }
         public static Item InitDusts(int quantity)
         {
-            return new Item(ItemDB.GetItemByName("Dusts"), quantity);
+            return new Item(ItemDB.GetItemByName(DUSTS_NAME), quantity);
         }
 
         public void CaptureState()
@@ -109,6 +116,17 @@ namespace Pokemon.Scripts.Inventory
             if (string.IsNullOrEmpty(saveDataJson)) return null;
 
             return JsonConvert.DeserializeObject<List<ItemSaveData>>(saveDataJson);
+        }
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                foreach (var itembase in ItemDB.GetAllItems())
+                {
+                    Debug.Log($"Adding item: {itembase.itemName}");
+                    AddItem(new Item(itembase, 100));
+                }
+            }
         }
 
     }

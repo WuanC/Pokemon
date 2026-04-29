@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Max Potion
   description: Heal max hp
-  icon: {fileID: 21300000, guid: cf8b3ac1264e08b4dad567dba518c7f1, type: 3}
+  icon: {fileID: 21300000, guid: 345696413fa95c4439db9e5c0e639384, type: 3}
   hpAmount: 0
   restoreFullHp: 1
   ppAmount: 0

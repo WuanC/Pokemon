@@ -24,6 +24,7 @@ namespace Pokemon.Scripts.Inventory
         private InventoryScreen inventoryScreen;
         int currentPageIndex;
         Item selectedItem;
+
         void Awake()
         {
             inventoryScreen = GetComponentInParent<InventoryScreen>();
@@ -42,12 +43,12 @@ namespace Pokemon.Scripts.Inventory
         }
         void OnEnable()
         {
-            Observer.Instance.Register(EventId.OnItemUsed, InventoryUI_OnItemUsed);
+            Observer.Instance.Register(EventId.OnSelectPKMUseItem, InventoryUI_OnSelectPKMUseItem);
         }
         void OnDisable()
         {
             ClearSelectedItem();
-            Observer.Instance.Unregister(EventId.OnItemUsed, InventoryUI_OnItemUsed);
+            Observer.Instance.Unregister(EventId.OnSelectPKMUseItem, InventoryUI_OnSelectPKMUseItem);
         }
         void OnDestroy()
         {
@@ -90,22 +91,65 @@ namespace Pokemon.Scripts.Inventory
             if (item == null)
             {
                 ClearSelectedItem();
-
             }
             else
+            {
+                if (item.ItemBase is CatchItem)
+                {
+                    SelectCatchItem(item);
+                }
+                else if (item.ItemBase is RecoveryItem)
+                {
+                    SelectRecoveryItem(item);
+                }
+                else
+                {
+                    SelectOnlyViewItem(item);
+                }
+            }
+        }
+        public void SelectOnlyViewItem(Item item)
+        {
+            useBtn.gameObject.SetActive(false);
+            descriptionText.text = item.ItemBase.description;
+        }
+        public void SelectCatchItem(Item item)
+        {
+            if (GameController.Instance.CurrentState == GameState.Battle)
             {
                 useBtn.gameObject.SetActive(true);
                 useBtn.onClick.RemoveAllListeners();
                 useBtn.onClick.AddListener(() =>
                 {
-                    inventoryScreen.OpenPartyScreen();
+                    inventoryScreen.ClosePartyScreen(isBattle);
+                    Observer.Instance.Broadcast(EventId.OnItemDiscatchUsed, item);
                 });
-                descriptionText.text = item.ItemBase.description;
                 useBtnIcon.sprite = item.ItemBase.icon;
                 useBtnIcon.SetNativeSize();
+                descriptionText.text = item.ItemBase.description;
             }
+            else
+            {
+                SelectOnlyViewItem(item);
+            }
+
+
         }
-        public void InventoryUI_OnItemUsed(object obj)
+        public void SelectRecoveryItem(Item item)
+        {
+
+            useBtn.gameObject.SetActive(true);
+            useBtn.onClick.RemoveAllListeners();
+            useBtn.onClick.AddListener(() =>
+            {
+                inventoryScreen.OpenPartyScreen();
+            });
+            useBtnIcon.sprite = item.ItemBase.icon;
+            useBtnIcon.SetNativeSize();
+            descriptionText.text = item.ItemBase.description;
+
+        }
+        public void InventoryUI_OnSelectPKMUseItem(object obj)
         {
             if (selectedItem != null)
             {
@@ -115,8 +159,7 @@ namespace Pokemon.Scripts.Inventory
                     LoadPage(currentPageIndex);
                     if (canUse)
                     {
-                        float hpFraction = (float)target.PokemonUnit.HP / target.PokemonUnit.MaxHP;
-                        StartCoroutine(UpdateHpBar(target, hpFraction));
+                        StartCoroutine(UpdateModal(target));
                     }
                     else
                     {
@@ -126,9 +169,11 @@ namespace Pokemon.Scripts.Inventory
             }
 
         }
-        public IEnumerator UpdateHpBar(PokemonModal modal, float hpFraction)
+        public IEnumerator UpdateModal(PokemonModal modal)
         {
-            yield return modal.UpdateHP(hpFraction, 0.5f);
+            modal.UpdateModal();
+            yield return new WaitForSeconds(0.5f);
+
             inventoryScreen.ClosePartyScreen(isBattle);
             Observer.Instance.Broadcast(EventId.OnItemUsedInBattle, true);
         }

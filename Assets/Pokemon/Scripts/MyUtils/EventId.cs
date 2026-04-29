@@ -14,7 +14,8 @@ namespace Pokemon.Scripts.MyUtils
 
         //Item
         OnUpdateItem,
-        OnItemUsed,
+        OnSelectPKMUseItem,
+        OnItemDiscatchUsed,
         OnItemUsedInBattle,
 
         //Noti

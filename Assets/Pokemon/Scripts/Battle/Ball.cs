@@ -1,5 +1,6 @@
 using System.Collections;
 using DG.Tweening;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Battle
@@ -9,6 +10,8 @@ namespace Pokemon.Scripts.Battle
         private Animator animator;
         private readonly string catchAnimSuccess = "catchSuccess";
         private readonly string catchAnimFail = "catchFail";
+        [SerializeField] private AnimatorController ball;
+        [SerializeField] private AnimatorController masterBall;
         private Vector3 startPos;
         private void Awake()
         {
@@ -17,8 +20,15 @@ namespace Pokemon.Scripts.Battle
             gameObject.SetActive(false);
 
         }
-        public IEnumerator Throw()
+        void OnDisable()
         {
+            transform.localPosition = startPos;
+        }
+        public IEnumerator Throw(bool isMasterBall)
+        {
+            animator.runtimeAnimatorController = isMasterBall ? masterBall : ball;
+            Debug.Log("Throwing " + (isMasterBall ? "Master Ball" : "Ball"));
+            Debug.Log("Animator Controller: " + animator.runtimeAnimatorController.name);
             gameObject.SetActive(true);
             yield return transform.DOLocalMoveX(startPos.x + 400f, 0.5f).SetEase(Ease.OutBack).WaitForCompletion();
         }

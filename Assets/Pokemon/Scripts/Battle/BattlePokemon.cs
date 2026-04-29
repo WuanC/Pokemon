@@ -23,6 +23,7 @@ namespace Pokemon.Scripts.Battle
         public PokemonUnit Pokemon { get; private set; }
         public bool IsPlayerPokemon => isPlayerPokemon;
         public Skill CurrentSkill { get; set; }
+
         // [SerializeField] public Image expBar;
         private void OnDisable()
         {

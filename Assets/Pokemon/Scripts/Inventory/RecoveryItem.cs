@@ -11,11 +11,9 @@ namespace Pokemon.Scripts.Inventory
         public int hpAmount;
         public bool restoreFullHp;
 
-        [Header("PP")]
-        public int ppAmount;
-        public bool restoreFullPp;
+        [Header("Condition")]
         //Condition
-
+        public ConditionId conditionId;
         [Header("Receive")]
         public bool revive;
         public bool maxRevive;
@@ -23,14 +21,29 @@ namespace Pokemon.Scripts.Inventory
         {
             if (hpAmount > 0)
             {
-                if (pokemon.HP == pokemon.MaxHP) return false;
+                if (pokemon.HP == pokemon.MaxHP || pokemon.HP == 0) return false;
                 pokemon.UpdateHp(hpAmount);
 
             }
             else if (restoreFullHp)
             {
-                if (pokemon.HP == pokemon.MaxHP) return false;
-                pokemon.UpdateHp(pokemon.MaxHP);
+                if (pokemon.HP == pokemon.MaxHP || pokemon.HP == 0) return false;
+                pokemon.HealMax();
+            }
+            else if (conditionId != ConditionId.None)
+            {
+                if (pokemon.Condition == null || pokemon.Condition.conditionId != conditionId) return false;
+                pokemon.CureCondition();
+            }
+            else if (revive)
+            {
+                if (pokemon.HP > 0) return false;
+                pokemon.UpdateHp(pokemon.MaxHP / 2);
+            }
+            else if (maxRevive)
+            {
+                if (pokemon.HP > 0) return false;
+                pokemon.HealMax();
             }
             return true;
         }

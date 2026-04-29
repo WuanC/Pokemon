@@ -33,6 +33,7 @@ namespace Pokemon.Scripts
         [SerializeField] private BattleController battleController;
         public TypeData typeData;
         Node currentNode;
+        public GameState CurrentState => currentState;
 
         void Start()
         {

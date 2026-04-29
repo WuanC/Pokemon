@@ -16,6 +16,7 @@ using Pokemon.Scripts.UI.Screens;
 using Pokemon.Scripts.Quest;
 using Pokemon.Scripts.UI;
 using Pokemon.Scripts.FReward;
+using Pokemon.Scripts.Inventory;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -69,6 +70,7 @@ namespace Pokemon.Scripts.Battle
         [Header("Win Screen")]
         [SerializeField] private WinScreen winScreen;
         private Reward battleReward;
+        private bool useMasterBall;
 
         void Start()
         {
@@ -82,10 +84,12 @@ namespace Pokemon.Scripts.Battle
         private void OnEnable()
         {
             Observer.Instance.Register(EventId.OnItemUsedInBattle, OnUsedItem);
+            Observer.Instance.Register(EventId.OnItemDiscatchUsed, CatchPokemon);
         }
         private void OnDisable()
         {
             Observer.Instance.Unregister(EventId.OnItemUsedInBattle, OnUsedItem);
+            Observer.Instance.Unregister(EventId.OnItemDiscatchUsed, CatchPokemon);
         }
         private void OnDestroy()
         {
@@ -156,12 +160,22 @@ namespace Pokemon.Scripts.Battle
             battleAction = BattleAction.Run;
             StartCoroutine(RunTurn());
         }
-        public void CatchPokemon()
+        public void CatchPokemon(object data)
         {
             if (state != BattleState.PlayerAction) return;
-            if (isNPCBattle) return;
-            battleAction = BattleAction.Catch;
-            StartCoroutine(RunTurn());
+            if (isNPCBattle)
+            {
+                Observer.Instance.Broadcast(EventId.OnShowMessage, "You can't catch this Pokemon!");
+                return;
+            }
+            if (data is Item discatchItem && discatchItem.ItemBase is CatchItem catchItem)
+            {
+                useMasterBall = catchItem.isMasterBall;
+                Inventory.Inventory.Instance.UseItem(discatchItem, null);
+                battleAction = BattleAction.Catch;
+                StartCoroutine(RunTurn());
+            }
+
         }
         public IEnumerator PlayerSwitchPokemon(PokemonPartySlot partySlot)
         {
@@ -211,7 +225,8 @@ namespace Pokemon.Scripts.Battle
         }
         public bool TryToCatchPokemon()
         {
-            float a = (3 * enemyBattlePkm.Pokemon.MaxHP - 2 * enemyBattlePkm.Pokemon.HP) * enemyBattlePkm.Pokemon.Data.catchRate / (3 * enemyBattlePkm.Pokemon.MaxHP);
+            float a = (3 * enemyBattlePkm.Pokemon.MaxHP - 2 * enemyBattlePkm.Pokemon.HP)
+             * enemyBattlePkm.Pokemon.Data.catchRate / (3 * enemyBattlePkm.Pokemon.MaxHP);
             if (a >= 1)
                 return true;
             else return false;
@@ -263,9 +278,9 @@ namespace Pokemon.Scripts.Battle
             }
             else if (battleAction == BattleAction.Catch)
             {
-                yield return ball.Throw();
+                yield return ball.Throw(useMasterBall);
                 yield return enemyBattlePkm.CatchAnimation(ball);
-                if (TryToCatchPokemon())
+                if (TryToCatchPokemon() || useMasterBall)
                 {
                     QuestManager.Instance.UpdateBattleQuestProgress(EQuest.CatchPokemon, enemyBattlePkm.Pokemon.Data.type);
                     yield return ball.CatchSuccess();

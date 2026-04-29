@@ -99,6 +99,18 @@ namespace Pokemon.Scripts.UI
             {
                 expBar?.transform.parent.gameObject.SetActive(false);
             }
+            if (status != null)
+            {
+                if (pokemonUnit.Condition != null)
+                {
+                    status.sprite = pokemonUnit.Condition.reportIcon;
+                    status.gameObject.SetActive(true);
+                }
+                else
+                {
+                    status.gameObject.SetActive(false);
+                }
+            }
         }
         public void UpdateTextLevel()
         {

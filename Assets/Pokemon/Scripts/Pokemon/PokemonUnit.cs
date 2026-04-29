@@ -180,9 +180,13 @@ namespace Pokemon.Scripts.Pokemon
                 conditionId = Condition != null ? Condition.conditionId : ConditionId.None
             };
         }
-        public void Heal()
+        public void HealMax()
         {
             HP = MaxHP;
+        }
+        public void CureCondition()
+        {
+            Condition = null;
         }
         public void SetStatusCondition(ConditionId id)
         {

@@ -12,7 +12,7 @@ namespace Pokemon.Scripts.MyUtils.Noti
             text.text = message;
             transform.localPosition = Vector2.zero;
             RectTransform itemRect = gameObject.GetComponent<RectTransform>();
-            transform.DOLocalMoveY(transform.localPosition.y + 200, 2f).SetEase(Ease.OutQuad).OnComplete(() => gameObject.SetActive(false));
+            transform.DOLocalMoveY(transform.localPosition.y + 400, 2f).SetEase(Ease.OutQuad).OnComplete(() => gameObject.SetActive(false));
         }
         void OnDisable()
         {

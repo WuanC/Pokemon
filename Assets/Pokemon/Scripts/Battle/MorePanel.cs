@@ -1,7 +1,10 @@
 using System;
 using DG.Tweening;
+using Pokemon.Scripts.Inventory;
+using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.UI;
 using Pokemon.Scripts.UI.Screens;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -12,6 +15,7 @@ namespace Pokemon.Scripts.Battle
     {
         [SerializeField] Button backBtn;
         [SerializeField] Button catchBtn;
+        [SerializeField] TextMeshProUGUI discatchCount;
         [SerializeField] Button itemBtn;
         [SerializeField] Button runBtn;
         [SerializeField] RectTransform btnContainer;
@@ -19,6 +23,7 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] PartyContainer partyContainer;
         [SerializeField] BattleController battleController;
         [SerializeField] InventoryScreen inventoryScreen;
+        private Item discatchItem;
         public void Start()
         {
             runBtn.onClick.AddListener(OnRun);
@@ -60,6 +65,7 @@ namespace Pokemon.Scripts.Battle
             btnContainer.anchoredPosition = new Vector3(btnContainer.anchoredPosition.x, btnContainer.anchoredPosition.y - 265);
             btnContainer.DOAnchorPosY(btnStartPos.y, duration);
             partyContainer.OpenParty(duration);
+            SetupDiscatch();
         }
         public void DisablePanel(float duration, Action onComplete)
         {
@@ -70,6 +76,22 @@ namespace Pokemon.Scripts.Battle
                 onComplete?.Invoke();
             });
         }
+        public void SetupDiscatch()
+        {
+            Item discatch = Inventory.Inventory.Instance.GetDiscatch();
+            if (discatch != null)
+            {
+                catchBtn.gameObject.SetActive(true);
+                discatchCount.text = discatch.Quantity.ToString();
+                discatchItem = discatch;
+
+            }
+            else
+            {
+                catchBtn.gameObject.SetActive(false);
+                discatchItem = null;
+            }
+        }
         public void OnRun()
         {
             battleController.RunBattle();
@@ -78,7 +100,10 @@ namespace Pokemon.Scripts.Battle
         {
             battleController.OpenMainPanel(() =>
             {
-                battleController.CatchPokemon();
+                if (discatchItem != null && discatchItem.ItemBase is CatchItem)
+                {
+                    Observer.Instance.Broadcast(EventId.OnItemDiscatchUsed, discatchItem);
+                }
             });
 
         }

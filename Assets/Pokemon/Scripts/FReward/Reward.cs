@@ -10,8 +10,6 @@ namespace Pokemon.Scripts.FReward
     [Serializable]
     public class Reward
     {
-        private const string ITEM_COINS = "Coins";
-        private const string ITEM_STARDUST = "Dusts";
         public List<Item> items;
         public List<PokemonParty> pokemons;
 
@@ -19,8 +17,8 @@ namespace Pokemon.Scripts.FReward
         {
             Reward reward = new Reward();
             reward.items = new List<Item>();
-            if (coinQuantity > 0) reward.items.Add(new Item(ItemDB.GetItemByName(ITEM_COINS), coinQuantity));
-            if (dustQuantity > 0) reward.items.Add(new Item(ItemDB.GetItemByName(ITEM_STARDUST), dustQuantity));
+            if (coinQuantity > 0) reward.items.Add(new Item(ItemDB.GetItemByName(Inventory.Inventory.COINS_NAME), coinQuantity));
+            if (dustQuantity > 0) reward.items.Add(new Item(ItemDB.GetItemByName(Inventory.Inventory.DUSTS_NAME), dustQuantity));
             return reward;
         }
 
