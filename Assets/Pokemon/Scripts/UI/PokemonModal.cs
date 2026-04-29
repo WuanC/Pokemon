@@ -10,6 +10,11 @@ using UnityEngine.UI;
 
 namespace Pokemon.Scripts.UI
 {
+    public enum BGType
+    {
+        Thumb,
+        Big
+    }
     public class PokemonModal : MonoBehaviour
     {
         [SerializeField] protected Image bg;
@@ -19,6 +24,7 @@ namespace Pokemon.Scripts.UI
         [SerializeField] protected Image hpBar;
         [SerializeField] protected Image expBar;
         [SerializeField] protected Image status;
+        [SerializeField] protected BGType bgType;
         protected PokemonUnit pokemonUnit;
         public PokemonUnit PokemonUnit => pokemonUnit;
         protected bool hasExpBar;
@@ -61,7 +67,24 @@ namespace Pokemon.Scripts.UI
                 {
                     status.gameObject.SetActive(false);
                 }
+
             }
+            SetBG(pkmUnit.Data.type, bgType);
+        }
+        public void SetBG(PkmType type, BGType bgType)
+        {
+            if (bg == null) return;
+            Sprite bgSprite = null;
+            switch (bgType)
+            {
+                case BGType.Thumb:
+                    bgSprite = GameController.Instance.typeData.GetThumbPanel(type);
+                    break;
+                case BGType.Big:
+                    bgSprite = GameController.Instance.typeData.GetBigPanel(type);
+                    break;
+            }
+            bg.sprite = bgSprite;
         }
         public void UpdateModal()
         {

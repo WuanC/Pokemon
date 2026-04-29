@@ -385,6 +385,7 @@ MonoBehaviour:
   hpBar: {fileID: 4960298311872839713}
   expBar: {fileID: 4263107932217253559}
   status: {fileID: 7703348948639825397}
+  bgType: 1
 --- !u!1 &3995043348478950949
 GameObject:
   m_ObjectHideFlags: 0

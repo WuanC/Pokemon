@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Pokemon.Scripts.Battle;
 using Pokemon.Scripts.Character;
 using Pokemon.Scripts.Condition;
+using Pokemon.Scripts.Data;
 using Pokemon.Scripts.FReward;
 using Pokemon.Scripts.Inventory;
 using Pokemon.Scripts.Map;
@@ -30,6 +31,7 @@ namespace Pokemon.Scripts
         private DragMap dragMap;
         [SerializeField] private Party playerParty;
         [SerializeField] private BattleController battleController;
+        public TypeData typeData;
         Node currentNode;
 
         void Start()
