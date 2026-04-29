@@ -300,12 +300,12 @@ namespace Pokemon.Scripts.Battle
         }
         public IEnumerator ActionMove(BattlePokemon attacker, BattlePokemon defender, Skill skill)
         {
-            if (attacker.Pokemon.StatusCondition != null)
+            if (attacker.Pokemon.Condition != null)
             {
-                bool cantMove = attacker.Pokemon.StatusCondition.CanApplyStatusBefore();
+                bool cantMove = attacker.Pokemon.Condition.CanApplyStatusBefore();
                 if (cantMove)
                 {
-                    attacker.pokemonImage.StartCoroutine(attacker.Pokemon.StatusCondition.StatusAnimation(attacker.pokemonImage.gameObject, 0.5f));
+                    attacker.pokemonImage.StartCoroutine(attacker.Pokemon.Condition.StatusAnimation(attacker.pokemonImage.gameObject, 0.5f));
                     yield break;
                 }
             }
@@ -361,24 +361,24 @@ namespace Pokemon.Scripts.Battle
         public IEnumerator CheckAfterTurn()
         {
             yield return new WaitForSeconds(0.5f);
-            if (playerBattlePkm.Pokemon.StatusCondition != null)
+            if (playerBattlePkm.Pokemon.Condition != null)
             {
-                if (playerBattlePkm.Pokemon.StatusCondition.CanApplyStatusAfter(playerBattlePkm.Pokemon))
+                if (playerBattlePkm.Pokemon.Condition.CanApplyStatusAfter(playerBattlePkm.Pokemon))
                 {
-                    playerBattlePkm.UpdateStatus(playerBattlePkm.Pokemon.StatusCondition.conditionId);
-                    playerBattlePkm.pokemonImage.StartCoroutine(playerBattlePkm.Pokemon.StatusCondition.StatusAnimation(playerBattlePkm.pokemonImage.gameObject, 0.5f));
+                    playerBattlePkm.UpdateStatus(playerBattlePkm.Pokemon.Condition.conditionId);
+                    playerBattlePkm.pokemonImage.StartCoroutine(playerBattlePkm.Pokemon.Condition.StatusAnimation(playerBattlePkm.pokemonImage.gameObject, 0.5f));
                     yield return playerBattlePkm.UpdateHp(0.5f);
 
                     yield return CheckPokemonFainted(playerBattlePkm);
                 }
 
             }
-            if (enemyBattlePkm.Pokemon.StatusCondition != null)
+            if (enemyBattlePkm.Pokemon.Condition != null)
             {
-                if (enemyBattlePkm.Pokemon.StatusCondition.CanApplyStatusAfter(enemyBattlePkm.Pokemon))
+                if (enemyBattlePkm.Pokemon.Condition.CanApplyStatusAfter(enemyBattlePkm.Pokemon))
                 {
-                    enemyBattlePkm.UpdateStatus(enemyBattlePkm.Pokemon.StatusCondition.conditionId);
-                    enemyBattlePkm.pokemonImage.StartCoroutine(enemyBattlePkm.Pokemon.StatusCondition.StatusAnimation(enemyBattlePkm.pokemonImage.gameObject, 0.5f));
+                    enemyBattlePkm.UpdateStatus(enemyBattlePkm.Pokemon.Condition.conditionId);
+                    enemyBattlePkm.pokemonImage.StartCoroutine(enemyBattlePkm.Pokemon.Condition.StatusAnimation(enemyBattlePkm.pokemonImage.gameObject, 0.5f));
                     yield return enemyBattlePkm.UpdateHp(0.5f);
                 }
 

@@ -65,10 +65,12 @@ namespace Pokemon.Scripts.Inventory
                 int itemIndex = pageIndex * itemSlots.Count + i;
                 if (itemIndex < inventory.items.Count)
                 {
+
                     itemSlots[i].SetItem(inventory.items[itemIndex]);
                 }
                 else
                 {
+
                     itemSlots[i].SetItem(null);
                 }
             }
@@ -79,6 +81,7 @@ namespace Pokemon.Scripts.Inventory
         public bool CanLoadPage(int pageIndex)
         {
             if (pageIndex < 0) return false;
+            if (pageIndex == 0) return true;
             return pageIndex * itemSlots.Count < inventory.items.Count;
         }
         public void SelectItem(Item item)

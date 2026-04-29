@@ -52,9 +52,9 @@ namespace Pokemon.Scripts.UI
             }
             if (status != null)
             {
-                if (pkmUnit.StatusCondition != null)
+                if (pkmUnit.Condition != null)
                 {
-                    status.sprite = pkmUnit.StatusCondition.reportIcon;
+                    status.sprite = pkmUnit.Condition.reportIcon;
                     status.gameObject.SetActive(true);
                 }
                 else

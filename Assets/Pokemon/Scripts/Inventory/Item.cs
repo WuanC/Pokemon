@@ -21,5 +21,25 @@ namespace Pokemon.Scripts.Inventory
             this.itemBase = itemBase;
             this.quantity = quantity;
         }
+        public Item(ItemSaveData saveData)
+        {
+            this.itemBase = ItemDB.GetItemByName(saveData.itemName);
+            this.quantity = saveData.quantity;
+        }
+        public ItemSaveData GetSaveData()
+        {
+
+            return new ItemSaveData
+            {
+
+                itemName = itemBase.itemName,
+                quantity = quantity
+            };
+        }
+    }
+    public class ItemSaveData
+    {
+        public string itemName;
+        public int quantity;
     }
 }

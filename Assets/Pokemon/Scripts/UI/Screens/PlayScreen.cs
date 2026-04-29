@@ -13,7 +13,6 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private Button worldBtn;
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private TextMeshProUGUI dustText;
-        [SerializeField] Inventory.Inventory inventory;
         [SerializeField] private int coinToSpawnCount;
         [SerializeField] private GameObject coinGO;
         [SerializeField] private GameObject dustGO;
@@ -33,8 +32,8 @@ namespace Pokemon.Scripts.UI.Screens
             {
                 if (item.ItemBase.itemName == "Coins" || item.ItemBase.itemName == "Dusts")
                 {
-                    coinText.text = inventory.GetCoins()?.Quantity.ToString() ?? "0";
-                    dustText.text = inventory.GetDusts()?.Quantity.ToString() ?? "0";
+                    coinText.text = Inventory.Inventory.Instance.GetCoins()?.Quantity.ToString() ?? "0";
+                    dustText.text = Inventory.Inventory.Instance.GetDusts()?.Quantity.ToString() ?? "0";
                 }
             }
 
@@ -43,8 +42,8 @@ namespace Pokemon.Scripts.UI.Screens
         public void Initialize()
         {
 
-            var coins = inventory.GetCoins();
-            var dusts = inventory.GetDusts();
+            var coins = Inventory.Inventory.Instance.GetCoins();
+            var dusts = Inventory.Inventory.Instance.GetDusts();
             coinText.text = coins != null ? coins.Quantity.ToString() : "0";
             dustText.text = dusts != null ? dusts.Quantity.ToString() : "0";
             worldBtn.gameObject.SetActive(false);
@@ -63,7 +62,7 @@ namespace Pokemon.Scripts.UI.Screens
         }
         public void AddCoinAnim(Vector3 startPos, int coinsAmount)
         {
-            inventory.AddItem(Inventory.Inventory.InitCoins(coinsAmount));
+            Inventory.Inventory.Instance.AddItem(Inventory.Inventory.InitCoins(coinsAmount));
             for (int i = 0; i < coinToSpawnCount; i++)
             {
                 GameObject coin = MyPoolManager.Instance.GetFromPool(coinGO);
@@ -84,32 +83,32 @@ namespace Pokemon.Scripts.UI.Screens
                 .SetDelay(i * 0.1f)
                 .OnComplete(() =>
                 {
-                    coinText.text = inventory.GetCoins()?.Quantity.ToString() ?? "0";
+                    coinText.text = Inventory.Inventory.Instance.GetCoins()?.Quantity.ToString() ?? "0";
                     coin.gameObject.SetActive(false);
                 });
             }
         }
         public bool CanPayCoins(int coinsAmount)
         {
-            var coins = inventory.GetCoins();
+            var coins = Inventory.Inventory.Instance.GetCoins();
             return coins != null && coins.Quantity >= coinsAmount;
         }
         public void PayCoins(int coinsAmount)
         {
             if (!CanPayCoins(coinsAmount)) return;
-            var coins = inventory.GetCoins();
+            var coins = Inventory.Inventory.Instance.GetCoins();
             coins.Quantity -= coinsAmount;
             coinText.text = coins.Quantity.ToString();
         }
         public bool CanPayDust(int dustAmount)
         {
-            var dusts = inventory.GetDusts();
+            var dusts = Inventory.Inventory.Instance.GetDusts();
             return dusts != null && dusts.Quantity >= dustAmount;
         }
         public void PayDust(int dustAmount)
         {
             if (!CanPayDust(dustAmount)) return;
-            var dusts = inventory.GetDusts();
+            var dusts = Inventory.Inventory.Instance.GetDusts();
             dusts.Quantity -= dustAmount;
             dustText.text = dusts.Quantity.ToString();
         }

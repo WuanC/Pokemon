@@ -15,7 +15,7 @@ namespace Pokemon.Scripts.Pokemon
         private Dictionary<Stat, int> statBases;
         private Dictionary<Stat, int> statBoosts;
         public int CurrentExp { get; set; }
-        public ConditionData StatusCondition { get; private set; }
+        public ConditionData Condition { get; private set; }
         public PokemonUnit(PokemonData data, int level)
         {
             this.Data = data;
@@ -42,6 +42,7 @@ namespace Pokemon.Scripts.Pokemon
             this.Level = saveData.level;
             this.CurrentExp = saveData.currentExp;
             this.HP = saveData.hp;
+            this.Condition = (saveData.conditionId != ConditionId.None) ? ConditionDB.GetConditionById(saveData.conditionId) : null;
             Skills = saveData.skills.Select(s => new Skill(s)).ToList();
             CalculateStat();
         }
@@ -175,7 +176,8 @@ namespace Pokemon.Scripts.Pokemon
                 level = Level,
                 currentExp = CurrentExp,
                 hp = HP,
-                skills = Skills.Select(s => s.GetSaveData()).ToList()
+                skills = Skills.Select(s => s.GetSaveData()).ToList(),
+                conditionId = Condition != null ? Condition.conditionId : ConditionId.None
             };
         }
         public void Heal()
@@ -186,11 +188,11 @@ namespace Pokemon.Scripts.Pokemon
         {
             if (id == ConditionId.None)
             {
-                this.StatusCondition = null;
+                this.Condition = null;
             }
             else
             {
-                this.StatusCondition = ConditionDB.GetConditionById(id);
+                this.Condition = ConditionDB.GetConditionById(id);
             }
 
         }
@@ -216,5 +218,6 @@ namespace Pokemon.Scripts.Pokemon
         public int currentExp;
         public int hp;
         public List<SkillSaveData> skills;
+        public ConditionId conditionId;
     }
 }

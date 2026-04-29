@@ -48,6 +48,7 @@ namespace Pokemon.Scripts
             yield return ItemDB.Init();
             QuestManager.Instance.Initialize();
             HubController.Instance.Initialize();
+            Inventory.Inventory.Instance.Initialize();
             ScreenManager.Instance.Initialize();
             playerParty.Initialize();
 

@@ -1,14 +1,38 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
+using Pokemon.Scripts.Saving;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Inventory
 {
-    public class Inventory : MonoBehaviour
+    public class Inventory : Singleton<Inventory>, ISavable
     {
-        public List<Item> items;
+        [SerializeField] private string saveKey = "Inventory";
+        public List<Item> items { get; private set; }
+        void OnDestroy()
+        {
+            CaptureState();
+        }
+        public void Initialize()
+        {
+            List<ItemSaveData> saveData = RestoreState() as List<ItemSaveData>;
+            if (saveData != null)
+            {
+                items = new List<Item>();
+                foreach (var itemData in saveData)
+                {
+                    items.Add(new Item(itemData));
+                }
+            }
+            else
+            {
+                items = new List<Item>();
+            }
+        }
         public bool UseItem(Item item, PokemonUnit target)
         {
             ItemBase baseItem = item.ItemBase;
@@ -65,6 +89,28 @@ namespace Pokemon.Scripts.Inventory
         {
             return new Item(ItemDB.GetItemByName("Dusts"), quantity);
         }
+
+        public void CaptureState()
+        {
+            Debug.Log("Capture Inventory State");
+            if (items == null || items.Count == 0) return;
+            List<ItemSaveData> saveDataList = new List<ItemSaveData>();
+            foreach (var item in items)
+            {
+                saveDataList.Add(item.GetSaveData());
+            }
+            string json = JsonConvert.SerializeObject(saveDataList, Formatting.Indented);
+            PlayerPrefs.SetString(saveKey, json);
+        }
+
+        public object RestoreState()
+        {
+            string saveDataJson = PlayerPrefs.GetString(saveKey);
+            if (string.IsNullOrEmpty(saveDataJson)) return null;
+
+            return JsonConvert.DeserializeObject<List<ItemSaveData>>(saveDataJson);
+        }
+
     }
 
 
