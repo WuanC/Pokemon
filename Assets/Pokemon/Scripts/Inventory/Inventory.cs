@@ -96,7 +96,30 @@ namespace Pokemon.Scripts.Inventory
         {
             return new Item(ItemDB.GetItemByName(DUSTS_NAME), quantity);
         }
-
+        public bool CanPayCoins(int coinsAmount)
+        {
+            Item coins = GetCoins();
+            return coins != null && coins.Quantity >= coinsAmount;
+        }
+        public void PayCoins(int coinsAmount)
+        {
+            if (!CanPayCoins(coinsAmount)) return;
+            Item coins = GetCoins();
+            coins.Quantity -= coinsAmount;
+            Observer.Instance.Broadcast(EventId.OnUpdateItem, coins);
+        }
+        public bool CanPayDust(int dustAmount)
+        {
+            Item dusts = GetDusts();
+            return dusts != null && dusts.Quantity >= dustAmount;
+        }
+        public void PayDust(int dustAmount)
+        {
+            if (!CanPayDust(dustAmount)) return;
+            Item dusts = GetDusts();
+            dusts.Quantity -= dustAmount;
+            Observer.Instance.Broadcast(EventId.OnUpdateItem, dusts);
+        }
         public void CaptureState()
         {
             Debug.Log("Capture Inventory State");

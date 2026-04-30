@@ -15,9 +15,9 @@ MonoBehaviour:
   itemName: Super potion
   description: Heal 80 hp
   icon: {fileID: 21300000, guid: 244694a3baa6669418eef2514755f3b7, type: 3}
+  price: 100
   hpAmount: 80
   restoreFullHp: 0
-  ppAmount: 0
-  restoreFullPp: 0
+  conditionId: 0
   revive: 0
   maxRevive: 0

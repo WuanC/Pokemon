@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Max Revive
   description: ' it revives the Pokemon and restores all of the Pokemon''s HP'
   icon: {fileID: 21300000, guid: 96c1f7bfa85f72a4db93d181edfd6aee, type: 3}
+  price: 200
   hpAmount: 0
   restoreFullHp: 0
   conditionId: 0

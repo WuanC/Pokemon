@@ -16,7 +16,6 @@ namespace Pokemon.Scripts.UI.Screens
     public class EnterHubScreen : ScreenBase
     {
         private MapData mapData;
-        [SerializeField] private PlayScreen playScreen;
         [Header("Unlock pannel")]
         [SerializeField] private Button goBtn;
         [SerializeField] private Image hubImage;
@@ -58,9 +57,9 @@ namespace Pokemon.Scripts.UI.Screens
                     goldRequiredText.text = mapCondition.goldRequired.ToString();
                     buyBtn.onClick.AddListener(() =>
                     {
-                        if (playScreen.CanPayCoins(mapCondition.goldRequired))
+                        if (Inventory.Inventory.Instance.CanPayCoins(mapCondition.goldRequired))
                         {
-                            playScreen.PayCoins(mapCondition.goldRequired);
+                            Inventory.Inventory.Instance.PayCoins(mapCondition.goldRequired);
                             LockPanelDeactive();
                             HubController.Instance.UnlockHub(mapData.hubName);
                             ActivePannelUnlock(onGoBtnClick);

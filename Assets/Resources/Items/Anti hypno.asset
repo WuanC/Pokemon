@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Antihypo
   description: Remove HYPNO from pokemon
   icon: {fileID: 21300000, guid: 934810157479a7a4a93ec973506c7c66, type: 3}
+  price: 25
   hpAmount: 0
   restoreFullHp: 0
   conditionId: 1

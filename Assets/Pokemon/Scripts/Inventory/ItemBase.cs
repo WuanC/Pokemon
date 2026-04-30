@@ -11,6 +11,7 @@ namespace Pokemon.Scripts.Inventory
         public string itemName;
         public string description;
         public Sprite icon;
+        public int price;
         public virtual bool Use(PokemonUnit pokemon)
         {
             Observer.Instance.Broadcast(EventId.OnShowMessage, $"Can't use {itemName} on {pokemon.Data.pokemonName}");

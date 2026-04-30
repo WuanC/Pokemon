@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Discatch
   description: Used to CATCH wild Dynamons
   icon: {fileID: 21300000, guid: b9460d0cb7f2fcc46b338c28a3ad54bd, type: 3}
+  price: 20
   catchRate: 1
   isMasterBall: 0

@@ -88,29 +88,6 @@ namespace Pokemon.Scripts.UI.Screens
                 });
             }
         }
-        public bool CanPayCoins(int coinsAmount)
-        {
-            var coins = Inventory.Inventory.Instance.GetCoins();
-            return coins != null && coins.Quantity >= coinsAmount;
-        }
-        public void PayCoins(int coinsAmount)
-        {
-            if (!CanPayCoins(coinsAmount)) return;
-            var coins = Inventory.Inventory.Instance.GetCoins();
-            coins.Quantity -= coinsAmount;
-            coinText.text = coins.Quantity.ToString();
-        }
-        public bool CanPayDust(int dustAmount)
-        {
-            var dusts = Inventory.Inventory.Instance.GetDusts();
-            return dusts != null && dusts.Quantity >= dustAmount;
-        }
-        public void PayDust(int dustAmount)
-        {
-            if (!CanPayDust(dustAmount)) return;
-            var dusts = Inventory.Inventory.Instance.GetDusts();
-            dusts.Quantity -= dustAmount;
-            dustText.text = dusts.Quantity.ToString();
-        }
+
     }
 }
