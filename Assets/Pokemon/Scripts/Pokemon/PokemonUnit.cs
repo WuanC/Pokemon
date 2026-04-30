@@ -25,14 +25,15 @@ namespace Pokemon.Scripts.Pokemon
             CurrentExp = CalculateExpYield(level);
             for (int i = 0; i < Data.learnableSkills.Count; i++)
             {
-                if (Data.learnableSkills[i].levelRequirement <= Level)
-                {
-                    Skills.Add(new Skill(Data.learnableSkills[i].skillData));
-                }
                 if (i >= 4)
                 {
                     break;
                 }
+                if (Data.learnableSkills[i].levelRequirement <= Level)
+                {
+                    Skills.Add(new Skill(Data.learnableSkills[i].skillData));
+                }
+
             }
             CalculateStat();
         }
@@ -152,6 +153,10 @@ namespace Pokemon.Scripts.Pokemon
         public bool HasMaxSkills()
         {
             return Skills.Count == 4;
+        }
+        public bool ContainsSkill(SkillData skill)
+        {
+            return Skills.FirstOrDefault(s => s.Data.skillName == skill.skillName) != null;
         }
         public PokemonData GetPokemonEvoluttion()
         {

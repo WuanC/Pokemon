@@ -106,7 +106,12 @@ namespace Pokemon.Scripts.Inventory
             if (!CanPayCoins(coinsAmount)) return;
             Item coins = GetCoins();
             coins.Quantity -= coinsAmount;
+            if (coins.Quantity <= 0)
+            {
+                RemoveItem(coins);
+            }
             Observer.Instance.Broadcast(EventId.OnUpdateItem, coins);
+
         }
         public bool CanPayDust(int dustAmount)
         {
@@ -118,6 +123,10 @@ namespace Pokemon.Scripts.Inventory
             if (!CanPayDust(dustAmount)) return;
             Item dusts = GetDusts();
             dusts.Quantity -= dustAmount;
+            if (dusts.Quantity <= 0)
+            {
+                RemoveItem(dusts);
+            }
             Observer.Instance.Broadcast(EventId.OnUpdateItem, dusts);
         }
         public void CaptureState()

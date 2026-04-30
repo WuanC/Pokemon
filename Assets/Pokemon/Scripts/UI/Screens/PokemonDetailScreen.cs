@@ -17,6 +17,8 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private Transform skillParent;
         [SerializeField] private SkillLocker skillIcon;
         List<SkillLocker> skillLockers = new();
+        [SerializeField]
+        private SkillDetailScreen skillDetailScreen;
         public void Initialize(PokemonUnit pokemonUnit)
         {
             pkmImage.sprite = pokemonUnit.Data.frontSprite;
@@ -28,7 +30,23 @@ namespace Pokemon.Scripts.UI.Screens
                 GameObject skillLockerGO = MyPoolManager.Instance.GetFromPool(skillIcon.gameObject, skillParent);
                 skillLockerGO.transform.SetSiblingIndex(i);
                 SkillLocker skillLocker = skillLockerGO.GetComponent<SkillLocker>();
-                skillLocker.Initialize(pokemonUnit, pokemonUnit.Data.learnableSkills[i]);
+                skillLocker.Initialize(pokemonUnit, pokemonUnit.Data.learnableSkills[i], skillDetailScreen);
+                skillLockers.Add(skillLocker);
+            }
+        }
+        public void ReloadSkill(PokemonUnit pokemonUnit)
+        {
+            foreach (var skill in skillLockers)
+            {
+                skill.gameObject.SetActive(false);
+            }
+            skillLockers.Clear();
+            for (int i = 0; i < pokemonUnit.Data.learnableSkills.Count; i++)
+            {
+                GameObject skillLockerGO = MyPoolManager.Instance.GetFromPool(skillIcon.gameObject, skillParent);
+                skillLockerGO.transform.SetSiblingIndex(i);
+                SkillLocker skillLocker = skillLockerGO.GetComponent<SkillLocker>();
+                skillLocker.Initialize(pokemonUnit, pokemonUnit.Data.learnableSkills[i], skillDetailScreen);
                 skillLockers.Add(skillLocker);
             }
         }

@@ -1,6 +1,7 @@
 using Pokemon.Scripts.Data;
 using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Pokemon.Scripts.Map
 {
@@ -32,16 +33,19 @@ namespace Pokemon.Scripts.Map
 
         private void OnMouseDown()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             SetPressedVisual(true);
         }
 
         private void OnMouseUp()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             SetPressedVisual(false);
         }
 
         private void OnMouseExit()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             SetPressedVisual(false);
         }
 
