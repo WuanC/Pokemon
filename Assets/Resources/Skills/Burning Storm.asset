@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c120df4b3774e845a5f3052e69a6252, type: 3}
-  m_Name: Tackle 1
+  m_Name: Burning Storm
   m_EditorClassIdentifier: 
-  skillName: Pillar of fire
+  skillName: Burning storm
   description: Growl lowers the target's Attack by one stage. Stats can be lowered
     to a minimum of -6 stages each.
-  elementType: 2
-  icon: {fileID: 21300000, guid: 97ef19c5e3fcf764e8027ec9408d7116, type: 3}
-  power: 80
-  accuracy: 100
+  elementType: 0
+  icon: {fileID: 21300000, guid: 65579f96a659650419c644980db385d3, type: 3}
+  power: 10
+  accuracy: 0
   category: 0
-  statBoosts: []
   targetType: 1
   skillPriority: 0
-  vfxPrefab: {fileID: 6266345863746318625, guid: 5dcbdfbcc9635e0458c8b28016aab7c6,
-    type: 3}
+  skillFx: {fileID: 11400000, guid: 2fe6a1405fb0ccf459f47e560252d5fe, type: 2}
+  moveEffect:
+    statBoosts:
+    - stat: 0
+      boostAmount: 1
+    conditionId: 0
