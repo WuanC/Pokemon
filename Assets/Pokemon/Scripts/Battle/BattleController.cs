@@ -324,16 +324,11 @@ namespace Pokemon.Scripts.Battle
                     yield break;
                 }
             }
-            StartCoroutine(ShowSkillName(skill.Data.name));
+            StartCoroutine(ShowSkillName(skill.Data.skillName));
             yield return new WaitForSeconds(0.5f);
             yield return attacker.AttackAnimation().WaitForCompletion();
-            defender.HitAnimation();
-            GameObject skillFx = null;
-            if (skill.Data.vfxPrefab != null)
-            {
-                skillFx = MyPoolManager.Instance.GetFromPool(skill.Data.vfxPrefab);
-                skillFx.transform.position = defender.pokemonImage.transform.position;
-            }
+            if (skill.Data.skillFx != null)
+                yield return skill.Data.skillFx.CastEffectCoroutine(attacker, defender);
             if (skill.Data.category == CategorySkill.Status)
             {
                 foreach (var statBoost in skill.Data.moveEffect.statBoosts)
@@ -367,10 +362,6 @@ namespace Pokemon.Scripts.Battle
                 float hpFraction = (float)defender.Pokemon.HP / defender.Pokemon.MaxHP;
                 yield return defender.UpdateHp(hpFraction, 0.5f);
 
-            }
-            if (skillFx != null)
-            {
-                skillFx.gameObject.SetActive(false);
             }
         }
         public IEnumerator CheckAfterTurn()

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Pokemon.Scripts.Battle;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Pokemon
@@ -16,7 +17,7 @@ namespace Pokemon.Scripts.Pokemon
 
         public TargetType targetType;
         public int skillPriority;
-        public GameObject vfxPrefab;
+        public SkillFx skillFx;
         public MoveEffect moveEffect;
     }
     [System.Serializable]

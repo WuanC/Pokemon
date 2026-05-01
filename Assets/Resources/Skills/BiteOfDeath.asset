@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c120df4b3774e845a5f3052e69a6252, type: 3}
+  m_Name: BiteOfDeath
+  m_EditorClassIdentifier: 
+  skillName: Bite of Death
+  description: Growl lowers the target's Attack by one stage. Stats can be lowered
+    to a minimum of -6 stages each.
+  elementType: 5
+  icon: {fileID: 21300000, guid: 262ecf6faae92f34cae78b1d4bbe2e08, type: 3}
+  power: 10
+  accuracy: 0
+  category: 0
+  targetType: 1
+  skillPriority: 0
+  skillFx: {fileID: 11400000, guid: 97b5b8451f859e347801720441a38d39, type: 2}
+  moveEffect:
+    statBoosts: []
+    conditionId: 0
