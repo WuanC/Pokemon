@@ -13,6 +13,7 @@ namespace Pokemon.Scripts.Pokemon
         Spirit,
         Diamond,
         Gold,
+        Normal
 
     }
     public class TypeChart
@@ -28,6 +29,7 @@ namespace Pokemon.Scripts.Pokemon
         new float[] {1f,   1f,     1f,     1f,    0.5f, 1,    2f,         1f}, // Spirit
         new float[] {2f,   1f,     1f,     0.5f,  2f,   0.5f, 1f,        1f}, // Diamond
         new float[] {1f,   1f,     1f,     1f,    1f,   1f,   1f,         1f}, // Gold
+        new float[] {1f,   1f,     1f,     1f,    1f,   1f,   1f,         1f}, // Normal
 };
         public static float GetEffectiveness(PkmType attackType, PkmType defenseType)
         {

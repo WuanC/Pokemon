@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f047083960f74c948bbe2370bf352e6a, type: 3}
   m_Name: Sonic Sock
   m_EditorClassIdentifier: 
-  targetFxPrefab: {fileID: 346115955245213215, guid: dd34d6f620dba884fa94a2bf2201a909,
+  targetFxPrefab: {fileID: 0}
+  ownerFxPrefab: {fileID: 346115955245213215, guid: dd34d6f620dba884fa94a2bf2201a909,
     type: 3}
-  ownerFxPrefab: {fileID: 0}
   fxDuration: 0.5
   fxType: 1
+  projectilesCount: 5

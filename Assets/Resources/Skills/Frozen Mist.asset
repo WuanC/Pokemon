@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c120df4b3774e845a5f3052e69a6252, type: 3}
+  m_Name: Frozen Mist
+  m_EditorClassIdentifier: 
+  skillName: FROZEN MIST
+  description: Growl lowers the target's Attack by one stage. Stats can be lowered
+    to a minimum of -6 stages each.
+  elementType: 1
+  icon: {fileID: 21300000, guid: 3219c09317f9f114491403a442fdfa96, type: 3}
+  power: 10
+  accuracy: 0
+  category: 0
+  targetType: 1
+  skillPriority: 0
+  skillFx: {fileID: 11400000, guid: f342b3e7b2d74854ebec96154d314c82, type: 2}
+  moveEffect:
+    statBoosts:
+    - stat: 0
+      boostAmount: -1
+    conditionId: 0
