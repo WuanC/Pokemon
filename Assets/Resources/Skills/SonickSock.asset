@@ -22,7 +22,7 @@ MonoBehaviour:
   category: 0
   targetType: 1
   skillPriority: 0
-  skillFx: {fileID: 11400000, guid: b7e34b77daa77924293a377a6063d450, type: 2}
+  skillFx: {fileID: 11400000, guid: d2358eddc12664648b0c21ea8d7e8576, type: 2}
   moveEffect:
     statBoosts:
     - stat: 1

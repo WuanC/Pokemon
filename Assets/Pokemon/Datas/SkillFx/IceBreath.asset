@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71432760685e8e647891464b444f6d65, type: 3}
+  m_Name: IceBreath
+  m_EditorClassIdentifier: 
+  targetFxPrefab: {fileID: 0}
+  ownerFxPrefab: {fileID: 8414330937904623957, guid: f7b5ffd93ce569e4c8d847d3f31004a2,
+    type: 3}
+  mapFxPrefab: {fileID: 0}
+  fxDuration: 1
+  projectilesCount: 10
+  projectileSpawnInterval: 0.07
+  projectileLoadDuration: 0
+  moveDuration: 1

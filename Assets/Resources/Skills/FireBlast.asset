@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c120df4b3774e845a5f3052e69a6252, type: 3}
   m_Name: FireBlast
   m_EditorClassIdentifier: 
-  skillName: Fire blast
+  skillName: HELLFIRE
   description: Growl lowers the target's Attack by one stage. Stats can be lowered
     to a minimum of -6 stages each.
   elementType: 0
