@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c120df4b3774e845a5f3052e69a6252, type: 3}
+  m_Name: RageFireRing
+  m_EditorClassIdentifier: 
+  skillName: RAGE FIRE RING
+  description: Growl lowers the target's Attack by one stage. Stats can be lowered
+    to a minimum of -6 stages each.
+  elementType: 0
+  icon: {fileID: 21300000, guid: 1199c92e632c09949ac197e869b918a1, type: 3}
+  power: 10
+  accuracy: 0
+  category: 1
+  targetType: 0
+  skillPriority: 0
+  skillFx: {fileID: 11400000, guid: 4701d149f384a3a44b8c6ed20b749cae, type: 2}
+  moveEffect:
+    statBoosts:
+    - stat: 1
+      boostAmount: 2
+    conditionId: 0

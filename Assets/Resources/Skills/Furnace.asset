@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c120df4b3774e845a5f3052e69a6252, type: 3}
+  m_Name: Furnace
+  m_EditorClassIdentifier: 
+  skillName: FURNACE
+  description: Growl lowers the target's Attack by one stage. Stats can be lowered
+    to a minimum of -6 stages each.
+  elementType: 0
+  icon: {fileID: 21300000, guid: b31730b6b8bcd1d48a4860f17ed4488b, type: 3}
+  power: 10
+  accuracy: 0
+  category: 0
+  targetType: 1
+  skillPriority: 0
+  skillFx: {fileID: 11400000, guid: 8300ba59d37209843943ed95013c2634, type: 2}
+  moveEffect:
+    statBoosts:
+    - stat: 0
+      boostAmount: 1
+    conditionId: 2

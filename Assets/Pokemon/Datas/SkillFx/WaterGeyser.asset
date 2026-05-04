@@ -16,4 +16,4 @@ MonoBehaviour:
     type: 3}
   ownerFxPrefab: {fileID: 0}
   mapFxPrefab: {fileID: 0}
-  fxDuration: 1
+  fxDuration: 0.5

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Pokemon.Scripts.Battle;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Pokemon
@@ -10,6 +11,7 @@ namespace Pokemon.Scripts.Pokemon
         public string skillName;
         public string description;
         public PkmType elementType;
+        [PreviewField]
         public Sprite icon;
         public int power;
         public int accuracy;

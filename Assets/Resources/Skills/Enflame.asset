@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c120df4b3774e845a5f3052e69a6252, type: 3}
+  m_Name: Enflame
+  m_EditorClassIdentifier: 
+  skillName: ENFLAME
+  description: Growl lowers the target's Attack by one stage. Stats can be lowered
+    to a minimum of -6 stages each.
+  elementType: 0
+  icon: {fileID: 21300000, guid: 908081121473ed14db4469ac7a30f343, type: 3}
+  power: 10
+  accuracy: 0
+  category: 1
+  targetType: 0
+  skillPriority: 0
+  skillFx: {fileID: 11400000, guid: 2332adbee47b5ab408d177e33a0458f4, type: 2}
+  moveEffect:
+    statBoosts:
+    - stat: 0
+      boostAmount: 2
+    conditionId: 0
