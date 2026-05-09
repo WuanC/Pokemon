@@ -15,4 +15,5 @@ MonoBehaviour:
   targetFxPrefab: {fileID: 7766560672032936688, guid: 9005de04af6b3b243b065359c2fdf179,
     type: 3}
   ownerFxPrefab: {fileID: 0}
-  fxDuration: 0.5
+  mapFxPrefab: {fileID: 0}
+  fxDuration: 0.17

@@ -24,7 +24,9 @@ namespace Pokemon.Scripts.UI
             {
                 if (i < strongTypes.Count)
                 {
-                    strongIcon[i].sprite = typeData.symbols.FirstOrDefault(x => x.type == strongTypes[i]).icon;
+                    Sprite icon = typeData.symbols.FirstOrDefault(x => x.type == strongTypes[i])?.icon;
+                    if (icon == null) continue;
+                    strongIcon[i].sprite = icon;
                     strongIcon[i].gameObject.SetActive(true);
                 }
                 else
@@ -36,7 +38,9 @@ namespace Pokemon.Scripts.UI
             {
                 if (i < weakTypes.Count)
                 {
-                    weakIcon[i].sprite = typeData.symbols.FirstOrDefault(x => x.type == weakTypes[i]).icon;
+                    Sprite icon = typeData.symbols.FirstOrDefault(x => x.type == weakTypes[i])?.icon;
+                    if (icon == null) continue;
+                    weakIcon[i].sprite = icon;
                     weakIcon[i].gameObject.SetActive(true);
                 }
                 else

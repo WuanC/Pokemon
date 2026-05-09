@@ -20,16 +20,16 @@ namespace Pokemon.Scripts.Pokemon
     {
         private static float[][] chart =
         {
-           //        Fire, Water,Electric,Earth, Dark, Spirit, Diamond,   Gold 
-        new float[] {1f,   0.5f,   1f,     2f,    1f,   2f,   0.5f,       1f}, // Fire
-        new float[] {2f,   1f,     1f,     2f,    1f,   1f,   0.5f,       1f}, // Water
-        new float[] {1f,   2f,     1f,     0f,    1f,   1f,   1f,         1f},   // Electric
-        new float[] {0.5f, 1f,     2f,     1f,    2f,   1f,   2f,         1f}, // Grass
-        new float[] {2f,   0.5f,   0.5f,   2f,    1f,   2f,   1f,        0.5f}, // Dark
-        new float[] {1f,   1f,     1f,     1f,    0.5f, 1,    2f,         1f}, // Spirit
-        new float[] {2f,   1f,     1f,     0.5f,  2f,   0.5f, 1f,        1f}, // Diamond
-        new float[] {1f,   1f,     1f,     1f,    1f,   1f,   1f,         1f}, // Gold
-        new float[] {1f,   1f,     1f,     1f,    1f,   1f,   1f,         1f}, // Normal
+           //        Fire, Water,Electric,Earth, Dark, Spirit, Diamond,   Gold, Normal
+        new float[] {1f,   0.5f,   1f,     2f,    1f,   2f,   0.5f,       1f , 1f}, // Fire
+        new float[] {2f,   1f,     1f,     2f,    1f,   1f,   0.5f,       1f,  1f}, // Water
+        new float[] {1f,   2f,     1f,     0f,    1f,   1f,   1f,         1f,  1f},   // Electric
+        new float[] {0.5f, 1f,     2f,     1f,    2f,   1f,   2f,         1f,  1f}, // Grass
+        new float[] {2f,   0.5f,   0.5f,   2f,    1f,   2f,   1f,        0.5f, 1f}, // Dark
+        new float[] {1f,   1f,     1f,     1f,    0.5f, 1,    2f,         1f,  1f}, // Spirit
+        new float[] {2f,   1f,     1f,     0.5f,  2f,   0.5f, 1f,        1f,  1f}, // Diamond
+        new float[] {1f,   1f,     1f,     1f,    1f,   1f,   1f,         1f,  1f}, // Gold
+        new float[] {1f,   1f,     1f,     1f,    1f,   1f,   1f,         1f,  1f}, // Normal
 };
         public static float GetEffectiveness(PkmType attackType, PkmType defenseType)
         {

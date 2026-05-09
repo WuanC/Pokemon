@@ -2251,7 +2251,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &115136580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15286,7 +15286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 252, y: 259}
+  m_AnchoredPosition: {x: 252, y: 176}
   m_SizeDelta: {x: 320, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &893399445
@@ -15361,8 +15361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 251, y: 348}
-  m_SizeDelta: {x: 296, y: 80}
+  m_AnchoredPosition: {x: 260, y: 305}
+  m_SizeDelta: {x: 432.65, y: 151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &895583798
 MonoBehaviour:
@@ -15412,7 +15412,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.85
+  m_fontSize: 67.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -39571,6 +39571,84 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &5618907829026324701
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 341460687310604082, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_Name
+      value: GlodenBeam
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358801188985507821, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458721218169135568, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5884791504580265924, guid: 53adbe278d6235948b5b5aa4d2186459,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53adbe278d6235948b5b5aa4d2186459, type: 3}
 --- !u!222 &5633948345778346837
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40220,3 +40298,4 @@ SceneRoots:
   - {fileID: 1299636204}
   - {fileID: 861918686}
   - {fileID: 1753317580}
+  - {fileID: 5618907829026324701}
