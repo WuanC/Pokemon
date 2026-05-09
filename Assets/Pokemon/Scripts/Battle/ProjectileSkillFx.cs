@@ -36,7 +36,9 @@ namespace Pokemon.Scripts.Battle
                     projectile.transform.DOMove(
                                 target.pokemonImage.transform.position,
                                 moveDuration
-                            ).OnComplete(() =>
+                            )
+                            .SetEase(Ease.Linear)
+                            .OnComplete(() =>
                             {
                                 projectile.SetActive(false);
                                 target.HitAnimation();
