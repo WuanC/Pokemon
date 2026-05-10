@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: death_claw_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 197.33333
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aad797bc3f718ec4aa6b0c9756b13322
+      internalID: 1388929070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death_claw_1
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 0
+        width: 197.33333
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8d89239121768f47bbee855b1ab82f5
+      internalID: 1099767159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death_claw_2
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 0
+        width: 197.33333
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f1148b1f50b4fa4593f0bb347589236
+      internalID: -1397021481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death_claw_3
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 0
+        width: 197.33333
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d2307a9a0b71e34aa93b6115091c990
+      internalID: -1348000995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death_claw_4
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 0
+        width: 197.33333
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6925fc7fefd5f564ca80735992e07955
+      internalID: 1813481205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death_claw_5
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 0
+        width: 197.33333
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09223ed4710d624ca37a934e4411d17
+      internalID: -219960656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +258,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      death_claw_0: 1388929070
+      death_claw_1: 1099767159
+      death_claw_2: -1397021481
+      death_claw_3: -1348000995
+      death_claw_4: 1813481205
+      death_claw_5: -219960656
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

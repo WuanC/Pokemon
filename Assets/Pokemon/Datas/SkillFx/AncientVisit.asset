@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f047083960f74c948bbe2370bf352e6a, type: 3}
   m_Name: AncientVisit
   m_EditorClassIdentifier: 
-  targetFxPrefab: {fileID: 6266345863746318625, guid: afb475a6fccf3074d9eae86b9a05b85c,
+  targetFxPrefab: {fileID: 7918292874223856352, guid: 51007f8989e27bb4e8bfd9406986c6e6,
     type: 3}
   ownerFxPrefab: {fileID: 0}
-  fxDuration: 1
+  mapFxPrefab: {fileID: 0}
+  fxDuration: 1.5
+  mirrorSkillFx: 0

@@ -21,6 +21,12 @@ namespace Pokemon.Scripts.Pokemon
         public int skillPriority;
         public SkillFx skillFx;
         public MoveEffect moveEffect;
+
+        private void OnValidate()
+        {
+            if (string.IsNullOrEmpty(skillName))
+                skillName = name;
+        }
     }
     [System.Serializable]
     public class MoveEffect

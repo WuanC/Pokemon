@@ -1,6 +1,7 @@
 using System.Collections;
 using DG.Tweening;
 using Pokemon.Scripts.MyUtils.ObjectPooling;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Battle
@@ -16,8 +17,9 @@ namespace Pokemon.Scripts.Battle
         [SerializeField] protected GameObject targetFxPrefab;
         [SerializeField] protected GameObject ownerFxPrefab;
         [SerializeField] protected GameObject mapFxPrefab;
+        [ShowIf("@this.GetType() == typeof(SkillFx)")]
         [SerializeField] protected float fxDuration;
-
+        [SerializeField] protected bool mirrorSkillFx = true;
         public virtual IEnumerator CastEffectCoroutine(BattlePokemon owner, BattlePokemon target)
         {
 
@@ -28,6 +30,15 @@ namespace Pokemon.Scripts.Battle
             {
                 ownerFx = MyPoolManager.Instance.GetFromPool(ownerFxPrefab);
                 ownerFx.transform.position = owner.pokemonImage.transform.position;
+                if (mirrorSkillFx)
+                    if (owner.IsPlayerPokemon)
+                    {
+                        ownerFx.transform.localScale = Vector3.one;
+                    }
+                    else
+                    {
+                        ownerFx.transform.localScale = new Vector3(-1, -1, 1);
+                    }
 
             }
             if (targetFxPrefab != null)

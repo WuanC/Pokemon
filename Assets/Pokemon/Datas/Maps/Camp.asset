@@ -15,7 +15,6 @@ MonoBehaviour:
   hubName: Camp
   mapCondition: {fileID: 0}
   pokemonInMaps:
-  - {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
   - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
   hubIcon: {fileID: 21300000, guid: 714db5a4e4419414cbe5b24b65cec4f9, type: 3}
   headerMap: {fileID: 21300000, guid: df6d05ce5cbf7284999294ae6aed4a19, type: 3}
