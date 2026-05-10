@@ -29,7 +29,7 @@ MonoBehaviour:
   defense: 40
   speed: 90
   learnableSkills:
-  - skillData: {fileID: 11400000, guid: 7c887ce184bc34641a9b7f65e5bf1b33, type: 2}
+  - skillData: {fileID: 11400000, guid: 1b72a5fe6e80a7a449b5ae25b0ee0489, type: 2}
     levelRequirement: 1
   evolutions:
   - pokemonData: {fileID: 11400000, guid: 32c10f98ad7f3bf49b90bf2bc3bcd5bb, type: 2}
