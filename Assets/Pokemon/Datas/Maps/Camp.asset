@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hubName: Camp
   mapCondition: {fileID: 0}
-  pokemonInMaps:
-  - {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
+  pkmRates:
+  - pokemonData: {fileID: 11400000, guid: 0fc7659353f6c264391412d612b477c0, type: 2}
+    rate: 80
+  - pokemonData: {fileID: 11400000, guid: 263b144231dab7c449623349cbd49b82, type: 2}
+    rate: 20
   hubIcon: {fileID: 21300000, guid: 714db5a4e4419414cbe5b24b65cec4f9, type: 3}
   headerMap: {fileID: 21300000, guid: df6d05ce5cbf7284999294ae6aed4a19, type: 3}
   mapBackground: {fileID: 21300000, guid: b7e6caa144a57e64992df09eb3d908cf, type: 3}

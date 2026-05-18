@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Pokemon.Scripts.Map
 {
@@ -72,9 +73,18 @@ namespace Pokemon.Scripts.Map
         }
         public PokemonUnit GetRandomPokemon()
         {
-            int level = UnityEngine.Random.Range(rangeLevel.x, rangeLevel.y + 1);
-            PokemonData data = map.pokemonInMaps[Random.Range(0, map.pokemonInMaps.Count)];
-            return new PokemonUnit(data, level);
+            float random = UnityEngine.Random.Range(0f, 100f);
+            foreach (var pokemonData in map.pokemonInMaps)
+            {
+                if (random < pokemonData.rate)
+                {
+                    int level = UnityEngine.Random.Range(rangeLevel.x, rangeLevel.y + 1);
+                    PokemonUnit pokemonUnit = new PokemonUnit(pokemonData.pokemonData, level);
+                    return pokemonUnit;
+                }
+                random -= pokemonData.rate;
+            }
+            return null;
         }
     }
 }

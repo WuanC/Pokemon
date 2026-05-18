@@ -14,7 +14,7 @@ namespace Pokemon.Scripts.Map
         private DragMap dragMap;
         private Player player;
         private Camera mainCamera;
-        public List<PokemonData> pokemonInMaps { get; private set; }
+        public List<PokemonMapData> pokemonInMaps { get; private set; }
         void Awake()
         {
             player = GetComponentInChildren<Player>();
@@ -23,7 +23,7 @@ namespace Pokemon.Scripts.Map
         public void InitializeMap(MapData mapData)
         {
             HubName = mapData.hubName;
-            pokemonInMaps = mapData.pokemonInMaps;
+            pokemonInMaps = mapData.pkmRates;
             mainCamera = Camera.main;
             GameController.Instance.MapRegister(dragMap);
             dragMap.OnClick += OnClick;

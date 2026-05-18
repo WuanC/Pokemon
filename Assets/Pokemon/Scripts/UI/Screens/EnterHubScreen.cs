@@ -79,7 +79,7 @@ namespace Pokemon.Scripts.UI.Screens
             hubImage.sprite = mapData.headerMap;
             UpdateProgress(0, 0);
             goldRewardText.text = $"{mapData.goldReward}";
-            InitPokemonLocker(mapData.pokemonInMaps);
+            InitPokemonLocker(mapData.pkmRates);
             base.Active();
             goBtn.onClick.AddListener(() =>
             {
@@ -87,11 +87,11 @@ namespace Pokemon.Scripts.UI.Screens
                 ScreenManager.Instance.ActiveSplashScreen(onGoBtnClick);
             });
         }
-        public void InitPokemonLocker(List<PokemonData> pokemonDatas)
+        public void InitPokemonLocker(List<PokemonMapData> pokemonDatas)
         {
             for (int i = 0; i < pokemonDatas.Count; i++)
             {
-                PokemonData pkmData = pokemonDatas[i];
+                PokemonData pkmData = pokemonDatas[i].pokemonData;
                 GameObject locker = MyPoolManager.Instance.GetFromPool(pokemonLockerPrefab.gameObject, pokemonLockerContainer);
                 locker.transform.SetSiblingIndex(i);
                 PokemonLocker pokemonLocker = locker.GetComponent<PokemonLocker>();
@@ -111,9 +111,9 @@ namespace Pokemon.Scripts.UI.Screens
         public void UpdateProgress(int bossCount, int pokemonCount)
         {
             bossCountText.text = $"{bossCount}/{mapData.bossAndQuestCount}";
-            pokemonCountText.text = $"{pokemonCount}/{mapData.pokemonInMaps.Count}";
-            progressText.text = $"{(bossCount + pokemonCount) * 100 / (mapData.bossAndQuestCount + mapData.pokemonInMaps.Count)}% COMPLETED";
-            progressFillImage.fillAmount = (float)(bossCount + pokemonCount) / (mapData.bossAndQuestCount + mapData.pokemonInMaps.Count);
+            pokemonCountText.text = $"{pokemonCount}/{mapData.pkmRates.Count}";
+            progressText.text = $"{(bossCount + pokemonCount) * 100 / (mapData.bossAndQuestCount + mapData.pkmRates.Count)}% COMPLETED";
+            progressFillImage.fillAmount = (float)(bossCount + pokemonCount) / (mapData.bossAndQuestCount + mapData.pkmRates.Count);
         }
         public void LockPanelDeactive()
         {
