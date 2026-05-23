@@ -20,8 +20,6 @@ namespace Pokemon.Scripts.Battle
             if (ownerFxPrefab != null)
             {
 
-
-
                 for (int i = 0; i < projectilesCount; i++)
                 {
 

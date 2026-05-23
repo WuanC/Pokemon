@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Pokemon
@@ -9,8 +10,11 @@ namespace Pokemon.Scripts.Pokemon
         public string pokemonName;
         public string pokemonDescription;
         public PkmType type;
+        [PreviewField]
         public Sprite frontSprite;
+        [PreviewField]
         public Sprite backSprite;
+        [PreviewField]
         public Sprite icon;
 
         public int baseExp;
@@ -24,6 +28,7 @@ namespace Pokemon.Scripts.Pokemon
 
         //Moves
         public List<PokemonSkill> learnableSkills;
+        [Space(10)]
         //Evolutions
         public List<PokemonEvolution> evolutions;
 

@@ -31,6 +31,7 @@ namespace Pokemon.Scripts.Data
             }
         }
 
+
     }
     [Serializable]
     public class PokemonMapData
