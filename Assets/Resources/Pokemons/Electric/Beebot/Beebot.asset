@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: Beebot
+  m_EditorClassIdentifier: 
+  pokemonName: Beebot
+  pokemonDescription: Beebots string with an electric charge
+  type: 2
+  frontSprite: {fileID: 21300000, guid: 5c258b6f4be615c4483e4ccf201ddf0a, type: 3}
+  backSprite: {fileID: 21300000, guid: 2e1f23d32c2936544943131b3b5a1105, type: 3}
+  icon: {fileID: 21300000, guid: 35ceff66870a0e74391d67806b79a376, type: 3}
+  baseExp: 60
+  growthRate: 0
+  catchRate: 190
+  maxHP: 38
+  attack: 41
+  defense: 40
+  speed: 65
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: 259addd9834436b4d8746dfec0972e13, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 42daf9d487147f344b9815f2587f2400, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: df392ee5a90360b48b4aba0112707db2, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 8a03899006b53d94ea1be66ae572cea4, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: a98027ab5ab032048a6f3299b3a40ef5, type: 2}
+    levelRequirement: 16
+  - skillData: {fileID: 11400000, guid: 7d3c12ae733a6754b946b3671b6e5c04, type: 2}
+    levelRequirement: 25
+  evolutions:
+  - pokemonData: {fileID: 11400000, guid: 2f6d75a950b153e4897af17503baa562, type: 2}
+    levelRequirement: 15
