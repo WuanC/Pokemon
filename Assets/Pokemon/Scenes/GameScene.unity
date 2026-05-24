@@ -2390,6 +2390,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuardianIsland
       objectReference: {fileID: 0}
+    - target: {fileID: 40844414122830399, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
@@ -10650,6 +10655,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChineseFestival
       objectReference: {fileID: 0}
+    - target: {fileID: 40844414122830399, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -18432,6 +18442,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChallengeCave
       objectReference: {fileID: 0}
+    - target: {fileID: 40844414122830399, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -24785,6 +24800,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoldTemple
       objectReference: {fileID: 0}
+    - target: {fileID: 40844414122830399, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
@@ -25792,6 +25812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChristmasTown
+      objectReference: {fileID: 0}
+    - target: {fileID: 40844414122830399, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -29075,6 +29100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UnderworldCastle
+      objectReference: {fileID: 0}
+    - target: {fileID: 40844414122830399, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -39925,6 +39955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Halloween
+      objectReference: {fileID: 0}
+    - target: {fileID: 40844414122830399, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
