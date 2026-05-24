@@ -17,6 +17,7 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private PlayScreen playScreen;
         [SerializeField] private EvolutionScreen evolutionScreen;
         [SerializeField] private EnterHealScreen enterHealScreen;
+        [SerializeField] private PokemonDexScreen pokemonDexScreen;
 
         public void Initialize()
         {
@@ -51,6 +52,10 @@ namespace Pokemon.Scripts.UI.Screens
         public void AddCoinAnim(Vector3 startPos, int coinsAmount)
         {
             playScreen.AddCoinAnim(startPos, coinsAmount);
+        }
+        public void ActivePokemonDexScreen()
+        {
+            pokemonDexScreen.Active();
         }
     }
 }

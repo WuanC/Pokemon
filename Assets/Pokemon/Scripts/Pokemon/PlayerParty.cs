@@ -1,17 +1,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Saving;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Pokemon
 {
     public class PlayerParty : Party, ISavable
     {
+        public static PlayerParty Instance { get; private set; }
+        private const string dexKey = "PokemonDex";
         private const string partyKey = "PokemonParty";
         private const string inventoryKey = "PokemonInventory";
 
         public List<PokemonUnit> inventory { get; private set; }
+        public HashSet<string> pokedex { get; private set; } = new();
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
         public override void Initialize()
         {
             PokemonParties = new List<PokemonUnit>();
@@ -27,7 +43,14 @@ namespace Pokemon.Scripts.Pokemon
             else
             {
                 InitParty();
+                foreach (var pokemon in PokemonParties)
+                {
+                    Debug.Log("Add " + pokemon.Data.name + " to pokedex");
+                    pokedex.Add(pokemon.Data.name);
+                    PostEventAddPkmon(pokemon.Data.name);
+                }
             }
+
 
         }
 
@@ -40,6 +63,7 @@ namespace Pokemon.Scripts.Pokemon
             if (PokemonParties.Count < 4)
             {
                 PokemonParties.Add(pokemon);
+
             }
             else
             {
@@ -49,6 +73,8 @@ namespace Pokemon.Scripts.Pokemon
                 }
                 inventory.Add(pokemon);
             }
+            pokedex.Add(pokemon.Data.name);
+            PostEventAddPkmon(pokemon.Data.name);
         }
 
         public void CaptureState()
@@ -56,6 +82,9 @@ namespace Pokemon.Scripts.Pokemon
             List<PokemonSaveData> partySaveData = PokemonParties.Select(p => p.GetSaveData()).ToList();
             string partyJson = JsonConvert.SerializeObject(partySaveData, Formatting.Indented);
             PlayerPrefs.SetString(partyKey, partyJson);
+
+            string dexJson = JsonConvert.SerializeObject(pokedex.ToList(), Formatting.Indented);
+            PlayerPrefs.SetString(dexKey, dexJson);
         }
 
         public object RestoreState()
@@ -63,7 +92,22 @@ namespace Pokemon.Scripts.Pokemon
             string partyJson = PlayerPrefs.GetString(partyKey);
             if (string.IsNullOrEmpty(partyJson)) return null;
 
-            return JsonConvert.DeserializeObject<List<PokemonSaveData>>(partyJson);
+            List<PokemonSaveData> saveData = JsonConvert.DeserializeObject<List<PokemonSaveData>>(partyJson);
+            string dexJson = PlayerPrefs.GetString(dexKey);
+            if (!string.IsNullOrEmpty(dexJson))
+            {
+                pokedex = JsonConvert.DeserializeObject<HashSet<string>>(dexJson);
+            }
+            else
+            {
+                pokedex = new HashSet<string>();
+            }
+
+            return saveData;
+        }
+        public void PostEventAddPkmon(string pokemon)
+        {
+            Observer.Instance.Broadcast(EventId.OnAddPokemon, pokemon);
         }
     }
 }

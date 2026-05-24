@@ -41,6 +41,7 @@ namespace Pokemon.Scripts
             Observer.Instance.Register(EventId.OnEncounterPokemon, OnEncounterPokemon);
             Observer.Instance.Register(EventId.OnEncounterTrainer, OnEncounterTrainer);
             Observer.Instance.Register(EventId.OnEndBattle, OnEndBattle);
+
         }
         public IEnumerator InitGame()
         {
@@ -51,9 +52,11 @@ namespace Pokemon.Scripts
             yield return ItemDB.Init();
             QuestManager.Instance.Initialize();
             HubController.Instance.Initialize();
+
+            playerParty.Initialize();
+
             Inventory.Inventory.Instance.Initialize();
             ScreenManager.Instance.Initialize();
-            playerParty.Initialize();
 
         }
         public void OnEncounterPokemon(object data)
@@ -173,11 +176,13 @@ namespace Pokemon.Scripts
                 dragMap = null;
             }
         }
+
         void OnDestroy()
         {
             Observer.Instance.Unregister(EventId.OnEncounterPokemon, OnEncounterPokemon);
             Observer.Instance.Unregister(EventId.OnEncounterTrainer, OnEncounterTrainer);
             Observer.Instance.Unregister(EventId.OnEndBattle, OnEndBattle);
+
         }
 
 

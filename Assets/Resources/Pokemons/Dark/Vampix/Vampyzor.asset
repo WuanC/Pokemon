@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
   m_Name: Vampyzor
   m_EditorClassIdentifier: 
-  pokemonName: Vampixard
-  pokemonDescription: Vampixard is the evolution of vampix
+  pokemonName: Vampyzor
+  pokemonDescription: Vampyzor is the evolution of vampixard
   type: 4
   frontSprite: {fileID: 21300000, guid: ea2bff0bc38e096419548287b53de2d6, type: 3}
   backSprite: {fileID: 21300000, guid: c284ee2ce732cd54082968eba6de5056, type: 3}

@@ -21,6 +21,8 @@ namespace Pokemon.Scripts.MyUtils
         //Noti
         OnShowMessage,
 
+        OnAddPokemon,
+
 
 
     }

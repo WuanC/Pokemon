@@ -2,6 +2,7 @@ using DG.Tweening;
 using Pokemon.Scripts.Inventory;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.MyUtils.ObjectPooling;
+using Pokemon.Scripts.Pokemon;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,14 +17,23 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private int coinToSpawnCount;
         [SerializeField] private GameObject coinGO;
         [SerializeField] private GameObject dustGO;
+        [SerializeField] private Button pkmDexBtn;
+        [SerializeField] private TextMeshProUGUI pkmDexCountText;
         public Transform coinTransform;
         void Start()
         {
             Observer.Instance.Register(EventId.OnUpdateItem, PlayScreen_OnUpdateItem);
+            pkmDexBtn.onClick.AddListener(() =>
+            {
+                ScreenManager.Instance.ActivePokemonDexScreen();
+            });
+            Observer.Instance.Register(EventId.OnAddPokemon, PlayScreen_OnAddPokemon);
         }
         void OnDestroy()
         {
             Observer.Instance.Unregister(EventId.OnUpdateItem, PlayScreen_OnUpdateItem);
+            pkmDexBtn.onClick.RemoveAllListeners();
+            Observer.Instance.Unregister(EventId.OnAddPokemon, PlayScreen_OnAddPokemon);
         }
         void PlayScreen_OnUpdateItem(object itemObj)
         {
@@ -55,6 +65,18 @@ namespace Pokemon.Scripts.UI.Screens
                     worldBtn.gameObject.SetActive(false);
                 });
             });
+            int caughtCount = PlayerParty.Instance.pokedex.Count;
+            int totalCount = PokemonDB.GetAllPokemon().Count;
+            pkmDexCountText.text = $"{caughtCount}/{totalCount}";
+        }
+        private void PlayScreen_OnAddPokemon(object data)
+        {
+            if (data is string pokemonName)
+            {
+                int caughtCount = PlayerParty.Instance.pokedex.Count;
+                int totalCount = PokemonDB.GetAllPokemon().Count;
+                pkmDexCountText.text = $"{caughtCount}/{totalCount}";
+            }
         }
         public void EnterDetailMap()
         {

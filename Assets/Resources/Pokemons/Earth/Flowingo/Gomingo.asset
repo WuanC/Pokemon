@@ -15,9 +15,9 @@ MonoBehaviour:
   pokemonName: Gomingo
   pokemonDescription: Gomingo is the evolution of Flomingo
   type: 3
-  frontSprite: {fileID: 21300000, guid: 21c80d381bded4140afd68ec8e012a4c, type: 3}
-  backSprite: {fileID: 21300000, guid: 02d63bb2924530e4c9d0ee4d8401a70e, type: 3}
-  icon: {fileID: 21300000, guid: 3a7f257f8598d7c4dbc25fb48addff48, type: 3}
+  frontSprite: {fileID: 21300000, guid: 4e53579da3841654eaef364e66c275bd, type: 3}
+  backSprite: {fileID: 21300000, guid: 3a7bf5e932dc56b42a04507f8af4a862, type: 3}
+  icon: {fileID: 21300000, guid: 55c374cc513d0ee46be61a5911cba540, type: 3}
   baseExp: 60
   growthRate: 0
   catchRate: 190
@@ -40,4 +40,6 @@ MonoBehaviour:
     levelRequirement: 20
   - skillData: {fileID: 11400000, guid: 2761cf984bd5e4d4c8b23002f5c2a212, type: 2}
     levelRequirement: 25
-  evolutions: []
+  evolutions:
+  - pokemonData: {fileID: 11400000, guid: 910c9a0bcc7590d4da8e6d6e5f45ca10, type: 2}
+    levelRequirement: 25

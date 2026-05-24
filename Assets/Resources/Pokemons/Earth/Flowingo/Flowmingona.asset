@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
-  m_Name: Flowingo
+  m_Name: Flowmingona
   m_EditorClassIdentifier: 
-  pokemonName: Flowingo
-  pokemonDescription: Flowingos can stand on a single spot
+  pokemonName: Flowmingona
+  pokemonDescription: Flowmingona is the evolution of Flomingo
   type: 3
-  frontSprite: {fileID: 21300000, guid: 52fe4706f026b0047959c1b161c453e4, type: 3}
-  backSprite: {fileID: 21300000, guid: fb293e2eab331994fb238b69c6aacc46, type: 3}
-  icon: {fileID: 21300000, guid: df328f8b7ef29a54697dcee4f517ac75, type: 3}
+  frontSprite: {fileID: 21300000, guid: a0f0ebe95c31b0549be38fdbfcd11e84, type: 3}
+  backSprite: {fileID: 21300000, guid: 669315774f458c5469e1cd878b822a6c, type: 3}
+  icon: {fileID: 21300000, guid: 03b798e27f7ec914a815cf4628549b17, type: 3}
   baseExp: 60
   growthRate: 0
   catchRate: 190
@@ -40,6 +40,4 @@ MonoBehaviour:
     levelRequirement: 20
   - skillData: {fileID: 11400000, guid: 2761cf984bd5e4d4c8b23002f5c2a212, type: 2}
     levelRequirement: 25
-  evolutions:
-  - pokemonData: {fileID: 11400000, guid: 9b98bfe48782b7b43a67e16a6ef51f44, type: 2}
-    levelRequirement: 15
+  evolutions: []
