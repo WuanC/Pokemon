@@ -16,7 +16,6 @@ namespace Pokemon.Scripts.Map
         private Color originalColor = Color.white;
         private bool hasColorTarget;
         public int BossAndQuestCount => mapData.bossAndQuestCount;
-        public Sprite hubSprite;
 
         private void Awake()
         {

@@ -49,6 +49,7 @@ namespace Pokemon.Scripts.Battle
             {
                 pokemonImage.sprite = pokemon.Data.frontSprite;
             }
+            pokemonImage.SetNativeSize();
             pokemonHub.InitModal(pokemon, isPlayerPokemon);
             EnterAnimation(duration);
 

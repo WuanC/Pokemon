@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc5b1d9f6356dca41bfff1853ca8d16d, type: 3}
-  m_Name: Camp
+  m_Name: RiverFalls
   m_EditorClassIdentifier: 
-  hubName: Camp
-  mapCondition: {fileID: 0}
+  hubName: RiverFall
+  mapCondition: {fileID: 11400000, guid: 126932965ba3544429b4bc64a273b3cc, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: a165e2c4b0bf0f2468b340475c434eba, type: 2}
     rate: 40
@@ -29,10 +29,10 @@ MonoBehaviour:
     rate: 30
   - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
     rate: 1
-  hubIcon: {fileID: 21300000, guid: 714db5a4e4419414cbe5b24b65cec4f9, type: 3}
-  headerMap: {fileID: 21300000, guid: df6d05ce5cbf7284999294ae6aed4a19, type: 3}
-  mapBackground: {fileID: 21300000, guid: b7e6caa144a57e64992df09eb3d908cf, type: 3}
+  hubIcon: {fileID: 21300000, guid: 50b7f94b019511848bc4c484e879318a, type: 3}
+  headerMap: {fileID: 21300000, guid: 8a922dc18212ddb449ebd7935207b050, type: 3}
+  mapBackground: {fileID: 21300000, guid: 4d817253e7b6e6a42af3699d41418772, type: 3}
   bossAndQuestCount: 1
   goldReward: 80
-  mapPrefab: {fileID: 452948459219568770, guid: 3df0aa9f419f3d54e9004322bca14625,
+  mapPrefab: {fileID: 452948459219568770, guid: 982777bfc741ef541a1ed0f520a0ab89,
     type: 3}

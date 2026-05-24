@@ -20,6 +20,7 @@ namespace Pokemon.Scripts.UI
             {
                 pokemonImage.color = Color.white;
             }
+            pokemonImage.SetNativeSize();
         }
     }
 }

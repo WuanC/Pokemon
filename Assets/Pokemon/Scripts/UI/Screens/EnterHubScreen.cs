@@ -49,6 +49,7 @@ namespace Pokemon.Scripts.UI.Screens
             else
             {
                 gameObject.SetActive(true);
+                unlockPannel.SetActive(false);
                 lockPannel.SetActive(true);
                 description.text = mapCondition.description;
                 if (mapCondition.conditionType == MapConditionType.Pay)
@@ -85,6 +86,7 @@ namespace Pokemon.Scripts.UI.Screens
             {
                 gameObject.SetActive(false);
                 ScreenManager.Instance.ActiveSplashScreen(onGoBtnClick);
+                Camera.main.transform.position = new Vector3(0f, 0f, Camera.main.transform.position.z);
             });
         }
         public void InitPokemonLocker(List<PokemonMapData> pokemonDatas)
@@ -95,7 +97,7 @@ namespace Pokemon.Scripts.UI.Screens
                 GameObject locker = MyPoolManager.Instance.GetFromPool(pokemonLockerPrefab.gameObject, pokemonLockerContainer);
                 locker.transform.SetSiblingIndex(i);
                 PokemonLocker pokemonLocker = locker.GetComponent<PokemonLocker>();
-                pokemonLocker.Initialize(pkmData, isLocker: true);
+                pokemonLocker.Initialize(pkmData, isLocker: false);
                 pokemonLockers.Add(pokemonLocker);
             }
         }
