@@ -2398,7 +2398,7 @@ PrefabInstance:
     - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.2533333
+      value: 1.2733333
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -6156,7 +6156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 197, y: 189.79999}
+  m_AnchoredPosition: {x: 197, y: 189.80005}
   m_SizeDelta: {x: 370.8, y: 297.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340060355
@@ -6197,6 +6197,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CostaGueta
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.2666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -9098,8 +9108,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.1266667
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.2533333
+      value: 1.2666667
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -10659,6 +10674,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.1133333
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -12589,7 +12609,7 @@ PrefabInstance:
     - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.1133333
+      value: 1.1333333
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -14026,7 +14046,7 @@ PrefabInstance:
     - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.2533333
+      value: 1.2733333
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -15108,7 +15128,7 @@ PrefabInstance:
     - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.2533333
+      value: 1.1066667
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -16908,6 +16928,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreasureCave
       objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.02
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -18447,6 +18472,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.2533333
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -19170,6 +19200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BonusCave
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.0533333
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -22672,6 +22707,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Klaude'sCastle
       objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.2666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.1333333
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -23211,6 +23256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TallPines
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -24808,7 +24858,7 @@ PrefabInstance:
     - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.1333333
+      value: 1.2533333
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -25818,6 +25868,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.3933333
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -26013,6 +26068,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8512941605093659188, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: mapData
+      value: 
+      objectReference: {fileID: 11400000, guid: df9bff98b3a110c4abc4a9d3c1dad247,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29106,6 +29167,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.3333334
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -29310,6 +29376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireTemple
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.1466666
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -32769,6 +32840,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8512941605093659188, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: mapData
+      value: 
+      objectReference: {fileID: 11400000, guid: 2bebfae01c0ae11448507f0bd7112c39,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33846,6 +33923,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MT.Krembo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
@@ -35757,6 +35839,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: TempleRuins
       objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.93333334
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -35813,6 +35905,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8512941605093659188, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: mapData
+      value: 
+      objectReference: {fileID: 11400000, guid: ee2e88918fb512f4d95ac88a8ee100da,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38346,6 +38444,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinterDale
       objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.3333334
+      objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}
       propertyPath: m_Sprite
@@ -39960,6 +40063,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005872169476033055, guid: 0c3a42d696448c3428c0b26883e7c57c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.3666667
       objectReference: {fileID: 0}
     - target: {fileID: 5123395631987435424, guid: 0c3a42d696448c3428c0b26883e7c57c,
         type: 3}

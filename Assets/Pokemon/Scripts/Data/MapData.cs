@@ -12,7 +12,6 @@ namespace Pokemon.Scripts.Data
         public string hubName;
         public MapConditionData mapCondition;
         public List<PokemonMapData> pkmRates;
-        public Sprite hubIcon;
         public Sprite headerMap;
         public Sprite mapBackground;
         public int bossAndQuestCount;
