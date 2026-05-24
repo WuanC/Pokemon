@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: Elydjin
+  m_EditorClassIdentifier: 
+  pokemonName: Elydjin
+  pokemonDescription: Exclusive diamond dyamond
+  type: 6
+  frontSprite: {fileID: 21300000, guid: 80e9e083203b4294aabd04d3e1b00676, type: 3}
+  backSprite: {fileID: 21300000, guid: e3a4b8af283e2a945b9e8a79b9c3b158, type: 3}
+  icon: {fileID: 21300000, guid: b028bec37212b134daf0b3b551d74d22, type: 3}
+  baseExp: 60
+  growthRate: 0
+  catchRate: 190
+  maxHP: 38
+  attack: 41
+  defense: 40
+  speed: 65
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: f01acae2946414144b4a013734b6e150, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 829cf2ea9f55ed147a2dbe8540ade24c, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: ad4750b19d6fd404f9dea221acf314e7, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 2761cf984bd5e4d4c8b23002f5c2a212, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 9b5d2edeacc36e242b8e2c0f894e5759, type: 2}
+    levelRequirement: 15
+  - skillData: {fileID: 11400000, guid: 4626668745571e64a82bf343ff7dd805, type: 2}
+    levelRequirement: 20
+  - skillData: {fileID: 11400000, guid: 4b4cfa2ed3f7d4046891992797eb7120, type: 2}
+    levelRequirement: 26
+  - skillData: {fileID: 11400000, guid: 2ddf8763af75a5140930917c30bfabe2, type: 2}
+    levelRequirement: 30
+  evolutions: []
