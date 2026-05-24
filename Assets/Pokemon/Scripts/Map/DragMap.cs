@@ -6,9 +6,7 @@ namespace Pokemon.Scripts.Map
 {
     public class DragMap : MonoBehaviour
     {
-        [SerializeField] private int backgroundCount;
-        [SerializeField] private float backgroundWidth;
-        [SerializeField] private float pixelPerUnit;
+        [SerializeField] private Vector2 backgroundPositionX;
         [SerializeField] private float cameraSpeed = 1f;
 
         [SerializeField] private float dragThreshold = 10f; // pixel
@@ -28,6 +26,7 @@ namespace Pokemon.Scripts.Map
 
             mainCamera = Camera.main;
             SetCameraBounds();
+            Camera.main.transform.position = new Vector3(minCameraX, 0f, Camera.main.transform.position.z);
         }
         public void HandleInput()
         {
@@ -88,8 +87,13 @@ namespace Pokemon.Scripts.Map
 
         public void SetCameraBounds()
         {
-            float backgroundUnits = (backgroundWidth - 100) * backgroundCount / pixelPerUnit;
-            maxCameraX = backgroundUnits - (2 * mainCamera.orthographicSize * mainCamera.aspect);
+            float cameraHalfWidth = mainCamera.orthographicSize * mainCamera.aspect;
+
+            minCameraX =
+                backgroundPositionX.x + cameraHalfWidth;
+
+            maxCameraX =
+                backgroundPositionX.y - cameraHalfWidth;
         }
     }
 }

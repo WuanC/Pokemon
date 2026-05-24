@@ -86,7 +86,6 @@ namespace Pokemon.Scripts.UI.Screens
             {
                 gameObject.SetActive(false);
                 ScreenManager.Instance.ActiveSplashScreen(onGoBtnClick);
-                Camera.main.transform.position = new Vector3(0f, 0f, Camera.main.transform.position.z);
             });
         }
         public void InitPokemonLocker(List<PokemonMapData> pokemonDatas)
