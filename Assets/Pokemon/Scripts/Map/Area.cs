@@ -41,7 +41,7 @@ namespace Pokemon.Scripts.Map
         }
         public void RandomPokemonInArea()
         {
-            int random = UnityEngine.Random.Range(1, 3);
+            int random = UnityEngine.Random.Range(1, 4);
             List<Node> nodes = GeneralUtils.ShuffleList(this.nodes);
             for (int j = 0; j < nodes.Count; j++)
             {
@@ -85,6 +85,16 @@ namespace Pokemon.Scripts.Map
                 random -= pokemonData.rate;
             }
             return null;
+        }
+        public void OnValidate()
+        {
+            if (keyNode != null)
+            {
+                if (keyNode.Npc == null)
+                {
+                    Debug.LogError($"KeyNode {keyNode.name} does not have an NPC component.");
+                }
+            }
         }
     }
 }

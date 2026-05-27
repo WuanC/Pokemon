@@ -15,6 +15,8 @@ namespace Pokemon.Scripts.Map
         private Player player;
         private Camera mainCamera;
         public List<PokemonMapData> pokemonInMaps { get; private set; }
+        private MapData mapData;
+        public MapData MapData => mapData;
         void Awake()
         {
             player = GetComponentInChildren<Player>();
@@ -22,6 +24,7 @@ namespace Pokemon.Scripts.Map
         }
         public void InitializeMap(MapData mapData)
         {
+            this.mapData = mapData;
             HubName = mapData.hubName;
             pokemonInMaps = mapData.pkmRates;
             mainCamera = Camera.main;

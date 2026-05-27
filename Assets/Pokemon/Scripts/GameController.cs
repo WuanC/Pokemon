@@ -69,6 +69,7 @@ namespace Pokemon.Scripts
                     Observer.Instance.Broadcast(EventId.OnShowMessage, "You have no healthy Pokemon to fight!");
                     return;
                 }
+                MapData mapData = dragMap.GetComponent<Map.Map>().MapData;
                 PokemonUnit wildPokemon = node.OwnerArea.GetRandomPokemon();
                 currentNode = node;
                 loungeCamera.gameObject.SetActive(false);
@@ -76,7 +77,7 @@ namespace Pokemon.Scripts
                 currentState = GameState.Battle;
                 int coinQuantity = UnityEngine.Random.Range(1, 5) * wildPokemon.Level;
                 int dustQuantity = UnityEngine.Random.Range(1, 5) * wildPokemon.Level;
-                battleController.StartBattleWithWildPokemon(party, wildPokemon, Reward.DefaultReward(coinQuantity, dustQuantity));
+                battleController.StartBattleWithWildPokemon(party, wildPokemon, Reward.DefaultReward(coinQuantity, dustQuantity), mapData.mapBackground);
 
             }
         }
@@ -92,13 +93,14 @@ namespace Pokemon.Scripts
                         Observer.Instance.Broadcast(EventId.OnShowMessage, "You have no healthy Pokemon to fight!");
                         return;
                     }
+                    MapData mapData = dragMap.GetComponent<Map.Map>().MapData;
                     ScreenManager.Instance.EnterBattleClick(() =>
                     {
                         currentNode = node;
                         loungeCamera.gameObject.SetActive(false);
                         battleCamera.gameObject.SetActive(true);
                         currentState = GameState.Battle;
-                        battleController.StartBattleWithNPC(party, npcBattle, npcBattle.reward);
+                        battleController.StartBattleWithNPC(party, npcBattle, npcBattle.reward, mapData.mapBackground);
                     }, npcBattle);
                 }
                 else if (node.Npc is NPCHeal npcHeal)

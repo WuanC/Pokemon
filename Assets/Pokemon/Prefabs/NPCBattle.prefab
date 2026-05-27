@@ -52,6 +52,9 @@ MonoBehaviour:
     npcAvatar: {fileID: 21300000, guid: 4c365b9788a31f0479888c15f59b7af7, type: 3}
     npcMessage: This is fun!
   party: {fileID: 220114680372377709}
+  reward:
+    items: []
+    pokemons: []
 --- !u!114 &220114680372377709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,8 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initPokemonParties:
-  - pokemonData: {fileID: 11400000, guid: 32c10f98ad7f3bf49b90bf2bc3bcd5bb, type: 2}
-    level: 0
+  - pokemonData: {fileID: 11400000, guid: 2b1cfc247db6f784f8ea8f834016da89, type: 2}
+    level: 5
 --- !u!212 &3271548688979493698
 SpriteRenderer:
   m_ObjectHideFlags: 0

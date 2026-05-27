@@ -40,6 +40,7 @@ namespace Pokemon.Scripts.Battle
     }
     public class BattleController : MonoBehaviour
     {
+        [SerializeField] private Image bg;
         [SerializeField] BattlePokemon playerBattlePkm;
         [SerializeField] BattlePokemon enemyBattlePkm;
         [SerializeField] TextMeshProUGUI skillText;
@@ -100,7 +101,7 @@ namespace Pokemon.Scripts.Battle
             moreBtn.onClick.RemoveAllListeners();
         }
         #region Setup Battle
-        public void StartBattleWithWildPokemon(Party party, PokemonUnit enemyPokemon, Reward reward)
+        public void StartBattleWithWildPokemon(Party party, PokemonUnit enemyPokemon, Reward reward, Sprite bg)
         {
             npcImage.gameObject.SetActive(false);
             npcNameText.gameObject.SetActive(false);
@@ -115,8 +116,9 @@ namespace Pokemon.Scripts.Battle
             SetPlayerAction();
             battleAction = BattleAction.None;
             this.battleReward = reward;
+            this.bg.sprite = bg;
         }
-        public void StartBattleWithNPC(Party party, NPCBattle npc, Reward reward)
+        public void StartBattleWithNPC(Party party, NPCBattle npc, Reward reward, Sprite bg)
         {
             npcImage.gameObject.SetActive(true);
             npcNameText.gameObject.SetActive(true);
@@ -133,6 +135,7 @@ namespace Pokemon.Scripts.Battle
             DisableTextAndEffects();
             SetPlayerAction();
             this.battleReward = reward;
+            this.bg.sprite = bg;
         }
         public void DisableTextAndEffects()
         {
