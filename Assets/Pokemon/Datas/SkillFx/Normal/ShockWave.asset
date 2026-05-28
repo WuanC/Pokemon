@@ -9,12 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f047083960f74c948bbe2370bf352e6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 71432760685e8e647891464b444f6d65, type: 3}
   m_Name: ShockWave
   m_EditorClassIdentifier: 
   targetFxPrefab: {fileID: 0}
   ownerFxPrefab: {fileID: 1335169656929699079, guid: 66e010635bf862c43866171f9a066a86,
     type: 3}
-  fxDuration: 0.5
-  fxType: 1
+  mapFxPrefab: {fileID: 0}
+  fxDuration: 1
+  mirrorSkillFx: 1
   projectilesCount: 1
+  projectileSpawnInterval: 0
+  projectileLoadDuration: 0
+  moveDuration: 0.5
+  targetFxDuration: 0

@@ -14,7 +14,7 @@ namespace Pokemon.Scripts.UI.Screens
 
         protected virtual void Start()
         {
-            exitBtn.onClick.AddListener(Deactive);
+            exitBtn?.onClick.AddListener(Deactive);
         }
         public virtual void Active()
         {
@@ -38,7 +38,7 @@ namespace Pokemon.Scripts.UI.Screens
         }
         protected virtual void OnDestroy()
         {
-            exitBtn.onClick.RemoveAllListeners();
+            exitBtn?.onClick.RemoveAllListeners();
         }
     }
 }

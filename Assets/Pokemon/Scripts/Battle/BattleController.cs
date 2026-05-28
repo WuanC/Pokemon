@@ -17,6 +17,7 @@ using Pokemon.Scripts.Quest;
 using Pokemon.Scripts.UI;
 using Pokemon.Scripts.FReward;
 using Pokemon.Scripts.Inventory;
+using Pokemon.Scripts.Tutorial;
 
 namespace Pokemon.Scripts.Battle
 {
@@ -537,6 +538,11 @@ namespace Pokemon.Scripts.Battle
             }
             else
             {
+                if (TutorialManager.Instance != null)
+                {
+                    TutorialManager.Instance.EndBattle();
+                    return;
+                }
                 StartCoroutine(winScreen.ShowWinScreen(this.battleReward));
             }
 

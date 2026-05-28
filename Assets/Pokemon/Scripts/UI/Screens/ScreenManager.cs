@@ -23,6 +23,7 @@ namespace Pokemon.Scripts.UI.Screens
         {
             playScreen.Initialize();
         }
+
         public void EnterHubClick(Action goBtnAction, MapData mapData, MapConditionData mapCondition = null)
         {
             enterHubScreen.Initialize(goBtnAction, mapData, mapCondition);

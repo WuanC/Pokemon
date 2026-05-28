@@ -2,6 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 using Pokemon.Scripts.Condition;
+using Pokemon.Scripts.Data;
 using Pokemon.Scripts.Pokemon;
 using TMPro;
 using Unity.VisualScripting;
@@ -17,6 +18,7 @@ namespace Pokemon.Scripts.UI
     }
     public class PokemonModal : MonoBehaviour
     {
+        [SerializeField] protected TypeData typeData;
         [SerializeField] protected Image bg;
         [SerializeField] protected TextMeshProUGUI pkmNameText;
         [SerializeField] protected TextMeshProUGUI pkmLevelText;
@@ -75,14 +77,26 @@ namespace Pokemon.Scripts.UI
         {
             if (bg == null) return;
             Sprite bgSprite = null;
+
             switch (bgType)
             {
                 case BGType.Thumb:
-                    bgSprite = GameController.Instance.typeData.GetThumbPanel(type);
+                    if (typeData == null)
+                    {
+                        bgSprite = GameController.Instance.typeData.GetThumbPanel(type);
+                        break;
+                    }
+                    bgSprite = typeData.GetThumbPanel(type);
                     break;
                 case BGType.Big:
-                    bgSprite = GameController.Instance.typeData.GetBigPanel(type);
+                    if (typeData == null)
+                    {
+                        bgSprite = GameController.Instance.typeData.GetBigPanel(type);
+                        break;
+                    }
+                    bgSprite = typeData.GetBigPanel(type);
                     break;
+
             }
             bg.sprite = bgSprite;
         }

@@ -5062,12 +5062,12 @@ MonoBehaviour:
   unlockPannel: {fileID: 1689254332}
   backGround: {fileID: 1953812574}
   moveDuration: 0.2
-  missionParent: {fileID: 0}
+  missionParent: {fileID: 1914838902}
   countdownText: {fileID: 2109231884}
   dailyMissionHubs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1646881787}
+  - {fileID: 2017198119}
+  - {fileID: 1090835597}
 --- !u!1 &317069739
 GameObject:
   m_ObjectHideFlags: 0
@@ -16965,9 +16965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe87c8b55cfcf54d83a00aa7dee5f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initPokemonParties:
-  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
-    level: 5
+  initPokemonParties: []
 --- !u!1 &1007487565
 GameObject:
   m_ObjectHideFlags: 0
@@ -18421,6 +18419,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090025529}
   m_CullTransparentMesh: 1
+--- !u!114 &1090835597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2281329085538399608, guid: e0108281bf9507f4890c09c877a249ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 534443544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ebf0d019d61a942b5477757515835b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1100368347
 GameObject:
   m_ObjectHideFlags: 0
@@ -22616,7 +22626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5f0f84e806f274c9648171819d5a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDontDestroyOnLoad: 1
+  canDontDestroyOnLoad: 0
   splashScreen: {fileID: 1598313003}
   enterHubScreen: {fileID: 889179657}
   enterBattleScreen: {fileID: 1507482803}
@@ -24523,7 +24533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1443930906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24538,9 +24548,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1241411916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 819, y: -102.58728}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1443930907
@@ -29072,6 +29082,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1646881784}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1646881787 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2281329085538399608, guid: e0108281bf9507f4890c09c877a249ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1646881784}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ebf0d019d61a942b5477757515835b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1648494247
 GameObject:
   m_ObjectHideFlags: 0
@@ -36374,6 +36396,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2017198116}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2017198119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2281329085538399608, guid: e0108281bf9507f4890c09c877a249ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 2017198116}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ebf0d019d61a942b5477757515835b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2027422839
 GameObject:
   m_ObjectHideFlags: 0
@@ -39844,6 +39878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06d7ec6362b20648890c88d18a385ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeData: {fileID: 0}
   bg: {fileID: 724008185819568652}
   pkmNameText: {fileID: 9222931449898735227}
   pkmLevelText: {fileID: 8153819586802480973}

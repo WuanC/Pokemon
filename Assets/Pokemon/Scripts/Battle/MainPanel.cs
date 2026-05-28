@@ -50,6 +50,7 @@ namespace Pokemon.Scripts.Battle
                     int index = i;
                     skillButtons[i].onClick.AddListener(() =>
                      {
+
                          battleController.SetCurrentMove(index);
                      });
                 }
