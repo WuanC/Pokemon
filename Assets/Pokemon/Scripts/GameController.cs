@@ -11,6 +11,7 @@ using Pokemon.Scripts.Map;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
 using Pokemon.Scripts.Quest;
+using Pokemon.Scripts.Tutorial;
 using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 
@@ -34,7 +35,9 @@ namespace Pokemon.Scripts
         public TypeData typeData;
         Node currentNode;
         public GameState CurrentState => currentState;
-
+        [SerializeField] private GameObject hand;
+        [SerializeField] private GameObject mainCanvas;
+        public Hub enableHub;
         void Start()
         {
             StartCoroutine(InitGame());
@@ -57,7 +60,20 @@ namespace Pokemon.Scripts
 
             Inventory.Inventory.Instance.Initialize();
             ScreenManager.Instance.Initialize();
+            CheckForTutorial();
 
+        }
+        public void CheckForTutorial()
+        {
+            if (!TutorialManager.IsTutorialCompleted())
+            {
+                hand.gameObject.SetActive(true);
+            }
+        }
+        public void CompleteTutorial()
+        {
+            hand.gameObject.SetActive(false);
+            TutorialManager.MarkTutorialCompleted();
         }
         public void OnEncounterPokemon(object data)
         {
@@ -129,6 +145,7 @@ namespace Pokemon.Scripts
                         {
                             pairEvolutions.Add(new PairPokemonEvolution(pokemon.Data, pokemonEvolData));
                             pokemon.Evolve(pokemonEvolData);
+                            PlayerParty.Instance.AddPkmToDex(pokemon);
                         }
                     }
                     if (pairEvolutions.Count > 0)

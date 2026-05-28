@@ -109,5 +109,10 @@ namespace Pokemon.Scripts.Pokemon
         {
             Observer.Instance.Broadcast(EventId.OnAddPokemon, pokemon);
         }
+        public void AddPkmToDex(PokemonUnit pokemon)
+        {
+            pokedex.Add(pokemon.Data.name);
+            PostEventAddPkmon(pokemon.Data.name);
+        }
     }
 }

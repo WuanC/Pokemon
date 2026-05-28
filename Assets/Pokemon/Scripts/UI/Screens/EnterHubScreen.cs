@@ -7,6 +7,7 @@ using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.MyUtils.ObjectPooling;
 using Pokemon.Scripts.Pokemon;
 using Pokemon.Scripts.Saving;
+using Pokemon.Scripts.Tutorial;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -86,6 +87,10 @@ namespace Pokemon.Scripts.UI.Screens
             {
                 gameObject.SetActive(false);
                 ScreenManager.Instance.ActiveSplashScreen(onGoBtnClick);
+                if (!TutorialManager.IsTutorialCompleted())
+                {
+                    GameController.Instance.CompleteTutorial();
+                }
             });
         }
         public void InitPokemonLocker(List<PokemonMapData> pokemonDatas)

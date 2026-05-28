@@ -51,7 +51,6 @@ namespace Pokemon.Scripts.UI.Screens
 
         public void Initialize()
         {
-            Debug.Log(Inventory.Inventory.Instance == null);
             var coins = Inventory.Inventory.Instance.GetCoins();
             var dusts = Inventory.Inventory.Instance.GetDusts();
             coinText.text = coins != null ? coins.Quantity.ToString() : "0";

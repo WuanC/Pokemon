@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Pokemon;
+using Pokemon.Scripts.Tutorial;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -50,7 +52,15 @@ namespace Pokemon.Scripts.Battle
                     int index = i;
                     skillButtons[i].onClick.AddListener(() =>
                      {
+                         if (TutorialManager.Instance != null)
+                         {
+                             if (TutorialManager.Instance.btnIndex >= 0 && TutorialManager.Instance.btnIndex != index)
+                             {
+                                 Observer.Instance.Broadcast(EventId.OnShowMessage, "You must complete the tutorial step first!");
+                                 return;
+                             }
 
+                         }
                          battleController.SetCurrentMove(index);
                      });
                 }

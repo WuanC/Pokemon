@@ -22,7 +22,7 @@ namespace Pokemon.Scripts.Pokemon
         {
            //        Fire, Water,Electric,Earth, Dark, Spirit, Diamond,   Gold, Normal
         new float[] {1f,   0.5f,   1f,     2f,    1f,   2f,   0.5f,       1f , 1f}, // Fire
-        new float[] {2f,   1f,     1f,     2f,    1f,   1f,   0.5f,       1f,  1f}, // Water
+        new float[] {2f,   1f,     1f,     0.5f,    1f,   1f,   0.5f,       1f,  1f}, // Water
         new float[] {1f,   2f,     1f,     0f,    1f,   1f,   1f,         1f,  1f},   // Electric
         new float[] {0.5f, 1f,     2f,     1f,    2f,   1f,   2f,         1f,  1f}, // Grass
         new float[] {2f,   0.5f,   0.5f,   2f,    1f,   2f,   1f,        0.5f, 1f}, // Dark

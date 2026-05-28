@@ -11,50 +11,101 @@ namespace Pokemon.Scripts.UI.Screens
     {
         public PokemonData currentPkmData;
         public PokemonData evolutionPkmData;
-        public PairPokemonEvolution(PokemonData currentPkmData, PokemonData evolutionPkmData)
+
+        public PairPokemonEvolution(
+            PokemonData currentPkmData,
+            PokemonData evolutionPkmData)
         {
             this.currentPkmData = currentPkmData;
             this.evolutionPkmData = evolutionPkmData;
         }
     }
+
     public class EvolutionScreen : MonoBehaviour
     {
         [SerializeField] private GameObject pokemonContainer;
         [SerializeField] private Image pokemonImage;
         [SerializeField] private Image evolutionImage;
-        Vector3 pokemonContainerOriginalPos;
-        void Start()
+
+        [SerializeField] private RectTransform pokemonRect;
+
+        private Vector2 originalAnchoredPos;
+
+        private void Start()
         {
-            pokemonContainerOriginalPos = Vector3.zero;
+            pokemonRect =
+                pokemonContainer.GetComponent<RectTransform>();
+
+            originalAnchoredPos =
+                pokemonRect.anchoredPosition;
         }
-        void OnDisable()
+
+        private void OnDisable()
         {
-            pokemonContainer.transform.DOKill();
+            pokemonRect.DOKill();
             pokemonImage.DOKill();
         }
-        public IEnumerator Evolution(List<PairPokemonEvolution> pairEvolutions)
+
+        public IEnumerator Evolution(
+            List<PairPokemonEvolution> pairEvolutions)
         {
             gameObject.SetActive(true);
             pokemonContainer.SetActive(true);
+
             for (int i = 0; i < pairEvolutions.Count; i++)
             {
                 evolutionImage.gameObject.SetActive(false);
-                pokemonImage.sprite = pairEvolutions[i].currentPkmData.frontSprite;
-                pokemonContainer.transform.position = pokemonContainerOriginalPos - Vector3.right * 10;
-                yield return pokemonContainer.transform.DOMove(pokemonContainerOriginalPos, 0.5f).WaitForCompletion();
-                yield return new WaitForSeconds(0.5f);
-                yield return pokemonImage.DOFade(0.2f, 0.5f).OnComplete(() =>
-                {
-                    pokemonImage.sprite = pairEvolutions[i].evolutionPkmData.frontSprite;
-                    pokemonImage.color = new Color(0, 0, 0, 0.2f);
-                });
-                evolutionImage.gameObject.SetActive(true);
-                yield return new WaitForSeconds(1.5f);
+
+                pokemonImage.sprite =
+                    pairEvolutions[i].currentPkmData.frontSprite;
+
                 pokemonImage.color = Color.white;
+
+                // Spawn bên trái
+                pokemonRect.anchoredPosition =
+                    originalAnchoredPos + Vector2.left * 1000f;
+
+                yield return pokemonRect
+                    .DOAnchorPos(originalAnchoredPos, 0.5f)
+                    .SetEase(Ease.OutCubic)
+                    .WaitForCompletion();
+
+                yield return new WaitForSeconds(0.5f);
+
+                // Fade evolution
+                yield return pokemonImage
+                    .DOFade(0.2f, 0.5f)
+                    .OnComplete(() =>
+                    {
+                        pokemonImage.sprite =
+                            pairEvolutions[i]
+                                .evolutionPkmData
+                                .frontSprite;
+
+                        pokemonImage.color =
+                            pokemonImage.color = new Color(0, 0, 0, 0.2f);
+                    })
+                    .WaitForCompletion();
+
+                evolutionImage.gameObject.SetActive(true);
+
+                yield return new WaitForSeconds(1.5f);
+
+                pokemonImage.color = Color.white;
+
                 evolutionImage.gameObject.SetActive(false);
+
                 yield return new WaitForSeconds(1f);
-                yield return pokemonContainer.transform.DOMove(pokemonContainerOriginalPos + Vector3.right * 15, 0.5f).WaitForCompletion();
+
+                // Move ra phải
+                yield return pokemonRect
+                    .DOAnchorPos(
+                        originalAnchoredPos + Vector2.right * 1500f,
+                        0.5f)
+                    .SetEase(Ease.InCubic)
+                    .WaitForCompletion();
             }
+
             pokemonContainer.SetActive(false);
             gameObject.SetActive(false);
         }

@@ -1,4 +1,6 @@
 using Pokemon.Scripts.Data;
+using Pokemon.Scripts.MyUtils;
+using Pokemon.Scripts.Tutorial;
 using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -75,6 +77,13 @@ namespace Pokemon.Scripts.Map
 
         public void HubClick()
         {
+
+            if (!TutorialManager.IsTutorialCompleted() && GameController.Instance.enableHub != this)
+            {
+                Debug.Log("Wrong hub");
+                Observer.Instance.Broadcast(EventId.OnShowMessage, "You must complete the tutorial first!");
+                return;
+            }
             if (mapData.mapCondition != null && HubController.Instance.ContainsHub(mapData.hubName))
             {
                 ScreenManager.Instance.EnterHubClick(SpawnMap, mapData);

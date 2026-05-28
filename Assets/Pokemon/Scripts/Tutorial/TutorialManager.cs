@@ -42,6 +42,7 @@ namespace Pokemon.Scripts.Tutorial
         [SerializeField] private RectTransform hand;
         private RectTransform handCache;
         [SerializeField] private Button skillBtn;
+        public int btnIndex;
 
         [Title("Chose Pokemon")]
 
@@ -53,7 +54,7 @@ namespace Pokemon.Scripts.Tutorial
 
         public void Start()
         {
-
+            PlayerPrefs.DeleteAll();
             StartCoroutine(PokemonDB.Init());
             StartCoroutine(SkillDB.Init());
             StartCoroutine(ConditionDB.Init());
@@ -168,6 +169,7 @@ namespace Pokemon.Scripts.Tutorial
             {
                 Destroy(handCache.gameObject);
                 skillBtn.onClick.RemoveListener(DestroyHand);
+                btnIndex = -1;
             }
         }
         #endregion

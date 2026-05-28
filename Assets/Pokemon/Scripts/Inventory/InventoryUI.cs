@@ -40,6 +40,7 @@ namespace Pokemon.Scripts.Inventory
             {
                 LoadPage(currentPageIndex + 1);
             });
+
         }
         void OnEnable()
         {
@@ -61,6 +62,7 @@ namespace Pokemon.Scripts.Inventory
             if (!CanLoadPage(pageIndex)) return;
             ClearSelectedItem();
             currentPageIndex = pageIndex;
+
             for (int i = 0; i < itemSlots.Count; i++)
             {
                 int itemIndex = pageIndex * itemSlots.Count + i;
@@ -71,7 +73,6 @@ namespace Pokemon.Scripts.Inventory
                 }
                 else
                 {
-
                     itemSlots[i].SetItem(null);
                 }
             }
