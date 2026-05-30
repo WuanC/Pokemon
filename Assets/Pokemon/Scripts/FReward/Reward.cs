@@ -11,7 +11,6 @@ namespace Pokemon.Scripts.FReward
     public class Reward
     {
         public List<Item> items;
-        public List<PokemonParty> pokemons;
 
         public static Reward DefaultReward(int coinQuantity, int dustQuantity)
         {

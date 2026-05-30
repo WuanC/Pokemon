@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Pokemon.Scripts.Character;
 using Pokemon.Scripts.Data;
 using Pokemon.Scripts.Pokemon;
 using Pokemon.Scripts.Saving;
@@ -17,8 +18,17 @@ namespace Pokemon.Scripts.Map
         public List<PokemonMapData> pokemonInMaps { get; private set; }
         private MapData mapData;
         public MapData MapData => mapData;
+
+        public NPCBattle[] npcBattle;
+#if UNITY_EDITOR
+        void OnValidate()
+        {
+            npcBattle = GetComponentsInChildren<NPCBattle>();
+        }
+#endif
         void Awake()
         {
+            npcBattle = GetComponentsInChildren<NPCBattle>();
             player = GetComponentInChildren<Player>();
             dragMap = GetComponent<DragMap>();
         }

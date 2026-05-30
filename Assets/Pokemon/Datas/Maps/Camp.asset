@@ -15,21 +15,16 @@ MonoBehaviour:
   hubName: Camp
   mapCondition: {fileID: 0}
   pkmRates:
-  - pokemonData: {fileID: 11400000, guid: a165e2c4b0bf0f2468b340475c434eba, type: 2}
-    rate: 40
-  - pokemonData: {fileID: 11400000, guid: 9cf767005e6eb324e96c8a21a4d0877c, type: 2}
-    rate: 1
-  - pokemonData: {fileID: 11400000, guid: 9b98bfe48782b7b43a67e16a6ef51f44, type: 2}
-    rate: 5
+  - pokemonData: {fileID: 11400000, guid: 5901f025c974cce4fb668c2bad90ceef, type: 2}
+    rate: 25
   - pokemonData: {fileID: 11400000, guid: 688ac5c18ac3386458a42a41ac823ac1, type: 2}
-    rate: 21
-  - pokemonData: {fileID: 11400000, guid: d2ace30c0b05e064eab2df3259046862, type: 2}
-    rate: 2
-  - pokemonData: {fileID: 11400000, guid: fcb29db18e3b39a469953d68414a991f, type: 2}
-    rate: 30
-  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
+    rate: 25
+  - pokemonData: {fileID: 11400000, guid: 5c9aeee7193d1d146a17b0d179cdd75a, type: 2}
+    rate: 25
+  - pokemonData: {fileID: 11400000, guid: fd6d5c5a6c11e814283585555c49c052, type: 2}
+    rate: 24
+  - pokemonData: {fileID: 11400000, guid: 6c1dc5b41c759fa469a923cda5b0f940, type: 2}
     rate: 1
-  hubIcon: {fileID: 21300000, guid: 714db5a4e4419414cbe5b24b65cec4f9, type: 3}
   headerMap: {fileID: 21300000, guid: df6d05ce5cbf7284999294ae6aed4a19, type: 3}
   mapBackground: {fileID: 21300000, guid: b7e6caa144a57e64992df09eb3d908cf, type: 3}
   bossAndQuestCount: 1

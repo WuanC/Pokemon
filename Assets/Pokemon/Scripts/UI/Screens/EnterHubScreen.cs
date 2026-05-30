@@ -116,10 +116,10 @@ namespace Pokemon.Scripts.UI.Screens
         }
         public void UpdateProgress(int bossCount, int pokemonCount)
         {
-            bossCountText.text = $"{bossCount}/{mapData.bossAndQuestCount}";
+            bossCountText.text = $"{bossCount}/{mapData.mapPrefab.npcBattle.Length}";
             pokemonCountText.text = $"{pokemonCount}/{mapData.pkmRates.Count}";
-            progressText.text = $"{(bossCount + pokemonCount) * 100 / (mapData.bossAndQuestCount + mapData.pkmRates.Count)}% COMPLETED";
-            progressFillImage.fillAmount = (float)(bossCount + pokemonCount) / (mapData.bossAndQuestCount + mapData.pkmRates.Count);
+            progressText.text = $"{(bossCount + pokemonCount) * 100 / (mapData.pkmRates.Count + mapData.mapPrefab.npcBattle.Length)}% COMPLETED";
+            progressFillImage.fillAmount = (float)(bossCount + pokemonCount) / (mapData.pkmRates.Count + mapData.mapPrefab.npcBattle.Length);
         }
         public void LockPanelDeactive()
         {

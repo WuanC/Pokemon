@@ -15,23 +15,22 @@ MonoBehaviour:
   hubName: TempleRuins
   mapCondition: {fileID: 0}
   pkmRates:
-  - pokemonData: {fileID: 11400000, guid: a165e2c4b0bf0f2468b340475c434eba, type: 2}
-    rate: 40
-  - pokemonData: {fileID: 11400000, guid: 9cf767005e6eb324e96c8a21a4d0877c, type: 2}
-    rate: 1
-  - pokemonData: {fileID: 11400000, guid: 9b98bfe48782b7b43a67e16a6ef51f44, type: 2}
+  - pokemonData: {fileID: 11400000, guid: 81df5d8dcabbcdd4e9886e6fc5847e70, type: 2}
+    rate: 20
+  - pokemonData: {fileID: 11400000, guid: f04a32abbc3453240a22962eb176d4dd, type: 2}
+    rate: 25
+  - pokemonData: {fileID: 11400000, guid: 2f85f5ce88b8e4747a4c5af124815739, type: 2}
     rate: 5
-  - pokemonData: {fileID: 11400000, guid: 688ac5c18ac3386458a42a41ac823ac1, type: 2}
-    rate: 21
-  - pokemonData: {fileID: 11400000, guid: d2ace30c0b05e064eab2df3259046862, type: 2}
-    rate: 2
+  - pokemonData: {fileID: 11400000, guid: 4665be2a588d6a64aa193a79e5b18715, type: 2}
+    rate: 25
+  - pokemonData: {fileID: 11400000, guid: 5c9aeee7193d1d146a17b0d179cdd75a, type: 2}
+    rate: 20
   - pokemonData: {fileID: 11400000, guid: fcb29db18e3b39a469953d68414a991f, type: 2}
-    rate: 30
-  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
+    rate: 4
+  - pokemonData: {fileID: 11400000, guid: a454a2933780a8f4d964c9585a7d72f0, type: 2}
     rate: 1
   headerMap: {fileID: 21300000, guid: c9716b53049f1b34eb1f5921728c2606, type: 3}
   mapBackground: {fileID: 21300000, guid: ae69ec0b0f5c637419188123a0c5c23a, type: 3}
-  bossAndQuestCount: 1
   goldReward: 80
   mapPrefab: {fileID: 452948459219568770, guid: 812532a5b15673245bf1dcae4b3c0d43,
     type: 3}

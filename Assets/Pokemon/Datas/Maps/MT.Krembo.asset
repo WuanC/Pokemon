@@ -15,23 +15,28 @@ MonoBehaviour:
   hubName: MT.Krembo
   mapCondition: {fileID: 0}
   pkmRates:
-  - pokemonData: {fileID: 11400000, guid: a165e2c4b0bf0f2468b340475c434eba, type: 2}
-    rate: 40
-  - pokemonData: {fileID: 11400000, guid: 9cf767005e6eb324e96c8a21a4d0877c, type: 2}
+  - pokemonData: {fileID: 11400000, guid: 674db163db8f6b94083c01ba2e442373, type: 2}
     rate: 1
-  - pokemonData: {fileID: 11400000, guid: 9b98bfe48782b7b43a67e16a6ef51f44, type: 2}
-    rate: 5
-  - pokemonData: {fileID: 11400000, guid: 688ac5c18ac3386458a42a41ac823ac1, type: 2}
-    rate: 21
-  - pokemonData: {fileID: 11400000, guid: d2ace30c0b05e064eab2df3259046862, type: 2}
-    rate: 2
-  - pokemonData: {fileID: 11400000, guid: fcb29db18e3b39a469953d68414a991f, type: 2}
-    rate: 30
   - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
-    rate: 1
+    rate: 5
+  - pokemonData: {fileID: 11400000, guid: 82e778268395562488ac6416a7946f30, type: 2}
+    rate: 14
+  - pokemonData: {fileID: 11400000, guid: 3c23e6ac008b647489efb5ca2b259c1d, type: 2}
+    rate: 10
+  - pokemonData: {fileID: 11400000, guid: 9cf767005e6eb324e96c8a21a4d0877c, type: 2}
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: c9399c71f8f3be241b980f8c1b403651, type: 2}
+    rate: 10
+  - pokemonData: {fileID: 11400000, guid: 5901f025c974cce4fb668c2bad90ceef, type: 2}
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: cf48de1f87b9d6a468473bc4f2ade263, type: 2}
+    rate: 10
+  - pokemonData: {fileID: 11400000, guid: f5f570ad66822804c8015e22828e3ec6, type: 2}
+    rate: 10
+  - pokemonData: {fileID: 11400000, guid: 83a0c9681750f4f42bfafed7efee2e54, type: 2}
+    rate: 10
   headerMap: {fileID: 21300000, guid: 68fb6090362711643aef10450d5237a0, type: 3}
   mapBackground: {fileID: 21300000, guid: f5cf663847aed2544805279000450e47, type: 3}
-  bossAndQuestCount: 1
   goldReward: 80
   mapPrefab: {fileID: 452948459219568770, guid: c4d4611f2b5dcdf429b87ea52d5a4703,
     type: 3}

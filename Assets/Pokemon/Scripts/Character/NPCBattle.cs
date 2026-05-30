@@ -13,5 +13,7 @@ namespace Pokemon.Scripts.Character
             party = GetComponent<Party>();
             party.Initialize();
         }
+
+
     }
 }

@@ -17,7 +17,6 @@ namespace Pokemon.Scripts.Map
         private SpriteRenderer spriteRenderer;
         private Color originalColor = Color.white;
         private bool hasColorTarget;
-        public int BossAndQuestCount => mapData.bossAndQuestCount;
 
         private void Awake()
         {

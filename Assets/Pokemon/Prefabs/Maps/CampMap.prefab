@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNode: {fileID: 1886222263811074224}
   nodes: []
-  rangeLevel: {x: 0, y: 0}
+  rangeLevel: {x: 2, y: 5}
   arenaIndex: 0
 --- !u!1 &4558204974327408561
 GameObject:
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNode: {fileID: 0}
   nodes: []
-  rangeLevel: {x: 7, y: 10}
+  rangeLevel: {x: 1, y: 3}
   arenaIndex: 0
 --- !u!1 &7112706885790011944
 GameObject:
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNode: {fileID: 1937110215635968113}
   nodes: []
-  rangeLevel: {x: 0, y: 0}
+  rangeLevel: {x: 4, y: 5}
   arenaIndex: 0
 --- !u!1 &7380071013388252002
 GameObject:
@@ -516,6 +516,11 @@ MonoBehaviour:
   - {fileID: 3881069766592121784}
   - {fileID: 5125670562179408675}
   - {fileID: 3110568312906775732}
+  npcBattle:
+  - {fileID: 4668016945347097310}
+  - {fileID: 3370111296514147876}
+  - {fileID: 2678491791867494137}
+  - {fileID: 118154111791264027}
 --- !u!114 &8263277517822515801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,6 +780,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3671111335695705101}
     m_Modifications:
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: npcData.npcAvatar
+      value: 
+      objectReference: {fileID: 21300000, guid: e75ecd37da6ca06458c9ecdccf868c66,
+        type: 3}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: npcData.npcSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae8f3a4920b52cc4983c60a14bfa67f9,
+        type: 3}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: initPokemonParties.Array.size
@@ -783,12 +800,12 @@ PrefabInstance:
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: initPokemonParties.Array.data[0].level
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: initPokemonParties.Array.data[1].level
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
@@ -802,6 +819,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5901f025c974cce4fb668c2bad90ceef,
         type: 2}
+    - target: {fileID: 3271548688979493698, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e75ecd37da6ca06458c9ecdccf868c66,
+        type: 3}
     - target: {fileID: 4404929437467048147, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: m_Name
@@ -862,6 +885,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94502e2fd4f06a542a5d7bd76bc435f4, type: 3}
+--- !u!114 &118154111791264027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367945955844827998}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9318ab83c7f6e454aa29feb6e6e09087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5151558190974854854 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6162588366981254552, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
@@ -1376,10 +1411,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2035209118783697416}
     m_Modifications:
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: npcData.npcAvatar
+      value: 
+      objectReference: {fileID: 21300000, guid: 23ef561801a8d9e41800813799c1a717,
+        type: 3}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: npcData.npcSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f52fa54ed6ce42748a0116579e363944,
+        type: 3}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: initPokemonParties.Array.data[0].level
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
@@ -1387,6 +1434,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9cf767005e6eb324e96c8a21a4d0877c,
         type: 2}
+    - target: {fileID: 3271548688979493698, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 23ef561801a8d9e41800813799c1a717,
+        type: 3}
     - target: {fileID: 4404929437467048147, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: m_Name
@@ -1447,6 +1500,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94502e2fd4f06a542a5d7bd76bc435f4, type: 3}
+--- !u!114 &2678491791867494137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3923696335971050684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9318ab83c7f6e454aa29feb6e6e09087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7202993579723139364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6162588366981254552, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
@@ -1609,10 +1674,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4578282783312192473}
     m_Modifications:
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: npcData.npcAvatar
+      value: 
+      objectReference: {fileID: 21300000, guid: a81accf2ad039a04b95471f59b873b41,
+        type: 3}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: npcData.npcSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c77624997ea854344b9d9df712a5d414,
+        type: 3}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: initPokemonParties.Array.data[0].level
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
@@ -1620,6 +1697,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5c9aeee7193d1d146a17b0d179cdd75a,
         type: 2}
+    - target: {fileID: 3271548688979493698, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a81accf2ad039a04b95471f59b873b41,
+        type: 3}
     - target: {fileID: 4404929437467048147, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: m_Name
@@ -1856,6 +1939,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
+      propertyPath: npcData.npcAvatar
+      value: 
+      objectReference: {fileID: 21300000, guid: 23ef561801a8d9e41800813799c1a717,
+        type: 3}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: npcData.npcSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f52fa54ed6ce42748a0116579e363944,
+        type: 3}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
       propertyPath: reward.items.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1933,7 +2028,7 @@ PrefabInstance:
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: initPokemonParties.Array.data[0].level
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
@@ -1941,6 +2036,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4665be2a588d6a64aa193a79e5b18715,
         type: 2}
+    - target: {fileID: 3271548688979493698, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 23ef561801a8d9e41800813799c1a717,
+        type: 3}
     - target: {fileID: 4404929437467048147, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: m_Name

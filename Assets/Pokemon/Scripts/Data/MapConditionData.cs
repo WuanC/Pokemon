@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Data
@@ -12,11 +13,10 @@ namespace Pokemon.Scripts.Data
     public class MapConditionData : ScriptableObject
     {
         public MapConditionType conditionType;
-        //For UnlockMap
+        [ShowIf("conditionType", MapConditionType.UnlockMap)]
         public MapData requiredMap;
-        public float progressRequired;
 
-        //For Pay
+        [ShowIf("conditionType", MapConditionType.Pay)]
         public int goldRequired;
 
         public string description;

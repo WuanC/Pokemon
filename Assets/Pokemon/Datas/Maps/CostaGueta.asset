@@ -15,23 +15,22 @@ MonoBehaviour:
   hubName: CostaGueta
   mapCondition: {fileID: 0}
   pkmRates:
-  - pokemonData: {fileID: 11400000, guid: a165e2c4b0bf0f2468b340475c434eba, type: 2}
-    rate: 40
-  - pokemonData: {fileID: 11400000, guid: 9cf767005e6eb324e96c8a21a4d0877c, type: 2}
-    rate: 1
-  - pokemonData: {fileID: 11400000, guid: 9b98bfe48782b7b43a67e16a6ef51f44, type: 2}
-    rate: 5
+  - pokemonData: {fileID: 11400000, guid: 2b1cfc247db6f784f8ea8f834016da89, type: 2}
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: 1615176973276954984a6499fd6f991e, type: 2}
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: 86b4495ace8cbc146adf1ad362996b89, type: 2}
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: cd1a7485e75c8cf4ab4460cb29913ac4, type: 2}
+    rate: 15
   - pokemonData: {fileID: 11400000, guid: 688ac5c18ac3386458a42a41ac823ac1, type: 2}
-    rate: 21
-  - pokemonData: {fileID: 11400000, guid: d2ace30c0b05e064eab2df3259046862, type: 2}
-    rate: 2
-  - pokemonData: {fileID: 11400000, guid: fcb29db18e3b39a469953d68414a991f, type: 2}
-    rate: 30
-  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
-    rate: 1
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: 9431d0638097aee44998c28acb7f0ded, type: 2}
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: 77c1ff3e05145a049b08ca77b49c23a4, type: 2}
+    rate: 10
   headerMap: {fileID: 21300000, guid: 9353f9ad499d6a846bf257797f509232, type: 3}
   mapBackground: {fileID: 21300000, guid: b5dea595276043342ab8c568bd2b105e, type: 3}
-  bossAndQuestCount: 1
   goldReward: 80
   mapPrefab: {fileID: 452948459219568770, guid: 330d560b32816ea4b97a822ff236feb3,
     type: 3}

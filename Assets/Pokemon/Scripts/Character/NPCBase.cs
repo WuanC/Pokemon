@@ -16,5 +16,15 @@ namespace Pokemon.Scripts.Character
         {
             npcAvatar.sprite = npcData.npcAvatar;
         }
+#if UNITY_EDITOR
+        void OnValidate()
+        {
+            if (npcData != null)
+            {
+                npcAvatar = GetComponent<SpriteRenderer>();
+                npcAvatar.sprite = npcData.npcAvatar;
+            }
+        }
+#endif
     }
 }

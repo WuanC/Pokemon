@@ -15,23 +15,16 @@ MonoBehaviour:
   hubName: BonusCave
   mapCondition: {fileID: 0}
   pkmRates:
-  - pokemonData: {fileID: 11400000, guid: a165e2c4b0bf0f2468b340475c434eba, type: 2}
-    rate: 40
-  - pokemonData: {fileID: 11400000, guid: 9cf767005e6eb324e96c8a21a4d0877c, type: 2}
-    rate: 1
-  - pokemonData: {fileID: 11400000, guid: 9b98bfe48782b7b43a67e16a6ef51f44, type: 2}
-    rate: 5
-  - pokemonData: {fileID: 11400000, guid: 688ac5c18ac3386458a42a41ac823ac1, type: 2}
-    rate: 21
-  - pokemonData: {fileID: 11400000, guid: d2ace30c0b05e064eab2df3259046862, type: 2}
-    rate: 2
-  - pokemonData: {fileID: 11400000, guid: fcb29db18e3b39a469953d68414a991f, type: 2}
-    rate: 30
-  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
+  - pokemonData: {fileID: 11400000, guid: f04a32abbc3453240a22962eb176d4dd, type: 2}
+    rate: 33
+  - pokemonData: {fileID: 11400000, guid: 213cd9d8892618048bc16bbe67d44cab, type: 2}
+    rate: 33
+  - pokemonData: {fileID: 11400000, guid: c04fb56faaaf28440b1b402957d26a4e, type: 2}
+    rate: 33
+  - pokemonData: {fileID: 11400000, guid: aef580ab723e08c4c914ee6c1445f187, type: 2}
     rate: 1
   headerMap: {fileID: 21300000, guid: a92192741a5dfdf4fbfef7f081b42e62, type: 3}
   mapBackground: {fileID: 21300000, guid: 5787d8d34372fef46afca2e894e6f9c3, type: 3}
-  bossAndQuestCount: 1
   goldReward: 80
   mapPrefab: {fileID: 452948459219568770, guid: b27d425e1cba07b44bf97e3658a48af0,
     type: 3}

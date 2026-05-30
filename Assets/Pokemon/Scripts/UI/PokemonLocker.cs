@@ -21,6 +21,14 @@ namespace Pokemon.Scripts.UI
                 pokemonImage.color = Color.white;
             }
             pokemonImage.SetNativeSize();
+
+            float aspect = pokemonImage.sprite.rect.width /
+                           pokemonImage.sprite.rect.height;
+
+            pokemonImage.rectTransform.sizeDelta = new Vector2(
+                270f * aspect,
+                270f
+            );
         }
     }
 }

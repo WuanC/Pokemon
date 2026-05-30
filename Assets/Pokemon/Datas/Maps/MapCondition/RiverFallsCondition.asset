@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conditionType: 1
   requiredMap: {fileID: 11400000, guid: c2fc69676ecd8c44d80b41581f7d2ca1, type: 2}
-  progressRequired: 0
   goldRequired: 500
   description: You must complete camp

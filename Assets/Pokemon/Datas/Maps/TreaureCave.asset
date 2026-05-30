@@ -15,23 +15,26 @@ MonoBehaviour:
   hubName: TreasureCave
   mapCondition: {fileID: 0}
   pkmRates:
-  - pokemonData: {fileID: 11400000, guid: a165e2c4b0bf0f2468b340475c434eba, type: 2}
-    rate: 40
-  - pokemonData: {fileID: 11400000, guid: 9cf767005e6eb324e96c8a21a4d0877c, type: 2}
-    rate: 1
-  - pokemonData: {fileID: 11400000, guid: 9b98bfe48782b7b43a67e16a6ef51f44, type: 2}
+  - pokemonData: {fileID: 11400000, guid: 2f85f5ce88b8e4747a4c5af124815739, type: 2}
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: d0348fa7c32a6d6428de5f8dd842aeed, type: 2}
+    rate: 10
+  - pokemonData: {fileID: 11400000, guid: c7237e45f7373824da228dccd83d2c48, type: 2}
+    rate: 10
+  - pokemonData: {fileID: 11400000, guid: 65ea10e04dff80d4397fd746b7630645, type: 2}
+    rate: 10
+  - pokemonData: {fileID: 11400000, guid: c04fb56faaaf28440b1b402957d26a4e, type: 2}
+    rate: 15
+  - pokemonData: {fileID: 11400000, guid: aef580ab723e08c4c914ee6c1445f187, type: 2}
     rate: 5
-  - pokemonData: {fileID: 11400000, guid: 688ac5c18ac3386458a42a41ac823ac1, type: 2}
-    rate: 21
-  - pokemonData: {fileID: 11400000, guid: d2ace30c0b05e064eab2df3259046862, type: 2}
-    rate: 2
-  - pokemonData: {fileID: 11400000, guid: fcb29db18e3b39a469953d68414a991f, type: 2}
-    rate: 30
-  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
-    rate: 1
+  - pokemonData: {fileID: 11400000, guid: bcac5bf6f11765747a3418e25da1cf75, type: 2}
+    rate: 20
+  - pokemonData: {fileID: 11400000, guid: 3a19a323c01970a4e833b8f684a1c1d5, type: 2}
+    rate: 10
+  - pokemonData: {fileID: 11400000, guid: 70507723c9a3ac64b85173ba4359cc8f, type: 2}
+    rate: 5
   headerMap: {fileID: 21300000, guid: 8935f50285bbd5b4499dd7a49fbf9468, type: 3}
   mapBackground: {fileID: 21300000, guid: 0eaa898fa67342942bc66cdf7134611e, type: 3}
-  bossAndQuestCount: 1
   goldReward: 80
   mapPrefab: {fileID: 452948459219568770, guid: b7cd7d221eb69fc4880832e68aebf0ce,
     type: 3}

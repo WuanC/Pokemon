@@ -76,7 +76,6 @@ namespace Pokemon.Scripts.Tutorial
         public static bool IsTutorialCompleted()
         {
             bool completedTutorials = PlayerPrefs.GetInt(TUTORIAL_KEY, 0) == 1;
-            Debug.Log("IsTutorialCompleted: " + completedTutorials);
             return completedTutorials;
         }
         public static void MarkTutorialCompleted()

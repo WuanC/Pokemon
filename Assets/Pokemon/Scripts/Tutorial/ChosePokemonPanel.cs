@@ -40,7 +40,7 @@ namespace Pokemon.Scripts.Tutorial
 
         void OnChose(PokemonParty pkmParty)
         {
-            PokemonUnit pkmUnit = new PokemonUnit(pkmParty.pokemonData, 5);
+            PokemonUnit pkmUnit = new PokemonUnit(pkmParty.pokemonData, 3);
             PlayerParty.Instance.Initialize();
             PlayerParty.Instance.AddPokemon(pkmUnit);
             chosePokemonScreen.DisableScreen();
