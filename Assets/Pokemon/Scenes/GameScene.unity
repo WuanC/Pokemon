@@ -21125,7 +21125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.08452084}
-  m_AnchoredPosition: {x: 0, y: 24.999573}
+  m_AnchoredPosition: {x: 0, y: 24.999878}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1241411917
@@ -29580,6 +29580,8 @@ MonoBehaviour:
   hand: {fileID: 1725225529}
   mainCanvas: {fileID: 1250827255}
   enableHub: {fileID: 1123154422}
+  testSkillPkm: {fileID: 11400000, guid: 8d8683974839ec64aa91eaa3726c0ac8, type: 2}
+  map: {fileID: 21300000, guid: ba57b2d171e95ab429a5158299c3ccff, type: 3}
 --- !u!4 &1684819016
 Transform:
   m_ObjectHideFlags: 0

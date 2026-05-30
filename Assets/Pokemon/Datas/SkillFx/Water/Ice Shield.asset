@@ -17,5 +17,4 @@ MonoBehaviour:
     type: 3}
   mapFxPrefab: {fileID: 0}
   fxDuration: 1
-  fxType: 0
-  projectilesCount: 0
+  mirrorSkillFx: 0

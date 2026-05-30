@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using Pokemon.Scripts.Battle;
 using Pokemon.Scripts.Character;
 using Pokemon.Scripts.Condition;
@@ -13,7 +16,11 @@ using Pokemon.Scripts.Pokemon;
 using Pokemon.Scripts.Quest;
 using Pokemon.Scripts.Tutorial;
 using Pokemon.Scripts.UI.Screens;
+using Sirenix.OdinInspector;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Pokemon.Scripts
 {
@@ -38,6 +45,8 @@ namespace Pokemon.Scripts
         [SerializeField] private GameObject hand;
         [SerializeField] private GameObject mainCanvas;
         public Hub enableHub;
+        [SerializeField]
+
         void Start()
         {
             StartCoroutine(InitGame());
@@ -61,7 +70,6 @@ namespace Pokemon.Scripts
             Inventory.Inventory.Instance.Initialize();
             ScreenManager.Instance.Initialize();
             CheckForTutorial();
-
         }
         public void CheckForTutorial()
         {
@@ -75,6 +83,88 @@ namespace Pokemon.Scripts
             hand.gameObject.SetActive(false);
             TutorialManager.MarkTutorialCompleted();
         }
+
+#if UNITY_EDITOR
+        [Button("Export Skill Learnable Report")]
+        public void ExportSkillLearnableReport()
+        {
+            string outputPath = EditorUtility.SaveFilePanel(
+                "Export skill learnable report",
+                Application.dataPath,
+                "skill_learnable_report",
+                "csv");
+
+            if (string.IsNullOrEmpty(outputPath))
+            {
+                return;
+            }
+
+            List<SkillData> skills = Resources.LoadAll<SkillData>("Skills")
+                .OrderBy(skill => skill.skillName)
+                .ToList();
+            List<PokemonData> pokemonDatas = Resources.LoadAll<PokemonData>("Pokemons").ToList();
+
+            Dictionary<string, List<string>> pokemonNamesBySkill = new Dictionary<string, List<string>>();
+            foreach (PokemonData pokemonData in pokemonDatas)
+            {
+                if (pokemonData == null || pokemonData.learnableSkills == null)
+                {
+                    continue;
+                }
+
+                foreach (PokemonSkill pokemonSkill in pokemonData.learnableSkills)
+                {
+                    if (pokemonSkill?.skillData == null || string.IsNullOrEmpty(pokemonSkill.skillData.skillName))
+                    {
+                        continue;
+                    }
+
+                    if (!pokemonNamesBySkill.TryGetValue(pokemonSkill.skillData.skillName, out List<string> pokemonNames))
+                    {
+                        pokemonNames = new List<string>();
+                        pokemonNamesBySkill[pokemonSkill.skillData.skillName] = pokemonNames;
+                    }
+
+                    if (!pokemonNames.Contains(pokemonData.pokemonName))
+                    {
+                        pokemonNames.Add(pokemonData.pokemonName);
+                    }
+                }
+            }
+
+            StringBuilder csvBuilder = new StringBuilder();
+            csvBuilder.AppendLine("Skill Name,Pokemon Count,Pokemon Names");
+
+            foreach (SkillData skillData in skills)
+            {
+                pokemonNamesBySkill.TryGetValue(skillData.skillName, out List<string> pokemonNames);
+                int pokemonCount = pokemonNames != null ? pokemonNames.Count : 0;
+                string pokemonNameText = pokemonNames != null && pokemonNames.Count > 0
+                    ? string.Join("; ", pokemonNames.OrderBy(name => name))
+                    : string.Empty;
+
+                csvBuilder.AppendLine($"{EscapeCsv(skillData.skillName)},{pokemonCount},{EscapeCsv(pokemonNameText)}");
+            }
+
+            File.WriteAllText(outputPath, csvBuilder.ToString(), new UTF8Encoding(true));
+            Debug.Log($"Exported skill report to {outputPath}");
+        }
+
+        private static string EscapeCsv(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
+
+            if (value.Contains('"') || value.Contains(',') || value.Contains('\n') || value.Contains('\r') || value.Contains(';'))
+            {
+                return $"\"{value.Replace("\"", "\"\"")}\"";
+            }
+
+            return value;
+        }
+#endif
         public void OnEncounterPokemon(object data)
         {
             if (data is Node node)
@@ -169,6 +259,7 @@ namespace Pokemon.Scripts
                 if (dragMap == null)
                 {
                     dragWorld.HandleInput();
+
                 }
                 else
                 {

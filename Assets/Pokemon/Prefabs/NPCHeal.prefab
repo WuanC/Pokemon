@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: -2123101107
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4c365b9788a31f0479888c15f59b7af7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 000a19a83c6758b4f8e07fc9deaabd39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,6 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcData:
     npcName: Joy
-    npcSprite: {fileID: 21300000, guid: 821a69b11a16f124a888b27cdcfb08d5, type: 3}
-    npcAvatar: {fileID: 21300000, guid: 4c365b9788a31f0479888c15f59b7af7, type: 3}
+    npcSprite: {fileID: 21300000, guid: c188d11e568168c4fbeabfda3f885ae5, type: 3}
+    npcAvatar: {fileID: 21300000, guid: 000a19a83c6758b4f8e07fc9deaabd39, type: 3}
     npcMessage: I will heal!

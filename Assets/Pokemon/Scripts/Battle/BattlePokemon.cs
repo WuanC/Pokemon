@@ -58,6 +58,7 @@ namespace Pokemon.Scripts.Battle
 
         public void EnterAnimation(float duration)
         {
+            Debug.Log(originalPosition.y);
             if (isPlayerPokemon)
             {
                 pokemonImage.transform.localPosition = new Vector3(-1000, originalPosition.y);
@@ -66,7 +67,10 @@ namespace Pokemon.Scripts.Battle
             {
                 pokemonImage.transform.localPosition = new Vector3(1000, originalPosition.y);
             }
-            pokemonImage.transform.DOLocalMoveX(originalPosition.x, duration);
+            pokemonImage.transform.DOLocalMoveX(originalPosition.x, duration).OnComplete(() =>
+            {
+                Debug.Log(pokemonImage.transform.localPosition);
+            });
         }
         public void ExitAnimation(float duration, Action onComplete = null)
         {
