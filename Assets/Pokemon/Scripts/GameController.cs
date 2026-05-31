@@ -18,6 +18,8 @@ using Pokemon.Scripts.Tutorial;
 using Pokemon.Scripts.UI.Screens;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Pokemon.Scripts.AudioManager;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -184,7 +186,10 @@ namespace Pokemon.Scripts
                 int coinQuantity = UnityEngine.Random.Range(1, 5) * wildPokemon.Level;
                 int dustQuantity = UnityEngine.Random.Range(1, 5) * wildPokemon.Level;
                 battleController.StartBattleWithWildPokemon(party, wildPokemon, Reward.DefaultReward(coinQuantity, dustQuantity), mapData.mapBackground);
-
+                AudioService.Instance.PlayMusic(AudioId.BGM_BattleStart, () =>
+                {
+                    AudioService.Instance.PlayMusic(AudioId.BGM_BattleLoop);
+                });
             }
         }
         public void OnEncounterTrainer(object data)
@@ -202,6 +207,10 @@ namespace Pokemon.Scripts
                     MapData mapData = dragMap.GetComponent<Map.Map>().MapData;
                     ScreenManager.Instance.EnterBattleClick(() =>
                     {
+                        AudioService.Instance.PlayMusic(AudioId.BGM_BattleStart, () =>
+                        {
+                            AudioService.Instance.PlayMusic(AudioId.BGM_BattleLoop);
+                        });
                         currentNode = node;
                         loungeCamera.gameObject.SetActive(false);
                         battleCamera.gameObject.SetActive(true);
@@ -250,6 +259,7 @@ namespace Pokemon.Scripts
                 loungeCamera.gameObject.SetActive(true);
                 battleCamera.gameObject.SetActive(false);
                 currentState = GameState.Map;
+                AudioService.Instance.PlayMusic(AudioId.BGM_Hub);
             }
         }
         void Update()

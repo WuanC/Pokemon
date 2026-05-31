@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Pokemon.Scripts.Character;
 using Pokemon.Scripts.Saving;
@@ -37,21 +38,63 @@ namespace Pokemon.Scripts.Map
         private string hubName;
         public string NodeName { get; private set; }
 #if UNITY_EDITOR
+
+        private void OnValidate()
+        {
+            connectedNodes = connectedNodes
+    .Where(x => x != null)
+    .Distinct()
+    .ToList();
+            foreach (Node node in connectedNodes)
+            {
+                if (node == null)
+                    continue;
+                if (!node.ConnectedNodes.Contains(this))
+                {
+                    node.connectedNodes.Add(this);
+                }
+            }
+        }
         private void OnDrawGizmos()
         {
             Gizmos.color = IsLock ? Color.gray : Color.green;
             Gizmos.DrawSphere(transform.position, 0.2f);
 
-            Gizmos.color = Color.yellow;
-
             foreach (var node in connectedNodes)
             {
-                if (node == null) continue;
+                if (node == null)
+                    continue;
 
-                Gizmos.DrawLine(
-                    transform.position,
-                    node.transform.position);
+                Vector3 start = transform.position;
+                Vector3 end = node.transform.position;
+
+                // Đường nối
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(start, end);
+
+                // Mũi tên
+                DrawArrow(start, end);
             }
+        }
+
+        private void DrawArrow(Vector3 start, Vector3 end)
+        {
+            Vector3 dir = (end - start).normalized;
+
+            Vector3 arrowPos = Vector3.Lerp(start, end, 0.8f);
+
+            float arrowSize = 0.25f;
+
+            Vector3 right =
+                Quaternion.Euler(0, 0, 25) * -dir * arrowSize;
+
+            Vector3 left =
+                Quaternion.Euler(0, 0, -25) * -dir * arrowSize;
+
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawLine(arrowPos, arrowPos + right);
+            Gizmos.DrawLine(arrowPos, arrowPos + left);
         }
 #endif
         void Awake()
@@ -74,7 +117,11 @@ namespace Pokemon.Scripts.Map
             {
                 if (npc is NPCBattle)
                 {
-                    if (TrainerSaveLoad.LoadTrainerData(NodeName) != 0) return;
+                    if (TrainerSaveLoad.LoadTrainerData(NodeName) == 1)
+                    {
+                        npc.gameObject.SetActive(false);
+                        return;
+                    }
                     npc.gameObject.SetActive(true);
                     npc.SetupNPCData();
                     SetNodeState(NodeState.HasBattleTrainer);
@@ -95,6 +142,7 @@ namespace Pokemon.Scripts.Map
             {
                 markBattle.transform.DOKill();
                 markBattle.SetActive(true);
+                markBattle.transform.localPosition = startMarkLocalPosition;
                 markBattle.transform.DOLocalMoveY(startMarkLocalPosition.y + 0.2f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
             }
             else

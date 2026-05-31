@@ -32,7 +32,7 @@ MonoBehaviour:
   - skillData: {fileID: 11400000, guid: 259addd9834436b4d8746dfec0972e13, type: 2}
     levelRequirement: 1
   - skillData: {fileID: 11400000, guid: fcb374c8af69e2646a1bbf4f6a2af938, type: 2}
-    levelRequirement: 6
+    levelRequirement: 7
   - skillData: {fileID: 11400000, guid: 9af5e67662fc24a4b87721d301c93ac0, type: 2}
     levelRequirement: 10
   - skillData: {fileID: 11400000, guid: c28f902672426644d98b6816a00f7fea, type: 2}

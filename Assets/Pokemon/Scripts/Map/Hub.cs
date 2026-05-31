@@ -1,3 +1,4 @@
+using Pokemon.Scripts.AudioManager;
 using Pokemon.Scripts.Data;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Tutorial;
@@ -94,6 +95,7 @@ namespace Pokemon.Scripts.Map
         }
         public void SpawnMap()
         {
+            AudioService.Instance.PlayMusic(AudioId.BGM_Hub);
             Map map = Instantiate(mapData.mapPrefab, Vector2.zero, Quaternion.identity);
             map.InitializeMap(mapData);
         }

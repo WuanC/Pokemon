@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Pokemon.Scripts.AudioManager;
 using Pokemon.Scripts.Data;
 using Pokemon.Scripts.Map;
 using Pokemon.Scripts.MyUtils;
@@ -87,6 +88,7 @@ namespace Pokemon.Scripts.UI.Screens
             {
                 gameObject.SetActive(false);
                 ScreenManager.Instance.ActiveSplashScreen(onGoBtnClick);
+
                 if (!TutorialManager.IsTutorialCompleted())
                 {
                     GameController.Instance.CompleteTutorial();

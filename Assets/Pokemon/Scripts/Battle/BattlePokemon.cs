@@ -34,7 +34,7 @@ namespace Pokemon.Scripts.Battle
             pokemonImage.color = Color.white;
 
         }
-        public void SetPokemon(PokemonUnit pokemon, float duration = 0.5f)
+        public void SetPokemon(PokemonUnit pokemon, float duration = 1f)
         {
 
             Pokemon = pokemon;

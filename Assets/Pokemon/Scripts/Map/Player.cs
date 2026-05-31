@@ -178,6 +178,7 @@ namespace Pokemon.Scripts.Map
 
         void OnDestroy()
         {
+            sequence?.Kill();
             transform.DOKill();
         }
     }

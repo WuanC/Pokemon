@@ -1,3 +1,4 @@
+using Pokemon.Scripts.AudioManager;
 using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
 
@@ -30,6 +31,7 @@ namespace Pokemon.Scripts.Map
             {
                 if (hit.collider.TryGetComponent<Hub>(out Hub hub))
                 {
+                    AudioService.Instance.PlaySFX(AudioId.BtnClick);
                     hub.HubClick();
                 }
             }

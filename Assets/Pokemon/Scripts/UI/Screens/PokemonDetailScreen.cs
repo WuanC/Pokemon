@@ -22,6 +22,7 @@ namespace Pokemon.Scripts.UI.Screens
         public void Initialize(PokemonUnit pokemonUnit)
         {
             pkmImage.sprite = pokemonUnit.Data.frontSprite;
+            pkmImage.SetNativeSize();
             pkmModal.InitModal(pokemonUnit, true);
             pkmDescriptionText.text = pokemonUnit.Data.pokemonDescription;
             compatibleType.SetupCompatibleType(pokemonUnit.Data.type);

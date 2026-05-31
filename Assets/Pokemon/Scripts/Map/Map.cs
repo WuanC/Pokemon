@@ -83,7 +83,7 @@ namespace Pokemon.Scripts.Map
                 else
                 {
 
-                    if (TrainerSaveLoad.LoadTrainerData(area.keyNode.NodeName) != 0)
+                    if (TrainerSaveLoad.LoadTrainerData(area.keyNode.NodeName) == 1)
                     {
                         area.InitializeArena(this, i);
                         area.UnlockArea();

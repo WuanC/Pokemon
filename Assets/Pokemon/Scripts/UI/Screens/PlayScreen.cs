@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Pokemon.Scripts.AudioManager;
 using Pokemon.Scripts.Inventory;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.MyUtils.ObjectPooling;
@@ -62,6 +63,7 @@ namespace Pokemon.Scripts.UI.Screens
                 {
                     GameController.Instance.BackToWorldMap();
                     worldBtn.gameObject.SetActive(false);
+                    AudioService.Instance.PlayMusic(AudioId.BGM_Game);
                 });
             });
             int caughtCount = PlayerParty.Instance.pokedex.Count;

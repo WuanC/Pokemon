@@ -1,6 +1,7 @@
 
 using System.Collections;
 using DG.Tweening;
+using Pokemon.Scripts.AudioManager;
 using Pokemon.Scripts.FReward;
 using Pokemon.Scripts.MyUtils;
 using TMPro;
@@ -42,6 +43,7 @@ namespace Pokemon.Scripts.UI.Screens
         public IEnumerator ShowWinScreen(Reward reward)
         {
             Init();
+            AudioService.Instance.PlayMusic(AudioId.Win);
             gameObject.SetActive(true);
             youWinImage.gameObject.SetActive(true);
             yield return youWinImage.transform.DOScale(Vector3.one, 0.5f).WaitForCompletion();
