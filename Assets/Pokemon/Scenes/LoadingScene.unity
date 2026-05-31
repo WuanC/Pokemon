@@ -158,7 +158,7 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -725,6 +725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1350920419}
   textProgress: {fileID: 1350920418}
+  minimumLoadingTime: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

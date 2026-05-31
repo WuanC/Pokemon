@@ -17,6 +17,10 @@ namespace Pokemon.Scripts.Map
     }
     public class Node : MonoBehaviour
     {
+        [Header("Graph")]
+        [SerializeField] private List<Node> connectedNodes = new();
+
+        public IReadOnlyList<Node> ConnectedNodes => connectedNodes;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [Header("NPC Data")]
         [SerializeField] private NPCBase npc;
@@ -32,6 +36,24 @@ namespace Pokemon.Scripts.Map
         public NPCBase Npc => npc;
         private string hubName;
         public string NodeName { get; private set; }
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = IsLock ? Color.gray : Color.green;
+            Gizmos.DrawSphere(transform.position, 0.2f);
+
+            Gizmos.color = Color.yellow;
+
+            foreach (var node in connectedNodes)
+            {
+                if (node == null) continue;
+
+                Gizmos.DrawLine(
+                    transform.position,
+                    node.transform.position);
+            }
+        }
+#endif
         void Awake()
         {
             npc = GetComponentInChildren<NPCBase>();

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Pokemon.Scripts.Battle;
 using Pokemon.Scripts.Condition;
+using Pokemon.Scripts.MyUtils;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Pokemon
@@ -19,28 +20,26 @@ namespace Pokemon.Scripts.Pokemon
         public PokemonUnit(PokemonData data, int level)
         {
             this.Data = data;
-            this.Level = level;
+            this.Level = Mathf.Clamp(level, 1, 50);
             Skills = new List<Skill>();
             HP = MaxHP;
             CurrentExp = CalculateExpYield(level);
-            for (int i = 0; i < Data.learnableSkills.Count; i++)
+            List<PokemonSkill> learnableSkills = Data.learnableSkills.Where(s => s.levelRequirement <= Level).ToList();
+            List<PokemonSkill> shuffledSkills = GeneralUtils.ShuffleList(learnableSkills);
+            for (int i = 0; i < shuffledSkills.Count; i++)
             {
                 if (i >= 4)
                 {
                     break;
                 }
-                if (Data.learnableSkills[i].levelRequirement <= Level)
-                {
-                    Skills.Add(new Skill(Data.learnableSkills[i].skillData));
-                }
-
+                Skills.Add(new Skill(shuffledSkills[i].skillData));
             }
             CalculateStat();
         }
         public PokemonUnit(PokemonSaveData saveData)
         {
             this.Data = PokemonDB.GetPokemonByName(saveData.pokemonName);
-            this.Level = saveData.level;
+            this.Level = Mathf.Clamp(saveData.level, 1, 50);
             this.CurrentExp = saveData.currentExp;
             this.HP = saveData.hp;
             this.Condition = (saveData.conditionId != ConditionId.None) ? ConditionDB.GetConditionById(saveData.conditionId) : null;
@@ -78,6 +77,7 @@ namespace Pokemon.Scripts.Pokemon
         }
         public bool CheckLevelUp()
         {
+            if (Level >= 50) return false;
             if (CurrentExp >= CalculateExpYield(Level + 1))
             {
                 Level++;

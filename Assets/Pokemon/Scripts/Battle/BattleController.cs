@@ -10,7 +10,6 @@ using Pokemon.Scripts.MyUtils;
 using System.Linq;
 using Pokemon.Scripts.MyUtils.ObjectPooling;
 using Pokemon.Scripts.Character;
-using Unity.VisualScripting;
 using System;
 using Pokemon.Scripts.UI.Screens;
 using Pokemon.Scripts.Quest;
@@ -104,8 +103,8 @@ namespace Pokemon.Scripts.Battle
         #region Setup Battle
         public void StartBattleWithWildPokemon(Party party, PokemonUnit enemyPokemon, Reward reward, Sprite bg)
         {
-            npcImage.gameObject.SetActive(false);
-            npcNameText.gameObject.SetActive(false);
+            npcImage?.gameObject.SetActive(false);
+            npcNameText?.gameObject.SetActive(false);
             isNPCBattle = false;
             this.playerParty = party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
@@ -231,9 +230,8 @@ namespace Pokemon.Scripts.Battle
         {
             float a = (3 * enemyBattlePkm.Pokemon.MaxHP - 2 * enemyBattlePkm.Pokemon.HP)
              * enemyBattlePkm.Pokemon.Data.catchRate / (3 * enemyBattlePkm.Pokemon.MaxHP);
-            if (a >= 1)
-                return true;
-            else return false;
+            float change = a / 255;
+            return UnityEngine.Random.value < change;
         }
         #endregion
         public IEnumerator RunTurn()
@@ -328,7 +326,7 @@ namespace Pokemon.Scripts.Battle
                     yield break;
                 }
             }
-            StartCoroutine(ShowSkillName(skill.Data.skillName));
+            StartCoroutine(ShowSkillName(skill.Data.skillName.ToUpper()));
             yield return new WaitForSeconds(0.5f);
             yield return attacker.AttackAnimation().WaitForCompletion();
             if (skill.Data.skillFx != null)
@@ -339,17 +337,13 @@ namespace Pokemon.Scripts.Battle
                 {
                     if (skill.Data.targetType == TargetType.Self)
                     {
-                        float lastValue = attacker.Pokemon.GetStat(statBoost.stat);
                         attacker.Pokemon.ApplyBoost(statBoost);
-                        float newValue = attacker.Pokemon.GetStat(statBoost.stat);
-                        attacker.UpdateStatUI(statBoost, lastValue, newValue, 1f);
+                        attacker.UpdateStatUI(statBoost, 1f);
                     }
                     else
                     {
-                        float lastValue = defender.Pokemon.GetStat(statBoost.stat);
                         defender.Pokemon.ApplyBoost(statBoost);
-                        float newValue = defender.Pokemon.GetStat(statBoost.stat);
-                        defender.UpdateStatUI(statBoost, lastValue, newValue, 1f);
+                        defender.UpdateStatUI(statBoost, 1f);
                     }
                 }
                 yield return new WaitForSeconds(1f);
@@ -526,6 +520,7 @@ namespace Pokemon.Scripts.Battle
                     typeEffectImage.gameObject.SetActive(false);
                     typeEffectImage.color = new Color(typeEffectImage.color.r, typeEffectImage.color.g, typeEffectImage.color.b, 1);
                 });
+                typeEffectImage.SetNativeSize();
             }
 
         }

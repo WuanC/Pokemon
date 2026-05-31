@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Pokemon.Scripts.Pokemon;
 using Pokemon.Scripts.UI;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,22 +17,18 @@ namespace Pokemon.Scripts.Battle
         public Image pokemonImage;
         [SerializeField] Vector3 originalPosition;
         [SerializeField] PokemonModal pokemonHub;
-        [SerializeField] private Image attackProgress;
-        [SerializeField] private Image defenseProgress;
-        [SerializeField] private Image speedProgress;
-        [SerializeField] private Image accuracyProgress;
+
+        [Title("Stat Progress")]
+        [SerializeField] private StatGUI statAttack;
+        [SerializeField] private StatGUI statDefense;
+        [SerializeField] private StatGUI statSpeed;
         public PokemonUnit Pokemon { get; private set; }
         public bool IsPlayerPokemon => isPlayerPokemon;
         public Skill CurrentSkill { get; set; }
 
-        // [SerializeField] public Image expBar;
         private void OnDisable()
         {
             pokemonImage.transform.DOKill();
-            attackProgress.DOKill();
-            defenseProgress.DOKill();
-            speedProgress.DOKill();
-            accuracyProgress.DOKill();
             pokemonImage.transform.localPosition = originalPosition;
             pokemonImage.transform.localScale = Vector3.one;
             pokemonImage.color = Color.white;
@@ -58,7 +55,6 @@ namespace Pokemon.Scripts.Battle
 
         public void EnterAnimation(float duration)
         {
-            Debug.Log(originalPosition.y);
             if (isPlayerPokemon)
             {
                 pokemonImage.transform.localPosition = new Vector3(-1000, originalPosition.y);
@@ -67,10 +63,7 @@ namespace Pokemon.Scripts.Battle
             {
                 pokemonImage.transform.localPosition = new Vector3(1000, originalPosition.y);
             }
-            pokemonImage.transform.DOLocalMoveX(originalPosition.x, duration).OnComplete(() =>
-            {
-                Debug.Log(pokemonImage.transform.localPosition);
-            });
+            pokemonImage.transform.DOLocalMoveX(originalPosition.x, duration);
         }
         public void ExitAnimation(float duration, Action onComplete = null)
         {
@@ -88,52 +81,34 @@ namespace Pokemon.Scripts.Battle
                 onComplete?.Invoke();
             });
         }
-        public void UpdateStatUI(StatBoost statBoosts, float previousValue, float currentValue, float duration)
+        public void UpdateStatUI(StatBoost statBoosts, float duration)
         {
-            float maxValue = Pokemon.GetStat(statBoosts.stat) * 4f;
+            StatGUI cachedStatGUI = null;
             if (statBoosts.stat == Stat.Attack)
             {
-                Transform parent = attackProgress.transform.parent.parent;
-
-                attackProgress.fillAmount = previousValue / maxValue;
-                parent.gameObject.SetActive(true);
-                attackProgress.DOFillAmount(currentValue / maxValue, duration).OnComplete(() =>
-                {
-                    parent.gameObject.SetActive(false);
-                });
+                cachedStatGUI = statAttack;
             }
             else if (statBoosts.stat == Stat.Defense)
             {
-                Transform parent = defenseProgress.transform.parent.parent;
+                cachedStatGUI = statDefense;
 
-                defenseProgress.fillAmount = previousValue / maxValue;
-                parent.gameObject.SetActive(true);
-                defenseProgress.DOFillAmount(currentValue / maxValue, duration).OnComplete(() =>
-                {
-                    parent.gameObject.SetActive(false);
-                });
             }
             else if (statBoosts.stat == Stat.Speed)
             {
-                Transform parent = speedProgress.transform.parent.parent;
-
-                speedProgress.fillAmount = previousValue / maxValue;
-                parent.gameObject.SetActive(true);
-                speedProgress.DOFillAmount(currentValue / maxValue, duration).OnComplete(() =>
-                {
-                    parent.gameObject.SetActive(false);
-                });
+                cachedStatGUI = statSpeed;
             }
-            else if (statBoosts.stat == Stat.Accuracy)
+            if (cachedStatGUI != null)
             {
-                Transform parent = accuracyProgress.transform.parent.parent;
-                accuracyProgress.fillAmount = previousValue / maxValue;
-                parent.gameObject.SetActive(true);
-                accuracyProgress.DOFillAmount(currentValue / maxValue, duration).OnComplete(() =>
-                {
-                    parent.gameObject.SetActive(false);
-                });
+                cachedStatGUI.gameObject.SetActive(true);
+                cachedStatGUI.SetArrowDirection(statBoosts.boostAmount > 0);
+                StartCoroutine(DisableStatUI(duration, cachedStatGUI.gameObject));
             }
+        }
+        IEnumerator DisableStatUI(float duration, GameObject statUI)
+        {
+            yield return new WaitForSeconds(duration);
+            statUI.SetActive(false);
+
         }
         public Sequence AttackAnimation()
         {

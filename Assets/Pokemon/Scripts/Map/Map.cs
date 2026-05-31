@@ -42,6 +42,10 @@ namespace Pokemon.Scripts.Map
             dragMap.OnClick += OnClick;
             InitializeNode();
             player.transform.position = areas[0].nodes[0].transform.position;
+            foreach (var area in areas)
+            {
+                player.allNodesInMap.AddRange(area.nodes);
+            }
         }
         void OnDestroy()
         {
