@@ -42,7 +42,7 @@ namespace Pokemon.Scripts.Map
         private void OnValidate()
         {
             connectedNodes = connectedNodes
-    .Where(x => x != null)
+    .Where(x => x != null && x != this)
     .Distinct()
     .ToList();
             foreach (Node node in connectedNodes)
