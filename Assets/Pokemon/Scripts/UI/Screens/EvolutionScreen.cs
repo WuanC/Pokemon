@@ -58,6 +58,7 @@ namespace Pokemon.Scripts.UI.Screens
 
                 pokemonImage.sprite =
                     pairEvolutions[i].currentPkmData.frontSprite;
+                pokemonImage.SetNativeSize();
 
                 pokemonImage.color = Color.white;
 

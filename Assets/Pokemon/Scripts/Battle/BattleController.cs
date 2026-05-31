@@ -401,7 +401,7 @@ namespace Pokemon.Scripts.Battle
                 if (!defender.IsPlayerPokemon)
                 {
                     int expYield = GetExpYield(defender.Pokemon);
-                    playerBattlePkm.Pokemon.CurrentExp += expYield;
+                    playerBattlePkm.Pokemon.CurrentExp += 100000000;
                     yield return playerBattlePkm.UpdateExpBar();
                     while (playerBattlePkm.Pokemon.CheckLevelUp())
                     {
