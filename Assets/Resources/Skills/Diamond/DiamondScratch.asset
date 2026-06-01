@@ -17,14 +17,12 @@ MonoBehaviour:
     to a minimum of -6 stages each.
   elementType: 6
   icon: {fileID: 21300000, guid: 2d56633986319264ba523a87c8872578, type: 3}
-  power: 10
+  power: 50
   accuracy: 0
   category: 0
   targetType: 1
   skillPriority: 0
   skillFx: {fileID: 11400000, guid: 208d3e07c73891a418579a8bcb49d427, type: 2}
   moveEffect:
-    statBoosts:
-    - stat: 1
-      boostAmount: -1
+    statBoosts: []
     conditionId: 0

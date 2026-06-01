@@ -26,5 +26,5 @@ MonoBehaviour:
   moveEffect:
     statBoosts:
     - stat: 1
-      boostAmount: 1
+      boostAmount: 2
     conditionId: 0

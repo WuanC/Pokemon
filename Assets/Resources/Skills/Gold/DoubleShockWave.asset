@@ -17,7 +17,7 @@ MonoBehaviour:
     to a minimum of -6 stages each.
   elementType: 7
   icon: {fileID: 21300000, guid: 9a31be023e41ea94ca146ab9fccbb555, type: 3}
-  power: 10
+  power: 50
   accuracy: 0
   category: 0
   targetType: 1

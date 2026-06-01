@@ -27,6 +27,6 @@ MonoBehaviour:
     statBoosts:
     - stat: 0
       boostAmount: 1
-    - stat: 0
+    - stat: 1
       boostAmount: 1
     conditionId: 0
