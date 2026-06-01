@@ -14,13 +14,19 @@ namespace Pokemon.Scripts.Map
         public List<Node> allNodesInMap = new();
         Sequence sequence;
         private const string MOVING_ANIMATION_KEY = "isMoving";
-
+        private Node currentTargetNode;
         public void MoveToTarget(Node target)
         {
+            if (currentTargetNode == target)
+            {
+                return;
+            }
+            currentTargetNode = target;
             if (sequence != null && sequence.IsActive())
             {
                 sequence.Kill();
             }
+
             if (target == null || moveSpeed <= 0f)
             {
                 return;

@@ -87,6 +87,7 @@ namespace Pokemon.Scripts.UI.Screens
             goBtn.onClick.AddListener(() =>
             {
                 gameObject.SetActive(false);
+
                 ScreenManager.Instance.ActiveSplashScreen(onGoBtnClick);
 
                 if (!TutorialManager.IsTutorialCompleted())

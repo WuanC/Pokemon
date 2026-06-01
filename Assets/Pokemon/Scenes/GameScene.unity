@@ -455,7 +455,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.47843137}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5286,17 +5286,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318580925}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1358819727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -41}
-  m_SizeDelta: {x: 750, y: 600}
+  m_AnchoredPosition: {x: -34, y: -107}
+  m_SizeDelta: {x: 240, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &318580927
 MonoBehaviour:
@@ -5318,7 +5318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9085fed3e660be542ba88db187b67795, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27c3f5bf046b77d4797352de8d48c801, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5832,7 +5832,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.47843137}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6748,7 +6748,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.47843137}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -9683,7 +9683,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.47843137}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -12734,7 +12734,7 @@ RectTransform:
   m_Father: {fileID: 329066957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.954146}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13910,6 +13910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokemonContainer: {fileID: 1358819726}
   pokemonImage: {fileID: 318580927}
+  groundImage: {fileID: 1141187477}
   evolutionImage: {fileID: 1484380403}
   pokemonRect: {fileID: 318580926}
 --- !u!1 &810801650
@@ -16121,7 +16122,7 @@ PrefabInstance:
     - target: {fileID: 1008355765352019797, guid: 435d0b8002b9a564b92c08460b49116e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 273.5
+      value: 392.5713
       objectReference: {fileID: 0}
     - target: {fileID: 1008355765352019797, guid: 435d0b8002b9a564b92c08460b49116e,
         type: 3}
@@ -16996,7 +16997,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe87c8b55cfcf54d83a00aa7dee5f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initPokemonParties: []
+  initPokemonParties:
+  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
+    level: 5
 --- !u!1 &1007487565
 GameObject:
   m_ObjectHideFlags: 0
@@ -23773,8 +23776,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1141187476}
-  - {fileID: 1484380401}
   - {fileID: 318580926}
+  - {fileID: 1484380401}
   m_Father: {fileID: 942228034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -31256,7 +31259,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.4415095, g: 0.4415095, b: 0.4415095, a: 0.46666667}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -32389,7 +32392,7 @@ PrefabInstance:
     - target: {fileID: 1008355765352019797, guid: 435d0b8002b9a564b92c08460b49116e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 84.5
+      value: 203.57129
       objectReference: {fileID: 0}
     - target: {fileID: 1008355765352019797, guid: 435d0b8002b9a564b92c08460b49116e,
         type: 3}
@@ -32761,7 +32764,7 @@ PrefabInstance:
     - target: {fileID: 1008355765352019797, guid: 435d0b8002b9a564b92c08460b49116e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 462.5
+      value: 581.5713
       objectReference: {fileID: 0}
     - target: {fileID: 1008355765352019797, guid: 435d0b8002b9a564b92c08460b49116e,
         type: 3}
@@ -34557,7 +34560,7 @@ PrefabInstance:
     - target: {fileID: 1008355765352019797, guid: 435d0b8002b9a564b92c08460b49116e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 651.5
+      value: 770.5713
       objectReference: {fileID: 0}
     - target: {fileID: 1008355765352019797, guid: 435d0b8002b9a564b92c08460b49116e,
         type: 3}

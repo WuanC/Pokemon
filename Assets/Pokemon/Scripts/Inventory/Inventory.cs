@@ -72,9 +72,11 @@ namespace Pokemon.Scripts.Inventory
             }
             else
             {
-                items.Add(item);
+                Item newItem = new Item(item.ItemBase, item.Quantity);
+                items.Add(newItem);
             }
-            Observer.Instance.Broadcast(EventId.OnUpdateItem, item);
+            itemInInventory = items.FirstOrDefault(i => i.ItemBase == item.ItemBase);
+            Observer.Instance.Broadcast(EventId.OnUpdateItem, itemInInventory);
         }
         public Item GetCoins()
         {
@@ -146,7 +148,6 @@ namespace Pokemon.Scripts.Inventory
         {
             string saveDataJson = PlayerPrefs.GetString(saveKey);
             if (string.IsNullOrEmpty(saveDataJson)) return null;
-
             return JsonConvert.DeserializeObject<List<ItemSaveData>>(saveDataJson);
         }
         public void Update()

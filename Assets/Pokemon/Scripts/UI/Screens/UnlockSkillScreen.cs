@@ -23,6 +23,9 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private Button okBtn;
         private bool isExitPanel = false;
         private bool selectSkillToForget = false;
+        private PokemonUnit pokemonUnit;
+        private SkillData newSkillData;
+        private int indexSelected = -1;
 
         void OnDisable()
         {
@@ -32,6 +35,11 @@ namespace Pokemon.Scripts.UI.Screens
         {
             okBtn.onClick.AddListener(() =>
             {
+                RemoveForgetSkillListeners();
+                if (indexSelected != -1)
+                {
+                    pokemonUnit.ReplaceSkill(indexSelected, new Skill(newSkillData));
+                }
                 imageAnimator.enabled = true;
                 gameObject.SetActive(false);
                 isExitPanel = true;
@@ -40,6 +48,9 @@ namespace Pokemon.Scripts.UI.Screens
         public IEnumerator UnlockNewSkill(bool isForgettingSkill, SkillData newSKillData, PokemonUnit pokemonUnit = null)
         {
             Init();
+            this.pokemonUnit = pokemonUnit;
+            this.newSkillData = newSKillData;
+            indexSelected = -1;
             textUnlockNewSkill.transform.localScale = Vector3.zero;
             yield return textUnlockNewSkill.transform.DOScale(Vector3.one * 1.2f, 0.5f).WaitForCompletion();
             skillImage.gameObject.SetActive(true);
@@ -56,16 +67,15 @@ namespace Pokemon.Scripts.UI.Screens
                     skillButtons[i].GetComponent<Image>().sprite = pokemonUnit.Skills[i].Data.icon;
                     skillButtons[i].onClick.AddListener(() =>
                     {
-                        pokemonUnit.ReplaceSkill(index, new Skill(newSKillData));
-                        skillButtons[index].GetComponent<Image>().sprite = newSKillData.icon;
+                        indexSelected = index;
                         selectSkillToForget = true;
-                        RemoveForgetSkillListeners();
                     });
                 }
                 skipForgetBtn.onClick.AddListener(() =>
                 {
+                    indexSelected = -1;
                     selectSkillToForget = true;
-                    RemoveForgetSkillListeners();
+
                 });
                 forgetPanel.SetActive(true);
                 yield return new WaitUntil(() => selectSkillToForget);

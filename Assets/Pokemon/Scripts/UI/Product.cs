@@ -31,7 +31,6 @@ namespace Pokemon.Scripts.UI
                     Inventory.Inventory.Instance.PayCoins(item.ItemBase.price);
                     Inventory.Inventory.Instance.AddItem(item);
                     shopScreen.BuySuccess(item);
-                    Observer.Instance.Broadcast(EventId.OnShowMessage, "Item purchased successfully");
                 }
                 else
                 {

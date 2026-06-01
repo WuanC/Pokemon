@@ -25,6 +25,7 @@ namespace Pokemon.Scripts.UI.Screens
     {
         [SerializeField] private GameObject pokemonContainer;
         [SerializeField] private Image pokemonImage;
+        [SerializeField] private Image groundImage;
         [SerializeField] private Image evolutionImage;
 
         [SerializeField] private RectTransform pokemonRect;
@@ -55,11 +56,16 @@ namespace Pokemon.Scripts.UI.Screens
             for (int i = 0; i < pairEvolutions.Count; i++)
             {
                 evolutionImage.gameObject.SetActive(false);
-
                 pokemonImage.sprite =
                     pairEvolutions[i].currentPkmData.frontSprite;
                 pokemonImage.SetNativeSize();
 
+                float topGroundY = groundImage.rectTransform.anchoredPosition.y +
+                                groundImage.rectTransform.rect.height / 2;
+                float pokemonHalfHeight = pokemonImage.rectTransform.rect.height / 2;
+                float groundY = topGroundY + pokemonHalfHeight;
+                originalAnchoredPos =
+                    new Vector2(originalAnchoredPos.x, groundY);
                 pokemonImage.color = Color.white;
 
                 // Spawn bên trái

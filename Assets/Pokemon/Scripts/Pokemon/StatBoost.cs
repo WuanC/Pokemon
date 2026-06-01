@@ -13,7 +13,6 @@ namespace Pokemon.Scripts.Pokemon
         Attack,
         Defense,
         Speed,
-        Accuracy
 
     }
 }
