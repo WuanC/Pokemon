@@ -38,4 +38,4 @@ MonoBehaviour:
     levelRequirement: 25
   evolutions:
   - pokemonData: {fileID: 11400000, guid: ee3fc1edafa6ba14c87165b5d96c1ab2, type: 2}
-    levelRequirement: 15
+    levelRequirement: 16
