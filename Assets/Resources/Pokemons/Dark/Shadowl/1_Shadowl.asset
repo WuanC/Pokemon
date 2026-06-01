@@ -34,10 +34,18 @@ MonoBehaviour:
     levelRequirement: 7
   - skillData: {fileID: 11400000, guid: 9216bcc6893fc6f47a16956d3e05fc70, type: 2}
     levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 4fe90fd7e04e29f42b2c43fc8b8d50f2, type: 2}
+    levelRequirement: 15
   - skillData: {fileID: 11400000, guid: 28c013d5dc02dc64fb9dd5ac422832ec, type: 2}
     levelRequirement: 16
   - skillData: {fileID: 11400000, guid: 03b96e54a6c917847a666a7f2399164f, type: 2}
     levelRequirement: 20
+  - skillData: {fileID: 11400000, guid: 829cf2ea9f55ed147a2dbe8540ade24c, type: 2}
+    levelRequirement: 25
+  - skillData: {fileID: 11400000, guid: 46f292ec2ec418b47b665fcea4f6a395, type: 2}
+    levelRequirement: 30
+  - skillData: {fileID: 11400000, guid: 6efb1da79a69a4642a6622ad8a6ecbef, type: 2}
+    levelRequirement: 32
   evolutions:
   - pokemonData: {fileID: 11400000, guid: bcac5bf6f11765747a3418e25da1cf75, type: 2}
     levelRequirement: 16

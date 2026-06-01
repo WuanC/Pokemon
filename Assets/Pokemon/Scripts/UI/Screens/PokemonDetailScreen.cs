@@ -19,9 +19,15 @@ namespace Pokemon.Scripts.UI.Screens
         List<SkillLocker> skillLockers = new();
         [SerializeField]
         private SkillDetailScreen skillDetailScreen;
+        [SerializeField] private TextMeshProUGUI attackText;
+        [SerializeField] private TextMeshProUGUI defenseText;
+        [SerializeField] private TextMeshProUGUI speedText;
         public void Initialize(PokemonUnit pokemonUnit)
         {
             pkmImage.sprite = pokemonUnit.Data.frontSprite;
+            attackText.text = pokemonUnit.Data.attack.ToString();
+            defenseText.text = pokemonUnit.Data.defense.ToString();
+            speedText.text = pokemonUnit.Data.speed.ToString();
             pkmImage.SetNativeSize();
             pkmModal.InitModal(pokemonUnit, true);
             pkmDescriptionText.text = pokemonUnit.Data.pokemonDescription;

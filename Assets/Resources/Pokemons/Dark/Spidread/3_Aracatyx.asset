@@ -34,8 +34,16 @@ MonoBehaviour:
     levelRequirement: 7
   - skillData: {fileID: 11400000, guid: 435bd7c411e9e0b4496157c47e2d2a10, type: 2}
     levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 0a8b6852b7a995a43b28db7043f0ae05, type: 2}
+    levelRequirement: 12
   - skillData: {fileID: 11400000, guid: 9db51fb8cbcde274a837fc07da2b76b9, type: 2}
     levelRequirement: 16
-  - skillData: {fileID: 11400000, guid: 03b96e54a6c917847a666a7f2399164f, type: 2}
+  - skillData: {fileID: 11400000, guid: cde1992491528f24ca50ff6aaeefe074, type: 2}
     levelRequirement: 20
+  - skillData: {fileID: 11400000, guid: 03b96e54a6c917847a666a7f2399164f, type: 2}
+    levelRequirement: 25
+  - skillData: {fileID: 11400000, guid: df392ee5a90360b48b4aba0112707db2, type: 2}
+    levelRequirement: 29
+  - skillData: {fileID: 11400000, guid: 2c22ca8018cf4a848b20e94f5cd7d6b4, type: 2}
+    levelRequirement: 32
   evolutions: []

@@ -102,7 +102,8 @@ namespace Pokemon.Scripts
             }
 
             List<SkillData> skills = Resources.LoadAll<SkillData>("Skills")
-                .OrderBy(skill => skill.skillName)
+                .OrderByDescending(skill => skill.power)
+                .ThenBy(skill => skill.skillName)
                 .ToList();
             List<PokemonData> pokemonDatas = Resources.LoadAll<PokemonData>("Pokemons").ToList();
 
@@ -135,7 +136,7 @@ namespace Pokemon.Scripts
             }
 
             StringBuilder csvBuilder = new StringBuilder();
-            csvBuilder.AppendLine("Skill Name,Pokemon Count,Pokemon Names");
+            csvBuilder.AppendLine("Skill Name,Power,Pokemon Count,Pokemon Names");
 
             foreach (SkillData skillData in skills)
             {
@@ -145,7 +146,7 @@ namespace Pokemon.Scripts
                     ? string.Join("; ", pokemonNames.OrderBy(name => name))
                     : string.Empty;
 
-                csvBuilder.AppendLine($"{EscapeCsv(skillData.skillName)},{pokemonCount},{EscapeCsv(pokemonNameText)}");
+                csvBuilder.AppendLine($"{EscapeCsv(skillData.skillName)},{skillData.power},{pokemonCount},{EscapeCsv(pokemonNameText)}");
             }
 
             File.WriteAllText(outputPath, csvBuilder.ToString(), new UTF8Encoding(true));
