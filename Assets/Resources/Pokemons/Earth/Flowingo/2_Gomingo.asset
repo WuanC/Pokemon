@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: 2_Gomingo
+  m_EditorClassIdentifier: 
+  pokemonName: Gomingo
+  pokemonDescription: Gomingo is the evolution of Flomingo
+  type: 3
+  frontSprite: {fileID: 21300000, guid: 4e53579da3841654eaef364e66c275bd, type: 3}
+  backSprite: {fileID: 21300000, guid: 3a7bf5e932dc56b42a04507f8af4a862, type: 3}
+  icon: {fileID: 21300000, guid: 55c374cc513d0ee46be61a5911cba540, type: 3}
+  baseExp: 137
+  growthRate: 0
+  catchRate: 200
+  maxHP: 65
+  attack: 90
+  defense: 50
+  speed: 55
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: 9b289a8498eaf8740b4dba9daa4b298b, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 2761cf984bd5e4d4c8b23002f5c2a212, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 42daf9d487147f344b9815f2587f2400, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 4fe90fd7e04e29f42b2c43fc8b8d50f2, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 9af5e67662fc24a4b87721d301c93ac0, type: 2}
+    levelRequirement: 16
+  - skillData: {fileID: 11400000, guid: 4bd29e68e37eea24b94beb430574489d, type: 2}
+    levelRequirement: 20
+  - skillData: {fileID: 11400000, guid: 2761cf984bd5e4d4c8b23002f5c2a212, type: 2}
+    levelRequirement: 25
+  evolutions:
+  - pokemonData: {fileID: 11400000, guid: 910c9a0bcc7590d4da8e6d6e5f45ca10, type: 2}
+    levelRequirement: 25

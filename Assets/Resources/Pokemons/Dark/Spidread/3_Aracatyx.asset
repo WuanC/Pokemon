@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: 3_Aracatyx
+  m_EditorClassIdentifier: 
+  pokemonName: Aracatyx
+  pokemonDescription: Aracatyx is the evolution of Aracnoyd
+  type: 4
+  frontSprite: {fileID: 21300000, guid: 0a7240cc24b3e034a9df26978794eb80, type: 3}
+  backSprite: {fileID: 21300000, guid: 1c11ceb2c223b0541af9c932ac441b9b, type: 3}
+  icon: {fileID: 21300000, guid: 1d4a52129588c9945876265c1cc23340, type: 3}
+  baseExp: 239
+  growthRate: 1
+  catchRate: 45
+  maxHP: 70
+  attack: 110
+  defense: 180
+  speed: 50
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: 259addd9834436b4d8746dfec0972e13, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 3a03772ebedf22b438a62fcfdfe365d8, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 6f5f391fca84efb4f9e1a60435e8f779, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 435bd7c411e9e0b4496157c47e2d2a10, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 9db51fb8cbcde274a837fc07da2b76b9, type: 2}
+    levelRequirement: 16
+  - skillData: {fileID: 11400000, guid: 03b96e54a6c917847a666a7f2399164f, type: 2}
+    levelRequirement: 20
+  evolutions: []

@@ -231,7 +231,8 @@ namespace Pokemon.Scripts.Battle
             float a = (3 * enemyBattlePkm.Pokemon.MaxHP - 2 * enemyBattlePkm.Pokemon.HP)
              * enemyBattlePkm.Pokemon.Data.catchRate / (3 * enemyBattlePkm.Pokemon.MaxHP);
             float change = a / 255;
-            return UnityEngine.Random.value < change;
+            float randomValue = UnityEngine.Random.value;
+            return randomValue < change;
         }
         #endregion
         public IEnumerator RunTurn()

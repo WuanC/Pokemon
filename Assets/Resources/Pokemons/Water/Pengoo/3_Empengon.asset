@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: 3_Empengon
+  m_EditorClassIdentifier: 
+  pokemonName: Empengon
+  pokemonDescription: Empengon is the evolution of nootnoot
+  type: 1
+  frontSprite: {fileID: 21300000, guid: ac0189b2adb19e742929c25ab7f3f9b0, type: 3}
+  backSprite: {fileID: 21300000, guid: 04cc48b7f7428824ca9e4065cbfd514f, type: 3}
+  icon: {fileID: 21300000, guid: 51808e001fa14d64db369a7d7d692253, type: 3}
+  baseExp: 239
+  growthRate: 1
+  catchRate: 45
+  maxHP: 84
+  attack: 111
+  defense: 101
+  speed: 60
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: df392ee5a90360b48b4aba0112707db2, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 5c1a60045c882744b8ead0e59408e36f, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 42daf9d487147f344b9815f2587f2400, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 9130c6e2b99e35c4d9d2d73e99d8a7af, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 19594f3404716d943b31bfceac009964, type: 2}
+    levelRequirement: 16
+  - skillData: {fileID: 11400000, guid: 26e2bd39575713c42a7a1365f197d503, type: 2}
+    levelRequirement: 20
+  - skillData: {fileID: 11400000, guid: ba78440495aa37e41b1a27f16ee763ef, type: 2}
+    levelRequirement: 25
+  - skillData: {fileID: 11400000, guid: 6ac124e4f3e2c7443bd18d1bc213da2d, type: 2}
+    levelRequirement: 27
+  evolutions: []

@@ -18,13 +18,13 @@ MonoBehaviour:
   frontSprite: {fileID: 21300000, guid: bf6b5f8e700ed2f4cb04712f9893c4f9, type: 3}
   backSprite: {fileID: 21300000, guid: ad0d754e7e8dcb1419abefa45ac11cb2, type: 3}
   icon: {fileID: 21300000, guid: 8d826023a173b9c4f85af64ec1954f01, type: 3}
-  baseExp: 60
-  growthRate: 0
-  catchRate: 190
-  maxHP: 38
-  attack: 41
-  defense: 40
-  speed: 65
+  baseExp: 340
+  growthRate: 1
+  catchRate: 70
+  maxHP: 106
+  attack: 154
+  defense: 90
+  speed: 130
   learnableSkills:
   - skillData: {fileID: 11400000, guid: d5fff86d4e624144cbf7b8a0327e7475, type: 2}
     levelRequirement: 1

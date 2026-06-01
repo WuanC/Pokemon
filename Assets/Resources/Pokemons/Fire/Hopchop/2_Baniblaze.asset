@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: 2_Baniblaze
+  m_EditorClassIdentifier: 
+  pokemonName: Baniblaze
+  pokemonDescription: Baniblaze is the evolution of Hopchop
+  type: 0
+  frontSprite: {fileID: 21300000, guid: ae7fd624a74412843acfa3a3e6cc7bde, type: 3}
+  backSprite: {fileID: 21300000, guid: 3358d74abea042445af2efbd382042d4, type: 3}
+  icon: {fileID: 21300000, guid: 69fb5c0f37555ed47856e83ba43e76e4, type: 3}
+  baseExp: 130
+  growthRate: 0
+  catchRate: 190
+  maxHP: 65
+  attack: 80
+  defense: 65
+  speed: 60
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: 9b289a8498eaf8740b4dba9daa4b298b, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 259addd9834436b4d8746dfec0972e13, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: df392ee5a90360b48b4aba0112707db2, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 4720e8f2d9dd0e04d8ba6ae338e8e31d, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 2bbdeb652a5b4784096dfd14ea575a67, type: 2}
+    levelRequirement: 16
+  - skillData: {fileID: 11400000, guid: fc430924b1d1b1c4bb82ab95fc542e77, type: 2}
+    levelRequirement: 20
+  - skillData: {fileID: 11400000, guid: c28f902672426644d98b6816a00f7fea, type: 2}
+    levelRequirement: 25
+  evolutions:
+  - pokemonData: {fileID: 11400000, guid: c9399c71f8f3be241b980f8c1b403651, type: 2}
+    levelRequirement: 32

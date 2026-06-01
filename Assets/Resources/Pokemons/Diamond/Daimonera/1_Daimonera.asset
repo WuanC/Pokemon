@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: 1_Daimonera
+  m_EditorClassIdentifier: 
+  pokemonName: Daimonera
+  pokemonDescription: Exclusive diamond dyamond
+  type: 6
+  frontSprite: {fileID: 21300000, guid: dea9c26d1a0781843a09cb8f0d620945, type: 3}
+  backSprite: {fileID: 21300000, guid: e1af57ea90fe4ac47b0f1e5a5130d8f3, type: 3}
+  icon: {fileID: 21300000, guid: 51fa56c2463b03249a7307ac905d4d3a, type: 3}
+  baseExp: 306
+  growthRate: 1
+  catchRate: 70
+  maxHP: 100
+  attack: 120
+  defense: 100
+  speed: 90
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: 829cf2ea9f55ed147a2dbe8540ade24c, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: df392ee5a90360b48b4aba0112707db2, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 28c013d5dc02dc64fb9dd5ac422832ec, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: a0df04b416feacb4d8afbec82b60941e, type: 2}
+    levelRequirement: 9
+  - skillData: {fileID: 11400000, guid: 42daf9d487147f344b9815f2587f2400, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: fc430924b1d1b1c4bb82ab95fc542e77, type: 2}
+    levelRequirement: 11
+  - skillData: {fileID: 11400000, guid: 26e2bd39575713c42a7a1365f197d503, type: 2}
+    levelRequirement: 13
+  - skillData: {fileID: 11400000, guid: 400dac7f42790864ea39e6307b7de86a, type: 2}
+    levelRequirement: 16
+  - skillData: {fileID: 11400000, guid: d5fff86d4e624144cbf7b8a0327e7475, type: 2}
+    levelRequirement: 20
+  - skillData: {fileID: 11400000, guid: 4b4cfa2ed3f7d4046891992797eb7120, type: 2}
+    levelRequirement: 25
+  evolutions:
+  - pokemonData: {fileID: 11400000, guid: 23455342acd5512438693091c0b02eeb, type: 2}
+    levelRequirement: 30

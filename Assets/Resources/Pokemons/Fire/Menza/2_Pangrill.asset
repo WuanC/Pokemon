@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: 2_Pangrill
+  m_EditorClassIdentifier: 
+  pokemonName: Pangrill
+  pokemonDescription: Pangrill is the evolution of Menza
+  type: 0
+  frontSprite: {fileID: 21300000, guid: 6837f3a1ed72f3a49b9595bf059c7b0f, type: 3}
+  backSprite: {fileID: 21300000, guid: e6ecb9ca105a8014b8778fd24eb1fd78, type: 3}
+  icon: {fileID: 21300000, guid: 36726084cbebbee4f9a778c311cb9256, type: 3}
+  baseExp: 123
+  growthRate: 0
+  catchRate: 190
+  maxHP: 60
+  attack: 82
+  defense: 45
+  speed: 74
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: 9b289a8498eaf8740b4dba9daa4b298b, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 4fe90fd7e04e29f42b2c43fc8b8d50f2, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: fcb374c8af69e2646a1bbf4f6a2af938, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 9a863b225ad4e5e4eb362e72a4a92bca, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 2bbdeb652a5b4784096dfd14ea575a67, type: 2}
+    levelRequirement: 16
+  - skillData: {fileID: 11400000, guid: 6ae8792271d9a0841bbd8bcbaadb1793, type: 2}
+    levelRequirement: 20
+  evolutions:
+  - pokemonData: {fileID: 11400000, guid: 6f2b2677b1677284bb41f9ce555dae8e, type: 2}
+    levelRequirement: 25

@@ -20,7 +20,7 @@ namespace Pokemon.Scripts.Pokemon
         public int baseExp;
         public GrowthRate growthRate;
         public int catchRate = 0;
-        //Stats
+        [Title("Base Stats")]
         public int maxHP;
         public int attack;
         public int defense;

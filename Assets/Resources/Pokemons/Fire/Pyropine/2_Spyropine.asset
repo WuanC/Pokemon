@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: 2_Spyropine
+  m_EditorClassIdentifier: 
+  pokemonName: Spyropine
+  pokemonDescription: Spyropine is the evolution of Pyropine
+  type: 0
+  frontSprite: {fileID: 21300000, guid: ec1fce554f80037419e5c3565e15ad2b, type: 3}
+  backSprite: {fileID: 21300000, guid: feeb1f247ffcafa4686e88f8218bb012, type: 3}
+  icon: {fileID: 21300000, guid: 6a289aedd956acd41b0c5d795748d66a, type: 3}
+  baseExp: 165
+  growthRate: 0
+  catchRate: 190
+  maxHP: 75
+  attack: 95
+  defense: 60
+  speed: 115
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: 9b289a8498eaf8740b4dba9daa4b298b, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: a0df04b416feacb4d8afbec82b60941e, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: fcb374c8af69e2646a1bbf4f6a2af938, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 4720e8f2d9dd0e04d8ba6ae338e8e31d, type: 2}
+    levelRequirement: 10
+  - skillData: {fileID: 11400000, guid: 2bbdeb652a5b4784096dfd14ea575a67, type: 2}
+    levelRequirement: 16
+  - skillData: {fileID: 11400000, guid: 6ae8792271d9a0841bbd8bcbaadb1793, type: 2}
+    levelRequirement: 20
+  evolutions: []
