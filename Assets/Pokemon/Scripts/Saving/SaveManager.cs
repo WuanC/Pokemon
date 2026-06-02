@@ -12,7 +12,6 @@ namespace Pokemon.Scripts.Saving
             savables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
                 .OfType<ISavable>()
                 .ToArray();
-            Debug.Log($"Found {savables.Length} savable objects.");
         }
         private void OnApplicationFocus(bool focus)
         {

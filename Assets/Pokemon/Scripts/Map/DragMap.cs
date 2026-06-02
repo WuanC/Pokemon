@@ -41,7 +41,8 @@ namespace Pokemon.Scripts.Map
                 case TouchPhase.Began:
                     startedOverUI = EventSystem.current != null &&
                                     EventSystem.current.IsPointerOverGameObject(touch.fingerId);
-
+                    if (startedOverUI)
+                        return;
                     isMouseDown = true;
                     mouseDownPosition = touch.position;
                     lastMousePosition = touch.position;
@@ -50,7 +51,8 @@ namespace Pokemon.Scripts.Map
 
                 case TouchPhase.Moved:
                 case TouchPhase.Stationary:
-
+                    if (startedOverUI)
+                        return;
                     if (!isMouseDown)
                         return;
 
