@@ -106,6 +106,7 @@ namespace Pokemon.Scripts.Battle
             npcImage?.gameObject.SetActive(false);
             npcNameText?.gameObject.SetActive(false);
             isNPCBattle = false;
+            party.ResetStat();
             this.playerParty = party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
             partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());
@@ -126,6 +127,10 @@ namespace Pokemon.Scripts.Battle
             npcNameText.text = npc.npcData.npcName;
             isNPCBattle = true;
             this.playerParty = party;
+            npc.party.HealMax();
+            npc.party.ResetCondition();
+            npc.party.ResetStat();
+            party.ResetStat();
             this.enemyParty = npc.party;
             PokemonUnit playerPkmUnit = party.GetHealthyPokemon();
             partyContainer.SetParty(party.PokemonParties.Where(p => p != playerPkmUnit).ToList());

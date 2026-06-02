@@ -15,5 +15,6 @@ namespace Pokemon.Scripts.Character
         }
 
 
+
     }
 }

@@ -48,7 +48,7 @@ namespace Pokemon.Scripts.UI.Screens
             healBtn.interactable = false;
             healProgress.transform.parent.gameObject.SetActive(true);
             healProgress.fillAmount = 0;
-            healTween = healProgress.DOFillAmount(1, 5f).OnComplete(() =>
+            healTween = healProgress.DOFillAmount(1, 5f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 healProgress.transform.parent.gameObject.SetActive(false);
                 npc.Heal(pokemons);

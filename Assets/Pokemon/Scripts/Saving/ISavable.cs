@@ -6,5 +6,10 @@ namespace Pokemon.Scripts.Saving
     {
         void CaptureState();
         object RestoreState();
+
+        void OnApplicationQuit()
+        {
+            CaptureState();
+        }
     }
 }

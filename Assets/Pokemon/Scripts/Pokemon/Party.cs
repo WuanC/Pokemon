@@ -36,5 +36,29 @@ namespace Pokemon.Scripts.Pokemon
         {
             return PokemonParties.FirstOrDefault(p => p.HP > 0);
         }
+        public void HealMax()
+        {
+            foreach (var pokemon in PokemonParties)
+            {
+                pokemon.HP = pokemon.MaxHP;
+                pokemon.CalculateStat();
+            }
+        }
+        public void ResetStat()
+        {
+            foreach (var pokemon in PokemonParties)
+            {
+                pokemon.CalculateStat();
+            }
+        }
+        public void ResetCondition()
+        {
+            foreach (var pokemon in PokemonParties)
+            {
+                pokemon.SetStatusCondition(ConditionId.None);
+            }
+        }
+
     }
+
 }

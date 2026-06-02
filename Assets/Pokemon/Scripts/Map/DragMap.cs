@@ -20,7 +20,8 @@ namespace Pokemon.Scripts.Map
 
         private bool isDragging = false;
         private bool isMouseDown = false;
-        public Action<Vector3> OnClick;
+        public Action<Vector3, int> OnClick;
+        private bool startedOverUI;
         void Start()
         {
 
@@ -30,60 +31,66 @@ namespace Pokemon.Scripts.Map
         }
         public void HandleInput()
         {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-            // Mouse Down
-            if (Input.GetMouseButtonDown(0))
+            if (Input.touchCount <= 0)
+                return;
+
+            Touch touch = Input.GetTouch(0);
+
+            switch (touch.phase)
             {
-                isMouseDown = true;
-                mouseDownPosition = Input.mousePosition;
-                lastMousePosition = Input.mousePosition;
-                isDragging = false;
-            }
+                case TouchPhase.Began:
+                    startedOverUI = EventSystem.current != null &&
+                                    EventSystem.current.IsPointerOverGameObject(touch.fingerId);
 
-            // Mouse Hold
-            if (isMouseDown && Input.GetMouseButton(0))
-            {
+                    isMouseDown = true;
+                    mouseDownPosition = touch.position;
+                    lastMousePosition = touch.position;
+                    isDragging = false;
+                    break;
 
-                Vector3 currentMousePos = Input.mousePosition;
+                case TouchPhase.Moved:
+                case TouchPhase.Stationary:
 
-                // Kiểm tra có bắt đầu drag chưa
-                if (!isDragging)
-                {
-                    float distance = Vector3.Distance(currentMousePos, mouseDownPosition);
+                    if (!isMouseDown)
+                        return;
 
-                    if (distance > dragThreshold)
+                    Vector3 currentPos = touch.position;
+
+                    if (!isDragging)
                     {
-                        isDragging = true;
+                        float distance = Vector3.Distance(currentPos, mouseDownPosition);
+
+                        if (distance > dragThreshold)
+                            isDragging = true;
                     }
-                }
 
-                // Nếu đang drag thì di chuyển camera
-                if (isDragging)
-                {
+                    if (isDragging)
+                    {
+                        float delta = (currentPos.x - lastMousePosition.x) * cameraSpeed * Time.deltaTime;
 
-                    float delta = (currentMousePos.x - lastMousePosition.x) * cameraSpeed * Time.deltaTime;
+                        Vector3 pos = mainCamera.transform.position;
+                        pos.x = Mathf.Clamp(pos.x - delta, minCameraX, maxCameraX);
 
-                    Vector3 pos = mainCamera.transform.position;
-                    pos.x = Mathf.Clamp(pos.x - delta, minCameraX, maxCameraX);
-                    mainCamera.transform.position = pos;
-                }
+                        mainCamera.transform.position = pos;
+                    }
 
-                lastMousePosition = currentMousePos;
-            }
+                    lastMousePosition = currentPos;
+                    break;
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (!isDragging)
-                {
-                    OnClick?.Invoke(Input.mousePosition);
-                }
+                case TouchPhase.Ended:
+                case TouchPhase.Canceled:
 
-                isMouseDown = false;
-                isDragging = false;
+                    if (!startedOverUI && !isDragging)
+                    {
+                        OnClick?.Invoke(touch.position, touch.fingerId);
+                    }
+
+                    isMouseDown = false;
+                    isDragging = false;
+                    startedOverUI = false;
+                    break;
             }
         }
-
-
 
         public void SetCameraBounds()
         {

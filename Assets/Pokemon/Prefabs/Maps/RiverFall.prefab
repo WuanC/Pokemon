@@ -765,7 +765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundPositionX: {x: -3, y: 13.6}
-  cameraSpeed: 1
+  cameraSpeed: 0.25
   dragThreshold: 10
 --- !u!1 &9114580734558677333
 GameObject:

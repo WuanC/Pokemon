@@ -19,7 +19,7 @@ namespace Pokemon.Scripts.Map
         {
             dragMap.OnClick -= OnClick;
         }
-        public void OnClick(Vector3 mousePos)
+        public void OnClick(Vector3 mousePos, int fingerId)
         {
 
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);

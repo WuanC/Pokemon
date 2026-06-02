@@ -4,6 +4,7 @@ using Pokemon.Scripts.Data;
 using Pokemon.Scripts.Pokemon;
 using Pokemon.Scripts.Saving;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Pokemon.Scripts.Map
 {
@@ -51,8 +52,10 @@ namespace Pokemon.Scripts.Map
         {
             dragMap.OnClick -= OnClick;
         }
-        private void OnClick(Vector3 mousePos)
+        private void OnClick(Vector3 mousePos, int fingerId)
         {
+            if (EventSystem.current.IsPointerOverGameObject(fingerId))
+                return;
             Vector3 worldPos = mainCamera.ScreenToWorldPoint(mousePos);
             worldPos.z = 0;
 
