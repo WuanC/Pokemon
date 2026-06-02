@@ -51,21 +51,25 @@ namespace Pokemon.Scripts.Battle
         }
         public void EnablePanel(float duration, bool forceSelect)
         {
+            SetupDiscatch();
             if (forceSelect)
             {
+                Debug.Log("Force select, hide catch and run");
                 catchBtn.gameObject.SetActive(false);
                 backBtn.gameObject.SetActive(false);
+                itemBtn.gameObject.SetActive(false);
             }
             else
             {
                 catchBtn.gameObject.SetActive(true);
                 backBtn.gameObject.SetActive(true);
+                itemBtn.gameObject.SetActive(true);
             }
             gameObject.SetActive(true);
             btnContainer.anchoredPosition = new Vector3(btnContainer.anchoredPosition.x, btnContainer.anchoredPosition.y - 265);
             btnContainer.DOAnchorPosY(btnStartPos.y, duration);
             partyContainer.OpenParty(duration);
-            SetupDiscatch();
+
         }
         public void DisablePanel(float duration, Action onComplete)
         {
