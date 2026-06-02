@@ -1,6 +1,5 @@
 using System.Collections;
 using DG.Tweening;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Pokemon.Scripts.Battle
@@ -10,8 +9,8 @@ namespace Pokemon.Scripts.Battle
         private Animator animator;
         private readonly string catchAnimSuccess = "catchSuccess";
         private readonly string catchAnimFail = "catchFail";
-        [SerializeField] private AnimatorController ball;
-        [SerializeField] private AnimatorController masterBall;
+        [SerializeField] private RuntimeAnimatorController ball;
+        [SerializeField] private RuntimeAnimatorController masterBall;
         private Vector3 startPos;
         private void Awake()
         {
