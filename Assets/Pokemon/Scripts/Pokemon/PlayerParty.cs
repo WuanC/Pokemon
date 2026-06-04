@@ -45,9 +45,9 @@ namespace Pokemon.Scripts.Pokemon
                 InitParty();
                 foreach (var pokemon in PokemonParties)
                 {
-                    Debug.Log("Add " + pokemon.Data.name + " to pokedex");
-                    pokedex.Add(pokemon.Data.name);
-                    PostEventAddPkmon(pokemon.Data.name);
+                    Debug.Log("Add " + pokemon.Data.pokemonName + " to pokedex");
+                    pokedex.Add(pokemon.Data.pokemonName);
+                    PostEventAddPkmon(pokemon.Data.pokemonName);
                 }
             }
 
@@ -73,8 +73,8 @@ namespace Pokemon.Scripts.Pokemon
                 }
                 inventory.Add(pokemon);
             }
-            pokedex.Add(pokemon.Data.name);
-            PostEventAddPkmon(pokemon.Data.name);
+            pokedex.Add(pokemon.Data.pokemonName);
+            PostEventAddPkmon(pokemon.Data.pokemonName);
         }
 
         public void CaptureState()
@@ -111,8 +111,8 @@ namespace Pokemon.Scripts.Pokemon
         }
         public void AddPkmToDex(PokemonUnit pokemon)
         {
-            pokedex.Add(pokemon.Data.name);
-            PostEventAddPkmon(pokemon.Data.name);
+            pokedex.Add(pokemon.Data.pokemonName);
+            PostEventAddPkmon(pokemon.Data.pokemonName);
         }
     }
 }

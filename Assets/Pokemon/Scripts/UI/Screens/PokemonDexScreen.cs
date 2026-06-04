@@ -17,7 +17,7 @@ namespace Pokemon.Scripts.UI.Screens
         {
             base.Start();
             Observer.Instance.Register(EventId.OnAddPokemon, OnAddPokemon);
-            Initialize();
+
         }
         protected override void OnDestroy()
         {
