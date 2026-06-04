@@ -85,6 +85,13 @@ namespace Pokemon.Scripts.Pokemon
 
             string dexJson = JsonConvert.SerializeObject(pokedex.ToList(), Formatting.Indented);
             PlayerPrefs.SetString(dexKey, dexJson);
+
+            if (inventory != null)
+            {
+                List<PokemonSaveData> inventorySaveData = inventory.Select(p => p.GetSaveData()).ToList();
+                string inventoryJson = JsonConvert.SerializeObject(inventorySaveData, Formatting.Indented);
+                PlayerPrefs.SetString(inventoryKey, inventoryJson);
+            }
         }
 
         public object RestoreState()
@@ -102,7 +109,12 @@ namespace Pokemon.Scripts.Pokemon
             {
                 pokedex = new HashSet<string>();
             }
-
+            string inventoryJson = PlayerPrefs.GetString(inventoryKey);
+            if (!string.IsNullOrEmpty(inventoryJson))
+            {
+                List<PokemonSaveData> inventorySaveData = JsonConvert.DeserializeObject<List<PokemonSaveData>>(inventoryJson);
+                inventory = inventorySaveData.Select(s => new PokemonUnit(s)).ToList();
+            }
             return saveData;
         }
         public void PostEventAddPkmon(string pokemon)
