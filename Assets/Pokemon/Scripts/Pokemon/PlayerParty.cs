@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Pokemon.Scripts.Data;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Saving;
 using Unity.VisualScripting;
@@ -125,6 +126,18 @@ namespace Pokemon.Scripts.Pokemon
         {
             pokedex.Add(pokemon.Data.pokemonName);
             PostEventAddPkmon(pokemon.Data.pokemonName);
+        }
+        public int GetOwnerPokemonCount(List<PokemonMapData> mapDatas)
+        {
+            int count = 0;
+            foreach (var mapData in mapDatas)
+            {
+                if (pokedex.Contains(mapData.pokemonData.pokemonName))
+                {
+                    count++;
+                }
+            }
+            return count;
         }
     }
 }

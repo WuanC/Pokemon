@@ -13,6 +13,7 @@ namespace Pokemon.Scripts.Map
         public Vector2Int rangeLevel;
         private Map map;
         public int arenaIndex;
+        public Map Map => map;
         void Awake()
         {
             nodes = new List<Node>(GetComponentsInChildren<Node>());

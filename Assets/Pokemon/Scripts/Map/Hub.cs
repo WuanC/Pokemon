@@ -1,6 +1,7 @@
 using Pokemon.Scripts.AudioManager;
 using Pokemon.Scripts.Data;
 using Pokemon.Scripts.MyUtils;
+using Pokemon.Scripts.Saving;
 using Pokemon.Scripts.Tutorial;
 using Pokemon.Scripts.UI.Screens;
 using UnityEngine;
@@ -84,13 +85,34 @@ namespace Pokemon.Scripts.Map
                 Observer.Instance.Broadcast(EventId.OnShowMessage, "You must complete the tutorial first!");
                 return;
             }
-            if (mapData.mapCondition != null && HubController.Instance.ContainsHub(mapData.hubName))
+            if (mapData.mapCondition != null)
             {
-                ScreenManager.Instance.EnterHubClick(SpawnMap, mapData);
+                if (HubController.Instance.ContainsHub(mapData.hubName))
+                {
+                    ScreenManager.Instance.EnterHubClick(SpawnMap, mapData);
+                    return;
+                }
+                else if (mapData.mapCondition.conditionType == MapConditionType.UnlockMap)
+                {
+                    int bossInConditionMap = HubSaveLoad.LoadBoss(mapData.mapCondition.requiredMap.hubName);
+                    int targetBossInConditionMap = mapData.mapCondition.requiredMap.mapPrefab.npcBattle.Length;
+                    if (bossInConditionMap == targetBossInConditionMap)
+                    {
+                        HubController.Instance.UnlockHub(mapData.hubName);
+                        ScreenManager.Instance.EnterHubClick(SpawnMap, mapData);
+                        return;
+                    }
+
+                }
+
+                ScreenManager.Instance.EnterHubClick(SpawnMap, mapData, mapData.mapCondition);
+
+
             }
             else
             {
-                ScreenManager.Instance.EnterHubClick(SpawnMap, mapData, mapData.mapCondition);
+
+                ScreenManager.Instance.EnterHubClick(SpawnMap, mapData);
             }
         }
         public void SpawnMap()

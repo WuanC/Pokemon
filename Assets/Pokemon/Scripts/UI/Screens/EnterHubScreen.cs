@@ -80,7 +80,7 @@ namespace Pokemon.Scripts.UI.Screens
         public void ActivePannelUnlock(Action onGoBtnClick)
         {
             hubImage.sprite = mapData.headerMap;
-            UpdateProgress(0, 0);
+            UpdateProgress(HubSaveLoad.LoadBoss(mapData.hubName), PlayerParty.Instance.GetOwnerPokemonCount(mapData.pkmRates));
             goldRewardText.text = $"{mapData.goldReward}";
             InitPokemonLocker(mapData.pkmRates);
             base.Active();

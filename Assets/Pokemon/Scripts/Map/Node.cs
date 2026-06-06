@@ -174,8 +174,8 @@ namespace Pokemon.Scripts.Map
             {
                 npc.gameObject.SetActive(false);
                 SetNodeState(NodeState.None);
-                int currentBossAndQuestCount = HubSaveLoad.LoadBossAndQuest(hubName);
-                HubSaveLoad.SaveBossAndQuest(hubName, currentBossAndQuestCount + 1);
+                int currentBoss = HubSaveLoad.LoadBoss(hubName);
+                HubSaveLoad.SaveBoss(hubName, currentBoss + 1);
                 TrainerSaveLoad.SaveTrainerData(NodeName);
             }
             OnNodeCompleted?.Invoke();
