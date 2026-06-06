@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WinterDale
   m_EditorClassIdentifier: 
   hubName: WinterDale
-  mapCondition: {fileID: 0}
+  mapCondition: {fileID: 11400000, guid: 12d7855438c2dbf41a1f99418228281b, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: 2a2e691051640d04d970f21fce03c202, type: 2}
     rate: 1

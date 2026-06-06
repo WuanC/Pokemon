@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TreaureCave
   m_EditorClassIdentifier: 
   hubName: TreasureCave
-  mapCondition: {fileID: 0}
+  mapCondition: {fileID: 11400000, guid: 6886e21ea56fb7345acb3e28a21edfc1, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: 2f85f5ce88b8e4747a4c5af124815739, type: 2}
     rate: 15

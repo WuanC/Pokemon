@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BonusCave
   m_EditorClassIdentifier: 
   hubName: BonusCave
-  mapCondition: {fileID: 0}
+  mapCondition: {fileID: 11400000, guid: 5d6a012a64e18ad4d9aa0a0b44219f62, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: f04a32abbc3453240a22962eb176d4dd, type: 2}
     rate: 33

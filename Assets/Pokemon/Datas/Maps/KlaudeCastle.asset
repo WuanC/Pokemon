@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KlaudeCastle
   m_EditorClassIdentifier: 
   hubName: KaudeCastle
-  mapCondition: {fileID: 0}
+  mapCondition: {fileID: 11400000, guid: bbe13c5bef4c687458040ddb42753c0c, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: 77c1ff3e05145a049b08ca77b49c23a4, type: 2}
     rate: 14

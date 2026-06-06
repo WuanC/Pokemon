@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: daccb9593ce9cc0429acc5dd25fc8982, type: 3}
-  m_Name: RiverFallsCondition
+  m_Name: BonusCave
   m_EditorClassIdentifier: 
   conditionType: 1
-  requiredMap: {fileID: 11400000, guid: c2fc69676ecd8c44d80b41581f7d2ca1, type: 2}
+  requiredMap: {fileID: 11400000, guid: df9bff98b3a110c4abc4a9d3c1dad247, type: 2}
   goldRequired: 500
-  description: You must complete Camp
+  description: You must complete River Fall

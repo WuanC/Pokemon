@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CostaGueta
   m_EditorClassIdentifier: 
   hubName: CostaGueta
-  mapCondition: {fileID: 0}
+  mapCondition: {fileID: 11400000, guid: d26c595573831644e82ebe5382c067d4, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: 2b1cfc247db6f784f8ea8f834016da89, type: 2}
     rate: 15

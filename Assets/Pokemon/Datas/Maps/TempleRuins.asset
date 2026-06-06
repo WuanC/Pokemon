@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TempleRuins
   m_EditorClassIdentifier: 
   hubName: TempleRuins
-  mapCondition: {fileID: 0}
+  mapCondition: {fileID: 11400000, guid: ed10374bb9b8b1f458239fe4f9c028c5, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: 81df5d8dcabbcdd4e9886e6fc5847e70, type: 2}
     rate: 20

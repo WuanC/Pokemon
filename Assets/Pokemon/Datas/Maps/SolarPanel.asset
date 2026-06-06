@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SolarPanel
   m_EditorClassIdentifier: 
   hubName: SolarPanel
-  mapCondition: {fileID: 0}
+  mapCondition: {fileID: 11400000, guid: 8ef92c02b2beb614b9168f3fe9a4f934, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: 6630fec9e70a56f4084944cf6547691d, type: 2}
     rate: 15

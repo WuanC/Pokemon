@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TallPines
   m_EditorClassIdentifier: 
   hubName: TallPines
-  mapCondition: {fileID: 0}
+  mapCondition: {fileID: 11400000, guid: dc7207862a5eef04eb80f123c51c395f, type: 2}
   pkmRates:
   - pokemonData: {fileID: 11400000, guid: e67bfec34a6d86b448b7f07688d7a986, type: 2}
     rate: 1
