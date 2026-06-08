@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b4f03a729419d4687fe30b5a648487, type: 3}
   m_Name: DailyQuest 5
   m_EditorClassIdentifier: 
-  questName: CatchDyamon
-  description: Catch Pokemon with Dyamon Type
+  questName: CatchElectric
+  description: Catch Pokemon with Electric Type
   rewardMoney: 1000
-  countToComplete: 2
+  countToComplete: 1
+  questType: 0
+  objective: {fileID: 11400000, guid: 499a35d909d56fa4abd998b912934222, type: 2}

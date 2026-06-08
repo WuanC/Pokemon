@@ -27,7 +27,6 @@ namespace Pokemon.Scripts.Battle
         {
             animator.runtimeAnimatorController = isMasterBall ? masterBall : ball;
             Debug.Log("Throwing " + (isMasterBall ? "Master Ball" : "Ball"));
-            Debug.Log("Animator Controller: " + animator.runtimeAnimatorController.name);
             gameObject.SetActive(true);
             yield return transform.DOLocalMoveX(startPos.x + 400f, 0.5f).SetEase(Ease.OutBack).WaitForCompletion();
         }

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b4f03a729419d4687fe30b5a648487, type: 3}
   m_Name: DailyQuest 4
   m_EditorClassIdentifier: 
-  questName: CatchGold
-  description: Catch Pokemon with Gold Type
+  questName: CatchDark
+  description: Catch Pokemon with Dark Type
   rewardMoney: 1000
-  countToComplete: 2
+  countToComplete: 1
+  questType: 0
+  objective: {fileID: 11400000, guid: 0a19422806e6a594d9d4292cb5aacefb, type: 2}

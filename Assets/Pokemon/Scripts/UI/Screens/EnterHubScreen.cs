@@ -81,7 +81,6 @@ namespace Pokemon.Scripts.UI.Screens
         {
             hubImage.sprite = mapData.headerMap;
             UpdateProgress(HubSaveLoad.LoadBoss(mapData.hubName), PlayerParty.Instance.GetOwnerPokemonCount(mapData.pkmRates));
-            goldRewardText.text = $"{mapData.goldReward}";
             InitPokemonLocker(mapData.pkmRates);
             base.Active();
             goBtn.onClick.AddListener(() =>

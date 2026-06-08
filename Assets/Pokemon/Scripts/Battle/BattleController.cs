@@ -454,6 +454,7 @@ namespace Pokemon.Scripts.Battle
             }
             else
             {
+                if (QuestManager.Instance != null) QuestManager.Instance.UpdateBattleQuestProgress(EQuest.DefeatPokemon, defender.Pokemon.Data.type);
                 if (!isNPCBattle)
                 {
                     state = BattleState.Over;
@@ -462,7 +463,7 @@ namespace Pokemon.Scripts.Battle
                 }
                 else
                 {
-                    QuestManager.Instance.UpdateBattleQuestProgress(EQuest.DefeatPokemon, defender.Pokemon.Data.type);
+
                     PokemonUnit enemyNextPkm = enemyParty.GetHealthyPokemon();
                     if (enemyNextPkm == null)
                     {

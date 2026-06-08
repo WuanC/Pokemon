@@ -14,7 +14,6 @@ namespace Pokemon.Scripts.Data
         public List<PokemonMapData> pkmRates;
         public Sprite headerMap;
         public Sprite mapBackground;
-        public int goldReward;
         public Map.Map mapPrefab;
         void OnValidate()
         {

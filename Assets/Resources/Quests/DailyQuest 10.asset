@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54b4f03a729419d4687fe30b5a648487, type: 3}
-  m_Name: DailyQuest 3
+  m_Name: DailyQuest 10
   m_EditorClassIdentifier: 
-  questName: CatchGrass
-  description: Catch Pokemon with Grass Type
+  questName: DefeatDark
+  description: Defeat Pokemon with Dark Type
   rewardMoney: 1000
   countToComplete: 1
-  questType: 0
-  objective: {fileID: 11400000, guid: ef60b803a5c16a64f8a01c20f0c15c81, type: 2}
+  questType: 1
+  objective: {fileID: 11400000, guid: 0a19422806e6a594d9d4292cb5aacefb, type: 2}

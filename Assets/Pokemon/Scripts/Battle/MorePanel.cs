@@ -51,7 +51,7 @@ namespace Pokemon.Scripts.Battle
         }
         public void EnablePanel(float duration, bool forceSelect)
         {
-            SetupDiscatch();
+
             if (forceSelect)
             {
                 Debug.Log("Force select, hide catch and run");
@@ -64,6 +64,7 @@ namespace Pokemon.Scripts.Battle
                 catchBtn.gameObject.SetActive(true);
                 backBtn.gameObject.SetActive(true);
                 itemBtn.gameObject.SetActive(true);
+                SetupDiscatch();
             }
             gameObject.SetActive(true);
             btnContainer.anchoredPosition = new Vector3(btnContainer.anchoredPosition.x, btnContainer.anchoredPosition.y - 265);
