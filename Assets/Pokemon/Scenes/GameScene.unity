@@ -16984,7 +16984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initPokemonParties:
-  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
+  - pokemonData: {fileID: 11400000, guid: 70cc7dd90eca2314d8a16f182a7589f0, type: 2}
     level: 5
 --- !u!1 &1007487565
 GameObject:

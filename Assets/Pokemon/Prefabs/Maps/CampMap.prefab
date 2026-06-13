@@ -2311,7 +2311,7 @@ PrefabInstance:
     - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: reward.items.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
@@ -2333,23 +2333,23 @@ PrefabInstance:
         type: 3}
       propertyPath: reward.items.Array.data[1].itemBase
       value: 
-      objectReference: {fileID: 11400000, guid: 21c269334e805c24080622ef77f3979a,
+      objectReference: {fileID: 11400000, guid: d8b32022511a23a4daaba765f0f42440,
         type: 2}
     - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: reward.items.Array.data[1].quantity
-      value: 2
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: reward.items.Array.data[2].itemBase
       value: 
-      objectReference: {fileID: 11400000, guid: 21c269334e805c24080622ef77f3979a,
+      objectReference: {fileID: 11400000, guid: b05fe9bb0cfd30e4fb33acc9b3a767ff,
         type: 2}
     - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: reward.items.Array.data[2].quantity
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}

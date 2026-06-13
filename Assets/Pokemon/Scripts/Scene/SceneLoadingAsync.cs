@@ -9,7 +9,7 @@ namespace Pokemon.Scripts.Scene
 {
     public class SceneLoadingAsync : MonoBehaviour
     {
-        [SerializeField] private Slider slider;
+        [SerializeField] private Image slider;
         [SerializeField] private TextMeshProUGUI textProgress;
 
         [SerializeField] private float minimumLoadingTime = 1f;
@@ -51,7 +51,7 @@ namespace Pokemon.Scripts.Scene
                 float finalProgress =
                     Mathf.Min(progress, timeProgress);
 
-                slider.value = finalProgress;
+                slider.fillAmount = finalProgress;
 
                 textProgress.text =
                     Mathf.RoundToInt(finalProgress * 100f) + "%";
@@ -59,7 +59,7 @@ namespace Pokemon.Scripts.Scene
                 yield return null;
             }
 
-            slider.value = 1f;
+            slider.fillAmount = 1f;
             textProgress.text = "100%";
 
             yield return new WaitForSeconds(0.2f);

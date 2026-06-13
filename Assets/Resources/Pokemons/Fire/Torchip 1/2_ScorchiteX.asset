@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ba3c6f41e1e5e4b80c134e945807bc, type: 3}
+  m_Name: 2_ScorchiteX
+  m_EditorClassIdentifier: 
+  pokemonName: ScorchiteX
+  pokemonDescription: Scorchite is the evolution of torchip
+  type: 0
+  frontSprite: {fileID: 21300000, guid: 190b9458865013e4f94304244d83061a, type: 3}
+  backSprite: {fileID: 21300000, guid: dfba362a25549314b9b0e4fbbe2df8a4, type: 3}
+  icon: {fileID: 21300000, guid: cef5bc7f54d3d324693314f95bcbbe39, type: 3}
+  baseExp: 142
+  growthRate: 1
+  catchRate: 150
+  maxHP: 58
+  attack: 80
+  defense: 65
+  speed: 80
+  learnableSkills:
+  - skillData: {fileID: 11400000, guid: c28f902672426644d98b6816a00f7fea, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 4fe90fd7e04e29f42b2c43fc8b8d50f2, type: 2}
+    levelRequirement: 1
+  - skillData: {fileID: 11400000, guid: 851de50d0dd8a3843a60a832d6236084, type: 2}
+    levelRequirement: 6
+  - skillData: {fileID: 11400000, guid: 9af5e67662fc24a4b87721d301c93ac0, type: 2}
+    levelRequirement: 7
+  - skillData: {fileID: 11400000, guid: 28c013d5dc02dc64fb9dd5ac422832ec, type: 2}
+    levelRequirement: 8
+  - skillData: {fileID: 11400000, guid: 0b51cfa0fbb498243aca72dd76627d88, type: 2}
+    levelRequirement: 20
+  - skillData: {fileID: 11400000, guid: 2bbdeb652a5b4784096dfd14ea575a67, type: 2}
+    levelRequirement: 25
+  evolutions:
+  - pokemonData: {fileID: 11400000, guid: b3c46ef1e9d2a7f4999177820e72b0e9, type: 2}
+    levelRequirement: 32

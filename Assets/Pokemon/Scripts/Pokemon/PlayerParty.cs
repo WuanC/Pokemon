@@ -120,10 +120,12 @@ namespace Pokemon.Scripts.Pokemon
         }
         public void PostEventAddPkmon(string pokemon)
         {
+            Debug.Log("Add " + pokemon + " to pokedex");
             Observer.Instance.Broadcast(EventId.OnAddPokemon, pokemon);
         }
         public void AddPkmToDex(PokemonUnit pokemon)
         {
+            Debug.Log("Add " + pokemon.Data.pokemonName + " to pokedex");
             pokedex.Add(pokemon.Data.pokemonName);
             PostEventAddPkmon(pokemon.Data.pokemonName);
         }

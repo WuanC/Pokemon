@@ -903,7 +903,7 @@ MonoBehaviour:
     type: 2}
   chosePokemonScreen: {fileID: 1953941221}
   chosePkmParties:
-  - pokemonData: {fileID: 11400000, guid: 6ffec2f2a1fc0e045b67d1333bc79f24, type: 2}
+  - pokemonData: {fileID: 11400000, guid: 70cc7dd90eca2314d8a16f182a7589f0, type: 2}
     level: 5
   - pokemonData: {fileID: 11400000, guid: db900681487646249adad05a891dc6ec, type: 2}
     level: 5

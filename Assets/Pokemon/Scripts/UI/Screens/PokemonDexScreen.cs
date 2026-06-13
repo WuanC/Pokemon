@@ -13,10 +13,12 @@ namespace Pokemon.Scripts.UI.Screens
         [SerializeField] private PlayerParty playerParty;
         private List<PokemonData> pokemonDatas;
         private List<PokemonIcon> pokemonIcons = new List<PokemonIcon>();
+        bool isOpened = false;
         protected override void Start()
         {
             base.Start();
-            Observer.Instance.Register(EventId.OnAddPokemon, OnAddPokemon);
+
+
 
         }
         protected override void OnDestroy()
@@ -26,6 +28,7 @@ namespace Pokemon.Scripts.UI.Screens
         }
         public void Initialize()
         {
+            Observer.Instance.Register(EventId.OnAddPokemon, OnAddPokemon);
             pokemonDatas = PokemonDB.GetAllPokemon();
             foreach (var pkmData in pokemonDatas)
             {
