@@ -53,7 +53,6 @@ namespace Pokemon.Scripts.UI.Screens
                 healProgress.transform.parent.gameObject.SetActive(false);
                 npc.Heal(pokemons);
                 healBtn.interactable = true;
-                Observer.Instance.Broadcast(EventId.OnShowMessage, "Heal complete!");
             });
         }
         public override void Deactive()

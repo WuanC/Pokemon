@@ -1,3 +1,4 @@
+using Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,7 +33,7 @@ namespace Pokemon.Scripts.Inventory
                 icon.sprite = item.ItemBase.icon;
                 icon.SetNativeSize();
 
-                countText.text = item.Quantity.ToString();
+                countText.text = NumberFormatter.Format(item.Quantity);
 
             }
             else

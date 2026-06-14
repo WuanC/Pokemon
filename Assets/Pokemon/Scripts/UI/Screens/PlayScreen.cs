@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game;
 using Pokemon.Scripts.AudioManager;
 using Pokemon.Scripts.Inventory;
 using Pokemon.Scripts.MyUtils;
@@ -43,8 +44,8 @@ namespace Pokemon.Scripts.UI.Screens
             {
                 if (item.ItemBase.itemName == "Coins" || item.ItemBase.itemName == "Dusts")
                 {
-                    coinText.text = Inventory.Inventory.Instance.GetCoins()?.Quantity.ToString() ?? "0";
-                    dustText.text = Inventory.Inventory.Instance.GetDusts()?.Quantity.ToString() ?? "0";
+                    coinText.text = NumberFormatter.Format(Inventory.Inventory.Instance.GetCoins()?.Quantity ?? 0);
+                    dustText.text = NumberFormatter.Format(Inventory.Inventory.Instance.GetDusts()?.Quantity ?? 0);
                 }
             }
 
@@ -54,7 +55,7 @@ namespace Pokemon.Scripts.UI.Screens
         {
             var coins = Inventory.Inventory.Instance.GetCoins();
             var dusts = Inventory.Inventory.Instance.GetDusts();
-            coinText.text = coins != null ? coins.Quantity.ToString() : "0";
+            coinText.text = NumberFormatter.Format(coins?.Quantity ?? 0);
             dustText.text = dusts != null ? dusts.Quantity.ToString() : "0";
             worldBtn.gameObject.SetActive(false);
             worldBtn.onClick.AddListener(() =>
@@ -106,7 +107,7 @@ namespace Pokemon.Scripts.UI.Screens
                 .SetDelay(i * 0.1f)
                 .OnComplete(() =>
                 {
-                    coinText.text = Inventory.Inventory.Instance.GetCoins()?.Quantity.ToString() ?? "0";
+                    coinText.text = NumberFormatter.Format(Inventory.Inventory.Instance.GetCoins()?.Quantity ?? 0);
                     coin.gameObject.SetActive(false);
                 });
             }

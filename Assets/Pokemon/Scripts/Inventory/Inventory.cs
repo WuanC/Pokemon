@@ -43,7 +43,6 @@ namespace Pokemon.Scripts.Inventory
             if (canUse)
             {
                 RemoveItem(item);
-                Observer.Instance.Broadcast(EventId.OnShowMessage, $"Used {baseItem.itemName}");
             }
             else
             {
@@ -55,7 +54,7 @@ namespace Pokemon.Scripts.Inventory
         {
             if (item.Quantity > 1)
             {
-                item.Quantity--;
+                item.Quantity = IntExtension.ClampAdd(item.Quantity, -1);
             }
             else
             {
@@ -68,7 +67,7 @@ namespace Pokemon.Scripts.Inventory
             Item itemInInventory = items.FirstOrDefault(i => i.ItemBase == item.ItemBase);
             if (itemInInventory != null)
             {
-                itemInInventory.Quantity += item.Quantity;
+                itemInInventory.Quantity = IntExtension.ClampAdd(itemInInventory.Quantity, item.Quantity);
             }
             else
             {
@@ -107,7 +106,7 @@ namespace Pokemon.Scripts.Inventory
         {
             if (!CanPayCoins(coinsAmount)) return;
             Item coins = GetCoins();
-            coins.Quantity -= coinsAmount;
+            coins.Quantity = IntExtension.ClampAdd(coins.Quantity, -coinsAmount);
             if (coins.Quantity <= 0)
             {
                 RemoveItem(coins);
@@ -124,7 +123,7 @@ namespace Pokemon.Scripts.Inventory
         {
             if (!CanPayDust(dustAmount)) return;
             Item dusts = GetDusts();
-            dusts.Quantity -= dustAmount;
+            dusts.Quantity = IntExtension.ClampAdd(dusts.Quantity, -dustAmount);
             if (dusts.Quantity <= 0)
             {
                 RemoveItem(dusts);
