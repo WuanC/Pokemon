@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using Pokemon.Scripts.Inventory;
 using Pokemon.Scripts.MyUtils;
+using Pokemon.Scripts.Tutorial;
 using Pokemon.Scripts.UI;
 using Pokemon.Scripts.UI.Screens;
 using TMPro;
@@ -30,10 +31,28 @@ namespace Pokemon.Scripts.Battle
             catchBtn.onClick.AddListener(OnCatch);
             backBtn.onClick.AddListener(() =>
             {
+                if (TutorialManager.Instance != null)
+                {
+                    if (TutorialManager.Instance.targetBtn != null)
+                    {
+                        Observer.Instance.Broadcast(EventId.OnShowMessage, "You must complete the tutorial step first!");
+                        return;
+                    }
+
+                }
                 battleController.OpenMainPanel(null);
             });
             itemBtn.onClick.AddListener(() =>
             {
+                if (TutorialManager.Instance != null)
+                {
+                    if (TutorialManager.Instance.targetBtn != null)
+                    {
+                        Observer.Instance.Broadcast(EventId.OnShowMessage, "You must complete the tutorial step first!");
+                        return;
+                    }
+
+                }
                 battleController.OpenMainPanel(() =>
                 {
                     inventoryScreen.Initialize();

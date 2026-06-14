@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32b47375f23a4544bb9fc089c171a966, type: 3}
-  m_Name: TalkCompleteChosePkm
+  m_Name: TalkEnterCatch
   m_EditorClassIdentifier: 
   tutorConfigType: 0
   talkConfigs:
   - npcName: JOVANI
-    dialogue: This is the board pokemon type you should keep in mind
-    npcSprite: {fileID: 21300000, guid: 49cd3bcae29c2414b8eae89deabaf094, type: 3}
-  - npcName: JOVANI
-    dialogue: Now, I will give you some items, there are very helpful in your journey
+    dialogue: I will teach use how to catch monster!
     npcSprite: {fileID: 21300000, guid: 9e604c1297965154c911715e4c40feb8, type: 3}

@@ -64,6 +64,10 @@ namespace Pokemon.Scripts.Inventory
         }
         public void AddItem(Item item)
         {
+            if (items == null)
+            {
+                items = new List<Item>();
+            }
             Item itemInInventory = items.FirstOrDefault(i => i.ItemBase == item.ItemBase);
             if (itemInInventory != null)
             {

@@ -29,6 +29,10 @@ namespace Pokemon.Scripts.Map
             SetCameraBounds();
             Camera.main.transform.position = new Vector3(minCameraX, 0f, Camera.main.transform.position.z);
         }
+        void OnEnable()
+        {
+            Camera.main.transform.position = new Vector3(minCameraX, 0f, Camera.main.transform.position.z);
+        }
         public void HandleInput()
         {
             if (Input.touchCount <= 0)

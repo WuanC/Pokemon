@@ -7,7 +7,8 @@ namespace Pokemon.Scripts.Tutorial
         Introduce,
         UseSkill,
         ChosePokemon,
-
+        Reward,
+        CatchPokemon,
 
 
     }

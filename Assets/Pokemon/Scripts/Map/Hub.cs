@@ -20,6 +20,8 @@ namespace Pokemon.Scripts.Map
         private Color originalColor = Color.white;
         private bool hasColorTarget;
 
+        public MapData MapData => mapData;
+
         private void Awake()
         {
             originalScale = transform.localScale;

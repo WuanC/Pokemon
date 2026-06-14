@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Pokemon.Scripts.MyUtils;
 using Pokemon.Scripts.Saving;
@@ -48,6 +49,17 @@ namespace Pokemon.Scripts.Map
             return decodeHubs;
         }
 
+
+        #region For Testing
+        public void UnlockAllHubs()
+        {
+            List<Hub> allHubs = GetComponentsInChildren<Hub>().ToList();
+            foreach (var hub in allHubs)
+            {
+                UnlockHub(hub.MapData.hubName);
+            }
+        }
+        #endregion
 
     }
 }

@@ -79,6 +79,15 @@ namespace Pokemon.Scripts.Battle
             moreBtn.onClick.AddListener(() =>
             {
                 if (state != BattleState.PlayerAction) return;
+                if (TutorialManager.Instance != null)
+                {
+                    if (TutorialManager.Instance.targetBtn != null && TutorialManager.Instance.targetBtn != moreBtn)
+                    {
+                        Observer.Instance.Broadcast(EventId.OnShowMessage, "You must complete the tutorial step first!");
+                        return;
+                    }
+
+                }
                 OpenMorePanel();
             });
         }
@@ -233,6 +242,10 @@ namespace Pokemon.Scripts.Battle
         }
         public bool TryToCatchPokemon()
         {
+            if (TutorialManager.Instance != null)
+            {
+                return true;
+            }
             float a = (3 * enemyBattlePkm.Pokemon.MaxHP - 2 * enemyBattlePkm.Pokemon.HP)
              * enemyBattlePkm.Pokemon.Data.catchRate / (3 * enemyBattlePkm.Pokemon.MaxHP);
             float change = a / 255;
@@ -290,8 +303,14 @@ namespace Pokemon.Scripts.Battle
                 yield return enemyBattlePkm.CatchAnimation(ball);
                 if (TryToCatchPokemon() || useMasterBall)
                 {
-                    QuestManager.Instance.UpdateBattleQuestProgress(EQuest.CatchPokemon, enemyBattlePkm.Pokemon.Data.type);
+
                     yield return ball.CatchSuccess();
+                    if (TutorialManager.Instance != null)
+                    {
+                        BroadCast(true);
+                        yield break;
+                    }
+                    QuestManager.Instance.UpdateBattleQuestProgress(EQuest.CatchPokemon, enemyBattlePkm.Pokemon.Data.type);
                     ((PlayerParty)playerParty).AddPokemon(enemyBattlePkm.Pokemon);
                     BroadCast(true);
                     yield break;
@@ -536,6 +555,11 @@ namespace Pokemon.Scripts.Battle
         {
             if (!isWin)
             {
+                if (TutorialManager.Instance != null)
+                {
+                    TutorialManager.Instance.EndBattle();
+                    return;
+                }
                 Observer.Instance.Broadcast(EventId.OnEndBattle, isWin);
             }
             else

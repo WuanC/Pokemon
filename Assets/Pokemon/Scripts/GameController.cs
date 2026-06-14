@@ -305,7 +305,5 @@ namespace Pokemon.Scripts
             Observer.Instance.Unregister(EventId.OnEndBattle, OnEndBattle);
 
         }
-
-
     }
 }

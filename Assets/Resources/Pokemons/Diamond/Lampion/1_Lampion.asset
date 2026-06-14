@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 1
   frontSprite: {fileID: 21300000, guid: d2437f4ed82e6114db648b6c5d2b846f, type: 3}
   backSprite: {fileID: 21300000, guid: c6b91e63499d43241ac2d24c2c424deb, type: 3}
-  icon: {fileID: 21300000, guid: 678a169ecb779694c9a81f3eaff0004b, type: 3}
+  icon: {fileID: 21300000, guid: e6277ec7125ca204c976788e195f3ed2, type: 3}
   baseExp: 60
   growthRate: 0
   catchRate: 190

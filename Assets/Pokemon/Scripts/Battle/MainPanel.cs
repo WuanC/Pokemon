@@ -54,7 +54,7 @@ namespace Pokemon.Scripts.Battle
                      {
                          if (TutorialManager.Instance != null)
                          {
-                             if (TutorialManager.Instance.btnIndex >= 0 && TutorialManager.Instance.btnIndex != index)
+                             if ((TutorialManager.Instance.btnIndex >= 0 && TutorialManager.Instance.btnIndex != index) || TutorialManager.Instance.targetBtn != null)
                              {
                                  Observer.Instance.Broadcast(EventId.OnShowMessage, "You must complete the tutorial step first!");
                                  return;
