@@ -2185,6 +2185,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ee0c8f553f1fc8a4d8b1f56fe96b4e1e,
         type: 2}
+    - target: {fileID: -7829456204202911163, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
+        type: 3}
+      propertyPath: reward.items.Array.data[0].quantity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 220114680372377709, guid: 94502e2fd4f06a542a5d7bd76bc435f4,
         type: 3}
       propertyPath: initPokemonParties.Array.size

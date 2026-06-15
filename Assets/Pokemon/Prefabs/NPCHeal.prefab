@@ -101,4 +101,4 @@ MonoBehaviour:
     npcName: Joy
     npcSprite: {fileID: 21300000, guid: c188d11e568168c4fbeabfda3f885ae5, type: 3}
     npcAvatar: {fileID: 21300000, guid: 000a19a83c6758b4f8e07fc9deaabd39, type: 3}
-    npcMessage: I will heal!
+    npcMessage: Your team needs a rest. I'll take care of them!
