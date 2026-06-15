@@ -53,6 +53,7 @@ namespace Pokemon.Scripts.UI.Screens
                 healProgress.transform.parent.gameObject.SetActive(false);
                 npc.Heal(pokemons);
                 healBtn.interactable = true;
+                Observer.Instance.Broadcast(EventId.OnShowMessage, "Your Monster have been healed!");
             });
         }
         public override void Deactive()
